@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-/* ACA HAY QUE AaGREGAR EL PROVIDER Y EL BROWSERROUTER */
+/* ACA HAY QUE AGREGAR EL PROVIDER Y EL BROWSERROUTER */
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
