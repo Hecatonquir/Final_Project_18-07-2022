@@ -7,11 +7,9 @@ import './App.css';
 
 function App() {
   return (
-    <BrowserRouter>
     <div>
       <Route path='/home' component={Home}/>
     </div>
-    </BrowserRouter>
   );
 }
 
