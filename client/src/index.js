@@ -8,8 +8,6 @@ import store from '../src/Redux/Store/store';
 import {Provider} from "react-redux"
 
 
-/* ACA HAY QUE AGREGAR EL PROVIDER Y EL BROWSERROUTER */
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<Provider store={store}>
