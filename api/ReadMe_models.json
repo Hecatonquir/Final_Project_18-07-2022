@@ -1,5 +1,6 @@
 {
 	"Users": {
+		"ID": "UUID",
 		"Name": "STRING",
 		"LoggedIn": "boolean",
 		"Email": "STRING",
@@ -11,7 +12,8 @@
 		"CreatedEvents": "Array de strings",
 		"RedFlags": "Integer"
 	},
-	"Event": {
+	"Events": {
+		"ID": "UUID",
 		"Name": "STRING",
 		"Image": "STRING",
 		"Location": "STRING",
@@ -20,5 +22,9 @@
 		"Rating": "Integer",
 		"Restrictions": "ArraydeSTRING",
 		"AgeRestriction": "Integer"
+	},
+	"Supports": {    // Relacion: 1 User -> hasMany -> Supports
+		"supportID": "UUID",
+		"reason": "TEXT"
 	}
 }

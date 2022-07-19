@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
 	// defino el modelo
-	sequelize.define('users',
+	sequelize.define('supports',
 		{
 			supportID: {
 				type: UUID,
@@ -11,20 +11,8 @@ module.exports = (sequelize) => {
 			},
 			reason: {
 				type: DataTypes.TEXT,
-				defaultValue: 'Guest',
-			},
-			LoggedIn: {
-				type: DataTypes.BOOLEAN,
-				defaultValue: false,
-			},
-			
-			
-			CreatedEvents: {
-				type: DataTypes.ARRAY(DataTypes.STRING),
-			},
-			RedFlags: {
-				type: DataTypes.INTEGER,
-			},
+                allowNull: false
+			}
 		},
 		{ timestamps: false }
 	);

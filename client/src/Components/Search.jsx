@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import {getNameEvent} from "../../action";
+import {getNameEvent} from "../Redux/Actions/searchName";
 
 
 export default function SearchEvent(){

@@ -1,29 +1,40 @@
 import {React, useEffect} from 'react'
-import {useDispatch} from 'react-redux'
-import {getEvents} from '../Redux/Actions/getEvents.js'
-import Card from './Card.js'
-import NavBar from './NavBar.js'
-import Search from './Search.js'
+import {useDispatch,useSelector} from 'react-redux'
+import getEvents from '../Redux/Actions/getEvents.js'
+import ButtonFilter from './ButtonFilter.jsx'
+import EventCard from './EventCard.jsx'
+import NavBar from './NavBar.jsx'
+import Search from './Search.jsx'
+import EventCarousel from './Carousel.jsx'
+import Loader from './Loader.jsx'
 
-export default function Home() {
+export default  function Home() {
     const dispatch = useDispatch()
     const events = useSelector((state) => state.allEvents)
-    useEffect(() => {
-        dispatch(getEvents())
-    }, [dispatch])
+    useEffect( () => {
+         getEvents()
+    }, [])
 
     return(
         <div>
             <NavBar/>
             <Search/>
+            <EventCarousel/>
+            <ButtonFilter />
             <div>
             {events.length ? events.map( event => (
                             <div key={event.id} >
-                            <Card/>
+                            <EventCard
+                            id={event.id}
+                            name={event.name}
+                            image={event.image}
+                            date={event.date}
+                            price={event.price}
+                            />
                             </div>
             )) 
             : <div>
-                ...Cargando
+                <Loader/>
             </div>
             }
             </div>
