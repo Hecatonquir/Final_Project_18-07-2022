@@ -26,6 +26,8 @@ const createEvent = async (req, res) => {
 		res.status(400).send(error);
 	}
 };
-const modifyEvent = '';
+const modifyEvent = async (req, res, next) => {
+	return 'hola';
+};
 
-module.exports = { deleteEvent, deleteEvent, createEvent, modifyEvent };
+module.exports = { getAllEvents, deleteEvent, createEvent, modifyEvent };

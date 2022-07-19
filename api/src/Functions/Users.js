@@ -1,6 +1,10 @@
-const { Events, Users, etc } = require('../db.js');
+const { Events, Users, etc } = require('../db');
 
-const getUserByName = '';
-const getUserByName2 = '';
+async function getUserByName(req, res, next) {
+	return 'hola';
+}
+async function getUserByName2(req, res, next) {
+	return 'hola';
+}
 
-module.exports = { getUserByName1, getUserByName2 };
+module.exports = { getUserByName, getUserByName2 };

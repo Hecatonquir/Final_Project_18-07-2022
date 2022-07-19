@@ -12,4 +12,4 @@ routes.put('/', modifyEvent);
 
 routes.delete('/:id', deleteEvent);
 
-module.export = routes;
+module.exports = routes;

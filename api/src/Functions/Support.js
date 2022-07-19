@@ -1,6 +1,10 @@
 const { Events, Users, etc } = require('../db.js');
 
-const getSupportByName = '';
-const getSupportByName2 = '';
+async function getSupportTickets(req, res, next) {
+	return 'hola';
+}
+const getSupportByName2 = async (req, res, next) => {
+	return 'hola';
+};
 
-module.exports = { getSupportByName1, getSupportByName2 };
+module.exports = { getSupportTickets, getSupportByName2 };

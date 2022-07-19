@@ -2,11 +2,12 @@
 
 const express = require('express');
 const routes = express.Router();
-const { getUserByName } = require('../Functions/Users');
+const { getUserByName } = require('../Functions/Users.js');
 
 routes.get('/', getUserByName);
 routes.post('/', getUserByName);
 routes.put('/', getUserByName);
 routes.delete('/', getUserByName);
 
-module.export = routes;
+module.exports = routes;
+    
