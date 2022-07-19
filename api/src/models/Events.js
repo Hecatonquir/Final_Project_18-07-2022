@@ -7,44 +7,53 @@ module.exports = (sequelize) => {
 	sequelize.define(
 		'events',
 		{
-/* 			ID: {
+			ID: {
 				type: UUID,
 				primaryKey: true,
 				defaultValue: DataTypes.UUIDV4,
 			},
 			Name: {
 				type: DataTypes.STRING,
-				defaultValue: 'Guest',
-			},
-			LoggedIn: {
-				type: DataTypes.BOOLEAN,
-				defaultValue: false,
-			},
-			Email: {
-				type: DataTypes.STRING,
+				allowNull: false,
 			},
 			Image: {
 				type: DataTypes.STRING,
+				allowNull: false,
 			},
-			Role: {
-				type: DataTypes.ENUM("Guest", "User", "Partner", "Admin"),
-				allowNull: true,
+			Location: {
+				type: DataTypes.STRING,
+				allowNull: false,
 			},
-      Favourites:{
+			Price: {
+				type: DataTypes.INTEGER,
+				allowNull: false,
+			},
+			Quantity: {
+				type: DataTypes.INTEGER,
+			},
+			Rating: {
+				type: DataTypes.INTEGER,
+			},
+			Restrictions: {
+				type: DataTypes.ARRAY(DataTypes.STRING),
+				defaultValue: ['None'],
+			},
+			Location: {
 				type: DataTypes.STRING,
 			},
-      Cart:{
-        type: DataTypes.ARRAY(DataTypes.STRING)
-      },
-      Location:{
-        type: DataTypes.STRING
-      },
-      CreatedEvents:{
-        type: DataTypes.ARRAY(DataTypes.STRING)
-      },
-      RedFlags:{
-        type: DataTypes.INTEGER
-      } */
+			Category: {
+				type: DataTypes.ARRAY(DataTypes.STRING),
+			},
+			City: {
+				type: DataTypes.STRING,
+			},
+			AgeRestriction: {
+				type: DataTypes.INTEGER,
+				defaultValue: ['None'],
+			},
+			RedFlags: {
+				type: DataTypes.INTEGER,
+			},
 		},
 		{ timestamps: false }
 	);

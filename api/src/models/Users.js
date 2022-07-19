@@ -22,29 +22,33 @@ module.exports = (sequelize) => {
 			},
 			Email: {
 				type: DataTypes.STRING,
+				isUnique: true,
+				validate: {
+					isEmail: true,
+				},
 			},
 			Image: {
 				type: DataTypes.STRING,
 			},
 			Role: {
-				type: DataTypes.ENUM("Guest", "User", "Partner", "Admin"),
+				type: DataTypes.ENUM('Guest', 'User', 'Partner', 'Admin'),
 				allowNull: true,
 			},
-      Favourites:{
+			Favourites: {
 				type: DataTypes.STRING,
 			},
-      Cart:{
-        type: DataTypes.ARRAY(DataTypes.STRING)
-      },
-      Location:{
-        type: DataTypes.STRING
-      },
-      CreatedEvents:{
-        type: DataTypes.ARRAY(DataTypes.STRING)
-      },
-      RedFlags:{
-        type: DataTypes.INTEGER
-      }
+			Cart: {
+				type: DataTypes.ARRAY(DataTypes.STRING),
+			},
+			Location: {
+				type: DataTypes.STRING,
+			},
+			CreatedEvents: {
+				type: DataTypes.ARRAY(DataTypes.STRING),
+			},
+			RedFlags: {
+				type: DataTypes.INTEGER,
+			},
 		},
 		{ timestamps: false }
 	);
