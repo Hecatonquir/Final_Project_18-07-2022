@@ -1,7 +1,8 @@
 import { React, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getDetail } from "../../redux/actions/index";
+import { getDetail } from "../Redux/Actions/getDetails";
+import Loader from "./Loader.jsx";
 
 export default function Detail() {
   const { id } = useParams();
@@ -26,10 +27,10 @@ export default function Detail() {
           </p>
           <p>{event.price}</p>
           <div>
-            <img src={event.img} alt={event.name} />
-            <img src={event.img} alt={event.name} />
-            <img src={event.img} alt={event.name} />
-            <img src={event.img} alt={event.name} />
+            <img src={event.image} alt={event.name} />
+            <img src={event.image} alt={event.name} />
+            <img src={event.image} alt={event.name} />
+            <img src={event.image} alt={event.name} />
           </div>
           <div>
             {event.map((e) => (
@@ -50,7 +51,9 @@ export default function Detail() {
           </ul>
         </div>
       ) : (
-        <div>Loading...</div>
+        <div>
+          <Loader/>
+          </div>
       )}
     </div>
   );
