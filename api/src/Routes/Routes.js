@@ -23,4 +23,13 @@ routes.delete('/event/:id', async (req, res)=>{
 	}
 })
 
+routes.post('/event', (req, res)=>{
+	try {
+		const created = await Events.create(req.body)
+		res.send(created)
+	} catch (error) {
+		res.status(400).send(error)
+	}
+})
+
 module.exports = routes;
