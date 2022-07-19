@@ -5,6 +5,7 @@ import ButtonFilter from './ButtonFilter.jsx'
 import EventCard from './EventCard.jsx'
 import NavBar from './NavBar.jsx'
 import Search from './Search.jsx'
+import EventCarousel from './Carousel.jsx'
 
 export default  function Home() {
     const dispatch = useDispatch()
@@ -17,7 +18,8 @@ export default  function Home() {
         <div>
             <NavBar/>
             <Search/>
-            <ButtonFilter></ButtonFilter>
+            <EventCarousel/>
+            <ButtonFilter />
             <div>
             {events.length ? events.map( event => (
                             <div key={event.id} >
