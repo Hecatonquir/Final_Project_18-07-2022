@@ -6,6 +6,7 @@ import EventCard from './EventCard.jsx'
 import NavBar from './NavBar.jsx'
 import Search from './Search.jsx'
 import EventCarousel from './Carousel.jsx'
+import Loader from './Loader.jsx'
 
 export default  function Home() {
     const dispatch = useDispatch()
@@ -33,7 +34,7 @@ export default  function Home() {
                             </div>
             )) 
             : <div>
-                ...Cargando
+                <Loader/>
             </div>
             }
             </div>
