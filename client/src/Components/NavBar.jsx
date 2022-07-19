@@ -10,7 +10,7 @@ function NavBar(){
              <div>
                   <Link to='/algunlado'>
                       <button>
-                        <span>contactanos</span>
+                        <span>Contact Us</span>
                      </button>
                  </Link>
               </div>
@@ -24,7 +24,7 @@ function NavBar(){
                  <div>
                  <Link to='/algunlado'>
                       <button>
-                        <span>Sing Up</span>
+                        <span>Sign Up</span>
                      </button>
                  </Link>
             </div>

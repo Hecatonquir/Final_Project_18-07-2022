@@ -1,4 +1,4 @@
-import {GET_EVENTS, GET_NAME_EVENTS,SHOW_EVENTS_USER, NEED_BACKUP, GET_DETAILS, PRE_FILTER} from "../ActionTypes/actiontypes"
+import {GET_EVENTS, GET_NAME_EVENTS,SHOW_EVENTS_USER, NEED_BACKUP, GET_DETAILS, ADD_REMOVE_FILTER, PRE_FILTER} from "../ActionTypes/actiontypes"
 const initialState = {
     allEvents: [],
     eventsBackUp: [],
@@ -28,6 +28,9 @@ export default function reducer(state = initialState,{type,payload}) {
 
             case GET_DETAILS: 
             return {...state, eventDetail: payload}
+
+            default:
+                return state
             
         
 
