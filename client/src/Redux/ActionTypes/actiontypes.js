@@ -1,2 +1,5 @@
 export const GET_EVENTS = "GET_EVENTS"
 export const GET_NAME_EVENTS = "GET_NAME_EVENTS"
+export const NEED_BACKUP = "NEED_BACKUP"
+export const SHOW_EVENTS_USER = "SHOW_USER"
+export const GET_DETAILS = "GET_DETAILS"
