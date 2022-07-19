@@ -1,9 +1,9 @@
 import {React, useEffect} from 'react'
 import {useDispatch} from 'react-redux'
 import {getEvents} from '../Redux/Actions/getEvents.js'
-import Card from './Card.js'
-import NavBar from './NavBar.js'
-import Search from './Search.js'
+import EventCard from './EventCard.jsx'
+import NavBar from './NavBar.jsx'
+import Search from './Search.jsx'
 
 export default function Home() {
     const dispatch = useDispatch()
@@ -19,7 +19,13 @@ export default function Home() {
             <div>
             {events.length ? events.map( event => (
                             <div key={event.id} >
-                            <Card/>
+                            <EventCard
+                            id={event.id}
+                            name={event.name}
+                            image={event.image}
+                            date={event.date}
+                            price={event.price}
+                            />
                             </div>
             )) 
             : <div>
