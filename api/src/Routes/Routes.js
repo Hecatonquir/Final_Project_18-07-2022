@@ -20,6 +20,8 @@ routes.post('/events', newRecipe);
 routes.put('/events', newRecipe);
 routes.delete('/events', newRecipe);
 
+
+
 routes.get('/support/:idReceta', getSupportTickets);
 routes.post('/support/:idReceta', getSupportTickets);
 routes.put('/support/:idReceta', getSupportTickets);
