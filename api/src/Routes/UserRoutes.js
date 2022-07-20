@@ -4,11 +4,11 @@ const express = require('express');
 const routes = express.Router();
 const { getAllUsers, getUserByName, getUserById, addUser, deleteUser } = require('../Functions/Users.js');
 
-routes.get('/all', getAllUsers);
-routes.get('/name/:Name', getUserByName);
-routes.get('/id/:ID', getUserById);
-routes.post('/', addUser);
+routes.get('/all', getAllUsers);                // Working
+routes.get('/name/:Name', getUserByName);       // Working
+routes.get('/id/:ID', getUserById);             // Working
+routes.post('/', addUser);                      // Working
 /* routes.put('/', getUserByName); */
-routes.delete('/', deleteUser);
+routes.delete('/:id', deleteUser);              // Working
 
 module.exports = routes;

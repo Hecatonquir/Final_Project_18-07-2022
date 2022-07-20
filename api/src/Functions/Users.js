@@ -25,7 +25,7 @@ const getUserByName = async (req, res) => {
 const getUserById = async (req, res) => {
 	const ID = req.params;
 	try {
-		const userBox = await Events.findAll({
+		const userBox = await Users.findAll({
 			where: ID,
 		});
 		res.send(userBox);
@@ -36,7 +36,7 @@ const getUserById = async (req, res) => {
 
 const addUser = async (req, res) => {
 	try {
-		const created = await Users.create(req.body);
+		const created = await Users.bulkCreate(req.body);
 		res.send(created);
 	} catch (error) {
 		res.status(400).send(error.stack);
