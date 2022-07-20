@@ -29,6 +29,8 @@ export default function reducer(state = initialState,{type,payload}) {
             case GET_DETAILS: 
             return {...state, eventDetail: payload}
 
+
+
             default:
                 return state
             

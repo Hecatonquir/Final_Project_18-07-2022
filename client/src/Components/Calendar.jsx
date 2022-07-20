@@ -27,7 +27,6 @@ function CalendarEvents() {
 
 
     useEffect(() => {
-    setDate(format(new Date(), 'dd/MM/yyyy'))
     document.addEventListener("keydown", hideOnScape, true)
     document.addEventListener("click", hideOnClickOutside, true)
     }
@@ -38,9 +37,9 @@ function CalendarEvents() {
   return (
     <div>
         <label>Events By Date</label>
-        <input value={date} onClick={() => setOpen(true)}></input>
+        <input placeholder={format(new Date(), 'dd/MM/yyyy')}value={date} onClick={() => setOpen(true)}></input>
         <div ref={reference}>
-        {open && <Calendar editableDateInputs={true} onChange={(e) =>handleChange(e)}></Calendar>}
+        {open && <Calendar onChange={(e) =>handleChange(e)}></Calendar>}
         </div>
         </div>
   )
