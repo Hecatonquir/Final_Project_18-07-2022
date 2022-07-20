@@ -13,10 +13,15 @@ function App() {
       <Routes>
       <Route path='/' element={<Home/>}/>
 <<<<<<< HEAD
+<<<<<<< HEAD
      
 =======
       <Route path='/contact' element={<ContacUs/>}/>
        <Route path='/profile' element={<Profile/>}/>
+>>>>>>> Development
+=======
+      <Route path='/profile' element={<Profile/>}/>
+      <Route path='/contact' element={<ContacUs/>}/>
 >>>>>>> Development
       </Routes>
     </div>
