@@ -16,7 +16,11 @@ module.exports = (sequelize) => {
 			},
 			done: {
 				type: DataTypes.BOOLEAN,
-				defaultValue: 'false'
+				defaultValue: false
+			},
+			problemType: {
+				type: DataTypes.STRING,
+				allowNull: false
 			}
 		},
 		{ timestamps: false }

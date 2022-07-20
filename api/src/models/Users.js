@@ -35,7 +35,7 @@ module.exports = (sequelize) => {
 				allowNull: true,
 			},
 			Favourites: {
-				type: DataTypes.STRING,
+				type: DataTypes.ARRAY(DataTypes.STRING),
 			},
 			Cart: {
 				type: DataTypes.ARRAY(DataTypes.STRING),
