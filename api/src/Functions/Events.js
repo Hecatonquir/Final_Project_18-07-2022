@@ -7,22 +7,20 @@ const getAllEvents = async (req, res, next) => {
 const deleteEvent = async (req, res) => {
 	try {
 		const trash = await Events.findByPk(req.params.id);
+		const trash2 = trash;
 		await trash.destroy();
-		res.send('Event Deleted.');
+		res.send(`Event "${trash2.Name}" deleted successfully`);
 	} catch (error) {
-		res.status(404).send(error);
+		res.status(404).send(error.stack);
 	}
 };
 
 const createEvent = async (req, res) => {
-	console.log('🐲🐲🐲 / file: Events.js / line 25 / req.body', req.body);
 	try {
 		const created = await Events.create(req.body);
-
 		res.send(created);
 	} catch (error) {
-		console.log('🐲🐲🐲 / file: Events.js / line 27 / error', error);
-		res.status(400).send(error);
+		res.status(400).send(error.stack);
 	}
 };
 const modifyEvent = async (req, res, next) => {
