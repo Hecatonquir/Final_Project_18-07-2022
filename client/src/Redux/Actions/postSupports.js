@@ -6,10 +6,7 @@ export function postSupports(payload){
     return async (dispatch) => {
       try {
         var createNote= await axios.post("http://localhost:3001/",payload);
-         return dispatch({
-            type: POST_SUPPORTS,
-            payload: createNote
-        })
+         alert("note create")
 
       } catch (error) {
     
