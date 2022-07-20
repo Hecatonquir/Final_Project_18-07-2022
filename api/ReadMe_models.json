@@ -6,11 +6,13 @@
 		"Email": "STRING",
 		"Image": "STRING",
 		"Role": "(Guest, User,Partner o Admin)",
-		"Favourites": "Array de strings",
-		"Cart": "Array de strings",
+		"Favourites": ["Array de strings"],
+		"Cart": ["Array de strings"],
 		"Location": "STRING",
-		"CreatedEvents": "Array de strings",
-		"RedFlags": "Integer"
+		"CreatedEvents": ["Array de strings"],
+		"RedFlags": "Integer",
+		"Category": ["Array de strings"],
+		"City": "STRING"
 	},
 	"Events": {
 		"ID": "UUID",
@@ -23,8 +25,18 @@
 		"Restrictions": "ArraydeSTRING",
 		"AgeRestriction": "Integer"
 	},
-	"Supports": {    // Relacion: 1 User -> hasMany -> Supports
+
+
+
+	"Supports": {    
+
 		"supportID": "UUID",
-		"reason": "TEXT"
+		"reason": "TEXT",
+		"done": "BOOLEAN"
+	},
+	"Cart": {
+		"cartId": "UUID",
+		"date": "DATEONLY",
+		"time": "TIME"
 	}
 }
