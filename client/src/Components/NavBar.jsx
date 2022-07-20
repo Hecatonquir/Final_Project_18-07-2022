@@ -12,7 +12,7 @@ function NavBar(){
           </div>
           <div className={styles.menu}>
              <div>
-                  <Link to='/algunlado'>
+                  <Link to='/contact'>
                       <button>
                         <span>Contact Us</span>
                      </button>

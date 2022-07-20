@@ -8,8 +8,7 @@ export default function ContactUs(){
     const [note, setNote] = useState("")
         
     const handleChange = function (e){
-        console.log("soy la consola",e.target.value)
-        setNote({
+         setNote({
             ...note,
             [e.target.note]: e.target.value
             
@@ -29,18 +28,22 @@ export default function ContactUs(){
     return (
         <div>
 <form onSubmit={handleSubmit}>
-   <div>
-       <label>Tell Us your problem</label>
-               <textarea type='text' name='note' value={note.note} onChange={handleChange}></textarea>
+   <div class="form-group">
+       <label for="exampleFormControlTextarea1">Tell Us your problem</label>
+               <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" type='text' name='note' value={note.note} onChange={handleChange}></textarea>
    </div>
        <div>
-         <button type='submit'>Create Note</button> 
+         <button class="btn btn-outline-info" type='submit'>Create Note</button> 
     </div>
 </form>
 <Link to= '/'>
-            <button> go Back</button>
+            <button class="btn btn-outline-success"> go Back</button>
         </Link>
         </div>
    );
 
 }
+<div>
+<label >Example textarea</label>
+<textarea ></textarea>
+</div>
