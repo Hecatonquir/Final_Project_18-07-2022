@@ -1,11 +1,7 @@
 const { Events, Users } = require('../db.js');
 
 const getAllEvents = async (req, res, next) => {
-	let allEvents = await getAllEvents();
-	res.send(allEvents);
-	routes.get('/allEvents', async (req, res) => {
-		res.send(await Events.findAll());
-	});
+	res.send(await Events.findAll());
 };
 
 const deleteEvent = async (req, res) => {
