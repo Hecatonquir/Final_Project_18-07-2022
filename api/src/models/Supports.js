@@ -2,16 +2,21 @@ const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
 	// defino el modelo
-	sequelize.define('supports',
+	sequelize.define(
+		'supports',
 		{
 			supportID: {
-				type: UUID,
+				type: DataTypes.UUID,
 				primaryKey: true,
 				defaultValue: DataTypes.UUIDV4,
 			},
 			reason: {
 				type: DataTypes.TEXT,
-                allowNull: false
+				allowNull: false,
+			},
+			done: {
+				type: DataTypes.BOOLEAN,
+				defaultValue: 'false'
 			}
 		},
 		{ timestamps: false }
