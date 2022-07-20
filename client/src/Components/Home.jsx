@@ -7,6 +7,7 @@ import NavBar from './NavBar.jsx'
 import Search from './Search.jsx'
 import EventCarousel from './Carousel.jsx'
 import Loader from './Loader.jsx'
+import CalendarEvents from './Calendar.jsx'
 
 export default  function Home() {
     const dispatch = useDispatch()
@@ -21,6 +22,7 @@ export default  function Home() {
             <Search/>
             <EventCarousel/>
             <ButtonFilter />
+            <CalendarEvents></CalendarEvents>
             <div>
             {events.length ? events.map( event => (
                             <div key={event.id} >
