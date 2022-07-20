@@ -38,7 +38,7 @@ function NavBar(){
                  </Link>
             </div>:<div></div>}
             <div>
-                  <Link to='/algunlado'>
+                  <Link to='/contact'>
                       <button>
                         <span>Contact Us</span>
                      </button>
