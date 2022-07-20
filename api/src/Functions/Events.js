@@ -36,7 +36,8 @@ const getEventByName = async (req, res) => {
 				Name: {
 					[Op.iLike]: '%' + Name + '%',
 				},
-				/* el Op.iLike sirve para buscar algo parecido a lo que yo le pida. El i sirve para indicar que sea case Insensitive. El % sirve para decir que puede haber algo antes y/o después del Name (por eso lo pongo antes y después) */
+				/* el Op.iLike sirve para buscar algo parecido a lo que yo le pida. El i sirve para indicar que sea case Insensitive. 
+				El % sirve para decir que puede haber algo antes y/o después del Name (por eso lo pongo antes y después) */
 			},
 		});
 		res.send(found);
