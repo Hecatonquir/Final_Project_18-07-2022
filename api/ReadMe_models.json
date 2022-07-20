@@ -31,7 +31,8 @@
 	"Supports": {    
 
 		"supportID": "UUID",
-		"reason": "TEXT"
+		"reason": "TEXT",
+		"done": "BOOLEAN"
 	},
 	"Cart": {
 		"cartId": "UUID",
