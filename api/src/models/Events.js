@@ -38,9 +38,6 @@ module.exports = (sequelize) => {
 				type: DataTypes.ARRAY(DataTypes.STRING),
 				defaultValue: ['None'],
 			},
-			Location: {
-				type: DataTypes.STRING,
-			},
 			Category: {
 				type: DataTypes.ARRAY(DataTypes.STRING),
 			},
