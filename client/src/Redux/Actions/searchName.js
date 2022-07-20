@@ -5,7 +5,7 @@ import { GET_NAME_EVENTS } from "../ActionTypes/actiontypes";
 export function getNameEvent(name){
     return async function (dispatch){
         try {
-            var json = await axios.get(`http://localhost:3001/event?name=${name}`)
+            var json = await axios.get(`http://localhost:3001/event/name/${name}`)
               return dispatch({
                 type: GET_NAME_EVENTS,
                 payload: json.data

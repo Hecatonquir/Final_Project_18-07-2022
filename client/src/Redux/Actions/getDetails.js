@@ -1,10 +1,10 @@
 import { GET_DETAILS } from "../ActionTypes/actiontypes";
 import axios from "axios"
 
-export function getDetail(){
+export function getDetail(id){
     return async (dispatch) =>{
         try {
-            let json = await axios('ruta');
+            let json = await axios('http://localhost:3001/event/id/'+id);
             return dispatch({
                 type: GET_DETAILS,
                 payload: json.data

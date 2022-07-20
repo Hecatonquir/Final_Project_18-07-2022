@@ -5,7 +5,7 @@ export default async function getEvents() {
 
     return (dispatch) =>{
 
-    axios(`http://localhost:3001/allEvents`)
+    axios(`http://localhost:3001/event/allEvents`)
     .then(response => {return dispatch({type: GET_EVENTS, payload: response}),dispatch({type: NEED_BACKUP, payload: response})})
     .catch(error => alert(error.response.data))
     }
