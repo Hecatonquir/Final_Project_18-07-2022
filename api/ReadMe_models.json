@@ -23,8 +23,13 @@
 		"Restrictions": "ArraydeSTRING",
 		"AgeRestriction": "Integer"
 	},
-	"Supports": {    // Relacion: 1 User -> hasMany -> Supports
+	"Supports": {    
 		"supportID": "UUID",
 		"reason": "TEXT"
+	},
+	"Cart": {
+		"cartId": "UUID",
+		"date": "DATEONLY",
+		"time": "TIME"
 	}
 }
