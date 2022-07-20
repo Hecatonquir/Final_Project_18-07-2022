@@ -8,7 +8,7 @@ module.exports = (sequelize) => {
 		'events',
 		{
 			ID: {
-				type: UUID,
+				type: DataTypes.UUID,
 				primaryKey: true,
 				defaultValue: DataTypes.UUIDV4,
 			},
@@ -49,7 +49,7 @@ module.exports = (sequelize) => {
 			},
 			AgeRestriction: {
 				type: DataTypes.INTEGER,
-				defaultValue: ['None'],
+				defaultValue: 0,
 			},
 			RedFlags: {
 				type: DataTypes.INTEGER,

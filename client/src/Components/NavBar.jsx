@@ -1,16 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import styles from "../Styles/NavBar.module.css"
 
 
 
 function NavBar(){
   return(
-      <nav>
+      <nav className={styles.nav}>
           <div>
+            <h4>EVENTS</h4>
+          </div>
+          <div className={styles.menu}>
              <div>
                   <Link to='/algunlado'>
                       <button>
-                        <span>contactanos</span>
+                        <span>Contact Us</span>
                      </button>
                  </Link>
               </div>
@@ -24,7 +28,7 @@ function NavBar(){
                  <div>
                  <Link to='/algunlado'>
                       <button>
-                        <span>Sing Up</span>
+                        <span>Sign Up</span>
                      </button>
                  </Link>
             </div>

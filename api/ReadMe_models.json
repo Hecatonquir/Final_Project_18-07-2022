@@ -1,0 +1,41 @@
+{
+	"Users": {
+		"ID": "UUID",
+		"Name": "STRING",
+		"LoggedIn": "boolean",
+		"Email": "STRING",
+		"Image": "STRING",
+		"Role": "(Guest, User,Partner o Admin)",
+		"Favourites": ["Array de strings"],
+		"Cart": ["Array de strings"],
+		"Location": "STRING",
+		"CreatedEvents": ["Array de strings"],
+		"RedFlags": "Integer",
+		"Category": ["Array de strings"],
+		"City": "STRING"
+	},
+	"Events": {
+		"ID": "UUID",
+		"Name": "STRING",
+		"Image": "STRING",
+		"Location": "STRING",
+		"Price": "Integer",
+		"Quantity": "Integer",
+		"Rating": "Integer",
+		"Restrictions": "ArraydeSTRING",
+		"AgeRestriction": "Integer"
+	},
+
+
+
+	"Supports": {    
+
+		"supportID": "UUID",
+		"reason": "TEXT"
+	},
+	"Cart": {
+		"cartId": "UUID",
+		"date": "DATEONLY",
+		"time": "TIME"
+	}
+}
