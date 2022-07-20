@@ -15,7 +15,7 @@ function NavBar(){
             <h4>Events Henry</h4>
           </div>
           <div className={styles.menu}>
-            
+
               <div>
              { !isAuthenticated ? 
                       <button onClick={() => loginWithRedirect()}>
