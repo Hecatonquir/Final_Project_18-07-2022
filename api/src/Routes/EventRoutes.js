@@ -14,7 +14,8 @@ const routes = express.Router();
 const F = require('../Functions/Events');
 
 routes.get('/allEvents', F.getAllEvents);
-routes.get('/:Name', F.getEventByName);
+routes.get('/name/:Name', F.getEventByName);
+routes.get('/id/:ID', F.getEventById);
 
 routes.post('/', F.createEvent);
 

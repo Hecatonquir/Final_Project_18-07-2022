@@ -45,4 +45,24 @@ const getEventByName = async (req, res) => {
 	}
 };
 
-module.exports = { getAllEvents, deleteEvent, createEvent, modifyEvent, getEventByName };
+const getEventById = async (req, res) => {
+	const ID = req.params;
+
+	try {
+		const found = await Events.findAll({
+			where: ID,
+		});
+		res.send(found);
+	} catch (error) {
+		res.status(400).send(error.stack);
+	}
+};
+
+module.exports = {
+	getAllEvents,
+	deleteEvent,
+	createEvent,
+	modifyEvent,
+	getEventByName,
+	getEventById,
+};
