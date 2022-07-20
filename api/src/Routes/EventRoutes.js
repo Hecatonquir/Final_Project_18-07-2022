@@ -2,15 +2,25 @@
 
 const express = require('express');
 const routes = express.Router();
-const { getAllEvents, deleteEvent, createEvent, modifyEvent } = require('../Functions/Events');
+/* const {
+	getAllEvents,
+	deleteEvent,
+	createEvent,
+	modifyEvent,
+	getEventByName,
+} = require('../Functions/Events'); */
 
-routes.get('/allEvents', getAllEvents);
+/* LO QUE ESTÁ ARRIBA ES LO MISMO QUE LO DE ABAJO, Sólo que cuando hay muchas funciones, conviene traerte todas las funciones juntas directamente como hice abajo y luego usarlas así: */
+const F = require('../Functions/Events');
 
-routes.post('/', createEvent);
+routes.get('/allEvents', F.getAllEvents);
+routes.get('/:Name', F.getEventByName);
 
-routes.put('/', modifyEvent);
+routes.post('/', F.createEvent);
 
-routes.delete('/:id', deleteEvent);
+routes.put('/', F.modifyEvent);
+
+routes.delete('/:id', F.deleteEvent);
 
 routes.get('/', (req, res) => {
 	console.log('Ejemplo2');

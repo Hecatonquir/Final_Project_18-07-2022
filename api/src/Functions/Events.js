@@ -1,3 +1,4 @@
+const { Op } = require('sequelize');
 const { Events, Users } = require('../db.js');
 
 const getAllEvents = async (req, res, next) => {
@@ -26,5 +27,22 @@ const createEvent = async (req, res) => {
 const modifyEvent = async (req, res, next) => {
 	return 'hola';
 };
+const getEventByName = async (req, res) => {
+	const { Name } = req.params;
 
-module.exports = { getAllEvents, deleteEvent, createEvent, modifyEvent };
+	try {
+		const found = await Events.findAll({
+			where: {
+				Name: {
+					[Op.iLike]: '%' + Name + '%',
+				},
+				/* el Op.iLike sirve para buscar algo parecido a lo que yo le pida. El i sirve para indicar que sea case Insensitive. El % sirve para decir que puede haber algo antes y/o después del Name (por eso lo pongo antes y después) */
+			},
+		});
+		res.send(found);
+	} catch (error) {
+		res.status(400).send(error.stack);
+	}
+};
+
+module.exports = { getAllEvents, deleteEvent, createEvent, modifyEvent, getEventByName };
