@@ -12,4 +12,9 @@ routes.put('/', modifyEvent);
 
 routes.delete('/:id', deleteEvent);
 
+routes.get('/', (req, res) => {
+	console.log('Ejemplo2');
+	res.send('Bienvenidos a la Los Eventos! ');
+});
+
 module.exports = routes;

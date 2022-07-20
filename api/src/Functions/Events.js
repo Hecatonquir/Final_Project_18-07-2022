@@ -19,10 +19,13 @@ const deleteEvent = async (req, res) => {
 };
 
 const createEvent = async (req, res) => {
+	console.log('🐲🐲🐲 / file: Events.js / line 25 / req.body', req.body);
 	try {
 		const created = await Events.create(req.body);
+
 		res.send(created);
 	} catch (error) {
+		console.log('🐲🐲🐲 / file: Events.js / line 27 / error', error);
 		res.status(400).send(error);
 	}
 };

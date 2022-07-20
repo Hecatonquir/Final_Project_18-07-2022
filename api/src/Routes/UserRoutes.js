@@ -10,4 +10,3 @@ routes.put('/', getUserByName);
 routes.delete('/', getUserByName);
 
 module.exports = routes;
-    
