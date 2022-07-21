@@ -10,7 +10,6 @@ export default function Detail() {
 	const { id } = useParams();
 	const dispatch = useDispatch();
 	var event = useSelector((state) => state.eventDetail);
-	console.log('🐲🐲🐲 / file: Detail.jsx / line 13 / event', event);
 
 	useEffect(() => {
 		dispatch(getDetail(id));
@@ -30,7 +29,6 @@ export default function Detail() {
 							<button className={styles.Button}>Back</button>
 						</Link>
 					</nav>
-
 					<div className={styles.container}>
 						<div className={styles.data}>
 							{event[0].Image.map((im) => (
@@ -50,7 +48,6 @@ export default function Detail() {
 							<p>Day: {event[0].Day}</p>
 							<p>Hour: {event[0].Hour}</p>
 							<p>Detail: {event[0].Detail}</p>
-
 							<button className={styles.Button2} onClick={() => hundleClick()}>
 								Add To Cart
 							</button>
