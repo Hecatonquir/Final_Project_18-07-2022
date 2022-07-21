@@ -63,6 +63,7 @@ const reportEvent = async (req, res) =>{
 	try {
 		const e = await Events.findByPk(req.params.ID)
 		e.RedFlags++
+		await e.save()
 		res.send('RedFlags++')
 	} catch (error) {
 		res.status(400).send(error.stack)
