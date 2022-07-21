@@ -22,12 +22,15 @@ function NavBar(){
                         <span>Log In/Sign Up</span>
                      </button>
                  :
-            
+          
                       <button onClick={() => logout()}>
                         <span>Log Out</span>
                      </button>
+                 
 }
-  
+  {isAuthenticated && <Link to="/createEvent">
+                      <button>Create an Event</button>
+                     </Link>}
             </div>
                
             {isAuthenticated? <div>

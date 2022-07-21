@@ -9,49 +9,39 @@ export default function Detail() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+   
     dispatch(getDetail(id));
-  }, [dispatch, id]);
+  }, []);
 
   const event = useSelector((state) => state.eventDetail);
 
   return (
     <div>
-      {event ? (
+      {event[0] ? 
         <div>
-          <Link>
+          <Link to="/">
             <button>Back</button>
           </Link>
-          <h1>{event.name}</h1>
+          
+          <h1>{event[0].Name}</h1>
+          
           <p>
-            {event.city} {event.location}
+            {event[0].City} {event[0].Location}
           </p>
-          <p>{event.price}</p>
+          <p>{event[0].Price}</p>
+         
           <div>
-            <img src={event.image} alt={event.name} />
-            <img src={event.image} alt={event.name} />
-            <img src={event.image} alt={event.name} />
-            <img src={event.image} alt={event.name} />
+            <img src={event[0].Image} alt={event.Name} />
+            <img src={event.Image} alt={event.Name} />
+            <img src={event.Image} alt={event.Name} />
+            <img src={event.Image} alt={event.Name} />
           </div>
-          <div>
-            {event.map((e) => (
-              <p key={e}>{e.promotion}</p>
-            ))}
           </div>
-          <ul>
-            <p>Cosas permitidas</p>
-            {event.map((e) => {
-              return <li key={e}>{e.permitted}</li>;
-            })}
-          </ul>
-          <ul>
-            <p>Cosas no permitidas</p>
-            {event.map((e) => {
-              return <li key={e}>{e.notPermitted}</li>;
-            })}
-          </ul>
-        </div>
-      ) : (
+       : (
         <div>
+           <Link to="/">
+            <button>Back</button>
+          </Link>
           <Loader/>
           </div>
       )}

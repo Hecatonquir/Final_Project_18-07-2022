@@ -1,10 +1,10 @@
 import axios from "axios"
 
 
-export function postEvent(payload){
-    return async function (){
+export async function postEvent(event){
+    
         try {
-             await axios.post('ruta', payload);
+             await axios.post(`http://localhost:3001/event`, event);
             alert("Post Created!")
             
         }
@@ -13,6 +13,5 @@ export function postEvent(payload){
             alert(error.response.data)
         } 
             
-        }
        
 }
