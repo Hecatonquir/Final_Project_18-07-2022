@@ -2,6 +2,7 @@ import { React, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetail } from "../Redux/Actions/getDetails";
+import {addCart} from '../Redux/Actions/addToCart'
 import Loader from "./Loader.jsx";
 
 export default function Detail() {
@@ -9,11 +10,14 @@ export default function Detail() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-   
     dispatch(getDetail(id));
-  }, []);
+  }, [dispatch, id]);
 
   const event = useSelector((state) => state.eventDetail);
+
+  function hundleClick(id) {
+    dispatch(addCart(id))
+}
 
   return (
     <div>
@@ -36,6 +40,7 @@ export default function Detail() {
             <img src={event.Image} alt={event.Name} />
             <img src={event.Image} alt={event.Name} />
           </div>
+          <button onClick={() => hundleClick()}>Add To Cart</button>
           </div>
        : (
         <div>

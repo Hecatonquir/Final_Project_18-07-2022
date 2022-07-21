@@ -1,0 +1,7 @@
+.filtercontainer {
+    background-color: #229ddb;
+    display: flex;
+   justify-content: space-around;
+   color: white;
+   padding: 20px;
+}
