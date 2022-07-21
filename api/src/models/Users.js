@@ -28,6 +28,9 @@ module.exports = (sequelize) => {
 				},
 			},
 			Image: {
+				type: DataTypes.TEXT,
+			},
+			Location: {
 				type: DataTypes.STRING,
 			},
 			Role: {
@@ -39,9 +42,6 @@ module.exports = (sequelize) => {
 			},
 			Cart: {
 				type: DataTypes.ARRAY(DataTypes.STRING),
-			},
-			Location: {
-				type: DataTypes.STRING,
 			},
 			CreatedEvents: {
 				type: DataTypes.ARRAY(DataTypes.STRING),
