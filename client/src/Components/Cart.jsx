@@ -8,6 +8,7 @@ import styles from '../Styles/Cart.module.css'
 export default function Cart() {
     const dispatch = useDispatch()
     const cart = useSelector((state) => state.cart)
+    console.log(cart)
 
     function hundleClick(){
         dispatch(clearCart())
@@ -16,24 +17,27 @@ export default function Cart() {
     return(
         <div>
             <nav className={styles.nav}>
-            <Link to='/'><button>BACK</button></Link>
+            <Link to='/'><button className={styles.Button}>BACK</button></Link>
             </nav>
-            <p>Your selected events</p>
+            <h4 className={styles.title}>SHOPING CART</h4>
+            <p className={styles.subtitle}>Your selected events</p>
             {
-                cart && cart.map( (e) => (
-                    <div key={e.ID}>
+                cart && cart.map( (item) => (
+                    <div key={item.ID}>
                         <CardItem
-                        id={e.ID}
-                        name={e.Name}
-                        image={e.Image}
-                        price={e.Price}
-                        purchasedItem={e.PurchasedItem}
+                        id={item.ID}
+                        name={item.Name}
+                        image={item.Image}
+                        price={item.Price}
+                        purchasedItem={item.PurchasedItem}
                         />
                     </div>
                 ))
             }
-            <button onClick={() => hundleClick()}>Remove</button>
-            <button>Buy</button>
+            <div className={styles.divButton}>
+                <button className={styles.Button2} onClick={() => hundleClick()}>Remove</button>
+                <button className={styles.Button2}>Buy</button>
+            </div>
         </div>
     )
 }
