@@ -29,7 +29,15 @@ export default function ContactUs(){
         <div>
 <form onSubmit={handleSubmit}>
    <div class="form-group">
-       <label for="exampleFormControlTextarea1">Tell Us your problem</label>
+       <label for="exampleFormControlTextarea1">Tell Us your problem</label> 
+       <select>
+            <option>return tickets</option>
+            <option>problems with the pay</option>
+            <option>inappropriate event</option>
+            <option>suggestions</option>
+            <option>report bugs</option>
+            <option>others</option>
+       </select>
                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" type='text' name='note' value={note.note} onChange={handleChange}></textarea>
    </div>
        <div>
