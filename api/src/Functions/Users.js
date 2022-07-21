@@ -1,7 +1,6 @@
 const { Events, Users } = require('../db');
 const { Op } = require('sequelize');
 
-
 const getAllUsers = async (req, res, next) => {
 	res.send(await Users.findAll());
 };
@@ -54,4 +53,22 @@ const deleteUser = async (req, res) => {
 	}
 };
 
-module.exports = { getAllUsers, getUserByName, getUserById, addUser, deleteUser };
+const getPartnerCreatedEvents = async (req, res) => {
+	const { ID } = req.params;
+	try {
+		const Partner = await Users.findByPk(ID);
+		const allPartnerEvents = Partner.CreatedEvents;
+		res.send(allPartnerEvents);
+	} catch (error) {
+		res.status(400).send(error.stack);
+	}
+};
+
+module.exports = {
+	getAllUsers,
+	getUserByName,
+	getUserById,
+	addUser,
+	deleteUser,
+	getPartnerCreatedEvents,
+};

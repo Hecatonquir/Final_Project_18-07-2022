@@ -22,6 +22,21 @@ module.exports = (sequelize) => {
 			},
 			Location: {
 				type: DataTypes.STRING,
+				allowNull: false,
+			},
+			Price: {
+				type: DataTypes.INTEGER,
+				allowNull: false,
+			},
+			Quantity: {
+				type: DataTypes.INTEGER,
+			},
+			Rating: {
+				type: DataTypes.INTEGER,
+			},
+			Restrictions: {
+				type: DataTypes.ARRAY(DataTypes.STRING),
+				defaultValue: ['None'],
 			},
 			Category: {
 				type: DataTypes.ARRAY(DataTypes.STRING),

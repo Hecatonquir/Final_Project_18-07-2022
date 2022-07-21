@@ -10,9 +10,7 @@
 		"Cart": ["Array de strings"],
 		"Location": "STRING",
 		"CreatedEvents": ["Array de strings"],
-		"RedFlags": "Integer",
-		"Category": ["Array de strings"],
-		"City": "STRING"
+		"RedFlags": "Integer"
 	},
 	"Events": {
 		"ID": "UUID",
@@ -23,9 +21,12 @@
 		"Quantity": "Integer",
 		"Rating": "Integer",
 		"Restrictions": "ArraydeSTRING",
-		"AgeRestriction": "Integer"
+		"AgeRestriction": "Integer",
+		"Category": "ArraydeSTRING",
+		"City": "STRING",
+		"RedFlags": "Integer"
 	},
-	"Supports": {    
+	"Supports": {
 		"supportID": "UUID",
 		"reason": "TEXT",
 		"done": "BOOLEAN",
