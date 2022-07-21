@@ -30,32 +30,32 @@ export default function reducer(state = initialState,{type,payload}) {
             return {...state, eventDetail: payload}
 
             case ADD_ITEM_CART: 
-            const newItem = state.allEvents.find((event) => event.id === payload)
-            const itemInCart = state.cart.find((item) => item.id === newItem.id)
+            const newItem = state.allEvents.find((event) => event.ID === payload)
+           
+            const itemInCart = state.cart.find((item) => item.ID === newItem.ID)
+            console.log(itemInCart)
             return itemInCart 
             ? {...state, cart: state.cart.map((item) => 
-                item.id === newItem.id
-                ? {...item, quantity: item.quantity +1}
+                item.ID === newItem.ID
+                ? {...item, PurchasedItem: item.PurchasedItem + 1}
                 : item
                 )}
-            : {...state, cart: [...state.cart, {...newItem, quantity: 1}]}
+            : {...state, cart: [...state.cart, {...newItem, PurchasedItem: 1}]}
 
             case REMOVE_ITEM_CART: 
-            const deleteItem = state.cart.find((item) => item.id === payload)
-            return deleteItem.quantity > 1
+            const deleteItem = state.cart.find((item) => item.ID === payload)
+            return deleteItem.PurchasedItem > 1
             ? {...state, cart: state.cart.map((item) =>
-                item.id === payload 
-                ? {...item, quantity: item.quantity -1}
+                item.ID === payload 
+                ? {...item, PurchasedItem: item.PurchasedItem -1}
                 : item)}
-            : {...state, cart: state.cart.filter((item) => item.id !== payload)}
+            : {...state, cart: state.cart.filter((item) => item.ID !== payload)}
 
             case REMOVE_ALL_ITEM_CART:
-            return {...state, cart: state.cart.filter((item) => item.id !== payload)}
+            return {...state, cart: state.cart.filter((item) => item.ID !== payload)}
 
             case CLEAR_CART: 
             return{...state, cart: []}
-
-
 
             default:
                 return state

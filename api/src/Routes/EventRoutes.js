@@ -16,8 +16,10 @@ const F = require('../Functions/Events');
 routes.get('/allEvents', F.getAllEvents);
 routes.get('/name/:Name', F.getEventByName);
 routes.get('/id/:ID', F.getEventById);
+routes.get('/reported', F.getReported)
 
 routes.post('/', F.createEvent);
+routes.post('/report/:ID', F.reportEvent)
 
 routes.put('/', F.modifyEvent);
 

@@ -8,25 +8,27 @@ import Search from './Search.jsx';
 import EventCarousel from './Carousel.jsx';
 import Loader from './Loader.jsx';
 import CalendarEvents from './Calendar.jsx';
+import styles from '../Styles/Home.module.css';
 
 export default function Home() {
 	const dispatch = useDispatch();
-	const events = useSelector((state) => state.allEvents);
+	const events = useSelector((state) => state.showToUser);
 	useEffect(() => {
 		dispatch(getEvents());
 	}, []);
 
 	return (
 		<div>
+			{console.log(events)}
 			<NavBar />
-			<Search />
 			<EventCarousel />
+			<Search />
 			<ButtonFilter />
 			<CalendarEvents></CalendarEvents>
-			<div>
+			<div className={styles.cards}>
 				{events.length ? (
 					events.map((event) => (
-						<div key={event.ID}>
+						<div key={event.ID} className={styles.card}>
 							<EventCard
 								id={event.ID}
 								name={event.Name}

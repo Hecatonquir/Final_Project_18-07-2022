@@ -1,0 +1,59 @@
+.nav {
+    background-color: #1C517A;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    padding: 10px;
+    
+}
+
+.title {
+    color: rgb(233, 70, 70);
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.subtitle {
+    color: #1C517A;
+    margin-left: 20px;
+    font-weight: bolder;
+}
+
+.divButton {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.Button {
+    background-color: #229ddb;
+    border: 2px solid white;
+    border-radius: 70px;
+    color: white;
+    padding: 10px 30px 10px 30px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bolder;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.Button2 {
+    cursor: pointer;
+    color: white;
+    font-weight: bolder;
+    background-color: rgb(22, 51, 110);
+    border-radius: 70px;
+    font-size: 12px;
+    padding: 10px 30px 10px 30px;
+    border: none;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

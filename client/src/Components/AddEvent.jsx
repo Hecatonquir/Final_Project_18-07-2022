@@ -2,6 +2,7 @@ import { React, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { postEvent } from "../Redux/Actions/postEvent";
+import styles from '../Styles/AddEvent.module.css'
 
 function validate(input) {
   let errors = {};
@@ -148,13 +149,16 @@ function AddEvent() {
 
   return (
     <div>
-      <Link to={"/"}>
-        <button>Back</button>
-      </Link>
-      <h1>Add Event</h1>
-      <form >
+      <nav className={styles.nav}>
+        <Link to={"/"}>
+          <button className={styles.Button}>Back</button>
+        </Link>
+      </nav>
+      <div className={styles.container}>
+      <h1 className={styles.title}>Add Event</h1>
+      <form className={styles.form}>
         <div>
-          <label htmlFor="Name">*Event name:</label>
+          <label htmlFor="Name" >*Event name:</label>
           <input
             type="text"
             value={input.Name}
@@ -280,9 +284,11 @@ function AddEvent() {
             onChange={(e) => handleChange(e)}
           />
         </div>
-        <button onClick={(e) =>handleSubmit(e)}>Create!</button>
+        <div className={styles.divbutton}>
+          <button onClick={(e) =>handleSubmit(e)} className={styles.Button2}>Create</button>
+        </div>
       </form>
-      
+      </div>
     </div>
   );
 }
