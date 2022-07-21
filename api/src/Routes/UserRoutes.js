@@ -1,5 +1,4 @@
 /* aca van a entrar todas lar rutas que empiecen con: /user.    Entonces no hace falta repetirlo en cada ruta */
-
 const express = require('express');
 const routes = express.Router();
 

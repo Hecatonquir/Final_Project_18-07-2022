@@ -56,7 +56,7 @@ const deleteUser = async (req, res) => {
 const getPartnerCreatedEvents = async (req, res) => {
 	const { ID } = req.params;
 	try {
-		const Partner = await Users.findByPK(ID);
+		const Partner = await Users.findByPk(ID);
 		const allPartnerEvents = Partner.CreatedEvents;
 		res.send(allPartnerEvents);
 	} catch (error) {
