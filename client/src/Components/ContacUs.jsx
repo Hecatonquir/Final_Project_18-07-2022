@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { postSupports } from '../Redux/Actions/postSupports';
+import styles from '../Styles/ContactUs.module.css'
 
 export default function ContactUs(){
      const dispatch = useDispatch();
@@ -27,31 +28,33 @@ export default function ContactUs(){
 
     return (
         <div>
-<form onSubmit={handleSubmit}>
-   <div class="form-group">
-       <label for="exampleFormControlTextarea1">Tell Us your problem</label> 
-       <select>
-            <option>return tickets</option>
-            <option>problems with the pay</option>
-            <option>inappropriate event</option>
-            <option>suggestions</option>
-            <option>report bugs</option>
-            <option>others</option>
-       </select>
-               <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" type='text' name='note' value={note.note} onChange={handleChange}></textarea>
-   </div>
-       <div>
-         <button class="btn btn-outline-info" type='submit'>Create Note</button> 
-    </div>
-</form>
-<Link to= '/'>
-            <button class="btn btn-outline-success"> go Back</button>
-        </Link>
+            <nav className={styles.nav}>
+            <Link to= '/'>
+            <button className={styles.Button}>Back</button>
+            </Link>
+            </nav>
+            <div className={styles.container}>
+                <h4 className={styles.title}>Contact Us</h4>
+                <form className={styles.form} onSubmit={handleSubmit}>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Tell Us your problem</label> 
+                    <select>
+                            <option hidden>select options</option>
+                            <option>return tickets</option>
+                            <option>problems with the pay</option>
+                            <option>inappropriate event</option>
+                            <option>suggestions</option>
+                            <option>report bugs</option>
+                            <option>others</option>
+                    </select>
+                            <textarea className={styles.text} id="exampleFormControlTextarea1" rows="3" type='text' name='note' value={note.note} onChange={handleChange}></textarea>
+                </div>
+                    <div className={styles.divButton}>
+                        <button className={styles.Button2} type='submit'>Create Note</button> 
+                    </div>
+                </form>
+            </div>
         </div>
    );
 
 }
-<div>
-<label >Example textarea</label>
-<textarea ></textarea>
-</div>
