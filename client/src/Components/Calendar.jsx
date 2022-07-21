@@ -4,6 +4,8 @@ import "react-date-range/dist/theme/default.css"
 import {Calendar} from "react-date-range"
 import {format} from "date-fns"
 import {useSelector} from "react-redux"
+import styles from '../Styles/Calendar.module.css'
+
 function CalendarEvents() {
     const reference = useRef(null)
     const [date, setDate] = useState("")
@@ -35,13 +37,13 @@ function CalendarEvents() {
     ,[])
 
   return (
-    <div>
+    <div className={styles.container}>
         <label>Events By Date</label>
         <input placeholder={format(new Date(), 'dd/MM/yyyy')}value={date} onClick={() => setOpen(true)}></input>
-        <div ref={reference}>
+        <div ref={reference} className={styles.calendar}>
         {open && <Calendar onChange={(e) =>handleChange(e)}></Calendar>}
         </div>
-        </div>
+  </div>
   )
 }
 

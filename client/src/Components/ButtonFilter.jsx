@@ -88,20 +88,20 @@ function ButtonFilter() {
     <div className={styles.filtercontainer}>
     <label>Filter By</label>
     <div>
-    <select className="select" onChange={(e) => handleSelect(e)}>
+    <select className={styles.select} onChange={(e) => handleSelect(e)}>
         <option>City</option>
     {cityFilters.map((el,i) => <option key={i} className="select" onClick={() => filterItems(el)}>{el}</option>)}
 
     </select>
     </div>
     <div>
-        <select className='select' onChange={(e) => handleSelect(e)}>
+        <select className={styles.select}  onChange={(e) => handleSelect(e)}>
             <option>Categories</option>
             {categories.map(el => <option className='select' onClick={() => filterItems(el)}>{el}</option>)}
         </select>
     </div>
     <div>
-        <button className='button' onClick={()=> {return setReference(controlFilter = []), dispatch({type: GET_EVENTS, payload: backUp }), dispatch({type: SHOW_EVENTS_USER, payload: backUp.slice(0,15)})}}>Clear Filters</button>
+        <button className={styles.Button2} onClick={()=> {return setReference(controlFilter = []), dispatch({type: GET_EVENTS, payload: backUp }), dispatch({type: SHOW_EVENTS_USER, payload: backUp.slice(0,15)})}}>Clear Filters</button>
     </div>
 </div>
   )
