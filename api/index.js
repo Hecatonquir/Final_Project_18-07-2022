@@ -19,7 +19,7 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
-const { uploadDataBase } = require('./src/Functions/Events');
+const { uploadDataBase } = require('./src/Functions/Extra');
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {

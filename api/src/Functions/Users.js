@@ -1,17 +1,6 @@
 const { Events, Users } = require('../db');
 const { Op } = require('sequelize');
 
-const getPartnerCreatedEvents = async (req, res) => {
-	const { ID } = req.params;
-	try {
-		const Partner = await Users.findByPK(ID);
-		const allPartnerEvents = Partner.CreatedEvents;
-		res.send(allPartnerEvents);
-	} catch (error) {
-		res.status(400).send(error.stack);
-	}
-};
-
 const getAllUsers = async (req, res, next) => {
 	res.send(await Users.findAll());
 };
@@ -61,6 +50,17 @@ const deleteUser = async (req, res) => {
 		res.send(`User "${userBox.Name}" deleted successfully`);
 	} catch (error) {
 		res.status(404).send(error.stack);
+	}
+};
+
+const getPartnerCreatedEvents = async (req, res) => {
+	const { ID } = req.params;
+	try {
+		const Partner = await Users.findByPK(ID);
+		const allPartnerEvents = Partner.CreatedEvents;
+		res.send(allPartnerEvents);
+	} catch (error) {
+		res.status(400).send(error.stack);
 	}
 };
 

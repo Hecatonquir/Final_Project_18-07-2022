@@ -1,6 +1,5 @@
 const { Op } = require('sequelize');
 const { Events, Users } = require('../db.js');
-const { eventsApi } = require('../LocalApi');
 
 const getAllEvents = async (req, res, next) => {
 	res.send(await Events.findAll());
@@ -60,16 +59,6 @@ const getEventById = async (req, res) => {
 	}
 };
 
-const uploadDataBase = async (req, res) => {
-	try {
-		await Events.bulkCreate(eventsApi);
-		console.log('Data Base Uploaded');
-	} catch (error) {
-		console.log('Data Base NOT Uploaded');
-		console.log('🐲🐲🐲 / file: Events.js / line 69 / error:\n', error.stack);
-	}
-};
-
 module.exports = {
 	getAllEvents,
 	deleteEvent,
@@ -77,5 +66,4 @@ module.exports = {
 	modifyEvent,
 	getEventByName,
 	getEventById,
-	uploadDataBase,
 };

@@ -10,8 +10,7 @@
 		"Cart": ["Array de strings"],
 		"Location": "STRING",
 		"CreatedEvents": ["Array de strings"],
-		"RedFlags": "Integer",
-		"City": "STRING"
+		"RedFlags": "Integer"
 	},
 	"Events": {
 		"ID": "UUID",
