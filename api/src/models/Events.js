@@ -51,6 +51,12 @@ module.exports = (sequelize) => {
 			RedFlags: {
 				type: DataTypes.INTEGER,
 			},
+			Day: {
+				type: DataTypes.STRING,
+			},
+			Hour: {
+				type: DataTypes.STRING,
+			},
 		},
 		{ timestamps: false }
 	);
