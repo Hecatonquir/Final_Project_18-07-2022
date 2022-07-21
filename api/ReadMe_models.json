@@ -27,11 +27,11 @@
 		"City": "STRING",
 		"RedFlags": "Integer"
 	},
-
 	"Supports": {
 		"supportID": "UUID",
 		"reason": "TEXT",
-		"done": "BOOLEAN"
+		"done": "BOOLEAN",
+		"problemType": "STRING"
 	},
 	"Cart": {
 		"cartId": "UUID",
