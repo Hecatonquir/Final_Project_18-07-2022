@@ -59,6 +59,28 @@ const getEventById = async (req, res) => {
 	}
 };
 
+const reportEvent = async (req, res) =>{
+	try {
+		const e = await Events.findByPk(req.params.ID)
+		e.RedFlags++
+		res.send('RedFlags++')
+	} catch (error) {
+		res.status(400).send(error.stack)
+	}
+}
+
+const getReported = async (req, res) =>{
+	try {
+		const reportedEvents = await Events.findAll(
+			{where:{
+				RedFlags:{[Op.gt]: 2}
+			}})
+		res.send(reportedEvents)
+	} catch (error) {
+		res.status(400).send(error.stack)
+	}
+}
+
 module.exports = {
 	getAllEvents,
 	deleteEvent,
@@ -66,4 +88,6 @@ module.exports = {
 	modifyEvent,
 	getEventByName,
 	getEventById,
+	reportEvent,
+	getReported
 };
