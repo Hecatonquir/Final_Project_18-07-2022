@@ -33,14 +33,20 @@ export default function Detail() {
           </nav>
           <div className={styles.container}>
             <div className={styles.data}>
-              <img src={event[0].Image} alt={event.Name} />
+              <img src={event[0].Image} alt={event.Name} className={styles.img1}/>
               <img src={event.Image} alt={event.Name} />
               <img src={event.Image} alt={event.Name} />
               <img src={event.Image} alt={event.Name} />
             </div>
-            <div className={styles.data}>
+            <div className={styles.data2}>
               <h1>{event[0].Name}</h1>
-              <p>City: {event[0].City} Location: {event[0].Location}</p>
+              <p>City: {event[0].City}</p>
+              <p>Location: {event[0].Location}</p>
+              <p>Tickets Available: {event[0].Quantity}</p>
+              <p>Category: {event[0].Category}</p>
+              <p>Rating: {event[0].Rating}</p>
+              <p>AgeRestriction: {event[0].AgeRestriction}</p>
+              <p>Restrictions: {event[0].Restrictions}</p>
               <p>Price: {event[0].Price}$</p>
               <button className={styles.Button2} onClick={() => hundleClick()}>Add To Cart</button>
             </div>
