@@ -1,7 +1,7 @@
 import { React, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
-import { postEvent } from "../../redux/actions";
+import { Link, useNavigate } from "react-router-dom";
+import { postEvent } from "../Redux/Actions/postEvent";
 
 function validate(input) {
   let errors = {};
@@ -90,7 +90,7 @@ function validate(input) {
 
 function AddEvent() {
   const dispatch = useDispatch();
-  const history = useHistory();
+  const history = useNavigate();
 
   const [errors, setErrors] = useState({});
 
@@ -147,7 +147,7 @@ function AddEvent() {
 
   return (
     <div>
-      <Link to={"/agregarRuta"}>
+      <Link to={"/"}>
         <button>Back</button>
       </Link>
       <h1>Add Event</h1>
