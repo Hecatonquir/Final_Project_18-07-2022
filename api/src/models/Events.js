@@ -57,6 +57,9 @@ module.exports = (sequelize) => {
 			Hour: {
 				type: DataTypes.STRING,
 			},
+			Detail: {
+				type: DataTypes.TEXT,
+			},
 		},
 		{ timestamps: false }
 	);
