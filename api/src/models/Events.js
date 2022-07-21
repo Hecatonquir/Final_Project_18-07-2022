@@ -22,24 +22,6 @@ module.exports = (sequelize) => {
 			},
 			Location: {
 				type: DataTypes.STRING,
-				allowNull: false,
-			},
-			Price: {
-				type: DataTypes.INTEGER,
-				allowNull: false,
-			},
-			Quantity: {
-				type: DataTypes.INTEGER,
-			},
-			Rating: {
-				type: DataTypes.INTEGER,
-			},
-			Restrictions: {
-				type: DataTypes.ARRAY(DataTypes.STRING),
-				defaultValue: ['None'],
-			},
-			Location: {
-				type: DataTypes.STRING,
 			},
 			Category: {
 				type: DataTypes.ARRAY(DataTypes.STRING),
