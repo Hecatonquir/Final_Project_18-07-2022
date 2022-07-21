@@ -25,7 +25,7 @@ function ButtonFilter() {
           let notFiltered =[]
           let filtered = allEvents.filter(e => {
               let foundCat = e.categories.find(g =>  g === el) 
-              let foundCity = e.city.find(c => c === el)
+              let foundCity = e.City.find(c => c === el)
               if(foundCat || foundCity ) {
               return e
               }
