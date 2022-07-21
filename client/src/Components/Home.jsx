@@ -12,14 +12,14 @@ import styles from '../Styles/Home.module.css'
 
 export default  function Home() {
     const dispatch = useDispatch()
-    const events = useSelector((state) => state.allEvents)
+    const events = useSelector((state) => state.showToUser)
     useEffect( () => {
          dispatch(getEvents())
     }, [])
 
     return(
         <div>
-            
+            {console.log(events)}
                <NavBar/>
             <EventCarousel/>
             <Search/>

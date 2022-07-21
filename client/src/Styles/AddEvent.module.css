@@ -9,26 +9,6 @@
     
 }
 
-.title {
-    color: rgb(233, 70, 70);
-    margin-top: 20px;
-    margin-left: 20px;
-}
-
-.subtitle {
-    color: #1C517A;
-    margin-left: 20px;
-    font-weight: bolder;
-}
-
-.divButton {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 50px;
-    margin-left: 50px;
-    margin-right: 50px;
-}
-
 .Button {
     background-color: #229ddb;
     border: 2px solid white;
@@ -43,6 +23,34 @@
     cursor: pointer;
     text-decoration: none;
     text-transform: uppercase;
+}
+
+.container {
+    width: 500px;
+    height: 80%;
+    margin: auto;
+    margin-top: 50px;
+    border: 4px solid #229ddb;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.form {
+    padding: 0px 30px 0px 30px;
+    color: #146c98;
+    font-weight: bolder;
+}
+
+.title {
+    margin-top: 10px;
+    text-align: center;
+    color:  #1C517A;
+    margin-bottom: 15px;
+}
+
+.divbutton {
+    display: flex;
+    justify-content: center;
 }
 
 .Button2 {
