@@ -5,6 +5,7 @@ import './App.css';
 import Profile from './Components/Profile';
 import AddEvent from './Components/AddEvent';
 import Detail from './Components/Detail';
+import Cart from './Components/Cart';
 
 
 function App() {
@@ -16,7 +17,7 @@ function App() {
       <Route path='/contact' element={<ContacUs/>}/>
       <Route path='/createEvent' element={<AddEvent/>}/>
       <Route path='/details/id/:id' element={<Detail/>}/>
-
+      <Route path='/cart' element={<Cart/>}/>
       </Routes>
     </div>
   );

@@ -47,6 +47,13 @@ function NavBar(){
                      </button>
                  </Link>
               </div>
+              <div>
+                  <Link to='/cart'>
+                    <button>
+                      <span>Shoping Cart</span>
+                    </button>
+                    </Link>
+              </div>
           </div>
       </nav>
       

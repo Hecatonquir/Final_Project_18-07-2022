@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import { useDispatch, useSelector} from "react-redux"
 import { GET_EVENTS, SHOW_EVENTS_USER,ADD_REMOVE_FILTER } from '../Redux/ActionTypes/actiontypes'
+import styles from '../Styles/ButtonFilter.module.css'
 
 function ButtonFilter() {
 
@@ -84,7 +85,7 @@ function ButtonFilter() {
     }
 
   return (
-    <div className="filtercontainer">
+    <div className={styles.filtercontainer}>
     <label>Filter By</label>
     <div>
     <select className="select" onChange={(e) => handleSelect(e)}>
