@@ -14,6 +14,14 @@ module.exports = (sequelize) => {
 				type: DataTypes.TEXT,
 				allowNull: false,
 			},
+			done: {
+				type: DataTypes.BOOLEAN,
+				defaultValue: false
+			},
+			problemType: {
+				type: DataTypes.STRING,
+				allowNull: false
+			}
 		},
 		{ timestamps: false }
 	);
