@@ -24,7 +24,6 @@ export default function Home() {
 			<ButtonFilter />
 			<CalendarEvents></CalendarEvents>
 			<div>
-				{console.log('🐲🐲🐲 / file: Home.jsx / line 28 / events', events)};
 				{events.length ? (
 					events.map((event) => (
 						<div key={event.ID}>
