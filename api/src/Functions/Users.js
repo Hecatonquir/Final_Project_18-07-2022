@@ -7,4 +7,15 @@ async function getUserByName2(req, res, next) {
 	return 'hola';
 }
 
-module.exports = { getUserByName, getUserByName2 };
+const getPartnerCreatedEvents = async (req, res) => {
+	const { ID } = req.params;
+	try {
+		const Partner = await Users.findByPK(ID);
+		const allPartnerEvents = Partner.CreatedEvents;
+		res.send(allPartnerEvents);
+	} catch (error) {
+		res.status(400).send(error.stack);
+	}
+};
+
+module.exports = { getUserByName, getPartnerCreatedEvents };

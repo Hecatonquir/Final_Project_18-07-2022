@@ -2,9 +2,11 @@
 
 const express = require('express');
 const routes = express.Router();
-const { getUserByName } = require('../Functions/Users.js');
+const { getUserByName, getPartnerCreatedEvents } = require('../Functions/Users.js');
 
 routes.get('/', getUserByName);
+routes.get('/partner/:ID', getPartnerCreatedEvents);
+
 routes.post('/', getUserByName);
 routes.put('/', getUserByName);
 routes.delete('/', getUserByName);

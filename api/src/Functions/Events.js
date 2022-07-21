@@ -18,7 +18,6 @@ const deleteEvent = async (req, res) => {
 };
 
 const createEvent = async (req, res) => {
-	console.log('🐲🐲🐲 / file: Events.js / line 23 / req.body', req.body);
 	try {
 		const created = await Events.create(req.body);
 		res.send(created);
