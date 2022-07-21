@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import {getNameEvent} from "../Redux/Actions/searchName";
 import { useSelector } from "react-redux";
+import styles from '../Styles/Search.module.css'
 import { GET_NAME_EVENTS } from "../Redux/ActionTypes/actiontypes";
 
 
@@ -32,12 +33,12 @@ export default function SearchEvent(){
     }
     
     return (
-        <div>
+        <div className={styles.search}>
             <input
             type='text'
             placeholder="Search Event..."
-            onChange={(e) => handleInputChange(e)}/>
-
+            onChange={(e) => handleInputChange(e)}
+            className={styles.input}/>
         </div>
     )
 }
