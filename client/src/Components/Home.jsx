@@ -13,25 +13,29 @@ export default  function Home() {
     const dispatch = useDispatch()
     const events = useSelector((state) => state.allEvents)
     useEffect( () => {
-         getEvents()
+         dispatch(getEvents())
     }, [])
 
     return(
         <div>
-            <NavBar/>
+            
+               <NavBar/>
             <Search/>
             <EventCarousel/>
             <ButtonFilter />
             <CalendarEvents></CalendarEvents>
             <div>
             {events.length ? events.map( event => (
-                            <div key={event.id} >
+                            <div key={event.ID} >
                             <EventCard
-                            id={event.id}
-                            name={event.name}
-                            image={event.image}
+                            id={event.ID}
+                            name={event.Name}
+                            image={event.Image}
                             date={event.date}
-                            price={event.price}
+                            price={event.Price}
+                            quantity={event.Quantity}
+                            city={event.City}
+                            location={event.Location}
                             />
                             </div>
             )) 

@@ -6,11 +6,11 @@ import { postEvent } from "../Redux/Actions/postEvent";
 function validate(input) {
   let errors = {};
 
-  if (input.name.length === 0) {
-    errors.name = "Name is required.";
-  } else if (input.name.length !== 0) {
-    if (!/^[A-Z]+[A-Za-z0-9\s]+$/g.test(input.name) || input.name.length > 25) {
-      errors.name =
+  if (input.Name.length === 0) {
+    errors.Name = "Name is required.";
+  } else if (input.Name.length !== 0) {
+    if (!/^[A-Z]+[A-Za-z0-9\s]+$/g.test(input.Name) || input.Name.length > 25) {
+      errors.Name =
         "The first letter must be uppercase and don't start with a number and don´t pass 25 characters.";
     }
   }
@@ -94,54 +94,55 @@ function AddEvent() {
 
   const [errors, setErrors] = useState({});
 
-  const [input, setInput] = useState({
-    name: "",
+  let [input, setInput] = useState({
+    Name: "",
     img1: "",
     img2: "",
     img3: "",
     img4: "",
-    price_min: "",
-    price_max: "",
-    promotion: "",
-    permitted: "",
-    notPermitted: "",
+    Price: "",
+    Quantity: "",
+    Rating: "",
+    Restrictions: "",
+    City: "",
+    Location: ""
   });
 
   function handleChange(e) {
     setInput({
       ...input,
       [e.target.name]: e.target.value,
+      
     });
-
-    setErrors(
-      validate({
-        ...input,
-        [e.target.name]: e.target.value,
-      })
-    );
+    console.log(input)
+    
+   
   }
 
-  function handleSubmit(e) {
+   function  handleSubmit(e) {
     e.preventDefault();
 
     if (Object.keys(errors).length !== 0) {
       alert("Not created");
     } else {
-      dispatch(postEvent(input));
-      alert("Created successfully");
+      postEvent({Name: input.Name, Image: input.img1, Location: input.Location, Category: ["electronica"], City: input.City,});
+      
       setInput({
-        name: "",
+        Name: "",
         img1: "",
         img2: "",
         img3: "",
         img4: "",
-        price_min: "",
-        price_max: "",
-        promotion: "",
-        permitted: "",
-        notPermitted: "",
+        Price: "",
+        Quantity: "",
+        Rating: "",
+        Restrictions: "",
+        City: "",
+        Location: "",
+
+        
       });
-      history.push("/agregarRuta");
+   
     }
   }
 
@@ -151,28 +152,28 @@ function AddEvent() {
         <button>Back</button>
       </Link>
       <h1>Add Event</h1>
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form >
         <div>
-          <label htmlFor="name">*Event name:</label>
+          <label htmlFor="Name">*Event name:</label>
           <input
             type="text"
-            value={input.name}
-            id="name"
-            name="name"
-            placeholder="name"
+            value={input.Name}
+            id="Name"
+            name="Name"
+            placeholder="Name"
             required
             onChange={(e) => handleChange(e)}
           />
-          {errors.name && <p>{errors.name}</p>}
+          {errors.Name && <p>{errors.Name}</p>}
         </div>
         <div>
           <label htmlFor="img1">Image 1:</label>
           <input
-            type="file"
+            type="text"
             value={input.img1}
             id="img1"
             name="img1"
-            placeholder="img1"
+            placeholder="img"
             onChange={(e) => handleChange(e)}
           />
           {errors.img1 && <p>{errors.img1}</p>}
@@ -180,11 +181,11 @@ function AddEvent() {
         <div>
           <label htmlFor="img2">Image 2:</label>
           <input
-            type="file"
+            type="text"
             value={input.img2}
             id="img2"
             name="img2"
-            placeholder="img2"
+            placeholder="img"
             onChange={(e) => handleChange(e)}
           />
           {errors.img2 && <p>{errors.img2}</p>}
@@ -192,7 +193,7 @@ function AddEvent() {
         <div>
           <label htmlFor="img3">Image 3:</label>
           <input
-            type="file"
+            type="text"
             value={input.img3}
             id="img3"
             name="img3"
@@ -204,7 +205,7 @@ function AddEvent() {
         <div>
           <label htmlFor="img4">Image 4:</label>
           <input
-            type="file"
+            type="text"
             value={input.img4}
             id="img4"
             name="img4"
@@ -214,68 +215,74 @@ function AddEvent() {
           {errors.img4 && <p>{errors.img4}</p>}
         </div>
         <div>
-          <label htmlFor="price_min">*Price min:</label>
+          <label htmlFor="Price">*Price:</label>
           <input
             type="number"
-            value={input.price_min}
-            id="price_min"
-            name="price_min"
-            placeholder="price min"
+            value={input.Price}
+            id="Price"
+            name="Price"
+            placeholder="Price"
             required
             onChange={(e) => handleChange(e)}
           />
-          {errors.price_min && <p>{errors.price_min}</p>}
+          {errors.Price && <p>{errors.Price}</p>}
         </div>
+
         <div>
-          <label htmlFor="price_max">*Price max:</label>
-          <input
-            type="number"
-            value={input.price_max}
-            id="price_max"
-            name="weight_min"
-            placeholder="price max"
-            required
-            onChange={(e) => handleChange(e)}
-          />
-          {errors.price_max && <p>{errors.price_max}</p>}
-        </div>
-        <div>
-          <label htmlFor="promotion">Promotion:</label>
+          <label htmlFor="Quantity">Quantity:</label>
           <input
             type="text"
-            value={input.comment}
-            id="promotion"
-            name="promotion"
-            placeholder="promotion"
+            value={input.Quantity}
+            name="Quantity"
+            placeholder="Quantity"
             onChange={(e) => handleChange(e)}
           />
-          {errors.promotion && <p>{errors.promotion}</p>}
         </div>
+       
         <div>
-          <label htmlFor="permitted">Permitted:</label>
+          <label htmlFor="City">City:</label>
+          <select
+  
+            value={input.City}
+            name="City"
+            
+            onChange={(e) => handleChange(e)}
+          >
+            <option>Select City</option>
+            <option>CABA</option>
+            <option>La Plata</option>
+            <option>La Pampa</option>
+            <option>Bariloche</option>
+            </select>
+          
+        </div>
+        
+
+        <div>
+          <label htmlFor="Location">Exact Location:</label>
           <input
             type="text"
-            value={input.comment}
-            id="permitted"
-            name="permitted"
-            placeholder="permitted"
+            value={input.Location}
+            name="Location"
+            placeholder="Exact Location"
             onChange={(e) => handleChange(e)}
           />
-          {errors.permitted && <p>{errors.permitted}</p>}
         </div>
+
+        
         <div>
-          <label htmlFor="notPermitted">Not permitted:</label>
+          <label htmlFor="Restrictions">Restrictions:</label>
           <input
             type="text"
-            value={input.notPermitted}
-            id="notPermitted"
-            name="notPermitted"
-            placeholder="not permitted"
+            value={input.Restrictions}
+            name="Restrictions"
+            placeholder="Restrictions"
             onChange={(e) => handleChange(e)}
           />
-          {errors.notPermitted && <p>{errors.notPermitted}</p>}
         </div>
+        <button onClick={(e) =>handleSubmit(e)}>Create!</button>
       </form>
+      
     </div>
   );
 }

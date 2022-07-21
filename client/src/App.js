@@ -15,7 +15,7 @@ function App() {
       <Route path='/profile' element={<Profile/>}/>
       <Route path='/contact' element={<ContacUs/>}/>
       <Route path='/createEvent' element={<AddEvent/>}/>
-      <Route path='/details' element={<Detail/>}/>
+      <Route path='/details/id/:id' element={<Detail/>}/>
 
       </Routes>
     </div>
