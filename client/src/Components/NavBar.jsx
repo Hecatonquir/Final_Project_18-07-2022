@@ -18,38 +18,39 @@ function NavBar(){
 
               <div>
              { !isAuthenticated ? 
-                      <button onClick={() => loginWithRedirect()}>
+                      <button className={styles.Button} onClick={() => loginWithRedirect()}>
                         <span>Log In/Sign Up</span>
                      </button>
                  :
           
-                      <button onClick={() => logout()}>
+                      <button className={styles.Button} onClick={() => logout()}>
                         <span>Log Out</span>
                      </button>
                  
 }
   {isAuthenticated && <Link to="/createEvent">
-                      <button>Create an Event</button>
+          
+            <button className={styles.Button}>Create an Event</button>
                      </Link>}
             </div>
                
             {isAuthenticated? <div>
                  <Link to='/profile'>
-                      <button>
+                      <button className={styles.Button}>
                         <span>Profile</span>
                      </button>
                  </Link>
             </div>:<div></div>}
             <div>
                   <Link to='/contact'>
-                      <button>
+                      <button className={styles.Button}>
                         <span>Contact Us</span>
                      </button>
                  </Link>
               </div>
               <div>
                   <Link to='/cart'>
-                    <button>
+                    <button className={styles.Button}>
                       <span>Shoping Cart</span>
                     </button>
                     </Link>
