@@ -31,21 +31,23 @@ export default function reducer(state = initialState,{type,payload}) {
 
             case ADD_ITEM_CART: 
             const newItem = state.allEvents.find((event) => event.id === payload)
+           
             const itemInCart = state.cart.find((item) => item.id === newItem.id)
+            
             return itemInCart 
             ? {...state, cart: state.cart.map((item) => 
                 item.id === newItem.id
-                ? {...item, quantity: item.quantity +1}
+                ? {...item, PurchasedItem: item.PurchasedItem + 1}
                 : item
                 )}
-            : {...state, cart: [...state.cart, {...newItem, quantity: 1}]}
+            : {...state, cart: [...state.cart, {...newItem, PurchasedItem: 1}]}
 
             case REMOVE_ITEM_CART: 
             const deleteItem = state.cart.find((item) => item.id === payload)
-            return deleteItem.quantity > 1
+            return deleteItem.PurchasedItem > 1
             ? {...state, cart: state.cart.map((item) =>
                 item.id === payload 
-                ? {...item, quantity: item.quantity -1}
+                ? {...item, PurchasedItem: item.PurchasedItem -1}
                 : item)}
             : {...state, cart: state.cart.filter((item) => item.id !== payload)}
 

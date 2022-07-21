@@ -1,7 +1,7 @@
 import React from 'react';
 import {Carousel} from 'react-bootstrap';
-import img1 from '../Media/event1.jpeg'
-import img2 from '../Media/event2.jpeg'
+import img1 from '../Media/event1.png'
+import img2 from '../Media/event2.png'
 import img3 from '../Media/event3.jpeg'
 
 export default function EventCarousel() {
@@ -17,12 +17,9 @@ export default function EventCarousel() {
           alt="First slide"
           style={{
             maxWidth: "100%",
-            maxHeight: "450px",
+            maxHeight: "350px",
           }}
         />
-        <Carousel.Caption>
-          <h3>First slide</h3>
-        </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item interval={2000}>
         <img
@@ -31,12 +28,9 @@ export default function EventCarousel() {
           alt="Second slide"
           style={{
             maxWidth: "100%",
-            maxHeight: "450px",
+            maxHeight: "350px",
           }}
         />
-        <Carousel.Caption>
-          <h3>Second slide</h3>
-        </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item interval={2000}>
         <img
@@ -45,12 +39,9 @@ export default function EventCarousel() {
           alt="Third slide"
           style={{
             maxWidth: "100%",
-            maxHeight: "450px",
+            maxHeight: "350px",
           }}
         />
-        <Carousel.Caption>
-          <h3>Third slide</h3>
-        </Carousel.Caption>
       </Carousel.Item>
     </Carousel>
   )
