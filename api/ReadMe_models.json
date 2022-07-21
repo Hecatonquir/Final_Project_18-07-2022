@@ -33,7 +33,7 @@
 		"problemType": "STRING"
 	},
 	"Cart": {
-		"cartId": "UUID",
+		"cartID": "UUID",
 		"date": "DATEONLY",
 		"time": "TIME"
 	}
