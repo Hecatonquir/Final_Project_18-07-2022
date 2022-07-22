@@ -34,8 +34,7 @@ export default function Home() {
 								id={event.ID}
 								name={event.Name}
 								image={event.Image[0]}
-								day={event.Day}
-								hour={event.Hour}
+								date={event.Date}
 								price={event.Price}
 								quantity={event.Quantity}
 								city={event.City}
@@ -49,7 +48,7 @@ export default function Home() {
 					</div>
 				)}
 			</div>
-			<Footer/>
+			<Footer />
 		</div>
 	);
 }

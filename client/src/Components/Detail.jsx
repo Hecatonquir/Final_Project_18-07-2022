@@ -31,9 +31,10 @@ export default function Detail() {
 					</nav>
 					<div className={styles.container}>
 						<div className={styles.data}>
-							{event[0].Image.map((im) => (
-								<img src={im} alt={event[0].Name} className={styles.img1} />
-							))}
+							{event[0].Image.map((im) => {
+								if (im !== '') return <img src={im} alt={event[0].Name} className={styles.img1} />;
+								else return '';
+							})}
 						</div>
 						<div className={styles.data2}>
 							<h1>{event[0].Name}</h1>
@@ -45,8 +46,8 @@ export default function Detail() {
 							<p>AgeRestriction: {event[0].AgeRestriction}</p>
 							<p>Restrictions: {event[0].Restrictions.join(' / ')}</p>
 							<p>Price: {event[0].Price}$</p>
-							<p>Day: {event[0].Day}</p>
-							<p>Hour: {event[0].Hour}</p>
+							<p>Date: {event[0].Date}</p>
+
 							<p>Detail: {event[0].Detail}</p>
 							<button className={styles.Button2} onClick={() => hundleClick()}>
 								Add To Cart
