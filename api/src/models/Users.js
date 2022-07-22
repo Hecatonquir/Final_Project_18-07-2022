@@ -15,6 +15,19 @@ module.exports = (sequelize) => {
 				type: DataTypes.STRING,
 				defaultValue: 'Guest',
 			},
+
+			Username: {
+				type: DataTypes.STRING,
+				isUnique: true,
+				allowNull: false
+				
+			},
+
+			Password: {
+				type: DataTypes.STRING,
+				allowNull: false
+			},
+
 			LoggedIn: {
 				type: DataTypes.BOOLEAN,
 				defaultValue: false,
