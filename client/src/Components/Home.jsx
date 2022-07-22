@@ -9,6 +9,7 @@ import EventCarousel from './Carousel.jsx';
 import Loader from './Loader.jsx';
 import CalendarEvents from './Calendar.jsx';
 import styles from '../Styles/Home.module.css';
+import Footer from './Footer.jsx';
 
 export default function Home() {
 	const dispatch = useDispatch();
@@ -48,6 +49,7 @@ export default function Home() {
 					</div>
 				)}
 			</div>
+			<Footer/>
 		</div>
 	);
 }
