@@ -41,7 +41,6 @@ function AddEvent() {
 				[e.target.name]: e.target.value,
 			})
 		);
-		/* console.log({ input }); */
 	}
 
 	function handleSubmit(e) {
@@ -63,10 +62,6 @@ function AddEvent() {
 				Hour: input.Hour,
 				Detail: input.Detail,
 			});
-			console.log(
-				'🐲🐲🐲 / file: AddEvent.jsx / line 61 / Output:Restrictions:\n ',
-				input.Restrictions.split('/')
-			);
 
 			setInput({
 				Name: '',
@@ -134,15 +129,10 @@ function AddEvent() {
 					</div> */}
 					<div>
 						<label htmlFor='City'>* City: &nbsp;</label>
-						{/* <select value={input.City} name='City' onChange={(e) => handleChange(e)}>
-							<option>Select City</option>
-							<option>CABA</option>
-							<option>La Plata</option>
-							<option>La Pampa</option>
-							<option>Bariloche</option>
-						</select> */}
 						<select value={input.City} name='City' onChange={(e) => handleChange(e)}>
-							<option value=''> Select City </option>
+							<option value='' hidden>
+								Select City
+							</option>
 							{Cities.map((p) => {
 								return (
 									<option key={p} value={p}>
@@ -167,7 +157,9 @@ function AddEvent() {
 					<div>
 						<label htmlFor='Category'>* Category: &nbsp;</label>
 						<select value={input.Category} name='Category' onChange={(e) => handleChange(e)}>
-							<option value=''> Select Category </option>
+							<option value='' hidden>
+								Select Category
+							</option>
 							{Categories.map((p) => {
 								return (
 									<option key={p} value={p}>
@@ -178,7 +170,6 @@ function AddEvent() {
 						</select>
 						{errors.Category && <p style={{ color: 'red' }}>{errors.Category}</p>}
 					</div>
-
 					<div>
 						<label htmlFor='img1'>* Image 1: &nbsp; </label>
 						<input
@@ -239,34 +230,37 @@ function AddEvent() {
 							onChange={(e) => handleChange(e)}
 						/>
 					</div>
+					{errors.Price && <p style={{ color: 'red' }}>{errors.Price}</p>}
+
 					<div>
 						<label htmlFor='Quantity'>Quantity: &nbsp;</label>
 						<input
-							type='text'
+							type='number'
 							value={input.Quantity}
 							name='Quantity'
 							placeholder='Quantity'
 							onChange={(e) => handleChange(e)}
 						/>
 					</div>
+					{errors.Quantity && <p style={{ color: 'red' }}>{errors.Quantity}</p>}
 
 					<div>
 						<label htmlFor='Restrictions'>Restrictions: &nbsp;</label>
-						<input
+						<textarea
 							type='text'
 							value={input.Restrictions}
 							name='Restrictions'
-							placeholder='Separate Restrictions using /'
+							placeholder='Separate Restrictions using / (example: 1º Res. / 2º Res. / etc...)'
 							onChange={(e) => handleChange(e)}
 						/>
 					</div>
 					<div>
 						<label htmlFor='Detail'>Detail: &nbsp;</label>
-						<input
+						<textarea
 							type='text'
 							value={input.Detail}
 							name='Detail'
-							placeholder='Separate Detail using /'
+							placeholder='Insert Detail'
 							onChange={(e) => handleChange(e)}
 						/>
 					</div>

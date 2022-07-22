@@ -26,13 +26,15 @@ module.exports = (sequelize) => {
 			},
 			Price: {
 				type: DataTypes.INTEGER,
+				defaultValue: 0,
 			},
 			Quantity: {
 				type: DataTypes.INTEGER,
+				defaultValue: 0,
 			},
-			Rating: {
+			/* Rating: {
 				type: DataTypes.INTEGER,
-			},
+			}, */
 			Restrictions: {
 				type: DataTypes.ARRAY(DataTypes.STRING),
 				defaultValue: ['None'],

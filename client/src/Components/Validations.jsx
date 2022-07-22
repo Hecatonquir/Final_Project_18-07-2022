@@ -1,5 +1,6 @@
 export default function validate(input) {
-	let { Name, img1, img2, img3, img4, Price, City, Location, Category, Date, Hour } = input;
+	let { Name, img1, img2, img3, img4, Price, City, Location, Category, Date, Hour, Quantity } =
+		input;
 	let errors = {};
 	errors.check = 'failed';
 
@@ -38,7 +39,9 @@ export default function validate(input) {
 	if (Price < 0) {
 		errors.Price = 'You can only use positive numbers.';
 	}
-
+	if (Quantity < 0) {
+		errors.Quantity = 'You can only use positive numbers.';
+	}
 	if (!Location) {
 		errors.Location = 'Location is required.';
 	} else if (Location.length !== 0) {
