@@ -14,8 +14,7 @@ const eventsApi = [
 		Category: ['Boliches'],
 		City: 'CABA',
 		RedFlags: '1',
-		Day: '25-05-2023',
-		Hour: '12:30',
+		Date: '2023-05-22T12:30',
 		Detail: 'Este es el detalle de este evento!',
 	},
 	{
@@ -33,8 +32,7 @@ const eventsApi = [
 		Category: ['Carnaval'],
 		City: 'La Plata',
 		RedFlags: '1',
-		Day: '30-01-2023',
-		Hour: '13:30',
+		Date: '2023-05-21T13:30',
 		Detail: 'Este es el detalle de este evento!',
 	},
 	{
@@ -52,8 +50,8 @@ const eventsApi = [
 		Category: ['Cines'],
 		City: 'Chascomus',
 		RedFlags: 1,
-		Day: '10-01-2023',
-		Hour: '14:30',
+
+		Date: '2023-05-20T14:30',
 		Detail: 'Este es el detalle de este evento!',
 	},
 	{
@@ -71,8 +69,7 @@ const eventsApi = [
 		Category: ['Recital'],
 		City: 'Rosario',
 		RedFlags: 1,
-		Day: '15-01-2023',
-		Hour: '13:30',
+		Date: '2023-05-19T13:30',
 		Detail: 'Este es el detalle de este evento!',
 	},
 	{
@@ -90,8 +87,7 @@ const eventsApi = [
 		Category: ['Concierto'],
 		City: 'Resistencia',
 		RedFlags: 1,
-		Day: '20-01-2023',
-		Hour: '19:30',
+		Date: '2023-05-15T19:30',
 		Detail: 'Este es el detalle de este evento!',
 	},
 	{
@@ -109,8 +105,8 @@ const eventsApi = [
 		Category: ['Teatro'],
 		City: 'Salta',
 		RedFlags: 1,
-		Day: '25-01-2023',
-		Hour: '20:00',
+		Date: '2023-05-10T20:00',
+
 		Detail: 'Este es el detalle de este evento!',
 	},
 	{
@@ -128,8 +124,7 @@ const eventsApi = [
 		Category: ['Circo'],
 		City: 'Cordoba',
 		RedFlags: 1,
-		Day: '05-02-2023',
-		Hour: '21:00',
+		Date: '2023-06-05T21:00',
 		Detail: 'Este es el detalle de este evento!',
 	},
 ];
