@@ -45,8 +45,8 @@ export default function Detail() {
 							<p>AgeRestriction: {event[0].AgeRestriction}</p>
 							<p>Restrictions: {event[0].Restrictions.join(' / ')}</p>
 							<p>Price: {event[0].Price}$</p>
-							<p>Day: {event[0].Day}</p>
-							<p>Hour: {event[0].Hour}</p>
+							<p>Date: {event[0].Date}</p>
+
 							<p>Detail: {event[0].Detail}</p>
 							<button className={styles.Button2} onClick={() => hundleClick()}>
 								Add To Cart
