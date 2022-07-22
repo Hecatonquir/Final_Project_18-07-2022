@@ -7,7 +7,7 @@ import styles from '../Styles/ContactUs.module.css'
 export default function ContactUs(){
      const dispatch = useDispatch();
     const [note, setNote] = useState("")
-        
+
     const handleChange = function (e){
          setNote({
             ...note,
@@ -15,7 +15,6 @@ export default function ContactUs(){
             
         })}
 
-       
      function handleSubmit(e){
         e.preventDefault();
         if(note.note){
@@ -23,7 +22,6 @@ export default function ContactUs(){
         alert("Note was created successfully")
         setNote({note:''})
         }}
-
 
 
     return (
@@ -38,7 +36,7 @@ export default function ContactUs(){
                 <form className={styles.form} onSubmit={handleSubmit}>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Tell Us your problem</label> 
-                    <select>
+                    <select className={styles.select}>
                             <option hidden>select options</option>
                             <option>return tickets</option>
                             <option>problems with the pay</option>

@@ -26,7 +26,6 @@ module.exports = (sequelize) => {
 			},
 			Price: {
 				type: DataTypes.INTEGER,
-				allowNull: false,
 			},
 			Quantity: {
 				type: DataTypes.INTEGER,
@@ -51,11 +50,11 @@ module.exports = (sequelize) => {
 			RedFlags: {
 				type: DataTypes.INTEGER,
 			},
-			Day: {
-				type: DataTypes.STRING,
+			Date: {
+				type: DataTypes.DATE,
 			},
-			Hour: {
-				type: DataTypes.STRING,
+			Detail: {
+				type: DataTypes.TEXT,
 			},
 		},
 		{ timestamps: false }

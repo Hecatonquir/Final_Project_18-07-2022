@@ -17,8 +17,11 @@ const deleteEvent = async (req, res) => {
 };
 
 const createEvent = async (req, res) => {
+	console.log('🐲🐲🐲 / file: Events.js / line 20 / req:\n', req.body);
+
 	try {
 		const created = await Events.create(req.body);
+		/* created.addUsers( {where: {ID: req.body.ID}} ) */  /////PENDING////
 		res.send(created);
 	} catch (error) {
 		res.status(400).send(error.stack);
@@ -59,28 +62,29 @@ const getEventById = async (req, res) => {
 	}
 };
 
-const reportEvent = async (req, res) =>{
+const reportEvent = async (req, res) => {
 	try {
-		const e = await Events.findByPk(req.params.ID)
-		e.RedFlags++
-		await e.save()
-		res.send('RedFlags++')
+		const e = await Events.findByPk(req.params.ID);
+		e.RedFlags++;
+		await e.save();
+		res.send('RedFlags++');
 	} catch (error) {
-		res.status(400).send(error.stack)
+		res.status(400).send(error.stack);
 	}
-}
+};
 
-const getReported = async (req, res) =>{
+const getReported = async (req, res) => {
 	try {
-		const reportedEvents = await Events.findAll(
-			{where:{
-				RedFlags:{[Op.gt]: 2}
-			}})
-		res.send(reportedEvents)
+		const reportedEvents = await Events.findAll({
+			where: {
+				RedFlags: { [Op.gt]: 2 },
+			},
+		});
+		res.send(reportedEvents);
 	} catch (error) {
-		res.status(400).send(error.stack)
+		res.status(400).send(error.stack);
 	}
-}
+};
 
 module.exports = {
 	getAllEvents,
@@ -90,5 +94,5 @@ module.exports = {
 	getEventByName,
 	getEventById,
 	reportEvent,
-	getReported
+	getReported,
 };

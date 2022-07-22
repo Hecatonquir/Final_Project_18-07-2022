@@ -9,6 +9,7 @@ import EventCarousel from './Carousel.jsx';
 import Loader from './Loader.jsx';
 import CalendarEvents from './Calendar.jsx';
 import styles from '../Styles/Home.module.css';
+import Footer from './Footer.jsx';
 
 export default function Home() {
 	const dispatch = useDispatch();
@@ -19,10 +20,13 @@ export default function Home() {
 
 	return (
 		<div>
-			{console.log(events)}
+			<div className={styles.items}>
 			<NavBar />
+			<div className={styles.carousel}>
 			<EventCarousel />
+			</div>
 			<Search />
+			</div>
 			<ButtonFilter />
 			<CalendarEvents></CalendarEvents>
 			<div className={styles.cards}>
@@ -33,8 +37,8 @@ export default function Home() {
 								id={event.ID}
 								name={event.Name}
 								image={event.Image[0]}
-								day={event.Day}
-								hour={event.Hour}
+								date={event.Date}
+								category={event.Category}
 								price={event.Price}
 								quantity={event.Quantity}
 								city={event.City}
@@ -48,6 +52,7 @@ export default function Home() {
 					</div>
 				)}
 			</div>
+			<Footer />
 		</div>
 	);
 }
