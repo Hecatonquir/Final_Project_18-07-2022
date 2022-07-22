@@ -16,6 +16,7 @@ const eventsApi = [
 		RedFlags: '1',
 		Day: '25-05-2023',
 		Hour: '12:30',
+		Detail: 'Este es el detalle de este evento!',
 	},
 	{
 		Name: 'Carnaval de Rober',
@@ -34,6 +35,7 @@ const eventsApi = [
 		RedFlags: '1',
 		Day: '30-01-2023',
 		Hour: '13:30',
+		Detail: 'Este es el detalle de este evento!',
 	},
 	{
 		Name: 'Cine de Cesar',
@@ -52,6 +54,7 @@ const eventsApi = [
 		RedFlags: 1,
 		Day: '10-01-2023',
 		Hour: '14:30',
+		Detail: 'Este es el detalle de este evento!',
 	},
 	{
 		Name: 'Musical de Eliseo',
@@ -70,6 +73,7 @@ const eventsApi = [
 		RedFlags: 1,
 		Day: '15-01-2023',
 		Hour: '13:30',
+		Detail: 'Este es el detalle de este evento!',
 	},
 	{
 		Name: 'Concierto de Sol',
@@ -88,6 +92,7 @@ const eventsApi = [
 		RedFlags: 1,
 		Day: '20-01-2023',
 		Hour: '19:30',
+		Detail: 'Este es el detalle de este evento!',
 	},
 	{
 		Name: 'Obra de Eric',
@@ -106,6 +111,7 @@ const eventsApi = [
 		RedFlags: 1,
 		Day: '25-01-2023',
 		Hour: '20:00',
+		Detail: 'Este es el detalle de este evento!',
 	},
 	{
 		Name: 'Circo de Jhonatan',
@@ -124,6 +130,7 @@ const eventsApi = [
 		RedFlags: 1,
 		Day: '05-02-2023',
 		Hour: '21:00',
+		Detail: 'Este es el detalle de este evento!',
 	},
 ];
 const userApi = [
