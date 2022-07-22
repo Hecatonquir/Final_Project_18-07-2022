@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from '../Styles/EventCard.module.css';
 
-export default function EventCard({ id, image, name, price, quantity, city, location, date }) {
+export default function EventCard({ id, image, name, price, quantity, city, location, date, category }) {
 	return (
 		<div>
 			<Link to={`/details/id/${id}`}>
@@ -11,6 +11,7 @@ export default function EventCard({ id, image, name, price, quantity, city, loca
 			</Link>
 			<p>Date: {date} </p>
 			<p>Price: ${price}</p>
+			<p>Category: {category}</p>
 			<p>City: {city}</p>
 			<p>Place: {location}</p>
 		</div>
