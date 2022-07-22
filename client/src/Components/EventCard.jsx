@@ -9,9 +9,8 @@ export default function EventCard({ id, image, name, price, quantity, city, loca
 				<img className={styles.img} src={image} alt='img eventCard' />
 				<h4>{name}</h4>
 			</Link>
-			<p> Date: {date} </p>
-			<p>Price: {price}$</p>
-			<p>Tickets Available: {quantity}</p>
+			<p>Date: {date} </p>
+			<p>Price: ${price}</p>
 			<p>City: {city}</p>
 			<p>Place: {location}</p>
 		</div>

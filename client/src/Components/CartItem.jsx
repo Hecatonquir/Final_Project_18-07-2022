@@ -36,7 +36,7 @@ export default function CardItem({id, name, image, price, purchasedItem}) {
             </div>
             <div>
                 <h5>Price</h5>
-                <p>{price*purchasedItem}$</p>
+                <p>${price*purchasedItem}</p>
             </div>
             <button className={styles.Button2 }onClick={() => hundleDelete()}>Delete</button>
             </div>

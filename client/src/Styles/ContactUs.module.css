@@ -68,3 +68,8 @@
     width:400px;
     height: 150px;
 }
+
+.select {
+    margin-left: 20px;
+    border-radius: 5px;
+}

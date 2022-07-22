@@ -54,6 +54,13 @@
     font-size: 12px;
     padding: 10px 30px 10px 30px;
     border: none;
-    margin-top: 20px;
     margin-bottom: 20px;
+}
+
+.amount {
+    color: #1C517A;
+    display: flex;
+    justify-content: right;
+    margin-top: 10px;
+    margin-right: 20px;
 }
