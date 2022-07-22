@@ -45,7 +45,7 @@ export default function Detail() {
 							<p>Rating: {event[0].Rating}</p>
 							<p>AgeRestriction: {event[0].AgeRestriction}</p>
 							<p>Restrictions: {event[0].Restrictions.join(' / ')}</p>
-							<p>Price: {event[0].Price}$</p>
+							<p>Price: ${event[0].Price}</p>
 							<p>Date: {event[0].Date}</p>
 
 							<p>Detail: {event[0].Detail}</p>
