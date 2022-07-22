@@ -31,9 +31,10 @@ export default function Detail() {
 					</nav>
 					<div className={styles.container}>
 						<div className={styles.data}>
-							{event[0].Image.map((im) => (
-								<img src={im} alt={event[0].Name} className={styles.img1} />
-							))}
+							{event[0].Image.map((im) => {
+								if (im !== '') return <img src={im} alt={event[0].Name} className={styles.img1} />;
+								else return '';
+							})}
 						</div>
 						<div className={styles.data2}>
 							<h1>{event[0].Name}</h1>
