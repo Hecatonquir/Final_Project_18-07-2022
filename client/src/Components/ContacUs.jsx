@@ -5,22 +5,30 @@ import { postSupports } from '../Redux/Actions/postSupports';
 import styles from '../Styles/ContactUs.module.css'
 
 export default function ContactUs(){
-     const dispatch = useDispatch();
-    const [note, setNote] = useState("")
+     const dispatch = useDispatch()
+    const [note, setNote] = useState({
+        reason:"",
+        problemType:""
+    })
+    
+
 
     const handleChange = function (e){
          setNote({
             ...note,
-            [e.target.note]: e.target.value
+            [e.target.name]: e.target.value
             
         })}
 
      function handleSubmit(e){
         e.preventDefault();
-        if(note.note){
-       dispatch(postSupports(note.note))
-        alert("Note was created successfully")
-        setNote({note:''})
+        if(note.reason.length > 0 && note.problemType.length > 0){
+       dispatch(postSupports(note))
+       // alert("Note was created successfully")
+        setNote({reason:"",
+        problemType:""})
+        }else{
+            alert("fill formulary")
         }}
 
 
@@ -36,7 +44,10 @@ export default function ContactUs(){
                 <form className={styles.form} onSubmit={handleSubmit}>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Tell Us your problem</label> 
-                    <select className={styles.select}>
+
+                    <select className={styles.select} value={note.problemType} name="problemType" onChange={handleChange}>
+
+             
                             <option hidden>select options</option>
                             <option>return tickets</option>
                             <option>problems with the pay</option>
@@ -45,7 +56,7 @@ export default function ContactUs(){
                             <option>report bugs</option>
                             <option>others</option>
                     </select>
-                            <textarea className={styles.text} id="exampleFormControlTextarea1" rows="3" type='text' name='note' value={note.note} onChange={handleChange}></textarea>
+                            <textarea className={styles.text} id="exampleFormControlTextarea1" rows="3" type='text' name='reason' value={note.reason} onChange={handleChange}></textarea>
                 </div>
                     <div className={styles.divButton}>
                         <button className={styles.Button2} type='submit'>Create Note</button> 
