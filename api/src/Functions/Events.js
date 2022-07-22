@@ -21,6 +21,7 @@ const createEvent = async (req, res) => {
 
 	try {
 		const created = await Events.create(req.body);
+		/* created.addUsers( {where: {ID: req.body.ID}} ) */  /////PENDING////
 		res.send(created);
 	} catch (error) {
 		res.status(400).send(error.stack);

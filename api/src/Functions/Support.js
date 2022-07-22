@@ -24,6 +24,7 @@ const getSupportById = async (req, res) => {
 const addSupportTicket = async (req, res) => {
 	try {
 		const created = await Supports.create(req.body);
+		/* created.addUsers( {where: {ID: req.body.ID}} ) */  /////PENDING////
 		res.send(created);
 	} catch (error) {
 		res.status(400).send(error.stack);
