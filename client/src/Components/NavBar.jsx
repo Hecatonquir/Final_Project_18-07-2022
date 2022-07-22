@@ -1,14 +1,17 @@
 import React from "react";
+import {useSelector} from "react-redux"
 import { Link } from "react-router-dom";
 import styles from "../Styles/NavBar.module.css"
 import {useAuth0} from "@auth0/auth0-react"
-
-
+import imgcarrito from '../Media/carri.png'
 
 function NavBar(){
   const  {loginWithRedirect, logout, user, isAuthenticated} = useAuth0()
   console.log(user)
+  const cart = useSelector((state) => state.cart)
   
+  const count = cart.length
+
   return(
       <nav className={styles.nav}>
           <div>
@@ -50,9 +53,8 @@ function NavBar(){
               </div>
               <div>
                   <Link to='/cart'>
-                    <button className={styles.Button}>
-                      <span>Shoping Cart</span>
-                    </button>
+                    <img className={styles.imgcarrito} src={imgcarrito} alt='img carrito' />
+                    <span className={styles.count}>{count}</span>
                     </Link>
               </div>
           </div>

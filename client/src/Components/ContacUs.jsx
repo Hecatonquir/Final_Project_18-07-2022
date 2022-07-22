@@ -5,12 +5,14 @@ import { postSupports } from '../Redux/Actions/postSupports';
 import styles from '../Styles/ContactUs.module.css'
 
 export default function ContactUs(){
-     const dispatch = useDispatch();
+     const dispatch = useDispatch()
     const [note, setNote] = useState({
         reason:"",
         problemType:""
     })
-        
+    
+
+
     const handleChange = function (e){
          setNote({
             ...note,
@@ -18,7 +20,6 @@ export default function ContactUs(){
             
         })}
 
-       
      function handleSubmit(e){
         e.preventDefault();
         if(note.reason.length > 0 && note.problemType.length > 0){
@@ -29,7 +30,6 @@ export default function ContactUs(){
         }else{
             alert("fill formulary")
         }}
-
 
 
     return (
@@ -44,7 +44,10 @@ export default function ContactUs(){
                 <form className={styles.form} onSubmit={handleSubmit}>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Tell Us your problem</label> 
-                    <select value={note.problemType} name="problemType" onChange={handleChange}>
+
+                    <select className={styles.select} value={note.problemType} name="problemType" onChange={handleChange}>
+
+             
                             <option hidden>select options</option>
                             <option>return tickets</option>
                             <option>problems with the pay</option>

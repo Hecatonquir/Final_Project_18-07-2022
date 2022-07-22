@@ -39,7 +39,6 @@ function Footer(){
                   About Us
                 </a>
               </li>
-              
             </ul>
           </MDBCol>
         </MDBRow>
