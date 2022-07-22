@@ -11,19 +11,23 @@ function ButtonFilter() {
     const allEvents = useSelector(state => state.allEvents)
     const dispatch = useDispatch()
 
+    let cities = backUp.slice().map(el => el.City)
+    let categories = backUp.slice().map(el => el.Category[0])
+    console.log(categories)
+    
     let cityFilters = ["CABA", "La Plata", "Chascomus", "Rosario", "Resistencia"]
-    let categories = ["Recitales", "Boliches", "Salsa", "Bachata", "Tango", "Deportes"]
+    
 
 
     function filterItems(el) {
      
         if(!controlFilter.includes(el)) {
-          setReference(controlFilter = [...controlFilter,el])
+          setReference(controlFilter = [el])
         
       
         
           let notFiltered =[]
-          let filtered = allEvents.filter(e => {
+          let filtered = backUp.filter(e => {
               let foundCat = e.Category.find(g =>  g === el) 
               
               if(foundCat || e.City === el ) {
@@ -40,10 +44,8 @@ function ButtonFilter() {
           dispatch({type: GET_EVENTS, payload: filtered})
           return dispatch({type: SHOW_EVENTS_USER, payload: filtered})
           }
-          else if(filtered.length<1 &&allEvents.length < 2){
-            setReference(controlFilter = controlFilter.filter(e => e !== el))
-              return alert("There are no more applicable filters to show.")
-          }
+         
+          
           else if(filtered.length < 1) {
             setReference(controlFilter = controlFilter.filter(e => e !== el))
               return alert("No match for this filter")
@@ -90,7 +92,7 @@ function ButtonFilter() {
     <div>
     <select className={styles.select} onChange={(e) => handleSelect(e)}>
         <option>City</option>
-    {cityFilters.map((el,i) => <option key={i} className="select" onClick={() => filterItems(el)}>{el}</option>)}
+    {cities.map((el,i) => <option key={i} className="select" onClick={() => filterItems(el)}>{el}</option>)}
 
     </select>
     </div>

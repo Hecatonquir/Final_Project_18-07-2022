@@ -12,6 +12,7 @@ const routes = express.Router();
 
 /* LO QUE ESTÁ ARRIBA ES LO MISMO QUE LO DE ABAJO, Sólo que cuando hay muchas funciones, conviene traerte todas las funciones juntas directamente como hice abajo y luego usarlas así: */
 const F = require('../Functions/Events');
+const U = require('../Functions/Users')
 
 routes.get('/allEvents', F.getAllEvents);
 routes.get('/name/:Name', F.getEventByName);
@@ -20,6 +21,7 @@ routes.get('/reported', F.getReported)
 
 routes.post('/', F.createEvent);
 routes.post('/report/:ID', F.reportEvent)
+routes.post("/login",U.loginRequest)
 
 routes.put('/', F.modifyEvent);
 
