@@ -20,10 +20,13 @@ export default function Home() {
 
 	return (
 		<div>
-			{console.log(events)}
+			<div className={styles.items}>
 			<NavBar />
+			<div className={styles.carousel}>
 			<EventCarousel />
+			</div>
 			<Search />
+			</div>
 			<ButtonFilter />
 			<CalendarEvents></CalendarEvents>
 			<div className={styles.cards}>
@@ -35,6 +38,7 @@ export default function Home() {
 								name={event.Name}
 								image={event.Image[0]}
 								date={event.Date}
+								category={event.Category}
 								price={event.Price}
 								quantity={event.Quantity}
 								city={event.City}

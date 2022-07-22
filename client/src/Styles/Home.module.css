@@ -24,3 +24,13 @@
     color: #1C517A;;
 }
 
+.carousel {
+    width: 95%;
+   margin-left: auto;
+   margin-right: auto;
+}
+
+.items {
+    background-color: #1C517A;;;
+}
+
