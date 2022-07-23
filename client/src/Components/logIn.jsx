@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom';
 import { logInUser } from '../Redux/Actions/logInUser';
 import {useAuth0} from "@auth0/auth0-react"
 import styles from '../Styles/User.module.css'
-
+import {isExpired} from "react-jwt"
 function Login() {
+    let token= document.cookie.split(";").filter(el => el.includes("access-token")).toString().split("=")[1]
+
     
     const dispatch = useDispatch()
     const {loginWithRedirect} = useAuth0()
@@ -30,7 +32,9 @@ function Login() {
                  
 
     return (
-        <div>
+         <div>
+            {isExpired(token) ?
+            <div>
             <nav className={styles.nav}>
                 <Link to= '/'>
                 <button className={styles.Button}>Back</button>
@@ -71,6 +75,11 @@ function Login() {
                     </button>
                 </div>
             </div>
+                </div>
+            :
+            <div>
+            <p>Oops, you missed something? You are Logged in!</p>
+            <Link to="/"><button>Go Back</button></Link> </div> }
         </div>
     )
 }
