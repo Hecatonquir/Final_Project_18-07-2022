@@ -6,7 +6,7 @@ import Profile from './Components/Profile';
 import AddEvent from './Components/AddEvent';
 import Detail from './Components/Detail';
 import Cart from './Components/Cart';
-import LogIn from './Components/LogIn';
+import LogIn from './Components/logIn';
 import Register from './Components/Register';
 
 function App() {
