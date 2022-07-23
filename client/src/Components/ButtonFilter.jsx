@@ -100,6 +100,9 @@ function ButtonFilter() {
         <select className={styles.select}  onChange={(e) => handleSelect(e)}>
             <option hidden>Categories</option>
             {categories.map(el => <option key={el}className='select' onClick={() => filterItems(el)}>{el}</option>)}
+        
+
+
         </select>
     </div>
     <div>
