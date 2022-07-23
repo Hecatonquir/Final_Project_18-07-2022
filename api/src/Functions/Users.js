@@ -164,12 +164,13 @@ const loginRequest = async(req,res) => {
 				if(response) {
 					console.log(user_[0].ID)
 					const id = user_[0].ID
-				const token = jwt.sign({id: id, role:user_[0].Role},process.env.PRIVATEKEY,{
+				const token = jwt.sign({id: id, role:user_[0].Role, name: user_[0].Name},process.env.PRIVATEKEY,{
 					expiresIn: 300,
 				})
 				console.log(token)
 				res.cookie("access-token", token,{
 					maxAge: 60*60*1000,
+					httpOnly:false
 				})
 
 				res.send("Logged In!")
