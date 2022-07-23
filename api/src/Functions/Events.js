@@ -2,8 +2,6 @@ const { Op } = require('sequelize');
 const { Events, Users, sequelize } = require('../db.js');
 
 const getAllEvents = async (req, res, next) => {
-	console.log('🐲🐲🐲 / file: Events.js / line 4 / sequelize', sequelize);
-
 	res.send(
 		await Events.findAll({
 			attributes: {
@@ -27,8 +25,6 @@ const deleteEvent = async (req, res) => {
 };
 
 const createEvent = async (req, res) => {
-	console.log('🐲🐲🐲 / file: Events.js / line 20 / req:\n', req.body);
-
 	try {
 		const created = await Events.create(req.body);
 		/* created.addUsers( {where: {ID: req.body.ID}} ) */ /////PENDING////
