@@ -14,6 +14,9 @@ routes.get("/admin", validateAdmin, (req,res) =>{
 
 routes.post("/register",registerUser)
 routes.post("/login", loginRequest)
+routes.post("verify",validateToken, (req,res) => {
+    res.send("Verified")
+})
 
 
 /* routes.put('/', getUserByName); */
