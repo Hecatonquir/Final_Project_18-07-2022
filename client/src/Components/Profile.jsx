@@ -19,7 +19,7 @@ function Profile() {
 
           <div className={styles.container}>
             <h4 className={styles.title}>Profile</h4>
-              <img src={`${user.picture}`} alt="No Image" className={styles.img}></img>
+              <img src={`${user.picture}`} alt="No img" className={styles.img}></img>
               <h3 className={styles.name}>{user.name}</h3>
               <span className={styles.email}>{user.email}</span>
           </div>

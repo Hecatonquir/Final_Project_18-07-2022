@@ -142,6 +142,8 @@ const userApi = [
 		CreatedEvents: ['aca tendría que tener relación con la tabla de eventos'],
 		RedFlags: '1',
 		City: 'Salta',
+		Username: '',
+		Password: '',
 	},
 	{
 		Name: 'Rober',
@@ -156,6 +158,8 @@ const userApi = [
 		CreatedEvents: ['aca tendría que tener relación con la tabla de eventos'],
 		RedFlags: '2',
 		City: 'Salta',
+		Username: '',
+		Password: '',
 	},
 	{
 		Name: 'Cesar',
@@ -170,6 +174,8 @@ const userApi = [
 		CreatedEvents: ['aca tendría que tener relación con la tabla de eventos'],
 		RedFlags: '3',
 		City: 'Buenos Aires',
+		Username: '',
+		Password: '',
 	},
 	{
 		Name: 'Sol',
@@ -184,6 +190,8 @@ const userApi = [
 		CreatedEvents: ['aca tendría que tener relación con la tabla de eventos'],
 		RedFlags: '4',
 		City: 'Buenos Aires',
+		Username: '',
+		Password: '',
 	},
 	{
 		Name: 'Eliseo',
@@ -197,6 +205,8 @@ const userApi = [
 		CreatedEvents: ['aca tendría que tener relación con la tabla de eventos'],
 		RedFlags: '5',
 		City: 'Buenos Aires',
+		Username: '',
+		Password: '',
 	},
 	{
 		Name: 'Eric',
@@ -211,6 +221,8 @@ const userApi = [
 		CreatedEvents: ['aca tendría que tener relación con la tabla de eventos'],
 		RedFlags: '6',
 		City: 'Buenos Aires',
+		Username: '',
+		Password: '',
 	},
 	{
 		Name: 'Jhonatan',
@@ -225,6 +237,8 @@ const userApi = [
 		CreatedEvents: ['aca tendría que tener relación con la tabla de eventos'],
 		RedFlags: '7',
 		City: 'Lima',
+		Username: '',
+		Password: '',
 	},
 ];
 module.exports = { eventsApi, userApi };
