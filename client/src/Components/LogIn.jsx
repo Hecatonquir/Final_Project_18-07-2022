@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux'
 import { Link } from 'react-router-dom';
-import { postUser } from '../Redux/Actions/postUser';
+import { logInUser } from '../Redux/Actions/logIn';
 import {useAuth0} from "@auth0/auth0-react"
 
-function User() {
+function Login() {
     
     const dispatch = useDispatch()
     const {loginWithRedirect} = useAuth0()
@@ -22,7 +22,7 @@ function User() {
 
     const submitButton = function (e){
         e.preventDefault();
-       postUser(input)
+       logInUser(input)
              setInput({username:"",
                        password:""})
             }
@@ -48,7 +48,7 @@ function User() {
 
             <br/>
 
-          <button onClick={submitButton}>Login User</button>
+          <button onClick={submitButton}>Login</button>
 
           <Link to="/register"><button >Register</button></Link>
 
@@ -60,4 +60,4 @@ function User() {
     )
 }
 
-export default User;
+export default Login;
