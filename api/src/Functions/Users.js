@@ -123,18 +123,18 @@ const getUserById = async (req, res) => {
 
 
 const registerUser = async(req,res) =>{
-	const {User,Username,Password, Email} = req.body
+	const {Name,Username,Password, Email} = req.body
 	let reGex = /\S+@\S+\.\S+/
 	let validateEmail = reGex.test(Email)
 
 
 
-		if(!User || !Password ) {
+		if(!Name || !Password ) {
 			res.status(400).send("Please Provide User and Password")
 		}
 
 		else if(!Username) {
-			res.status(400).send("Please Provide an Username")
+			res.status(400).send("Please Provide an Username!")
 		}
 
 		else if(!Email || !validateEmail ) {
