@@ -20,10 +20,12 @@ export default function Home() {
 	console.log(tokenDecoded, isExpired(token))
 	const dispatch = useDispatch();
 	const events = useSelector((state) => state.showToUser);
+	const logoutState = useSelector((state) => state.allEvents)
 	
 	useEffect(() => {
 		dispatch(getEvents());
-	}, []);
+		return () => {}
+	}, [logoutState]);
 	return (
 		<div>
 			<div className={styles.items}>
