@@ -3,6 +3,7 @@ import {useDispatch} from 'react-redux'
 import { Link } from 'react-router-dom';
 import { postUser } from '../Redux/Actions/postUser';
 import {useAuth0} from "@auth0/auth0-react"
+import styles from '../Styles/User.module.css'
 
 function User() {
     
@@ -30,32 +31,44 @@ function User() {
 
     return (
         <div>
-            <input 
-            type="text" 
-            name="username" 
-            onChange={handleChange} 
-            placeholder="Name" 
-            value={input.username}/>
+            <nav className={styles.nav}>
+                <Link to= '/'>
+                <button className={styles.Button}>Back</button>
+                </Link>
+            </nav>
+            <div>
+                <div className={styles.container}>
+                    <h2 className={styles.title}>Login</h2>
+                    <input 
+                    type="text" 
+                    name="username" 
+                    onChange={handleChange} 
+                    placeholder="Username" 
+                    value={input.username}/>
 
-            <br/>
+                    <br/>
 
-            <input 
-            type="password" 
-            name="password" 
-            onChange={handleChange} 
-            placeholder="Password" 
-            value={input.password}/>
+                    <input 
+                    type="password" 
+                    name="password" 
+                    onChange={handleChange} 
+                    placeholder="Password" 
+                    value={input.password}/>
 
-            <br/>
+                    <br/>
 
-          <button onClick={submitButton}>Login User</button>
+                    <button className={styles.Button2} onClick={submitButton}>Login User</button>
 
-          <Link to="/register"><button >Register</button></Link>
+                    <div className={styles.register}>
+                    <p className={styles.title2}>Don't have an account?</p>
+                    <Link to="/register"><p className={styles.title3}>Register</p></Link>
+                    </div>
 
-          <button  onClick={() => loginWithRedirect()}>
+                    <button  onClick={() => loginWithRedirect()} className={styles.Button3}>
                         <span>Register with google</span>
-                     </button>
-          
+                    </button>
+                </div>
+            </div>
         </div>
     )
 }
