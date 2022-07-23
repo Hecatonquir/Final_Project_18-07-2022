@@ -91,14 +91,14 @@ function ButtonFilter() {
     <label>Filter By</label>
     <div>
     <select className={styles.select} onChange={(e) => handleSelect(e)}>
-        <option hidden>City</option>
+        <option>City</option>
     {cities.map((el,i) => <option key={i} className="select" onClick={() => filterItems(el)}>{el}</option>)}
 
     </select>
     </div>
     <div>
         <select className={styles.select}  onChange={(e) => handleSelect(e)}>
-            <option hidden>Categories</option>
+            <option>Categories</option>
             {categories.map(el => <option className='select' onClick={() => filterItems(el)}>{el}</option>)}
         </select>
     </div>

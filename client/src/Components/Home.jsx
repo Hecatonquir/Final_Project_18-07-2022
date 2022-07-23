@@ -48,7 +48,7 @@ export default function Home() {
 					))
 				) : (
 					<div>
-						<Loader />
+						<h2>No Events Found</h2>
 					</div>
 				)}
 			</div>
