@@ -10,8 +10,6 @@ export default function Detail() {
 	const { id } = useParams();
 	const dispatch = useDispatch();
 	var event = useSelector((state) => state.eventDetail);
-	console.log('🐲🐲🐲 / file: Detail.jsx / line 13 / event', event);
-
 	useEffect(() => {
 		dispatch(getDetail(id));
 	}, [dispatch, id]);
