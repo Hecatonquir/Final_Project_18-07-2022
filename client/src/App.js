@@ -1,4 +1,4 @@
-import {BrowserRouter, Route, Routes} from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom';
 import Home from './Components/Home';
 import ContacUs from './Components/ContacUs';
 import './App.css';
@@ -10,20 +10,20 @@ import User from './Components/User';
 import Register from './Components/Register';
 
 function App() {
-  return (
-    <div>
-      <Routes>
-      <Route path='/' element={<Home/>}/>
-      <Route path='/profile' element={<Profile/>}/>
-      <Route path='/contact' element={<ContacUs/>}/>
-      <Route path='/createEvent' element={<AddEvent/>}/>
-      <Route path='/details/id/:id' element={<Detail/>}/>
-      <Route path='/cart' element={<Cart/>}/>
-      <Route path='/login' element={<User/>}/>
-      <Route path='/register' element={<Register/>}/>
-      </Routes>
-    </div>
-  );
+	return (
+		<div>
+			<Routes>
+				<Route path='/' element={<Home />} />
+				<Route path='/profile' element={<Profile />} />
+				<Route path='/contact' element={<ContacUs />} />
+				<Route path='/createEvent' element={<AddEvent />} />
+				<Route path='/details/id/:id' element={<Detail />} />
+				<Route path='/cart' element={<Cart />} />
+				<Route path='/login' element={<User />} />
+				<Route path='/register' element={<Register />} />
+			</Routes>
+		</div>
+	);
 }
 
 export default App;
