@@ -1,14 +1,13 @@
 import React, {useState} from 'react';
-import {useDispatch} from 'react-redux'
 import { Link } from 'react-router-dom';
-import { postUser } from '../Redux/Actions/postUser';
+import { logInUser } from '../Redux/Actions/logInUser';
 import {useAuth0} from "@auth0/auth0-react"
 import styles from '../Styles/User.module.css'
 import img1 from '../Media/google.png'
 
-function User() {
+function LogIn() {
     
-    const dispatch = useDispatch()
+   
     const {loginWithRedirect} = useAuth0()
     const [input , setInput] = useState({
         username:"",
@@ -24,7 +23,7 @@ function User() {
 
     const submitButton = function (e){
         e.preventDefault();
-       postUser(input)
+       logInUser(input)
              setInput({username:"",
                        password:""})
             }
@@ -58,7 +57,7 @@ function User() {
 
                     <br/>
 
-                    <button className={styles.Button2} onClick={submitButton}>Login User</button>
+                    <button className={styles.Button2} onClick={submitButton}>Login</button>
 
                     <div className={styles.register}>
                     <p className={styles.title2}>Don't have an account?</p>
@@ -74,4 +73,4 @@ function User() {
     )
 }
 
-export default User;
+export default LogIn;

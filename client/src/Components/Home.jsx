@@ -11,13 +11,16 @@ import CalendarEvents from './Calendar.jsx';
 import styles from '../Styles/Home.module.css';
 import Footer from './Footer.jsx';
 import {decodeToken, isExpired} from "react-jwt"
-export default function Home() {
-	let token= document.cookie.split("=")[1]
-	let tokenDecoded = decodeToken(token)
 
+
+export default function Home() {
+	let token= document.cookie.split(";").filter(el => el.includes("access-token")).toString().split("=")[1]
+	let tokenDecoded = decodeToken(token)
+	console.log(token)
 	console.log(tokenDecoded, isExpired(token))
 	const dispatch = useDispatch();
 	const events = useSelector((state) => state.showToUser);
+	
 	useEffect(() => {
 		dispatch(getEvents());
 	}, []);
@@ -27,7 +30,7 @@ export default function Home() {
 			<NavBar />
 			<div className={styles.carousel}>
 				<div>
-					{<p>Welcome {tokenDecoded? tokenDecoded.name: "Guest"}</p>}
+					{!isExpired(token) ?<p>Welcome {tokenDecoded? tokenDecoded.name: "Guest"}</p>: <p>Welcome Guest</p>}
 				</div>
 			<EventCarousel />
 			</div>
