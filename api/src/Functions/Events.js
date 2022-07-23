@@ -1,8 +1,18 @@
 const { Op } = require('sequelize');
-const { Events, Users } = require('../db.js');
+const { Events, Users, sequelize } = require('../db.js');
 
 const getAllEvents = async (req, res, next) => {
-	res.send(await Events.findAll());
+	console.log('🐲🐲🐲 / file: Events.js / line 4 / sequelize', sequelize);
+
+	res.send(
+		await Events.findAll({
+			attributes: {
+				include: [
+					[sequelize.fn('TO_CHAR', sequelize.col('Date'), 'Day DD-Mon-YYYY HH12:MIPM'), 'Date'],
+				],
+			},
+		})
+	);
 };
 
 const deleteEvent = async (req, res) => {
@@ -21,7 +31,7 @@ const createEvent = async (req, res) => {
 
 	try {
 		const created = await Events.create(req.body);
-		/* created.addUsers( {where: {ID: req.body.ID}} ) */  /////PENDING////
+		/* created.addUsers( {where: {ID: req.body.ID}} ) */ /////PENDING////
 		res.send(created);
 	} catch (error) {
 		res.status(400).send(error.stack);
@@ -55,6 +65,11 @@ const getEventById = async (req, res) => {
 	try {
 		const found = await Events.findAll({
 			where: ID,
+			attributes: {
+				include: [
+					[sequelize.fn('TO_CHAR', sequelize.col('Date'), 'Day DD-Mon-YYYY HH12:MIPM'), 'Date'],
+				],
+			},
 		});
 		res.send(found);
 	} catch (error) {

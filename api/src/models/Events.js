@@ -44,6 +44,7 @@ module.exports = (sequelize) => {
 			},
 			City: {
 				type: DataTypes.STRING,
+				allowNull: false,
 			},
 			AgeRestriction: {
 				type: DataTypes.INTEGER,
@@ -51,12 +52,14 @@ module.exports = (sequelize) => {
 			},
 			RedFlags: {
 				type: DataTypes.INTEGER,
+				defaultValue: 0,
 			},
 			Date: {
 				type: DataTypes.DATE,
 			},
 			Detail: {
 				type: DataTypes.TEXT,
+				allowNull: false,
 			},
 		},
 		{ timestamps: false }
