@@ -13,6 +13,7 @@ export default function Detail() {
 	useEffect(() => {
 		dispatch(getDetail(id));
 	}, [dispatch, id]);
+	let i = 0;
 
 	function hundleClick() {
 		dispatch(addCart(id));
@@ -31,7 +32,9 @@ export default function Detail() {
 					<div className={styles.container}>
 						<div className={styles.data}>
 							{event[0].Image.map((im) => {
-								if (im !== '') return <img src={im} alt={event[0].Name} className={styles.img1} />;
+								i++;
+								if (im !== '')
+									return <img key={i} src={im} alt={event[0].Name} className={styles.img1} />;
 								else return '';
 							})}
 						</div>
