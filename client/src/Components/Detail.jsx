@@ -5,6 +5,7 @@ import { getDetail } from '../Redux/Actions/getDetails';
 import { addCart } from '../Redux/Actions/addToCart';
 import Loader from './Loader.jsx';
 import styles from '../Styles/Detail.module.css';
+import { clearDetail } from '../Redux/Actions/clearDetail';
 
 export default function Detail() {
 	const { id } = useParams();
@@ -12,6 +13,7 @@ export default function Detail() {
 	var event = useSelector((state) => state.eventDetail);
 	useEffect(() => {
 		dispatch(getDetail(id));
+		return ()=> dispatch(clearDetail())
 	}, [dispatch, id]);
 	let i = 0;
 
