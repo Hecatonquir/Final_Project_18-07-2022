@@ -14,6 +14,7 @@ function Register() {
         Email:"",
         Image:"",
         Location:"",
+        Role: "User"
     })
 
     const handleChange = function (e){
@@ -25,7 +26,7 @@ function Register() {
 
     const submitButton = function (e){
         e.preventDefault();
-         dispatch(userRegister(input))
+         userRegister(input)
              setInput({Name:"",
                        Username:"",
                        Password:"",

@@ -31,7 +31,7 @@ export default function Cart() {
                         <CardItem
                         id={item.ID}
                         name={item.Name}
-                        image={item.Image}
+                        image={item.Image[0]}
                         price={item.Price}
                         purchasedItem={item.PurchasedItem}
                         />

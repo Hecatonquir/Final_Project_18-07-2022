@@ -4,6 +4,90 @@ const { Op } = require('sequelize');
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
+
+// middleware
+
+const validateToken = (req,res,next) => {
+	const accessToken = req.cookies["access-token"]
+	console.log(accessToken)
+	if(!accessToken) return res.status(400).send("User is not authenticated")
+
+	try {
+		
+	 
+	const validToken = jwt.verify(accessToken, process.env.PRIVATEKEY)
+		
+	if(validToken) {
+		req.authenticated = true
+		return next()
+		
+	}
+	else{
+		res.status(401).send("Invalid Token")
+	}
+	}catch (error) {
+		res.status(400).json({error: "Session Expired, please Log in Again"})
+		
+	}
+}
+
+const validatePartner = (req,res,next) => {
+	const accessToken = req.cookies["access-token"]
+	
+	if(!accessToken) return res.status(400).send("User is not authenticated")
+
+	try {
+		
+	 
+	const validToken = jwt.verify(accessToken, process.env.PRIVATEKEY)
+		
+	if(validToken) {
+		if(validToken.role == "Admin" || validToken.role === "Partner") {
+		req.authenticated = true
+		return next()
+		}
+		else{
+			res.status(400).send("You can't access here")
+		}
+	}
+	else{
+		res.status(401).send("Invalid Token")
+	}
+	}catch (error) {
+		res.status(400).json({error})
+		
+	}
+}
+
+const validateAdmin = (req,res,next) => {
+	const accessToken = req.cookies["access-token"]
+	
+	if(!accessToken) return res.status(400).send("User is not authenticated")
+
+	try {
+		
+	 
+	const validToken = jwt.verify(accessToken, process.env.PRIVATEKEY)
+		
+	if(validToken) {
+		if(validToken.role == "Admin") {
+		req.authenticated = true
+		return next()
+		}
+		else{
+			res.status(400).send("You can't access here")
+		}
+	}
+	else{
+		res.status(401).send("Invalid Token")
+	}
+	}catch (error) {
+		res.status(400).json({error})
+		
+	}
+}
+
+//////////////////////////////////////////////////////////////////////////////////
 const getAllUsers = async (req, res, next) => {
 	res.send(await Users.findAll());
 };
@@ -80,13 +164,16 @@ const loginRequest = async(req,res) => {
 				if(response) {
 					console.log(user_[0].ID)
 					const id = user_[0].ID
-				const token = jwt.sign({id},process.env.PRIVATEKEY,{
+				const token = jwt.sign({id: id, role:user_[0].Role, name: user_[0].Name},process.env.PRIVATEKEY,{
 					expiresIn: 300,
 				})
-				
-				req.session.user = user_
+				console.log(token)
+				res.cookie("access-token", token,{
+					maxAge: 60*60*1000,
+					httpOnly:false
+				})
 
-				res.json({auth: true, token, result: [user_[0].Name, user_[0].Email, user_[0].Name]})
+				res.send("Logged In!")
 			} else{
 				res.status(400).send("Wrong UserName/PassWord")
 			}
@@ -133,5 +220,8 @@ module.exports = {
 	deleteUser,
 	getPartnerCreatedEvents,
 	loginRequest,
-	registerUser
-};
+	registerUser,
+	validateToken,
+	validatePartner,
+	validateAdmin,
+}

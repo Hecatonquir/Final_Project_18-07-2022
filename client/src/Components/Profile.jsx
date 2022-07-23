@@ -5,10 +5,11 @@ import styles from "../Styles/Profile.module.css";
 
 function Profile() {
   const { user, isAuthenticated } = useAuth0();
-
+  let token= document.cookie.split("=")[1]
+	
   return (
     <div>
-      {isAuthenticated ? (
+      {token ?(
         <>
           <nav className={styles.nav}>
             <Link to="/">
