@@ -2,10 +2,13 @@ import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
 import styles from "../Styles/Profile.module.css";
-
+import {decodeToken} from "react-jwt"
 function Profile() {
-  const { user, isAuthenticated } = useAuth0();
-  let token= document.cookie.split("=")[1]
+
+
+  
+  let token= document.cookie.split(";").filter(el => el.includes("access-token")).toString().split("=")[1]
+	let tokenDecoded = decodeToken(token)
 	
   return (
     <div>
@@ -19,9 +22,10 @@ function Profile() {
 
           <div className={styles.container}>
             <h4 className={styles.title}>Profile</h4>
-              <img src={`${user.picture}`} alt="No img" className={styles.img}></img>
-              <h3 className={styles.name}>{user.name}</h3>
-              <span className={styles.email}>{user.email}</span>
+              <img src={`${tokenDecoded.picture}`} alt="No img" className={styles.img}></img>
+              <h3 className={styles.name}>{`${tokenDecoded.name[0].toUpperCase()}${tokenDecoded.name.slice(1)}`}</h3>
+              <h3 classname={styles.name}>{tokenDecoded.city}</h3>
+              <span className={styles.email}>{tokenDecoded.email}</span>
           </div>
         </>
       ) : (
