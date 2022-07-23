@@ -58,7 +58,7 @@ function Login() {
                     <br/>
 
 
-                    <button className={styles.Button2} onClick={submitButton}>Login</button>
+                    <button className={styles.Button2} onClick={submitButton}>Login User</button>
 
 
                     <div className={styles.register}>
