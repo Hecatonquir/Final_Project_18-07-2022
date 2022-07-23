@@ -2,3 +2,11 @@
     width:450px;
     height: 300px;
 }
+
+.cardContainer:hover {
+    background-color: rgba(0, 116, 170, 0.527);
+    transform: translateY(-40px);
+    transition: all 400ms;
+    padding-bottom: 30px;
+}
+

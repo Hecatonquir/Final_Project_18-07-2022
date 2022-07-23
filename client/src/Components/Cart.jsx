@@ -36,7 +36,7 @@ export default function Cart() {
 						<CardItem
 							id={item.ID}
 							name={item.Name}
-							image={item.Image}
+							image={item.Image[0]}
 							price={item.Price}
 							purchasedItem={item.PurchasedItem}
 						/>
@@ -47,7 +47,7 @@ export default function Cart() {
 			</div>
 			<div>
 				{showItem ? (
-					<StripeContainer /> /* ACA LE PASO INFO A ESTE COMPONENTE */
+					<StripeContainer /> //  ACA LE PASO INFO A ESTE COMPONENTE
 				) : (
 					<button
 						className={styles.Button2}
@@ -60,11 +60,9 @@ export default function Cart() {
 			</div>
 			<div className={styles.divButton}>
 				<button className={styles.Button2} onClick={() => hundleClick()}>
-					Clear Cart
+					Remove
 				</button>
 			</div>
-			<br />
-			<br />
 		</div>
 	);
 }

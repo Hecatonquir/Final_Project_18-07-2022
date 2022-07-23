@@ -5,10 +5,11 @@ import styles from "../Styles/Profile.module.css";
 
 function Profile() {
   const { user, isAuthenticated } = useAuth0();
-
+  let token= document.cookie.split("=")[1]
+	
   return (
     <div>
-      {isAuthenticated ? (
+      {token ?(
         <>
           <nav className={styles.nav}>
             <Link to="/">
@@ -18,7 +19,7 @@ function Profile() {
 
           <div className={styles.container}>
             <h4 className={styles.title}>Profile</h4>
-              <img src={`${user.picture}`} alt="No Image" className={styles.img}></img>
+              <img src={`${user.picture}`} alt="No img" className={styles.img}></img>
               <h3 className={styles.name}>{user.name}</h3>
               <span className={styles.email}>{user.email}</span>
           </div>

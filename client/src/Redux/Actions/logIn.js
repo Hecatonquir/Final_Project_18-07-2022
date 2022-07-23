@@ -1,11 +1,11 @@
 import axios from "axios"
 
 
-export async function postUser(payload){
+export async function logInUser(payload){
        
         try {
              await axios.post(`http://localhost:3001/user/login`, payload, {withCredentials: true});
-            alert("Post Created!")
+            alert("Logged in !")
             
         }
         
