@@ -9,8 +9,8 @@ function User() {
     const dispatch = useDispatch()
     const {loginWithRedirect} = useAuth0()
     const [input , setInput] = useState({
-        Username:"",
-        Password:""
+        username:"",
+        password:""
     })
 
     const handleChange = function (e){
@@ -22,9 +22,9 @@ function User() {
 
     const submitButton = function (e){
         e.preventDefault();
-         dispatch(postUser(input))
-             setInput({Username:"",
-                       Password:""})
+       postUser(input)
+             setInput({username:"",
+                       password:""})
             }
                  
 
@@ -32,19 +32,19 @@ function User() {
         <div>
             <input 
             type="text" 
-            name="Username" 
+            name="username" 
             onChange={handleChange} 
             placeholder="Name" 
-            value={input.Username}/>
+            value={input.username}/>
 
             <br/>
 
             <input 
             type="password" 
-            name="Password" 
+            name="password" 
             onChange={handleChange} 
             placeholder="Password" 
-            value={input.Password}/>
+            value={input.password}/>
 
             <br/>
 

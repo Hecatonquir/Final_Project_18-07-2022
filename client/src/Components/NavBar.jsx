@@ -8,7 +8,7 @@ import imgcarrito from '../Media/carri.png'
 
 function NavBar(){
   const  { logout, user, isAuthenticated} = useAuth0()
-  console.log(user)
+  
   const cart = useSelector((state) => state.cart)
   
   const count = cart.length
