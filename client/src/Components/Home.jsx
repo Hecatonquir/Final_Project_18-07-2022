@@ -10,19 +10,25 @@ import Loader from './Loader.jsx';
 import CalendarEvents from './Calendar.jsx';
 import styles from '../Styles/Home.module.css';
 import Footer from './Footer.jsx';
-
+import {decodeToken, isExpired} from "react-jwt"
 export default function Home() {
+	let token= document.cookie.split("=")[1]
+	let tokenDecoded = decodeToken(token)
+
+	console.log(tokenDecoded, isExpired(token))
 	const dispatch = useDispatch();
 	const events = useSelector((state) => state.showToUser);
 	useEffect(() => {
 		dispatch(getEvents());
 	}, []);
-
 	return (
 		<div>
 			<div className={styles.items}>
 			<NavBar />
 			<div className={styles.carousel}>
+				<div>
+					{<p>Welcome {tokenDecoded? tokenDecoded.name: "Guest"}</p>}
+				</div>
 			<EventCarousel />
 			</div>
 			<Search />
