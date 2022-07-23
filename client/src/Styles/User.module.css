@@ -1,0 +1,87 @@
+.nav {
+    background-color: #1C517A;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    padding: 10px;
+}
+
+.Button {
+    background-color: #229ddb;
+    border: 2px solid white;
+    border-radius: 70px;
+    color: white;
+    padding: 10px 30px 10px 30px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bolder;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.container {
+    width: 500px;
+    height: 400px;
+    margin: auto;
+    margin-top: 50px;
+    border: 4px solid #229ddb;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title {
+    color: #1C517A;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.Button2 {
+    cursor: pointer;
+    color: white;
+    font-weight: bolder;
+    background-color: rgb(22, 51, 110);
+    border-radius: 70px;
+    font-size: 12px;
+    padding: 10px 30px 10px 30px;
+    border: none;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.title2 {
+    font-size: 12px;
+    margin-right: 10px;
+    padding-bottom: 2px;
+}
+
+.title3 {
+    font-size: 14px;
+}
+
+.register {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    color: #0e93d5;
+    align-items: center;
+}
+
+.Button3 {
+    cursor: pointer;
+    color:  #0e93d5;
+    font-weight: bolder;
+    background-color: white;
+    border: 2px solid #0e93d5;
+    border-radius: 70px;
+    font-size: 12px;
+    padding: 10px 30px 10px 30px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
