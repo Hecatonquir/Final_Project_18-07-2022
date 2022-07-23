@@ -11,7 +11,6 @@ import CalendarEvents from './Calendar.jsx';
 import styles from '../Styles/Home.module.css';
 import Footer from './Footer.jsx';
 import {decodeToken, isExpired} from "react-jwt"
-
 export default function Home() {
 	let token= document.cookie.split("=")[1]
 	let tokenDecoded = decodeToken(token)
