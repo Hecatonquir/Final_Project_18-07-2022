@@ -134,7 +134,7 @@ const registerUser = async(req,res) =>{
 		}
 
 		else if(!Username) {
-			res.status(400).send("Please Provide an Username")
+			res.status(400).send("Please Provide an Username!")
 		}
 
 		else if(!Email || !validateEmail ) {
