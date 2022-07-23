@@ -45,7 +45,7 @@ module.exports = (sequelize) => {
 			Role: {
 				type: DataTypes.STRING,
 				allowNull: true,
-				defaultValue:"Guess"
+				defaultValue:"Guest"
 			},
 			Favourites: {
 				type: DataTypes.ARRAY(DataTypes.STRING),
