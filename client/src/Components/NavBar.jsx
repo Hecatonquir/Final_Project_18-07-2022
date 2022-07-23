@@ -9,6 +9,7 @@ import {isExpired, decodeToken} from "react-jwt"
 function NavBar(){
   const  { logout, user, isAuthenticated} = useAuth0()
   let token= document.cookie.split("=")[1]
+  console.log(token)
 	let tokenDecoded = decodeToken(token)
   console.log(isExpired(token))
   const cart = useSelector((state) => state.cart)
@@ -23,15 +24,15 @@ function NavBar(){
           <div className={styles.menu}>
           <div> <Link to="/login"><button className={styles.Button}>Login/Sign Up</button></Link></div>
               <div>
-             {tokenDecoded.role !== "Guest" && isExpired(token) ?
+             {token ? tokenDecoded.role !== "Guest" && isExpired(token) ?
                      
                       <button className={styles.Button} onClick={() => logout()}>
                         <span>Log Out</span>
-                     </button>: <div></div>}
+                     </button>: <div></div>:<div></div>}
                      </div>
 
 
-  {tokenDecoded.role === "Partner"  && <Link to="/createEvent">
+  {token && tokenDecoded.role === "Partner"  && <Link to="/createEvent">
           
             <button className={styles.Button}>Create an Event</button>
                      </Link>}

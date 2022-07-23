@@ -123,7 +123,23 @@ const getUserById = async (req, res) => {
 
 
 const registerUser = async(req,res) =>{
-	const {Username,Password} = req.body
+	const {User,Username,Password, Email} = req.body
+	let reGex = /\S+@\S+\.\S+/
+	let validateEmail = reGex.test(Email)
+
+
+
+		if(!User || !Password ) {
+			res.status(400).send("Please Provide User and Password")
+		}
+
+		else if(!Username) {
+			res.status(400).send("Please Provide an Username")
+		}
+
+		else if(!Email || !validateEmail ) {
+			res.status(400).send("Please Provide a VALID Email")
+		}
 
 	try {
 		let foundOrCreate = await Users.findAll({
