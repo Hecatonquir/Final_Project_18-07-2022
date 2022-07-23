@@ -6,7 +6,8 @@ import Profile from './Components/Profile';
 import AddEvent from './Components/AddEvent';
 import Detail from './Components/Detail';
 import Cart from './Components/Cart';
-
+import User from './Components/User';
+import Register from './Components/Register';
 
 function App() {
   return (
@@ -18,6 +19,8 @@ function App() {
       <Route path='/createEvent' element={<AddEvent/>}/>
       <Route path='/details/id/:id' element={<Detail/>}/>
       <Route path='/cart' element={<Cart/>}/>
+      <Route path='/login' element={<User/>}/>
+      <Route path='/register' element={<Register/>}/>
       </Routes>
     </div>
   );

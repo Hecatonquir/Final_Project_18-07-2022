@@ -8,7 +8,9 @@ const uploadDataBase = async (req, res) => {
 		console.log('Data Base Uploaded');
 	} catch (error) {
 		console.log('Data Base NOT Uploaded');
+
 		console.log('🐲🐲🐲 error:\n', error.stack);
+
 	}
 };
 

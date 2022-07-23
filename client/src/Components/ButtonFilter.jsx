@@ -11,11 +11,11 @@ function ButtonFilter() {
     const allEvents = useSelector(state => state.allEvents)
     const dispatch = useDispatch()
 
-    let cities = backUp.slice().map(el => el.City)
-    let categories = backUp.slice().map(el => el.Category[0])
-    console.log(categories)
+    let cities = Array.from(new Set(backUp.slice().map(el => el.City)))
+    let categories = Array.from(new Set(backUp.slice().map(el => el.Category[0])))
+  
     
-    let cityFilters = ["CABA", "La Plata", "Chascomus", "Rosario", "Resistencia"]
+  
     
 
 
@@ -91,15 +91,15 @@ function ButtonFilter() {
     <label>Filter By</label>
     <div>
     <select className={styles.select} onChange={(e) => handleSelect(e)}>
-        <option>City</option>
+        <option hidden>City</option>
     {cities.map((el,i) => <option key={i} className="select" onClick={() => filterItems(el)}>{el}</option>)}
 
     </select>
     </div>
     <div>
         <select className={styles.select}  onChange={(e) => handleSelect(e)}>
-            <option>Categories</option>
-            {categories.map(el => <option className='select' onClick={() => filterItems(el)}>{el}</option>)}
+            <option hidden>Categories</option>
+            {categories.map(el => <option key={el}className='select' onClick={() => filterItems(el)}>{el}</option>)}
         </select>
     </div>
     <div>
