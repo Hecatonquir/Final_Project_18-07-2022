@@ -12,9 +12,9 @@ import styles from '../Styles/Home.module.css';
 import Footer from './Footer.jsx';
 import {decodeToken, isExpired} from "react-jwt"
 export default function Home() {
-	let token= document.cookie.split("=")[1]
+	let token= document.cookie.split(";").filter(el => el.includes("access-token")).toString().split("=")[1]
 	let tokenDecoded = decodeToken(token)
-
+	console.log(token)
 	console.log(tokenDecoded, isExpired(token))
 	const dispatch = useDispatch();
 	const events = useSelector((state) => state.showToUser);
