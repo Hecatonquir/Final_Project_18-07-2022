@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { postUser } from '../Redux/Actions/postUser';
 import {useAuth0} from "@auth0/auth0-react"
 import styles from '../Styles/User.module.css'
+import img1 from '../Media/google.png'
 
 function User() {
     
@@ -65,7 +66,7 @@ function User() {
                     </div>
 
                     <button  onClick={() => loginWithRedirect()} className={styles.Button3}>
-                        <span>Register with google</span>
+                        <img src={img1} alt='not img' className={styles.icon}/><span>Register with google</span>
                     </button>
                 </div>
             </div>
