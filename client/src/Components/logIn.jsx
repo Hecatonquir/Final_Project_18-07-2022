@@ -6,8 +6,6 @@ import styles from '../Styles/User.module.css'
 import img1 from '../Media/google.png'
 
 function LogIn() {
-    
-   
     const {loginWithRedirect} = useAuth0()
     const [input , setInput] = useState({
         username:"",
@@ -28,7 +26,6 @@ function LogIn() {
                        password:""})
             }
                  
-
     return (
         <div>
             <nav className={styles.nav}>
