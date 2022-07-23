@@ -3,6 +3,11 @@ import {useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { postSupports } from '../Redux/Actions/postSupports';
 import styles from '../Styles/ContactUs.module.css'
+import swal from 'sweetalert'
+
+
+ 
+
 
 export default function ContactUs(){
      const dispatch = useDispatch()
@@ -28,7 +33,12 @@ export default function ContactUs(){
         setNote({reason:"",
         problemType:""})
         }else{
-            alert("fill formulary")
+            swal(
+                "fill formulary",{
+                    icon:"warning"
+                })
+           
+                
         }}
 
 
