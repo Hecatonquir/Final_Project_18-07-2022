@@ -12,6 +12,7 @@ function NavBar(){
   console.log(token)
 	let tokenDecoded = decodeToken(token)
   console.log(isExpired(token))
+  console.log(tokenDecoded.role)
   const cart = useSelector((state) => state.cart)
   
   const count = cart.length
@@ -21,14 +22,15 @@ function NavBar(){
           <div>
             <h4>Events Henry</h4>
           </div>
+          
           <div className={styles.menu}>
-          <div> <Link to="/login"><button className={styles.Button}>Login/Sign Up</button></Link></div>
+        {!token  || isExpired(token) ? <div> <Link to="/login"><button className={styles.Button}>Login/Sign Up</button></Link></div>:<div></div>}
               <div>
-             {token ? tokenDecoded.role !== "Guest" && !isExpired(token) ?
+             {!isExpired(token) && tokenDecoded.role !== "Guest" &&
                      
                       <button className={styles.Button} onClick={() => logout()}>
                         <span>Log Out</span>
-                     </button>: <div></div>:<div></div>}
+                     </button>}
                      </div> 
 
 

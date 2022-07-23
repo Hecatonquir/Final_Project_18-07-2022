@@ -1,13 +1,15 @@
 import axios from "axios"
 import swal from "sweetalert";
 
+
 export default async function userRegister(payload){
        
         try {
              await axios.post(`http://localhost:3001/user/register`, payload);
              swal(
                 "User Registered Succesfully",{
-                icon:"success"
+                icon:"success",
+        
                 })
             
         }
@@ -15,6 +17,7 @@ export default async function userRegister(payload){
         catch (error) {
             alert(error.response.data)
         } 
+
             
        
 }
