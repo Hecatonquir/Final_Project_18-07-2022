@@ -62,7 +62,7 @@ function LogIn() {
                     </div>
 
                     <button  onClick={() => loginWithRedirect()} className={styles.Button3}>
-                        <img src={img1} alt='not img' className={styles.icon}/><span>Register with google</span>
+                        <img src={img1} alt='not img2' className={styles.icon}/><span>Register with google</span>
                     </button>
                 </div>
             </div>
