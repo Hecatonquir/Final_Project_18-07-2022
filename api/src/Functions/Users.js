@@ -151,6 +151,7 @@ const registerUser = async(req,res) =>{
 		if(!foundOrCreate[0]) {
 			bcrypt.hash(Password, 10).then(hash => {
 				req.body.Password = hash
+				req.body.Role = "User"
 				 Users.create(req.body)
 				 res.send("Created Succesfully")
 			})
@@ -180,7 +181,7 @@ const loginRequest = async(req,res) => {
 				if(response) {
 					console.log(user_[0].ID)
 					const id = user_[0].ID
-				const token = jwt.sign({id: id, role:user_[0].Role, name: user_[0].Name},process.env.PRIVATEKEY,{
+				const token = jwt.sign({id: id, role:user_[0].Role, name: user_[0].Name, email:user_[0].Email},process.env.PRIVATEKEY,{
 					expiresIn: 300,
 				})
 				console.log(token)
