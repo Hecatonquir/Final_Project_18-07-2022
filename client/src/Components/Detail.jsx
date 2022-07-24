@@ -42,7 +42,7 @@ export default function Detail() {
 							<p>Location: {event[0].Location}</p>
 							<p>Tickets Available: {event[0].Quantity}</p>
 							<p>Category: {event[0].Category.join(' / ')}</p>
-							<p>Rating: {event[0].Rating}</p>
+							{/* <p>Rating: {event[0].Rating}</p> */}
 							<p>AgeRestriction: {event[0].AgeRestriction}</p>
 							<p>Restrictions: {event[0].Restrictions.join(' / ')}</p>
 							<p>Price: ${event[0].Price}</p>
