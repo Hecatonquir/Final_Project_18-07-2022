@@ -33,7 +33,7 @@ function Login() {
 
     return (
          <div>
-            {isExpired(token) ?
+            {   isExpired(token) ?
             <div>
             <nav className={styles.nav}>
                 <Link to= '/'>
