@@ -48,25 +48,35 @@ export default function Home() {
 	
 
 	return (
-		
-		<div>
+	<div className={styles.container}>
+			 <div className={styles.navbar}>
+		   <NavBar />
+		   </div>
 			<div className={styles.items}>
-			<NavBar />
+		   
+		  
+		  
 			<div className={styles.carousel}>
-				<div>
-					{console.log(stateUser)}
+
+				<div className={styles.welcome}>
 					{stateUser || !isExpired(token) ?<p>Welcome {tokenDecoded? tokenDecoded.name: "Guest"}</p>: <p>Welcome Guest</p>}
+
 				</div>
 			<EventCarousel />
+			<div className={styles.filter}>
+			<ButtonFilter />
 			</div>
+			</div>
+			</div>
+			<div className={styles.search}>
 			<Search />
 			</div>
-			<ButtonFilter />
+			
 			{/* <CalendarEvents></CalendarEvents> */}
-			<div className={styles.cards}>
+			<div className={styles.totalcards}>
 				{events.length ? (
 					events.map((event) => (
-						<div key={event.ID} className={styles.card}>
+						<div key={event.ID}>
 							<EventCard
 								id={event.ID}
 								name={event.Name}

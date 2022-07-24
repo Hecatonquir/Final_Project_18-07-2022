@@ -126,7 +126,7 @@ function Register() {
                 <p className={styles.title2}>Imagen: </p>
                 <input 
                 className={styles.Button3}
-                type="file" 
+                type="text" 
                 name="Image" 
                 onChange={handleChange} 
                 placeholder="Image" 
