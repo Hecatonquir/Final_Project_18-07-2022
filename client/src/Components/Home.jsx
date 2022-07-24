@@ -29,7 +29,7 @@ export default function Home() {
 		return () => {}
 	}, [stateUser]);
 	return (
-		<div>
+		<div className={styles.container}>
 			<div className={styles.items}>
 		   <NavBar />
 			<div className={styles.carousel}>
@@ -37,15 +37,17 @@ export default function Home() {
 					{!isExpired(token) ?<p>Welcome {tokenDecoded? tokenDecoded.name: "Guest"}</p>: <p>Welcome Guest</p>}
 				</div>
 			<EventCarousel />
+			<div className={styles.filter}>
+			<ButtonFilter />
+			</div>
+			</div>
 			</div>
 			<Search />
-			</div>
-			<ButtonFilter />
 			{/* <CalendarEvents></CalendarEvents> */}
-			<div className={styles.cards}>
+			<div className={styles.totalcards}>
 				{events.length ? (
 					events.map((event) => (
-						<div key={event.ID} className={styles.card}>
+						<div key={event.ID}>
 							<EventCard
 								id={event.ID}
 								name={event.Name}

@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import { clearCart } from '../Redux/Actions/clearCart'
 import CardItem from './CartItem'
 import styles from '../Styles/Cart.module.css'
+import imgcarrito from '../Media/emptycart.png'
 
 export default function Cart() {
     const dispatch = useDispatch()
@@ -25,25 +26,33 @@ export default function Cart() {
             </nav>
             <h4 className={styles.title}>SHOPPING CART</h4>
             <p className={styles.subtitle}>Your selected events</p>
-            {
-                cart && cart.map( (item) => (
-                    <div key={item.ID}>
-                        <CardItem
-                        id={item.ID}
-                        name={item.Name}
-                        image={item.Image[0]}
-                        price={item.Price}
-                        purchasedItem={item.PurchasedItem}
-                        />
+            <div className={styles.container}>
+                <div>
+                    {
+                    cart.length ? cart.map( (item) => (
+                        <div key={item.ID}>
+                            <CardItem
+                            id={item.ID}
+                            name={item.Name}
+                            image={item.Image[0]}
+                            price={item.Price}
+                            purchasedItem={item.PurchasedItem}
+                            />
+                        </div>
+                    ))
+                    :  <div>
+                        <img className={styles.imgcarrito} src={imgcarrito} alt='not imgcarrito' />
                     </div>
-                ))
-            }
-            <div className={styles.amount}>
-            <h4>Total Price: ${totalAmount}</h4>
+                    }
+                </div>
+            <div className={styles.containeramount}>
+            <h5 className={styles.amount}>Total Price: ${totalAmount}</h5>
+            <button className={styles.Button2}>Buy</button>
+            </div>
             </div>
             <div className={styles.divButton}>
                 <button className={styles.Button2} onClick={() => hundleClick()}>Remove</button>
-                <button className={styles.Button2}>Buy</button>
+                
             </div>
         </div>
     )

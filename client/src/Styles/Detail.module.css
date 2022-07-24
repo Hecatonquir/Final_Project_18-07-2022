@@ -43,13 +43,14 @@
     cursor: pointer;
     color: white;
     font-weight: bolder;
-    background-color: rgb(22, 51, 110);
+    background-color: #229ddb;
     border-radius: 70px;
     font-size: 12px;
-    padding: 10px 30px 10px 30px;
+    padding: 1px 20px 1px 20px;
     border: none;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    align-self: flex-end;
 }
 
 .img1 {
@@ -63,4 +64,8 @@
 .data2 {
     margin-left: 30px;
     width: 600px;
+}
+
+.carticon {
+    width: 40px;
 }
