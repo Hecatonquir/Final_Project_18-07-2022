@@ -10,7 +10,7 @@ export async function logInUser(payload){
         }
         
         catch (error) {
-            alert(error.response.data)
+            console.log(error.response.data)
         } 
             
        
