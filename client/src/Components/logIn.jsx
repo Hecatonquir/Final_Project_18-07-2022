@@ -5,7 +5,10 @@ import {useAuth0} from "@auth0/auth0-react"
 import styles from '../Styles/User.module.css'
 import img1 from '../Media/google.png'
 import {isExpired, decodeToken} from "react-jwt"
+import {useDispatch} from "react-redux"
+
 function LogIn() {
+    let dispatch = useDispatch()
     
     let token= document.cookie.split(";").filter(el => el.includes("access-token")).toString().split("=")[1]
 	let tokenDecoded = decodeToken(token)
@@ -27,7 +30,7 @@ function LogIn() {
 
     const submitButton = function (e){
         e.preventDefault();
-       logInUser(input)
+       logInUser(input, dispatch)
              setInput({username:"",
                        password:""})
             }

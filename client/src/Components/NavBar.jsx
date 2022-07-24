@@ -1,6 +1,6 @@
 import React from "react";
 import {useSelector,useDispatch} from "react-redux"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "../Styles/NavBar.module.css"
 import {useAuth0} from "@auth0/auth0-react"
 import imgcarrito from '../Media/carri.png'
@@ -8,7 +8,7 @@ import {isExpired, decodeToken} from "react-jwt"
 import logout from "../Redux/Actions/logOut";
 
 function NavBar(){
-  
+  let navigate = useNavigate()
 
   let token= document.cookie.split(";").filter(el => el.includes("access-token")).toString().split("=")[1]
 
@@ -16,7 +16,7 @@ function NavBar(){
  let dispatch = useDispatch()
   const logoutState = useSelector((state) => state.allEvents)
   const cart = useSelector((state) => state.cart)
-  
+  const events = useSelector((state) => state.showToUser);
   const count = cart.length
 
   return(
@@ -30,7 +30,7 @@ function NavBar(){
               <div>
              {!isExpired(token) && tokenDecoded.role !== "Guest" &&
                      
-                      <button className={styles.Button} onClick={() => dispatch(logout("access-token",logoutState))}>
+                      <button className={styles.Button} onClick={() => (logout("access-token",dispatch))}>
                         <span>Log Out</span>
                      </button>}
                      </div> 
