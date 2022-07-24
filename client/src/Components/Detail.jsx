@@ -5,6 +5,8 @@ import { getDetail } from '../Redux/Actions/getDetails';
 import { addCart } from '../Redux/Actions/addToCart';
 import Loader from './Loader.jsx';
 import styles from '../Styles/Detail.module.css';
+import { clearDetail } from '../Redux/Actions/clearDetail';
+import AddToCartButton from './AddToCartButton';
 
 export default function Detail() {
 	const { id } = useParams();
@@ -12,13 +14,9 @@ export default function Detail() {
 	var event = useSelector((state) => state.eventDetail);
 	useEffect(() => {
 		dispatch(getDetail(id));
+		return ()=> dispatch(clearDetail())
 	}, [dispatch, id]);
 	let i = 0;
-
-	function hundleClick() {
-		dispatch(addCart(id));
-		alert('added product');
-	}
 
 	return (
 		<div>
@@ -51,9 +49,7 @@ export default function Detail() {
 							<p>Date: {event[0].Date}</p>
 
 							<p>Detail: {event[0].Detail}</p>
-							<button className={styles.Button2} onClick={() => hundleClick()}>
-								Add To Cart
-							</button>
+							<AddToCartButton id={id}/>
 						</div>
 					</div>
 				</div>

@@ -39,7 +39,7 @@ export default function Home() {
 			<Search />
 			</div>
 			<ButtonFilter />
-			<CalendarEvents></CalendarEvents>
+			{/* <CalendarEvents></CalendarEvents> */}
 			<div className={styles.cards}>
 				{events.length ? (
 					events.map((event) => (

@@ -32,9 +32,6 @@ module.exports = (sequelize) => {
 				type: DataTypes.INTEGER,
 				defaultValue: 0,
 			},
-			/* Rating: {
-				type: DataTypes.INTEGER,
-			}, */
 			Restrictions: {
 				type: DataTypes.ARRAY(DataTypes.STRING),
 				defaultValue: ['None'],
