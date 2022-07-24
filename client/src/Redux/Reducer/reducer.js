@@ -1,4 +1,4 @@
-import {GET_EVENTS, GET_NAME_EVENTS,SHOW_EVENTS_USER, NEED_BACKUP, GET_DETAILS, ADD_REMOVE_FILTER,ADD_ITEM_CART, REMOVE_ITEM_CART, REMOVE_ALL_ITEM_CART, CLEAR_CART, PRE_FILTER} from "../ActionTypes/actiontypes"
+import {GET_EVENTS, GET_NAME_EVENTS,SHOW_EVENTS_USER, NEED_BACKUP, GET_DETAILS, ADD_REMOVE_FILTER,ADD_ITEM_CART, REMOVE_ITEM_CART, REMOVE_ALL_ITEM_CART, CLEAR_CART, PRE_FILTER, CLEAR_DETAIL} from "../ActionTypes/actiontypes"
 const initialState = {
     allEvents: [],
     eventsBackUp: [],
@@ -56,6 +56,12 @@ export default function reducer(state = initialState,{type,payload}) {
 
             case CLEAR_CART: 
             return{...state, cart: []}
+
+            case CLEAR_DETAIL:
+                return {
+                    ...state,
+                    eventDetail: {}
+                }
 
             default:
                 return state
