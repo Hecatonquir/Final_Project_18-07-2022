@@ -166,6 +166,62 @@ const registerUser = async(req,res) =>{
 	}
 }
 
+
+
+const registerUserGmail = async(req,res) =>{
+	const {Username} = req.body
+	
+	try {
+		let foundOrCreate = await Users.findAll({
+			where: {
+				Username
+			},
+		});
+			console.log(foundOrCreate)
+		if(!foundOrCreate[0]) {
+			
+			bcrypt.hash(process.env.DefaultPassword, 10).then(async hash => {
+				req.body.Password = hash
+				req.body.Role = "User"
+				
+				let gmailUser = await Users.create(req.body)
+				
+				const token = jwt.sign({id: gmailUser.ID, role:gmailUser.Role, name: gmailUser.Name, email: gmailUser.Email, picture: gmailUser.Image},process.env.PRIVATEKEY,{
+					expiresIn: 300,
+				})
+				console.log(token)
+				res.cookie("access-token", token,{
+					maxAge: 60*60*1000,
+					httpOnly:false
+				})
+				res.send("Created")
+
+			})
+		}
+		else{
+
+			const tokenRegistered = jwt.sign({id: foundOrCreate[0].ID, role:foundOrCreate[0].Role, name: foundOrCreate[0].Name, email: foundOrCreate[0].Email,picture: foundOrCreate[0].Image},process.env.PRIVATEKEY,{
+				expiresIn: 300,
+			})
+			console.log(tokenRegistered)
+			res.cookie("access-token", tokenRegistered,{
+				maxAge: 60*60*1000,
+				httpOnly:false
+			})
+			res.send("Loged In!")
+
+		}
+		
+	} catch (error) {
+		res.status(400).send(error)
+		
+	}
+}
+
+
+
+
+
 const loginRequest = async(req,res) => {
 	const {username, password} = req.body
 	try {
@@ -241,4 +297,5 @@ module.exports = {
 	validateToken,
 	validatePartner,
 	validateAdmin,
+	registerUserGmail
 }
