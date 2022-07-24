@@ -25,7 +25,7 @@ export default function Home() {
 	const stateUser = useSelector(state => state.loginState)
 
 	console.log(tokenDecoded)
-
+     // 
 	if(!token) {
 		dispatch(registerGmail(user))
 	}
