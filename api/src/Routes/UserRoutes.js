@@ -2,7 +2,7 @@
 const express = require('express');
 const routes = express.Router();
 
-const { getAllUsers, getUserByName, getUserById, deleteUser, getPartnerCreatedEvents, loginRequest, registerUser, validateToken, validateAdmin } = require('../Functions/Users.js');
+const { getAllUsers, getUserByName, getUserById, deleteUser, getPartnerCreatedEvents, loginRequest, registerUser, validateToken, validateAdmin, registerUserGmail } = require('../Functions/Users.js');
 
 routes.get('/all', getAllUsers); // --------------------Working
 routes.get('/name/:Name', getUserByName); // -----------Working
@@ -14,9 +14,11 @@ routes.get("/admin", validateAdmin, (req,res) =>{
 
 routes.post("/register",registerUser)
 routes.post("/login", loginRequest)
-routes.post("verify",validateToken, (req,res) => {
+routes.post("/verify",validateToken, (req,res) => {
     res.send("Verified")
 })
+
+routes.post("/registerG", registerUserGmail)
 
 
 /* routes.put('/', getUserByName); */
