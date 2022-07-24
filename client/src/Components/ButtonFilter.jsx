@@ -1,6 +1,7 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { useDispatch, useSelector} from "react-redux"
 import { GET_EVENTS, SHOW_EVENTS_USER,ADD_REMOVE_FILTER } from '../Redux/ActionTypes/actiontypes'
+import styles from '../Styles/ButtonFilter.module.css'
 
 function ButtonFilter() {
 
@@ -10,22 +11,26 @@ function ButtonFilter() {
     const allEvents = useSelector(state => state.allEvents)
     const dispatch = useDispatch()
 
-    let cityFilters = ["CABA", "La Plata", "Chascomus", "Rosario", "Resistencia"]
-    let categories = ["Recitales", "Boliches", "Salsa", "Bachata", "Tango", "Deportes"]
+    let cities = Array.from(new Set(backUp.slice().map(el => el.City)))
+    let categories = Array.from(new Set(backUp.slice().map(el => el.Category[0])))
+  
+    
+  
+    
 
 
     function filterItems(el) {
      
         if(!controlFilter.includes(el)) {
-          setReference(controlFilter = [...controlFilter,el])
+          setReference(controlFilter = [el])
         
       
         
           let notFiltered =[]
-          let filtered = allEvents.filter(e => {
-              let foundCat = e.categories.find(g =>  g === el) 
-              let foundCity = e.city.find(c => c === el)
-              if(foundCat || foundCity ) {
+          let filtered = backUp.filter(e => {
+              let foundCat = e.Category.find(g =>  g === el) 
+              
+              if(foundCat || e.City === el ) {
               return e
               }
               
@@ -39,10 +44,8 @@ function ButtonFilter() {
           dispatch({type: GET_EVENTS, payload: filtered})
           return dispatch({type: SHOW_EVENTS_USER, payload: filtered})
           }
-          else if(filtered.length<1 &&allEvents.length < 2){
-            setReference(controlFilter = controlFilter.filter(e => e !== el))
-              return alert("There are no more applicable filters to show.")
-          }
+         
+          
           else if(filtered.length < 1) {
             setReference(controlFilter = controlFilter.filter(e => e !== el))
               return alert("No match for this filter")
@@ -55,9 +58,9 @@ function ButtonFilter() {
           let finalMatch = []
           for(let i = 0; i<backUp.length; i++ ) {
             controlFilter.forEach(g => {
-                let suMatcher = backUp[i].city.find(e => e === g)
-                let suMatcherC = backUp[i].categories.find(e => e === g)
-              if(suMatcher||suMatcherC) {
+               
+                let suMatcherC = backUp[i].Category.find(e => e === g)
+              if(backUp[i].City === g||suMatcherC) {
                 matchers ++
               }
             })
@@ -84,23 +87,27 @@ function ButtonFilter() {
     }
 
   return (
-    <div className="filtercontainer">
-    <label>Filter By</label>
+    <div className={styles.filtercontainer}>
     <div>
-    <select className="select" onChange={(e) => handleSelect(e)}>
-        <option>City</option>
-    {cityFilters.map((el,i) => <option key={i} className="select" onClick={() => filterItems(el)}>{el}</option>)}
+    <select id='city' className={styles.select} onChange={(e) => handleSelect(e)}>
+        <option hidden>Filter By City</option>
+    {cities.map((el,i) => <option key={i} className="select" onClick={() => filterItems(el)}>{el}</option>)}
 
     </select>
     </div>
     <div>
-        <select className='select'>
-            <option>Categories</option>
-            {categories.map(el => <option className='select' onClick={() => filterItems(el)}>{el}</option>)}
+        <select id='cat' className={styles.select}  onChange={(e) => handleSelect(e)}>
+            <option hidden>Filter By Categories</option>
+            {categories.map(el => <option key={el}className='select' onClick={() => filterItems(el)}>{el}</option>)}
+        
+
+
         </select>
     </div>
     <div>
-        <button className='button' onClick={()=> {return setReference(controlFilter = []), dispatch({type: GET_EVENTS, payload: backUp }), dispatch({type: SHOW_EVENTS_USER, payload: backUp.slice(0,15)})}}>Clear Filters</button>
+
+        <button className={styles.Button2} onClick={()=> { document.getElementById('city').value = 'Filter By City'; document.getElementById('cat').value = 'Filter By Categories'; return setReference(controlFilter = []), dispatch({type: GET_EVENTS, payload: backUp }), dispatch({type: SHOW_EVENTS_USER, payload: backUp.slice(0,15)})}}>Clear Filters</button>
+
     </div>
 </div>
   )

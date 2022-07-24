@@ -1,33 +1,44 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import {getNameEvent} from "../../action";
+import {getNameEvent} from "../Redux/Actions/searchName";
+import { useSelector } from "react-redux";
+import styles from '../Styles/Search.module.css'
+import { GET_NAME_EVENTS } from "../Redux/ActionTypes/actiontypes";
 
 
 export default function SearchEvent(){
+    const events = useSelector(state => state.eventsBackUp)
     const dispatch = useDispatch();
     const [name, setName] = useState("");
 
     function handleInputChange(e){
-        e.preventDefault()
-        setName(e.target.value);
+     
+        setName(e.target.value)
+       
 
     }
-    function handleSubmit(e){
-        e.preventDefault()
-        if(name){
-            dispatch(getNameEvent())
-        }
-        setName("")
+
+    useEffect(() =>{
+        getNameEvent(name,events,dispatch)
+
+    },[name])
+
+
+   function handleInputChange(e){
+     
+        setName(e.target.value)
+        getNameEvent(name,events,dispatch)
+
     }
+    
     return (
-        <div>
+        <div className={styles.search}>
             <input
             type='text'
             placeholder="Search Event..."
-            onChange={(e) => handleInputChange(e)}/>
-
-            <button type='submit' onClick={(e) => handleSubmit(e)}> Search </button>
+            onChange={(e) => handleInputChange(e)}
+            className={styles.input}/>
         </div>
     )
 }
