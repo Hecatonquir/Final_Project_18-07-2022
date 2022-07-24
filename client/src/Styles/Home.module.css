@@ -1,3 +1,10 @@
+.navbar{
+    
+    position:fixed;
+    top:0;
+    width:100%;
+    z-index: 1;
+}
 
 .container{
     background-color: #CAD1D0 
@@ -20,9 +27,25 @@
 }
 
 .items {
-    background-color: #CAD1D0
+    background-color: #CAD1D0;
+    
 }
 
 .filter {
     margin-top: 15px;
+}
+.welcome{
+    display: flex;
+    justify-content: center;
+    color: rgb(243, 188, 8);
+    text-shadow: 3px 3px 3px black;
+    font-size: 2rem;
+    font-family:Arial, Helvetica, sans-serif;
+    margin-top: 6rem;
+}
+
+.search{
+    display: flex;
+    justify-content: center;
+    font-size: 1.5rem;
 }

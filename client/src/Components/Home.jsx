@@ -30,10 +30,15 @@ export default function Home() {
 	}, [stateUser]);
 	return (
 		<div className={styles.container}>
-			<div className={styles.items}>
+			 <div className={styles.navbar}>
 		   <NavBar />
+		   </div>
+			<div className={styles.items}>
+		   
+		  
+		  
 			<div className={styles.carousel}>
-				<div>
+				<div className={styles.welcome}>
 					{!isExpired(token) ?<p>Welcome {tokenDecoded? tokenDecoded.name: "Guest"}</p>: <p>Welcome Guest</p>}
 				</div>
 			<EventCarousel />
@@ -42,7 +47,10 @@ export default function Home() {
 			</div>
 			</div>
 			</div>
+			<div className={styles.search}>
 			<Search />
+			</div>
+			
 			{/* <CalendarEvents></CalendarEvents> */}
 			<div className={styles.totalcards}>
 				{events.length ? (
