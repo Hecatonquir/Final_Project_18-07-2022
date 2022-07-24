@@ -25,7 +25,7 @@ export default function Home() {
 	useEffect(() => {
 		dispatch(getEvents());
 		return () => {}
-	}, [logoutState]);
+	}, []);
 	return (
 		<div>
 			<div className={styles.items}>
