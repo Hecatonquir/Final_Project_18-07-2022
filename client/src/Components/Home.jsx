@@ -31,7 +31,7 @@ export default function Home() {
 	return (
 		<div>
 			<div className={styles.items}>
-			<NavBar />
+		   <NavBar />
 			<div className={styles.carousel}>
 				<div>
 					{!isExpired(token) ?<p>Welcome {tokenDecoded? tokenDecoded.name: "Guest"}</p>: <p>Welcome Guest</p>}
