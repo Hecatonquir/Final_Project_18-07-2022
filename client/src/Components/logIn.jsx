@@ -4,13 +4,9 @@ import { logInUser } from '../Redux/Actions/logInUser';
 import {useAuth0} from "@auth0/auth0-react"
 import styles from '../Styles/User.module.css'
 import img1 from '../Media/google.png'
-import {isExpired, decodeToken} from "react-jwt"
+
 function LogIn() {
     
-    let token= document.cookie.split(";").filter(el => el.includes("access-token")).toString().split("=")[1]
-	let tokenDecoded = decodeToken(token)
-
-
    
     const {loginWithRedirect} = useAuth0()
     const [input , setInput] = useState({
@@ -34,11 +30,7 @@ function LogIn() {
                  
 
     return (
-
-         <div>
-            {   isExpired(token) ?
-            <div>
-  
+        <div>
             <nav className={styles.nav}>
                 <Link to= '/'>
                 <button className={styles.Button}>Back</button>
@@ -76,11 +68,8 @@ function LogIn() {
                         <img src={img1} alt='not img' className={styles.icon}/><span>Register with google</span>
                     </button>
                 </div>
-                </div>
-            </div>:<div><p>Oops, you missed something? You are Logged In!</p>
-            <Link to="/"><button>Go Back</button></Link>
-            </div>}
             </div>
+        </div>
     )
 }
 
