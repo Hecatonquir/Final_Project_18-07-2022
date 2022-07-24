@@ -88,17 +88,16 @@ function ButtonFilter() {
 
   return (
     <div className={styles.filtercontainer}>
-    <label>Filter By</label>
     <div>
     <select id='city' className={styles.select} onChange={(e) => handleSelect(e)}>
-        <option hidden>City</option>
+        <option hidden>Filter By City</option>
     {cities.map((el,i) => <option key={i} className="select" onClick={() => filterItems(el)}>{el}</option>)}
 
     </select>
     </div>
     <div>
         <select id='cat' className={styles.select}  onChange={(e) => handleSelect(e)}>
-            <option hidden>Categories</option>
+            <option hidden>Filter By Categories</option>
             {categories.map(el => <option key={el}className='select' onClick={() => filterItems(el)}>{el}</option>)}
         
 
@@ -107,7 +106,7 @@ function ButtonFilter() {
     </div>
     <div>
 
-        <button className={styles.Button2} onClick={()=> { document.getElementById('city').value = 'City'; document.getElementById('cat').value = 'Categories'; return setReference(controlFilter = []), dispatch({type: GET_EVENTS, payload: backUp }), dispatch({type: SHOW_EVENTS_USER, payload: backUp.slice(0,15)})}}>Clear Filters</button>
+        <button className={styles.Button2} onClick={()=> { document.getElementById('city').value = 'Filter By City'; document.getElementById('cat').value = 'Filter By Categories'; return setReference(controlFilter = []), dispatch({type: GET_EVENTS, payload: backUp }), dispatch({type: SHOW_EVENTS_USER, payload: backUp.slice(0,15)})}}>Clear Filters</button>
 
     </div>
 </div>

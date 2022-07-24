@@ -1,28 +1,17 @@
 
-.cards {
+.container{
+    background-color: #CAD1D0 
+}
+
+.totalcards {
     display: grid;
     grid-template-columns: auto auto;
     justify-content: center;
-    align-items: center;
-    row-gap: 20px;
-    column-gap: 100px;
-    margin-bottom: 40px;
-    margin-top: 20px;
+    column-gap: 1rem;
+    row-gap: 1rem;
+    margin-top: 10px;
 }
 
-.card {
-    position: relative;
-    overflow: hidden;
-    text-align: center;
-    font-size: 14px;
-    border: 4px solid #229ddb;
-    width: 450px;
-    height: 480px;
-    background-color: white;
-    text-decoration: none;
-    border-radius: 10px;
-    color: #1C517A;;
-}
 
 .carousel {
     width: 95%;
@@ -31,6 +20,9 @@
 }
 
 .items {
-    background-color: #1C517A;;;
+    background-color: #CAD1D0
 }
 
+.filter {
+    margin-top: 15px;
+}

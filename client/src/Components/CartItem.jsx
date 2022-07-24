@@ -4,6 +4,7 @@ import { addCart } from '../Redux/Actions/addToCart'
 import { removeCart } from '../Redux/Actions/removeFromCart'
 import { removeAllCart } from '../Redux/Actions/removeAllFromCart'
 import styles from '../Styles/CartItem.module.css'
+import imgdelete from '../Media/delete.png'
 
 export default function CardItem({id, name, image, price, purchasedItem}) {
 
@@ -24,10 +25,12 @@ export default function CardItem({id, name, image, price, purchasedItem}) {
     return(
         <div className={styles.containerTotal}>
             <div className={styles.container}>
-            <h4>{name}</h4>
             <img className={styles.img} src={image} alt='img event' />
+            <div className={styles.name}>
+            <h6>{name}</h6>
+            </div>
             <div>
-                <h5>Quantity Item</h5>
+                <h6>Quantity Item</h6>
                 <div className={styles.quantity}>
                     <button className={styles.operation} onClick={() => hundleRemoveItem()}>-</button>
                     <p className={styles.purchased}>{purchasedItem}</p>
@@ -35,10 +38,10 @@ export default function CardItem({id, name, image, price, purchasedItem}) {
                 </div>
             </div>
             <div>
-                <h5>Price</h5>
+                <h6>Price</h6>
                 <p>${price*purchasedItem}</p>
             </div>
-            <button className={styles.Button2 }onClick={() => hundleDelete()}>Delete</button>
+            <img src={imgdelete} alt='not imgdelete' onClick={() => hundleDelete()} className={styles.imgdelete}/>
             </div>
         </div>
         

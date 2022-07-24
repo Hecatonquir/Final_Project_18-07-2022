@@ -25,15 +25,14 @@ export default function Home() {
 	const events = useSelector((state) => state.showToUser);
 
 	const logoutState = useSelector((state) => state.allEvents);
-	const stateUser = useSelector(state => state.loginState)
-	
+	const stateUser = useSelector((state) => state.loginState);
+
 	useEffect(() => {
-		
 		dispatch(getEvents());
 		return () => {};
 	}, []);
 	return (
-		<div>
+		<div className={styles.container}>
 			<div className={styles.items}>
 				<NavBar />
 				<div className={styles.carousel}>
@@ -45,15 +44,17 @@ export default function Home() {
 						)}
 					</div>
 					<EventCarousel />
+					<div className={styles.filter}>
+						<ButtonFilter />
+					</div>
 				</div>
-				<Search />
 			</div>
-			<ButtonFilter />
+			<Search />
 			{/* <CalendarEvents></CalendarEvents> */}
-			<div className={styles.cards}>
+			<div className={styles.totalcards}>
 				{events.length ? (
 					events.map((event) => (
-						<div key={event.ID} className={styles.card}>
+						<div key={event.ID}>
 							<EventCard
 								id={event.ID}
 								name={event.Name}
