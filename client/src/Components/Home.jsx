@@ -11,21 +11,24 @@ import CalendarEvents from './Calendar.jsx';
 import styles from '../Styles/Home.module.css';
 import Footer from './Footer.jsx';
 import { decodeToken, isExpired } from 'react-jwt';
+import { useAuth0 } from '@auth0/auth0-react';
+import registerGmail from '../Redux/Actions/registerGmail.js';
 
 export default function Home() {
+	const { isAuthenticated, user } = useAuth0();
 	let token = document.cookie
 		.split(';')
 		.filter((el) => el.includes('access-token'))
 		.toString()
 		.split('=')[1];
 	let tokenDecoded = decodeToken(token);
-	console.log(token);
-	console.log(tokenDecoded, isExpired(token));
 	const dispatch = useDispatch();
 	const events = useSelector((state) => state.showToUser);
-
-	const logoutState = useSelector((state) => state.allEvents);
 	const stateUser = useSelector((state) => state.loginState);
+
+	if (!token) {
+		dispatch(registerGmail(user));
+	}
 
 	useEffect(() => {
 		dispatch(getEvents());
@@ -33,8 +36,10 @@ export default function Home() {
 	}, []);
 	return (
 		<div className={styles.container}>
-			<div className={styles.items}>
+			<div className={styles.navbar}>
 				<NavBar />
+				</div>
+			<div className={styles.items}>
 				<div className={styles.carousel}>
 					<div>
 						{!isExpired(token) ? (
@@ -49,7 +54,10 @@ export default function Home() {
 					</div>
 				</div>
 			</div>
-			<Search />
+			<div className={styles.search}>
+				<Search />
+			</div>
+
 			{/* <CalendarEvents></CalendarEvents> */}
 			<div className={styles.totalcards}>
 				{events.length ? (

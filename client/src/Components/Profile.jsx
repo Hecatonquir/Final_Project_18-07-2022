@@ -24,8 +24,11 @@ function Profile() {
             <h4 className={styles.title}>Profile</h4>
               <img src={`${tokenDecoded.picture}`} alt="No img" className={styles.img}></img>
               <h3 className={styles.name}>{`${tokenDecoded.name[0].toUpperCase()}${tokenDecoded.name.slice(1)}`}</h3>
+
               <h3 className={styles.name}>{tokenDecoded.city}</h3>
+
               <span className={styles.email}>{tokenDecoded.email}</span>
+
           </div>
         </>
       ) : (
