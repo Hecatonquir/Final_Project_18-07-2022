@@ -31,6 +31,7 @@ export default function PaymentForm() {
 
 	const handleSumbit = async (e) => {
 		e.preventDefault();
+		setSuccess('loading');
 		const { error, paymentMethod } = await stripe.createPaymentMethod({
 			type: 'card',
 			card: elements.getElement(CardElement),
@@ -69,6 +70,8 @@ export default function PaymentForm() {
 					</fieldset>
 					<button>PAY!</button>
 				</form>
+			) : success === 'loading' ? (
+				'Cargando...'
 			) : (
 				<>
 					<h2> You just bougth some Tickets! </h2>

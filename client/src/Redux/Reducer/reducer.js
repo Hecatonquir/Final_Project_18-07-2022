@@ -1,11 +1,13 @@
-import {GET_EVENTS, GET_NAME_EVENTS,SHOW_EVENTS_USER, NEED_BACKUP, GET_DETAILS, ADD_REMOVE_FILTER,ADD_ITEM_CART, REMOVE_ITEM_CART, REMOVE_ALL_ITEM_CART, CLEAR_CART, PRE_FILTER} from "../ActionTypes/actiontypes"
+import {GET_EVENTS, GET_NAME_EVENTS,SHOW_EVENTS_USER, NEED_BACKUP, GET_DETAILS, ADD_REMOVE_FILTER,ADD_ITEM_CART, REMOVE_ITEM_CART, REMOVE_ALL_ITEM_CART, CLEAR_CART, UPDATE_STATE_FALSE, UPDATE_STATE_TRUE, CLEAR_DETAIL} from "../ActionTypes/actiontypes"
 const initialState = {
+
     allEvents: [],
     eventsBackUp: [],
     eventName: [],
     showToUser: [],
     filteredEvents: [],
     eventDetail: {},
+    loginState: false,
     cart: []
 }
 
@@ -56,6 +58,18 @@ export default function reducer(state = initialState,{type,payload}) {
 
             case CLEAR_CART: 
             return{...state, cart: []}
+
+            case CLEAR_DETAIL:
+                return {
+                    ...state,
+                    eventDetail: {}
+                }
+
+                case UPDATE_STATE_TRUE:
+                    return {...state, loginState: true}
+
+                    case UPDATE_STATE_FALSE:
+                    return {...state, loginState: false}
 
             default:
                 return state

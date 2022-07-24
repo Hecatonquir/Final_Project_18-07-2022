@@ -23,9 +23,12 @@ export default function Home() {
 	console.log(tokenDecoded, isExpired(token));
 	const dispatch = useDispatch();
 	const events = useSelector((state) => state.showToUser);
-	const logoutState = useSelector((state) => state.allEvents);
 
+	const logoutState = useSelector((state) => state.allEvents);
+	const stateUser = useSelector(state => state.loginState)
+	
 	useEffect(() => {
+		
 		dispatch(getEvents());
 		return () => {};
 	}, []);
@@ -46,7 +49,7 @@ export default function Home() {
 				<Search />
 			</div>
 			<ButtonFilter />
-			<CalendarEvents></CalendarEvents>
+			{/* <CalendarEvents></CalendarEvents> */}
 			<div className={styles.cards}>
 				{events.length ? (
 					events.map((event) => (
