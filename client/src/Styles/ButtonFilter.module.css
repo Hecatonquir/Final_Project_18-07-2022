@@ -1,13 +1,12 @@
 .filtercontainer {
-    background-color: #229ddb;
+    background-color: #1C517A;
     display: flex;
    justify-content: space-around;
-   color: white;
    padding: 20px;
 }
 
 .select {
-    width: 150px;
+    width: 180px;
     padding: 5px;
     margin: 2px auto 2px auto;
     border-radius: 5px;
