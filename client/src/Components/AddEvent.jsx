@@ -12,6 +12,8 @@ function AddEvent() {
 	const [errors, setErrors] = useState({});
 	const Cities = ['CABA', 'La Plata', 'La Pampa', 'Bariloche'];
 	const Categories = ['Boliche', 'Recital', 'Musical'];
+	let today = new Date().toISOString().slice(0, 16); //------- Example of today 2022-07-24T14:30
+	//console.log(today);
 
 	let [input, setInput] = useState({
 		Name: '',
@@ -111,6 +113,7 @@ function AddEvent() {
 						<label htmlFor='Date'><span style={{ color: 'red' }}>*</span> Date: &nbsp;</label>
 						<input
 							type='datetime-local'
+							min={today}
 							value={input.Date}
 							name='Date'
 							placeholder='day / month / year'
