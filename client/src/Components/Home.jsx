@@ -83,7 +83,7 @@ export default function Home() {
 								image={event.Image[0]}
 								date={event.Date}
 								category={event.Category}
-								price={event.Price}
+								price={event.Price === 0 ? " Free" : event.Price}
 								quantity={event.Quantity}
 								city={event.City}
 								location={event.Location}
