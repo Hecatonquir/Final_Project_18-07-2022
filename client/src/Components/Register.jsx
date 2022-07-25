@@ -25,7 +25,7 @@ function Register() {
             errors.Name='Name is required'
         } else if(input.Name.length < 3) {
             errors.Name = 'The name is invalid'
-        } else if(!input.Name.match( (/^[A-Za-z]+$/))){
+        } else if(!input.Name.match( (/^[A-Za-z ]+$/))){
             errors.Name = 'Name of breed must contain only letters'
         }
         if(!input.Username){
@@ -39,7 +39,7 @@ function Register() {
         }
         if(!input.Location){
             errors.Location='Location is required'
-        } else if(!input.Location.match( (/^[A-Za-z]+$/))){
+        } else if(!input.Location.match( (/^[A-Za-z ]+$/))){
             errors.Location = 'Location must contain only letters'
         }
         return errors
@@ -122,16 +122,13 @@ function Register() {
                 value={input.Location}
                 className={styles.input}/>
                 {errors.Location && <p className={styles.titleError}>{errors.Location}</p>}
-                <div className={styles.image}>
-                <p className={styles.title2}>Imagen: </p>
                 <input 
-                className={styles.Button3}
+                className={styles.input}
                 type="text" 
                 name="Image" 
                 onChange={handleChange} 
-                placeholder="Image" 
+                placeholder="Image Url" 
                 value={input.Image}/>
-                </div>
                 <br/>
 
                 
