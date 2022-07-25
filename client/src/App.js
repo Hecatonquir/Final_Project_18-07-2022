@@ -25,6 +25,7 @@ function App() {
       <Route path='/register' element={<Register/>}/>
       <Route path='/aboutUs' element={<About/>}/>
       <Route path='/controlPanel' element={<Prepanel/>}/>
+      
       </Routes>
     </div>
   );

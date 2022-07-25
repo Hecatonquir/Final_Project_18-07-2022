@@ -34,7 +34,7 @@ console.log(document.cookie)
         .then(response => tokenDecoded.role === "Partner" ? 
         navigate("/controlPanel/welcomeP"):
         tokenDecoded.role === "Admin" ? navigate("/controlPanel/welcomeA"): alert("Not Allowed") )
-        .catch(error => (alert("Not Allowed")))
+        .catch(error => (alert("Not Allowed!")))
     }
 
     

@@ -17,6 +17,7 @@ routes.post("/login", loginRequest)
 routes.post("/login2", loginRequestAP)
 routes.post("/verify",validateToken, (req,res) => {
     res.send("Verified")
+    
 })
 
 routes.post("/registerG", registerUserGmail)
