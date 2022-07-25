@@ -25,7 +25,7 @@ export default function Home() {
 	const stateUser = useSelector(state => state.loginState)
 
 	console.log(tokenDecoded)
-
+     // 
 	if(!token) {
 		dispatch(registerGmail(user))
 	}
@@ -91,8 +91,8 @@ export default function Home() {
 						</div>
 					))
 				) : (
-					<div>
-						<h2>No Events Found</h2>
+					<div className={styles.notEvent}>
+						<p>No Events Found</p>
 					</div>
 				)}
 			</div>

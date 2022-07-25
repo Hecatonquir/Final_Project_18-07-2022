@@ -49,3 +49,8 @@
     justify-content: center;
     font-size: 1.5rem;
 }
+.notEvent{
+    font-size:5rem;
+    color:azure;
+    text-shadow: 3px 3px 3px red;
+}

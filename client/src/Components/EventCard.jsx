@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 import { addCart } from '../Redux/Actions/addToCart';
 import styles from '../Styles/EventCard.module.css';
 import carticon from '../Media/carri.png'
-
+import swal from 'sweetalert';
 export default function EventCard({ id, image, name, price, quantity, city, location, date, category }) {
 	const dispatch = useDispatch()
 	function handleClick() {
 		dispatch(addCart(id));
-		alert('added product');
+		swal('added product',{icon:"success"});
 	}
 	return (
 		<div>
