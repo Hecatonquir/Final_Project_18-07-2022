@@ -9,6 +9,7 @@ import Cart from './Components/Cart';
 import LogIn from './Components/logIn';
 import Register from './Components/Register';
 import About from './Components/AboutUs'
+import Prepanel from './Components/verifyAdmin';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
       <Route path='/login' element={<LogIn/>}/>
       <Route path='/register' element={<Register/>}/>
       <Route path='/aboutUs' element={<About/>}/>
+      <Route path='/controlPanel' element={<Prepanel/>}/>
       </Routes>
     </div>
   );
