@@ -1,3 +1,4 @@
+const { BOOLEAN } = require('sequelize');
 const { DataTypes } = require('sequelize');
 
 // Exportamos una funcion que define el modelo
@@ -57,6 +58,10 @@ module.exports = (sequelize) => {
 			Detail: {
 				type: DataTypes.TEXT,
 				allowNull: false,
+			},
+			Carrousel: {
+				type: DataTypes.BOOLEAN,
+				defaultValue: false,
 			},
 		},
 		{ timestamps: false }
