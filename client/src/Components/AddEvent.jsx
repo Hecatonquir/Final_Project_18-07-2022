@@ -28,6 +28,7 @@ function AddEvent() {
 		Date: '',
 		Hour: '',
 		Detail: '',
+		Category: ''
 	});
 
 	function handleChange(e) {
@@ -93,7 +94,7 @@ function AddEvent() {
 				<h1 className={styles.title}>Add Event</h1>
 				<form className={styles.form}>
 					<div>
-						<label htmlFor='Name'>* Event name: &nbsp; </label>
+						<label htmlFor='Name'><span style={{ color: 'red' }}>*</span> Event name: &nbsp; </label>
 						<input
 							type='text'
 							value={input.Name}
@@ -103,10 +104,11 @@ function AddEvent() {
 							required
 							onChange={(e) => handleChange(e)}
 						/>
-						{errors.Name && <p style={{ color: 'red' }}>{errors.Name}</p>}
+						{input.Name !== '' && errors.Name && <p style={{ color: 'red' }}>{errors.Name}</p>}
 					</div>
+					
 					<div>
-						<label htmlFor='Date'>* Date: &nbsp;</label>
+						<label htmlFor='Date'><span style={{ color: 'red' }}>*</span> Date: &nbsp;</label>
 						<input
 							type='datetime-local'
 							value={input.Date}
@@ -114,7 +116,7 @@ function AddEvent() {
 							placeholder='day / month / year'
 							onChange={(e) => handleChange(e)}
 						/>{' '}
-						{errors.Date && <p style={{ color: 'red' }}>{errors.Date}</p>}
+						{input.Date !== '' && errors.Date && <p style={{ color: 'red' }}>{errors.Date}</p>}
 					</div>
 					{/* <div>
 						<label htmlFor='Hour'>* Hour: &nbsp;</label>
@@ -128,7 +130,7 @@ function AddEvent() {
 						{errors.Hour && <p style={{ color: 'red' }}>{errors.Hour}</p>}
 					</div> */}
 					<div>
-						<label htmlFor='City'>* City: &nbsp;</label>
+						<label htmlFor='City'><span style={{ color: 'red' }}>*</span> City: &nbsp;</label>
 						<select value={input.City} name='City' onChange={(e) => handleChange(e)}>
 							<option value='' hidden>
 								Select City
@@ -141,10 +143,10 @@ function AddEvent() {
 								);
 							})}
 						</select>
-						{errors.City && <p style={{ color: 'red' }}>{errors.City}</p>}
+						{input.City !== '' && errors.City && <p style={{ color: 'red' }}>{errors.City}</p>}
 					</div>
 					<div>
-						<label htmlFor='Location'>* Exact Location: &nbsp;</label>
+						<label htmlFor='Location'><span style={{ color: 'red' }}>*</span> Exact Location: &nbsp;</label>
 						<input
 							type='text'
 							value={input.Location}
@@ -152,10 +154,10 @@ function AddEvent() {
 							placeholder='Exact Location'
 							onChange={(e) => handleChange(e)}
 						/>
-						{errors.Location && <p style={{ color: 'red' }}>{errors.Location}</p>}
+						{input.Location !== '' && errors.Location && <p style={{ color: 'red' }}>{errors.Location}</p>}
 					</div>
 					<div>
-						<label htmlFor='Category'>* Category: &nbsp;</label>
+						<label htmlFor='Category'><span style={{ color: 'red' }}>*</span> Category: &nbsp;</label>
 						<select value={input.Category} name='Category' onChange={(e) => handleChange(e)}>
 							<option value='' hidden>
 								Select Category
@@ -168,10 +170,10 @@ function AddEvent() {
 								);
 							})}
 						</select>
-						{errors.Category && <p style={{ color: 'red' }}>{errors.Category}</p>}
+						{input.Category !== '' && errors.Category && <p style={{ color: 'red' }}>{errors.Category}</p>}
 					</div>
 					<div>
-						<label htmlFor='img1'>* Image 1: &nbsp; </label>
+						<label htmlFor='img1'><span style={{ color: 'red' }}>*</span> Image 1: &nbsp; </label>
 						<input
 							type='text'
 							value={input.img1}
@@ -180,7 +182,7 @@ function AddEvent() {
 							placeholder='img'
 							onChange={(e) => handleChange(e)}
 						/>
-						{errors.img1 && <p style={{ color: 'red' }}>{errors.img1}</p>}
+						{input.img1 !== '' && errors.img1 && <p style={{ color: 'red' }}>{errors.img1}</p>}
 					</div>
 					<div>
 						<label htmlFor='img2'>Image 2: &nbsp; </label>
@@ -264,6 +266,11 @@ function AddEvent() {
 							onChange={(e) => handleChange(e)}
 						/>
 					</div>
+
+					<div>
+						<p style={{ color: 'red' }}>* Required fields</p>
+					</div>
+
 					<div className={styles.divbutton}>
 						<button
 							onClick={(e) => handleSubmit(e)}
