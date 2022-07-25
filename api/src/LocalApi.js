@@ -192,8 +192,8 @@ const userApi = [
 		CreatedEvents: ['aca tendría que tener relación con la tabla de eventos'],
 		RedFlags: '1',
 		City: 'Salta',
-		Username: '',
-		Password: '',
+		Username: 'maxi',
+		Password: '$2b$10$4BlMuCSh34F1A6wT/Kh.EOf6CpeBL1H6Rc4x9UJwIXEO8gXozoRBW',
 	},
 	{
 		Name: 'Rober',
@@ -208,8 +208,8 @@ const userApi = [
 		CreatedEvents: ['aca tendría que tener relación con la tabla de eventos'],
 		RedFlags: '2',
 		City: 'Salta',
-		Username: '',
-		Password: '',
+		Username: 'rober',
+		Password: '$2b$10$4BlMuCSh34F1A6wT/Kh.EOf6CpeBL1H6Rc4x9UJwIXEO8gXozoRBW',
 	},
 	{
 		Name: 'Cesar',
@@ -224,8 +224,8 @@ const userApi = [
 		CreatedEvents: ['aca tendría que tener relación con la tabla de eventos'],
 		RedFlags: '3',
 		City: 'Buenos Aires',
-		Username: '',
-		Password: '',
+		Username: 'cesar',
+		Password: '$2b$10$4BlMuCSh34F1A6wT/Kh.EOf6CpeBL1H6Rc4x9UJwIXEO8gXozoRBW',
 	},
 	{
 		Name: 'Sol',
@@ -240,8 +240,8 @@ const userApi = [
 		CreatedEvents: ['aca tendría que tener relación con la tabla de eventos'],
 		RedFlags: '4',
 		City: 'Buenos Aires',
-		Username: '',
-		Password: '',
+		Username: 'admin',
+		Password: '$2b$10$4BlMuCSh34F1A6wT/Kh.EOf6CpeBL1H6Rc4x9UJwIXEO8gXozoRBW',
 	},
 	{
 		Name: 'Eliseo',
@@ -255,8 +255,8 @@ const userApi = [
 		CreatedEvents: ['aca tendría que tener relación con la tabla de eventos'],
 		RedFlags: '5',
 		City: 'Buenos Aires',
-		Username: '',
-		Password: '',
+		Username: 'eliseo',
+		Password: '$2b$10$4BlMuCSh34F1A6wT/Kh.EOf6CpeBL1H6Rc4x9UJwIXEO8gXozoRBW',
 	},
 	{
 		Name: 'Eric',
@@ -271,8 +271,8 @@ const userApi = [
 		CreatedEvents: ['aca tendría que tener relación con la tabla de eventos'],
 		RedFlags: '6',
 		City: 'Buenos Aires',
-		Username: '',
-		Password: '',
+		Username: 'eric',
+		Password: '$2b$10$4BlMuCSh34F1A6wT/Kh.EOf6CpeBL1H6Rc4x9UJwIXEO8gXozoRBW',
 	},
 	{
 		Name: 'Jhonatan',
@@ -287,8 +287,8 @@ const userApi = [
 		CreatedEvents: ['aca tendría que tener relación con la tabla de eventos'],
 		RedFlags: '7',
 		City: 'Lima',
-		Username: '',
-		Password: '',
+		Username: 'partner',
+		Password: '$2b$10$4BlMuCSh34F1A6wT/Kh.EOf6CpeBL1H6Rc4x9UJwIXEO8gXozoRBW',
 	},
 ];
 module.exports = { eventsApi, userApi };
