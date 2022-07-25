@@ -299,19 +299,19 @@ const loginRequestAP = async(req,res) => {
 					httpOnly:false
 				})
 
-				res.send("Logged In!")
+				return res.send("Logged In!")
 			} else{
-				res.status(400).send("No")
+				return res.status(400).send("No")
 			}
 				
 			})
 		}
 		else{
-			res.status(400).send("")
+			return res.status(400).send("")
 		}
 		
 	} catch (error) {
-		res.status(400).send("User Doesn't exist");
+		return res.status(400).send("User Doesn't exist");
 	}
 };
 

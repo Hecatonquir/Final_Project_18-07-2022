@@ -41,12 +41,20 @@ console.log(document.cookie)
        
          axios.post("http://localhost:3001/user/login2", person, {withCredentials: true})
          .then(res => dispatch({type: UPDATE_STATE_TRUE}))
-        
+         .catch(error => (alert("Not Allowed!")))
+
+
+         setTimeout(() => {
+            if(decodeToken(document.cookie.split(";").filter(el => el.includes("access-token")).toString().split("=")[1]).role === "Partner") {
+                navigate("/welcomeP")
+            }
+
+         }, 300);
+            
+    
+            
+         
        
-        .then(response => tokenDecoded.role === "Partner" ? 
-        navigate("/controlPanel/welcomeP"):
-        tokenDecoded.role === "Admin" ? navigate("/controlPanel/welcomeA"): alert("Not Allowed") )
-        .catch(error => (alert("Not Allowed!")))
 
         
         

@@ -13,6 +13,7 @@ import Footer from './Footer.jsx';
 import {decodeToken, isExpired} from "react-jwt"
 import {useAuth0} from "@auth0/auth0-react"
 import registerGmail from '../Redux/Actions/registerGmail.js';
+import { UPDATE_STATE_TRUE } from '../Redux/ActionTypes/actiontypes.js';
 
 
 export default function Home() {
@@ -31,8 +32,12 @@ export default function Home() {
 	}
 	
 	useEffect(() => {
-		
+		if(!stateUser && token) {
+			dispatch({type: UPDATE_STATE_TRUE })
+		}
 		dispatch(getEvents());
+		
+
 		return () => {}
 	}, [stateUser]);
 
