@@ -15,24 +15,26 @@ export default function EventCarousel(obj) {
 				maxWidth: '100%',
 				maxHeight: '450px',
 			}}>
-			{carrouselEvents.map((e) => {
-				i++;
-				return (
-					<Carousel.Item interval={2000}>
-						<Link to={`/details/id/${e.ID}`}>
-							<img
-								className='d-block w-100'
-								src={HardcodedImages[i]}
-								alt='Carrousel slide'
-								style={{
-									maxWidth: '100%',
-									maxHeight: '350px',
-								}}
-							/>
-						</Link>
-					</Carousel.Item>
-				);
-			})}
+			{carrouselEvents
+				? carrouselEvents.map((e) => {
+						i++;
+						return (
+							<Carousel.Item interval={2000}>
+								<Link to={`/details/id/${e.ID}`}>
+									<img
+										className='d-block w-100'
+										src={HardcodedImages[i]}
+										alt='Carrousel slide'
+										style={{
+											maxWidth: '100%',
+											maxHeight: '350px',
+										}}
+									/>
+								</Link>
+							</Carousel.Item>
+						);
+				  })
+				: 'Loading'}
 			{/* <Carousel.Item interval={2000}>
 				<Link to='/details/id/c5b9200d-f0db-4ea8-9499-d559fc13c4ea'>
 					<img
