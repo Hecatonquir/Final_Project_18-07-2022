@@ -235,6 +235,9 @@ const loginRequest = async(req,res) => {
 		});
 
 		if(user_) {
+			if(user_[0].Role === "Partner" || user_[0].Role === "Admin") {
+				 res.status(400).send("Invalid User/Password")
+			}
 			console.log(user_)
 			bcrypt.compare(password, user_[0].Password, (error, response) => {
 				if(response) {
@@ -249,19 +252,19 @@ const loginRequest = async(req,res) => {
 					httpOnly:false
 				})
 
-				res.send("Logged In!")
+				return res.send("Logged In!")
 			} else{
-				res.status(400).send("")
+				return res.status(400).send("")
 			}
 				
 			})
 		}
 		else{
-			res.status(400).send("")
+			return res.status(400).send("")
 		}
 		
 	} catch (error) {
-		res.status(400).send("User Doesn't exist");
+		return res.status(400).send("Username or Password invalid");
 	}
 };
 
@@ -276,7 +279,7 @@ const loginRequestAP = async(req,res) => {
 		});
 
 		if(user_) {
-			if(user_Role === "User") {
+			if(user_[0].Role === "User") {
 			return res.status(400).send("Not Allowed")
 			}
 			
