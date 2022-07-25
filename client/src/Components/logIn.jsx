@@ -1,17 +1,17 @@
 import React, {useState} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { logInUser } from '../Redux/Actions/logInUser';
 import {useAuth0} from "@auth0/auth0-react"
 import styles from '../Styles/User.module.css'
 import img1 from '../Media/google.png'
-
 import {isExpired, decodeToken} from "react-jwt"
 import {useDispatch} from "react-redux"
+
 
 function LogIn() {
     let dispatch = useDispatch()
     
-   
+   const navigate = useNavigate()
     const {loginWithRedirect} = useAuth0()
     const [input , setInput] = useState({
         username:"",
@@ -27,7 +27,7 @@ function LogIn() {
 
     const submitButton = function (e){
         e.preventDefault();
-       logInUser(input, dispatch)
+       logInUser(input, dispatch, navigate)
              setInput({username:"",
                        password:""})
             }

@@ -33,7 +33,7 @@ function NavBar(){
               <div>
              {!isExpired(token) && tokenDecoded.role !== "Guest" &&
                      
-                      <button className={styles.Button} onClick={() => (logOut("access-token",dispatch, isAuthenticated, logout))}>
+                      <button className={styles.Button} onClick={() => (logOut(dispatch, isAuthenticated, logout))}>
                         <span>Log Out</span>
                      </button>}
                      </div> 

@@ -33,7 +33,7 @@ console.log(document.cookie)
         axios.post("http://localhost:3001/user/login", person, {withCredentials: true})
         .then(response => tokenDecoded.role === "Partner" ? 
         navigate("/controlPanel/welcomeP"):
-        tokenDecoded.role === "Admin" ? navigate("/controlPanel/welcomeA"): "hola" )
+        tokenDecoded.role === "Admin" ? navigate("/controlPanel/welcomeA"): alert("Not Allowed") )
         .catch(error => (alert("Not Allowed")))
     }
 
