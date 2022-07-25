@@ -19,7 +19,6 @@ export default function logOut(dispatch,isAuthenticated,logout) {
 
         dispatch({type: UPDATE_STATE_FALSE})
         
-        
     }
 
     

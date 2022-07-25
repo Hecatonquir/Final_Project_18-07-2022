@@ -12,6 +12,7 @@ console.log(document.cookie)
 
     let token= document.cookie.split(";").filter(el => el.includes("access-token")).toString().split("=")[1]
 	let tokenDecoded = decodeToken(token)
+    
 
 
     if((tokenDecoded && tokenDecoded.role !== "Partner" )||(tokenDecoded && tokenDecoded.role !== "Admin") ) {
