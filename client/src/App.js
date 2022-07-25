@@ -9,6 +9,7 @@ import Cart from './Components/Cart';
 import LogIn from './Components/logIn';
 import Register from './Components/Register';
 import About from './Components/AboutUs'
+import Prepanel from './Components/verifyAdmin';
 import PageNotFound from './Components/Page404';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
       <Route path='/login' element={<LogIn/>}/>
       <Route path='/register' element={<Register/>}/>
       <Route path='/aboutUs' element={<About/>}/>
+      <Route path='/controlPanel' element={<Prepanel/>}/>
       <Route path='*' element={<PageNotFound/>}/>
       </Routes>
     </div>
