@@ -2,9 +2,12 @@ import React, {useState} from 'react'
 import {decodeToken} from "react-jwt"
 import axios from "axios"
 import {useNavigate} from "react-router-dom"
+import { UPDATE_STATE_TRUE } from '../Redux/ActionTypes/actiontypes'
+import { useDispatch } from 'react-redux'
 function Prepanel() {
 console.log(document.cookie)
     const navigate = useNavigate()
+    let dispatch = useDispatch()
     const [user, setUser] = useState({
         username: "",
         password: ""
@@ -13,11 +16,15 @@ console.log(document.cookie)
     let token= document.cookie.split(";").filter(el => el.includes("access-token")).toString().split("=")[1]
 	let tokenDecoded = decodeToken(token)
     
+    console.log(tokenDecoded)
 
-
-    if((tokenDecoded && tokenDecoded.role !== "Partner" )||(tokenDecoded && tokenDecoded.role !== "Admin") ) {
+    if(tokenDecoded && tokenDecoded.role !== "Partner") {
+        if(tokenDecoded.role !== "Admin") {
         return alert("Not Allowed")
+        }
     }
+
+    
 
     function handleChange(e) {
         
@@ -30,12 +37,20 @@ console.log(document.cookie)
 
     function handleSubmit(e,person) {
         e.preventDefault()
-
-        axios.post("http://localhost:3001/user/login", person, {withCredentials: true})
+        
+       
+         axios.post("http://localhost:3001/user/login2", person, {withCredentials: true})
+         .then(res => dispatch({type: UPDATE_STATE_TRUE}))
+        
+       
         .then(response => tokenDecoded.role === "Partner" ? 
         navigate("/controlPanel/welcomeP"):
         tokenDecoded.role === "Admin" ? navigate("/controlPanel/welcomeA"): alert("Not Allowed") )
         .catch(error => (alert("Not Allowed!")))
+
+        
+        
+        
     }
 
     

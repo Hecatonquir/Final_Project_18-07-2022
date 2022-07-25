@@ -13,19 +13,25 @@ export async function logInUser(payload,dispatch,navigate){
                 icon: 'success',
                 timer: 2000,
                 buttons: false,
-            }).then(() => navigate("/"))
+            })
             
           
-        
-                
-            
+            setTimeout(() => {
+                navigate("/");
+            }, 2000);
                 
            
             
         }
         
         catch (error) {
-            console.log(error.response.data)
+            swal({
+                title: 'Error',
+                icon: 'error',
+                timer: 2000,
+                buttons: false,
+            })
+            
         } 
             
        
