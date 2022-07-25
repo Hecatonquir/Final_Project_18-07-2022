@@ -4,14 +4,9 @@ import { logInUser } from '../Redux/Actions/logInUser';
 import {useAuth0} from "@auth0/auth0-react"
 import styles from '../Styles/User.module.css'
 import img1 from '../Media/google.png'
-<<<<<<< HEAD
-=======
+
 import {isExpired, decodeToken} from "react-jwt"
 import {useDispatch} from "react-redux"
-<<<<<<< HEAD
->>>>>>> e07002d4f34af91942b3420d0d85a7c01c26a257
-=======
->>>>>>> e07002d4f34af91942b3420d0d85a7c01c26a257
 
 function LogIn() {
     let dispatch = useDispatch()
