@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { logInUser } from '../Redux/Actions/logInUser';
 import {useAuth0} from "@auth0/auth0-react"
 import styles from '../Styles/User.module.css'
@@ -9,7 +9,7 @@ import {useDispatch} from "react-redux"
 
 function LogIn() {
     let dispatch = useDispatch()
-    
+    let navigate = useNavigate()
     let token= document.cookie.split(";").filter(el => el.includes("access-token")).toString().split("=")[1]
 	let tokenDecoded = decodeToken(token)
 
@@ -30,7 +30,7 @@ function LogIn() {
 
     const submitButton = function (e){
         e.preventDefault();
-       logInUser(input, dispatch)
+       logInUser(input, dispatch,navigate)
              setInput({username:"",
                        password:""})
             }
