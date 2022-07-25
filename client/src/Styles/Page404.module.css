@@ -5,17 +5,8 @@
     justify-content: space-between;
     align-items: center;
     font-size: 12px;
-    padding: 5px;
+    padding: 10px;
     
-}
-
-.menu {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    font-size: 15px;
-    font-weight: bolder;
-    margin: 10px;
 }
 
 .Button {
@@ -36,21 +27,17 @@
     margin-right: 10px;
 }
 
-.imgcarrito {
-    width: 50px;
-    height: 50px;
+.divimg {
+    display: flex;
+    justify-content: center;
 }
 
-.count {
-    position: absolute;
-    top: -3px;
-    right: 18px;
-    background-color: #fff;
-    padding: 1px 6px;
-    border-radius: 50%;
-    color: red;
-    font-weight: 700;
-    font-family: system-ui;
-    line-height: 18px;
-    margin-top: 10px;
+.img {
+    min-height: 90%;
+    min-width: 1024px;
+    width: 70%;
+}
+
+.container {
+    background-color: rgb(247, 247, 243);
 }

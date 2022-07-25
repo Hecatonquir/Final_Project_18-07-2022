@@ -62,3 +62,7 @@
     transform: scale(1.05);
     transition: all 0.5s;
 }
+
+.link {
+    text-decoration: none;
+}
