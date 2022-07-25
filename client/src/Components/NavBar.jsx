@@ -16,6 +16,7 @@ function NavBar(){
   const logoutState = useSelector((state) => state.allEvents)
   const cart = useSelector((state) => state.cart)
   const events = useSelector((state) => state.showToUser);
+  const active = useSelector((state) => state.loginState)
   const count = cart.length
 
 
@@ -29,9 +30,9 @@ function NavBar(){
           </div>
           
           <div className={styles.menu}>
-        {!token  || isExpired(token) ? <div> <Link to="/login"><button className={styles.Button}>Login/Sign Up</button></Link></div>:<div></div>}
+        {!token  || isExpired(token) || !active ? <div> <Link to="/login"><button className={styles.Button}>Login/Sign Up</button></Link></div>:<div></div>}
               <div>
-             {!isExpired(token) && tokenDecoded.role !== "Guest" &&
+             {!isExpired(token) && tokenDecoded.role !== "Guest" && active &&
                      
                       <button className={styles.Button} onClick={() => (logOut("access-token",dispatch, isAuthenticated, logout))}>
                         <span>Log Out</span>
@@ -39,19 +40,19 @@ function NavBar(){
                      </div> 
 
 
-  {token && tokenDecoded.role === "Partner"  && <Link to="/createEvent">
+  {token && tokenDecoded.role === "Partner"  && active && <Link to="/createEvent">
           
             <button className={styles.Button}>Create an Event</button>
                      </Link>}
             
                
-            {token? <div>
+            {token && active && <div>
                  <Link to='/profile'>
                       <button className={styles.Button}>
                         <span>Profile</span>
                      </button>
                  </Link>
-            </div>:<div></div>}
+            </div>}
             <div>
                   <Link to='/contact'>
                       <button className={styles.Button}>
