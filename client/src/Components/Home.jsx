@@ -6,8 +6,8 @@ import EventCard from './EventCard.jsx';
 import NavBar from './NavBar.jsx';
 import Search from './Search.jsx';
 import EventCarousel from './Carousel.jsx';
-import Loader from './Loader.jsx';
-import CalendarEvents from './Calendar.jsx';
+// import Loader from './Loader.jsx';
+// import CalendarEvents from './Calendar.jsx';
 import styles from '../Styles/Home.module.css';
 import Footer from './Footer.jsx';
 import {decodeToken, isExpired} from "react-jwt"
@@ -33,40 +33,24 @@ export default function Home() {
 	useEffect(() => {
 		
 		dispatch(getEvents());
-		
-		
-		
 		return () => {}
 	}, [stateUser]);
 
-
-	
-	
-		
-		
-		
-	
-
 	return (
 	<div className={styles.container}>
-			 <div className={styles.navbar}>
-		   <NavBar />
+			<div className={styles.navbar}>
+		   		<NavBar />
 		   </div>
 			<div className={styles.items}>
-		   
-		  
-		  
-			<div className={styles.carousel}>
-
 				<div className={styles.welcome}>
-					{stateUser || !isExpired(token) ?<p>Welcome {tokenDecoded? tokenDecoded.name: "Guest"}</p>: <p>Welcome Guest</p>}
-
+						{stateUser || !isExpired(token) ?<p>Welcome {tokenDecoded? tokenDecoded.name: "Guest"}</p>: <p>Welcome Guest</p>}
 				</div>
-			<EventCarousel />
-			<div className={styles.filter}>
-			<ButtonFilter />
-			</div>
-			</div>
+				<div className={styles.carousel}>
+					<EventCarousel />
+				</div>
+				<div className={styles.filter}>
+				<ButtonFilter />
+				</div>
 			</div>
 			<div className={styles.search}>
 			<Search />
