@@ -25,7 +25,6 @@ function AddEvent() {
 	const Cities = ['CABA', 'La Plata', 'La Pampa', 'Bariloche'];
 	const Categories = ['Boliche', 'Recital', 'Musical'];
 	let today = new Date().toISOString().slice(0, 16); //------- Example of today 2022-07-24T14:30
-	//console.log(today);
 
 	let [input, setInput] = useState({
 		Name: '',
@@ -39,7 +38,7 @@ function AddEvent() {
 		Restrictions: '',
 		City: '',
 		Location: '',
-		Date: '',
+		date: '',
 		Hour: '',
 		Detail: '',
 		Category: ''
@@ -73,30 +72,28 @@ function AddEvent() {
 				Restrictions: input.Restrictions.split('/'),
 				City: input.City,
 				Location: input.Location,
-				Date: input.Date,
+				Date: input.date,
 				Hour: input.Hour,
 				Detail: input.Detail,
 			});
-
-
-      setInput({
-        Name: "",
-        img1: "",
-        img2: "",
-        img3: "",
-        img4: "",
-        Price: "",
-        Quantity: "",
-        Rating: "",
-        Restrictions: "",
-        City: "",
-        Location: "",
-        Date: "",
-        Hour: "",
-        Detail: "",
-      });
-    }
-  }
+			setInput({
+				Name: '',
+				img1: '',
+				img2: '',
+				img3: '',
+				img4: '',
+				Price: '',
+				Quantity: '',
+				Rating: '',
+				Restrictions: '',
+				City: '',
+				Location: '',
+				date: '',
+				Hour: '',
+				Detail: '',
+			});
+		}
+	}
 
 // HACER
 
@@ -305,10 +302,6 @@ function AddEvent() {
 //   );
 
 
-
-
-
-
 	return (
 		<div>
 			<nav className={styles.nav}>
@@ -339,13 +332,13 @@ function AddEvent() {
 						<input
 							type='datetime-local'
 							min={today}
-							value={input.Date}
-							name='Date'
+							value={input.date}
+							name='date'
 							placeholder='day / month / year'
 							className={styles.input}
 							onChange={(e) => handleChange(e)}
 						/>{' '}
-						{input.Date !== '' && errors.Date && <p style={{ color: 'red' }}>{errors.Date}</p>}
+						{input.date !== '' && errors.date && <p style={{ color: 'red' }}>{errors.date}</p>}
 					</div>
 					{/* <div>
 						<label htmlFor='Hour'>* Hour: &nbsp;</label>

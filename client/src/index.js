@@ -8,7 +8,6 @@ import Auth0ProviderWithHistory from "./Auth/auth0-provider-with-history";
 import { ChakraProvider } from "@chakra-ui/react";
 import './index.css';
 
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
