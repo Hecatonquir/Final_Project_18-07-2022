@@ -12,6 +12,8 @@ function AddEvent() {
 	const [errors, setErrors] = useState({});
 	const Cities = ['CABA', 'La Plata', 'La Pampa', 'Bariloche'];
 	const Categories = ['Boliche', 'Recital', 'Musical'];
+	let today = new Date().toISOString().slice(0, 16); //------- Example of today 2022-07-24T14:30
+	//console.log(today);
 
 	let [input, setInput] = useState({
 		Name: '',
@@ -28,6 +30,7 @@ function AddEvent() {
 		Date: '',
 		Hour: '',
 		Detail: '',
+		Category: ''
 	});
 
 	function handleChange(e) {
@@ -92,29 +95,33 @@ function AddEvent() {
 			<div className={styles.container}>
 				<h1 className={styles.title}>Add Event</h1>
 				<form className={styles.form}>
-					<div>
-						<label htmlFor='Name'>* Event name: &nbsp; </label>
-						<input
-							type='text'
-							value={input.Name}
-							id='Name'
-							name='Name'
-							placeholder='Name'
-							required
-							onChange={(e) => handleChange(e)}
-						/>
-						{errors.Name && <p style={{ color: 'red' }}>{errors.Name}</p>}
+					<div className={styles.divForms}>
+						<span className={styles.labelName}><label htmlFor='Name'><span style={{ color: 'red' }}>*</span> Event name: &nbsp; </label></span>
+							<input
+								type='text'
+								value={input.Name}
+								id='Name'
+								name='Name'
+								placeholder='(Max 25 characters)'
+								required
+								className={styles.input}
+								onChange={(e) => handleChange(e)}
+							/>
+						{input.Name !== '' && errors.Name && <p style={{ color: 'red' }}>{errors.Name}</p>}
 					</div>
-					<div>
-						<label htmlFor='Date'>* Date: &nbsp;</label>
+					
+					<div className={styles.divForms}>
+						<span className={styles.labelDate}><label htmlFor='Date'><span style={{ color: 'red' }}>*</span> Date: &nbsp;</label></span>
 						<input
 							type='datetime-local'
+							min={today}
 							value={input.Date}
 							name='Date'
 							placeholder='day / month / year'
+							className={styles.input}
 							onChange={(e) => handleChange(e)}
 						/>{' '}
-						{errors.Date && <p style={{ color: 'red' }}>{errors.Date}</p>}
+						{input.Date !== '' && errors.Date && <p style={{ color: 'red' }}>{errors.Date}</p>}
 					</div>
 					{/* <div>
 						<label htmlFor='Hour'>* Hour: &nbsp;</label>
@@ -127,9 +134,9 @@ function AddEvent() {
 						/>{' '}
 						{errors.Hour && <p style={{ color: 'red' }}>{errors.Hour}</p>}
 					</div> */}
-					<div>
-						<label htmlFor='City'>* City: &nbsp;</label>
-						<select value={input.City} name='City' onChange={(e) => handleChange(e)}>
+					<div className={styles.divForms}>
+						<span className={styles.labelCity}><label htmlFor='City'><span style={{ color: 'red' }}>*</span> City: &nbsp;</label></span>
+						<select className={styles.input} value={input.City} name='City' onChange={(e) => handleChange(e)}>
 							<option value='' hidden>
 								Select City
 							</option>
@@ -141,22 +148,23 @@ function AddEvent() {
 								);
 							})}
 						</select>
-						{errors.City && <p style={{ color: 'red' }}>{errors.City}</p>}
+						{input.City !== '' && errors.City && <p style={{ color: 'red' }}>{errors.City}</p>}
 					</div>
-					<div>
-						<label htmlFor='Location'>* Exact Location: &nbsp;</label>
+					<div className={styles.divForms}>
+						<span className={styles.labelLocation}><label htmlFor='Location'><span style={{ color: 'red' }}>*</span> Exact Location: &nbsp;</label></span>
 						<input
 							type='text'
 							value={input.Location}
 							name='Location'
-							placeholder='Exact Location'
+							placeholder='(Max 25 characters)'
+							className={styles.input}
 							onChange={(e) => handleChange(e)}
 						/>
-						{errors.Location && <p style={{ color: 'red' }}>{errors.Location}</p>}
+						{input.Location !== '' && errors.Location && <p style={{ color: 'red' }}>{errors.Location}</p>}
 					</div>
-					<div>
-						<label htmlFor='Category'>* Category: &nbsp;</label>
-						<select value={input.Category} name='Category' onChange={(e) => handleChange(e)}>
+					<div className={styles.divForms}>
+						<span className={styles.labelCategory}><label htmlFor='Category'><span style={{ color: 'red' }}>*</span> Category: &nbsp;</label></span>
+						<select className={styles.input} value={input.Category} name='Category' onChange={(e) => handleChange(e)}>
 							<option value='' hidden>
 								Select Category
 							</option>
@@ -168,102 +176,117 @@ function AddEvent() {
 								);
 							})}
 						</select>
-						{errors.Category && <p style={{ color: 'red' }}>{errors.Category}</p>}
+						{input.Category !== '' && errors.Category && <p style={{ color: 'red' }}>{errors.Category}</p>}
 					</div>
-					<div>
-						<label htmlFor='img1'>* Image 1: &nbsp; </label>
+					<div className={styles.divForms}>
+						<span className={styles.labelImg1}><label htmlFor='img1'><span style={{ color: 'red' }}>*</span> Image 1: &nbsp; </label></span>
 						<input
 							type='text'
 							value={input.img1}
 							id='img1'
 							name='img1'
-							placeholder='img'
+							placeholder='Insert URL here'
+							className={styles.input}
 							onChange={(e) => handleChange(e)}
 						/>
-						{errors.img1 && <p style={{ color: 'red' }}>{errors.img1}</p>}
+						{input.img1 !== '' && errors.img1 && <p style={{ color: 'red' }}>{errors.img1}</p>}
 					</div>
-					<div>
-						<label htmlFor='img2'>Image 2: &nbsp; </label>
+					<div className={styles.divForms}>
+						<span className={styles.labelImg}><label htmlFor='img2'>Image 2: &nbsp; </label></span>
 						<input
 							type='text'
 							value={input.img2}
 							id='img2'
 							name='img2'
-							placeholder='img'
+							placeholder='Insert URL here'
+							className={styles.input}
 							onChange={(e) => handleChange(e)}
 						/>
 						{errors.img2 && <p style={{ color: 'red' }}>{errors.img2}</p>}
 					</div>
-					<div>
-						<label htmlFor='img3'>Image 3: &nbsp; </label>
+					<div className={styles.divForms}>
+						<span className={styles.labelImg}><label htmlFor='img3'>Image 3: &nbsp; </label></span>
 						<input
 							type='text'
 							value={input.img3}
 							id='img3'
 							name='img3'
-							placeholder='img'
+							placeholder='Insert URL here'
+							className={styles.input}
 							onChange={(e) => handleChange(e)}
 						/>
 						{errors.img3 && <p style={{ color: 'red' }}>{errors.img3}</p>}
 					</div>
-					<div>
-						<label htmlFor='img4'>Image 4: &nbsp; </label>
+					<div className={styles.divForms}>
+						<span className={styles.labelImg}><label htmlFor='img4'>Image 4: &nbsp; </label></span>
 						<input
 							type='text'
 							value={input.img4}
 							id='img4'
 							name='img4'
-							placeholder='img'
+							placeholder='Insert URL here'
+							className={styles.input}
 							onChange={(e) => handleChange(e)}
 						/>
 						{errors.img4 && <p style={{ color: 'red' }}>{errors.img4}</p>}
 					</div>
-					<div>
-						<label htmlFor='Price'>Price: &nbsp;</label>
+					<div className={styles.divForms}>
+						<span className={styles.labelPrice}><label htmlFor='Price'>Price: &nbsp;</label></span>
 						<input
 							type='number'
 							value={input.Price}
 							id='Price'
 							name='Price'
-							placeholder='Price'
+							min='0'
+							placeholder='$ (in numbers)'
 							required
+							className={styles.input}
 							onChange={(e) => handleChange(e)}
 						/>
 					</div>
 					{errors.Price && <p style={{ color: 'red' }}>{errors.Price}</p>}
 
-					<div>
-						<label htmlFor='Quantity'>Quantity: &nbsp;</label>
+					<div className={styles.divForms}>
+						<span className={styles.labelQuantity}><label htmlFor='Quantity'>Quantity: &nbsp;</label></span>
 						<input
 							type='number'
 							value={input.Quantity}
 							name='Quantity'
+							min='0'
 							placeholder='Quantity'
+							className={styles.input}
 							onChange={(e) => handleChange(e)}
 						/>
 					</div>
 					{errors.Quantity && <p style={{ color: 'red' }}>{errors.Quantity}</p>}
 
-					<div>
-						<label htmlFor='Restrictions'>Restrictions: &nbsp;</label>
+					<div className={styles.divForms}>
+						<span className={styles.labelRestrictions}><label htmlFor='Restrictions'>Restrictions: &nbsp;</label></span>
 						<textarea
 							type='text'
 							value={input.Restrictions}
 							name='Restrictions'
-							placeholder='Separate Restrictions using / (example: 1º Res. / 2º Res. / etc...)'
+							placeholder='Separate each one using "/" '
+							className={styles.input}
 							onChange={(e) => handleChange(e)}
 						/>
 					</div>
-					<div>
-						<label htmlFor='Detail'>Detail: &nbsp;</label>
+					<div className={styles.divForms}>
+						<span className={styles.labelDetail}><label htmlFor='Detail'>Detail: &nbsp;</label></span>
 						<textarea
 							type='text'
 							value={input.Detail}
 							name='Detail'
 							placeholder='Insert Detail'
+							className={styles.input}
 							onChange={(e) => handleChange(e)}
 						/>
 					</div>
+
+					<div>
+						<p style={{ color: 'red' }}>* Required fields</p>
+					</div>
+
 					<div className={styles.divbutton}>
 						<button
 							onClick={(e) => handleSubmit(e)}

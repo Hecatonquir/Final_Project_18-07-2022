@@ -9,7 +9,7 @@ export default function validate(input) {
 	} else if (Name.length !== 0) {
 		if (!/^[A-Z]+[A-Za-z0-9\s]+$/g.test(Name) || Name.length > 25) {
 			errors.Name =
-				"The first letter must be uppercase and don't start with a number and don´t pass 25 characters.";
+				"First letter must be uppercase and do not start with a number";
 		}
 	}
 
@@ -37,30 +37,30 @@ export default function validate(input) {
 		}
 	}
 	if (Price < 0) {
-		errors.Price = 'You can only use positive numbers.';
+		errors.Price = 'Only insert positive numbers.';
 	}
 	if (Quantity < 0) {
-		errors.Quantity = 'You can only use positive numbers.';
+		errors.Quantity = 'Only insert positive numbers.';
 	}
 	if (!Location) {
 		errors.Location = 'Location is required.';
 	} else if (Location.length !== 0) {
 		if (!/^[A-Z]+[A-Za-z0-9\s]+$/g.test(Location) || Location.length > 25) {
 			errors.Location =
-				"The first letter must be uppercase and don't start with a number and don't pass 25 characters.";
+				"First letter must be uppercase and do not start with a number";
 		}
 	}
 	if (!City) {
-		errors.City = 'At least one City is required.';
+		errors.City = 'At least one city is required.';
 	}
 	if (!Category) {
-		errors.Category = 'At least one Category is required.';
+		errors.Category = 'At least one category is required.';
 	}
 	if (!Date) {
-		errors.Date = 'A Date is required.';
+		errors.Date = 'A date is required.';
 	}
 	if (!Hour) {
-		errors.Hour = 'An Hour is required.';
+		errors.Hour = 'An hour is required.';
 	}
 	/*if (price_max.length === 0) {
 		errors.price_max = 'Height max is required.';

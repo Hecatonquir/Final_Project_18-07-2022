@@ -9,24 +9,28 @@ import Cart from './Components/Cart';
 
 import LogIn from './Components/logIn';
 import Register from './Components/Register';
-import About from './Components/AboutUs';
+import About from './Components/AboutUs'
+import Prepanel from './Components/verifyAdmin';
+import PageNotFound from './Components/Page404';
 
 function App() {
-	return (
-		<div>
-			<Routes>
-				<Route path='/' element={<Home />} />
-				<Route path='/profile' element={<Profile />} />
-				<Route path='/contact' element={<ContacUs />} />
-				<Route path='/createEvent' element={<AddEvent />} />
-				<Route path='/details/id/:id' element={<Detail />} />
-				<Route path='/cart' element={<Cart />} />
-				<Route path='/login' element={<LogIn />} />
-				<Route path='/register' element={<Register />} />
-				<Route path='/aboutUs' element={<About />} />
-			</Routes>
-		</div>
-	);
+  return (
+    <div>
+      <Routes>
+      <Route path='/' element={<Home/>}/>
+      <Route path='/profile' element={<Profile/>}/>
+      <Route path='/contact' element={<ContacUs/>}/>
+      <Route path='/createEvent' element={<AddEvent/>}/>
+      <Route path='/details/id/:id' element={<Detail/>}/>
+      <Route path='/cart' element={<Cart/>}/>
+      <Route path='/login' element={<LogIn/>}/>
+      <Route path='/register' element={<Register/>}/>
+      <Route path='/aboutUs' element={<About/>}/>
+      <Route path='/controlPanel' element={<Prepanel/>}/>
+      <Route path='*' element={<PageNotFound/>}/>
+      </Routes>
+    </div>
+  );
 }
 
 export default App;

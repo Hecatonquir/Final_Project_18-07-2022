@@ -140,6 +140,7 @@ const registerUser = async(req,res) =>{
 		else if(!Email || !validateEmail ) {
 			res.status(400).send("Please Provide a VALID Email")
 		}
+		else{
 
 	try {
 		let foundOrCreate = await Users.findAll({
@@ -150,6 +151,7 @@ const registerUser = async(req,res) =>{
 			console.log(foundOrCreate)
 		if(!foundOrCreate[0]) {
 			bcrypt.hash(Password, 10).then(hash => {
+				
 				req.body.Password = hash
 				req.body.Role = "User"
 				 Users.create(req.body)
@@ -164,6 +166,7 @@ const registerUser = async(req,res) =>{
 		res.status(400).send(error)
 		
 	}
+}
 }
 
 
@@ -232,6 +235,9 @@ const loginRequest = async(req,res) => {
 		});
 
 		if(user_) {
+			if(user_[0].Role === "Partner" || user_[0].Role === "Admin") {
+				 res.status(400).send("Invalid User/Password")
+			}
 			console.log(user_)
 			bcrypt.compare(password, user_[0].Password, (error, response) => {
 				if(response) {
@@ -246,21 +252,74 @@ const loginRequest = async(req,res) => {
 					httpOnly:false
 				})
 
-				res.send("Logged In!")
+				return res.send("Logged In!")
 			} else{
-				res.status(400).send("Wrong UserName/PassWord")
+				return res.status(400).send("")
 			}
 				
 			})
 		}
 		else{
-			res.status(400).send("Not Found")
+			return res.status(400).send("")
 		}
 		
 	} catch (error) {
-		res.status(400).send("User Doesn't exist");
+		return res.status(400).send("Username or Password invalid");
 	}
 };
+
+
+const loginRequestAP = async(req,res) => {
+	const {username, password} = req.body
+	try {
+		const user_ = await Users.findAll({
+			where: {
+				Username: username
+			},
+		});
+
+		if(user_) {
+			if(user_[0].Role === "User") {
+			return res.status(400).send("Not Allowed")
+			}
+			
+			
+			
+			bcrypt.compare(password, user_[0].Password, (error, response) => {
+				if(response) {
+					
+					console.log(user_[0].ID)
+					const id = user_[0].ID
+				const token = jwt.sign({id: id, role:user_[0].Role, name: user_[0].Name, email:user_[0].Email},process.env.PRIVATEKEY,{
+					expiresIn: 300,
+				})
+				console.log(token)
+				res.cookie("access-token", token,{
+					maxAge: 60*60*1000,
+					httpOnly:false
+				})
+
+				return res.send("Logged In!")
+			} else{
+				return res.status(400).send("No")
+			}
+				
+			})
+		}
+		else{
+			return res.status(400).send("")
+		}
+		
+	} catch (error) {
+		return res.status(400).send("User Doesn't exist");
+	}
+};
+
+
+
+
+
+
 
 
 
@@ -286,6 +345,8 @@ const getPartnerCreatedEvents = async (req, res) => {
 	}
 };
 
+
+
 module.exports = {
 	getAllUsers,
 	getUserByName,
@@ -297,5 +358,6 @@ module.exports = {
 	validateToken,
 	validatePartner,
 	validateAdmin,
-	registerUserGmail
+	registerUserGmail,
+	loginRequestAP
 }
