@@ -17,7 +17,7 @@ function NavBar() {
 		.filter((el) => el.includes('access-token'))
 		.toString()
 		.split('=')[1];
-	console.log(document.cookie);
+	//console.log(document.cookie);
 	let tokenDecoded = decodeToken(token);
 	let dispatch = useDispatch();
 	const logoutState = useSelector((state) => state.allEvents);
