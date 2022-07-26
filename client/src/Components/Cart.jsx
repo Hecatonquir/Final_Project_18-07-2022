@@ -5,9 +5,9 @@ import { clearCart } from '../Redux/Actions/clearCart';
 import CardItem from './CartItem';
 import styles from '../Styles/Cart.module.css';
 import imgcarrito from '../Media/emptycart.png';
-import StripeContainer from './StripeContainer';
-import Nav from "./Nav";
-import { Box, Button, Center, Heading, Text, Image } from "@chakra-ui/react";
+
+import Nav from './Nav';
+import { Box, Button, Center, Heading, Text, Image } from '@chakra-ui/react';
 
 export default function Cart() {
 	const dispatch = useDispatch();
@@ -19,16 +19,19 @@ export default function Cart() {
 		totalAmount = totalAmount + cart[i].Price * cart[i].PurchasedItem;
 	}
 
-
 	function hundleClick() {
 		dispatch(clearCart());
 	}
 
 	return (
-		<Box bgGradient="linear(to-r, #1c2333, #371a1e)" minHeight='100vh' >
+		<Box bgGradient='linear(to-r, #1c2333, #371a1e)' minHeight='100vh'>
 			<Nav />
-           <Heading as="h4" margin={6} color="white">SHOPPING CART</Heading>
-           <Text margin={6} color="white">Your selected events</Text>
+			<Heading as='h4' margin={6} color='white'>
+				SHOPPING CART
+			</Heading>
+			<Text margin={6} color='white'>
+				Your selected events
+			</Text>
 			<Box className={styles.container}>
 				<Box>
 					{cart.length ? (
@@ -51,15 +54,23 @@ export default function Cart() {
 				</Box>
 
 				<Box className={styles.containeramount}>
-            		<Heading as="h4" color="white">Total Price: ${totalAmount}</Heading>
+					<Heading as='h4' color='white'>
+						Total Price: ${totalAmount}
+					</Heading>
 					<Box>
 						{showItem ? (
-							<StripeContainer /> //  ACA LE PASO INFO A ESTE COMPONENTE
+							<br /> //  ACA LE PASO INFO A ESTE COMPONENTE
 						) : (
-							<Button className={styles.Button2} onClick={() => {setShowItem(true);}}>Buy</Button>
+							<Button
+								className={styles.Button2}
+								onClick={() => {
+									setShowItem(true);
+								}}>
+								Buy
+							</Button>
 						)}
 					</Box>
-            	</Box>
+				</Box>
 			</Box>
 			<Box margin={6}>
 				<Button className={styles.Button2} onClick={() => hundleClick()}>
@@ -68,5 +79,4 @@ export default function Cart() {
 			</Box>
 		</Box>
 	);
-
 }

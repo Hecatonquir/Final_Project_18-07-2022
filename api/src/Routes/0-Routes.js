@@ -4,15 +4,8 @@ const routes = express.Router();
 const UserRoutes = require('./UserRoutes');
 const EventRoutes = require('./EventRoutes');
 const SupportRoutes = require('./SupportRoutes');
-routes.use(express.json());
-/* routes.use(express.json);  Esto al parecer no se pone aca */
 
-/*------------ IMPLEMENTANDO EL PAGO CON STRIPE  ---------------*/
-const cors = require('cors');
-const { StripePayment } = require('../Functions/Extra');
-routes.use(cors());
-routes.post('/payment', cors(), StripePayment);
-/*------------ FIN DE STRIPE ------------*/
+/* routes.use(express.json);  Esto al parecer no se pone aca */
 
 routes.use('/user', UserRoutes);
 routes.use('/event', EventRoutes);
