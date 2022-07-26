@@ -6,6 +6,7 @@ import {
     MDBRow,
 
   } from 'mdb-react-ui-kit';
+import ContactUs from "./ContacUs";
 
 function Footer(){
 
@@ -32,6 +33,11 @@ function Footer(){
               <li>
                 <a href='https://github.com/Hecatonquir/Final_Project_18-07-2022' className='text-white'>
                   GitHub
+                </a>
+              </li>
+              <li>
+                <a className='text-white'>
+                  <ContactUs/>
                 </a>
               </li>
               <li>

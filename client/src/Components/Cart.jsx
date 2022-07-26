@@ -1,4 +1,4 @@
-import {React} from 'react'
+import {React, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import { clearCart } from '../Redux/Actions/clearCart'
@@ -10,7 +10,7 @@ export default function Cart() {
     const dispatch = useDispatch()
     const cart = useSelector((state) => state.cart)
     var totalAmount = 0;
-
+    
     for (let i = 0; i < cart.length; i++) {
         totalAmount = totalAmount + (cart[i].Price * cart[i].PurchasedItem);
     }

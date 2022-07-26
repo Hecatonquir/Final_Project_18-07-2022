@@ -54,11 +54,11 @@ function NavBar(){
                  </Link>
             </div>}
             <div>
-                  <Link to='/contact'>
+                  {/* <Link to='/contact'>
                       <button className={styles.Button}>
                         <span>Contact Us</span>
                      </button>
-                 </Link>
+                 </Link> */}
                  
               </div>
 

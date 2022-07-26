@@ -14,7 +14,7 @@ import {decodeToken, isExpired} from "react-jwt"
 import {useAuth0} from "@auth0/auth0-react"
 import registerGmail from '../Redux/Actions/registerGmail.js';
 import { UPDATE_STATE_TRUE } from '../Redux/ActionTypes/actiontypes.js';
-
+import ContactUs from './ContacUs.jsx';
 
 export default function Home() {
 	const {isAuthenticated, user} = useAuth0()
@@ -43,15 +43,18 @@ export default function Home() {
 
 	return (
 	<div className={styles.container}>
+		
 			<div className={styles.navbar}>
 		   		<NavBar />
 		   </div>
 			<div className={styles.items}>
+			
 				<div className={styles.welcome}>
 						{stateUser || !isExpired(token) ?<p>Welcome {tokenDecoded? tokenDecoded.name: "Guest"}</p>: <p>Welcome Guest</p>}
 				</div>
 				<div className={styles.carousel}>
 					<EventCarousel />
+					
 				</div>
 				<div className={styles.filter}>
 				<ButtonFilter />
@@ -85,6 +88,7 @@ export default function Home() {
 					</div>
 				)}
 			</div>
+			
 			<Footer />
 		</div>
 	);
