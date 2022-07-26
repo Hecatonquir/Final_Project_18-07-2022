@@ -64,8 +64,6 @@ function ButtonFilter() {
 	}
 
 	let handleSelect = (e) => {
-		// eslint-disable-next-line default-case
-
 		return filterItems(e.target.value);
 	};
 
@@ -81,7 +79,7 @@ function ButtonFilter() {
 						id='city'>
 						<option value='City'>Filter By City</option>
 						{cities.map((el, i) => (
-							<option key={el.i} onClick={() => filterItems(el)}>
+							<option key={i} onClick={() => filterItems(el)}>
 								{el}
 							</option>
 						))}
@@ -94,8 +92,8 @@ function ButtonFilter() {
 						color='gray'
 						id='cat'>
 						<option value='Categories'>Filter By Categories</option>
-						{categories.map((el) => (
-							<option key={el.ID} onClick={() => filterItems(el)}>
+						{categories.map((el, i) => (
+							<option key={i} onClick={() => filterItems(el)}>
 								{el}
 							</option>
 						))}

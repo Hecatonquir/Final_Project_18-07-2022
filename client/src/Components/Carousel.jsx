@@ -3,9 +3,7 @@ import { Carousel } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 export default function EventCarousel(obj) {
-
 	const { carrouselEvents } = obj;
-	console.log('🐲🐲🐲 / file: Carousel.jsx / line 7 / carrouselEvents', carrouselEvents);
 
 	return (
 		<Carousel
