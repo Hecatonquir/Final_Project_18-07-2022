@@ -1,5 +1,5 @@
 export default function validate(input) {
-	let { Name, img1, img2, img3, img4, carrousel, Price, City, Location, Category, date, Hour, Quantity } = input;
+	let { Name, img1, img2, img3, img4, carrousel, Price, City, Location, Category, date, Hour, Quantity, Detail} = input;
 	let errors = {};
 	let today = new Date().toISOString().slice(0, 16);   // En las dos fechas usamos el horario universal, sino hay una diferencia de 3hs
 	const dateInput = date && new Date(date).toISOString().slice(0, 16);
@@ -21,30 +21,30 @@ export default function validate(input) {
 	if (!img1) {
 		errors.img1 = 'At least one picture is required.';
 	} else if (img1 && !/[a-z0-9-.]+\.[a-z]{2,4}\/?([^\s<>#%",{}\\|^[\]`]+)?$/.test(img1)) {
-		errors.img1 = 'It must be a valid "URL" or be empty.';
+		errors.img1 = 'Invalid URL';
 	}
 
 	if (img2) {
 		if (img2 && !/[a-z0-9-.]+\.[a-z]{2,4}\/?([^\s<>#%",{}\\|^[\]`]+)?$/.test(img2)) {
-			errors.img2 = 'It must be a valid "URL" or be empty.';
+			errors.img2 = 'Invalid URL';
 		}
 	}
 
 	if (img3) {
 		if (img3 && !/[a-z0-9-.]+\.[a-z]{2,4}\/?([^\s<>#%",{}\\|^[\]`]+)?$/.test(img3)) {
-			errors.img3 = 'It must be a valid "URL" or be empty.';
+			errors.img3 = 'Invalid URL';
 		}
 	}
 
 	if (img4) {
 		if (img4 && !/[a-z0-9-.]+\.[a-z]{2,4}\/?([^\s<>#%",{}\\|^[\]`]+)?$/.test(img4)) {
-			errors.img4 = 'It must be a valid "URL" or be empty.';
+			errors.img4 = 'Invalid URL';
 		}
 	}
 
 	if (carrousel) {
 		if (carrousel && !/[a-z0-9-.]+\.[a-z]{2,4}\/?([^\s<>#%",{}\\|^[\]`]+)?$/.test(carrousel)) {
-			errors.carrousel = 'It must be a valid "URL" or be empty.';
+			errors.carrousel = 'Invalid URL';
 		}
 	}
 
@@ -71,6 +71,11 @@ export default function validate(input) {
 	if (!date) {
 		errors.date = 'A date is required.';
 	}
+
+	if (!Detail) {
+		errors.Detail = 'Event detail required'
+	}
+
 	if (!Hour) {
 		errors.Hour = 'An hour is required.';
 	}
@@ -107,7 +112,8 @@ export default function validate(input) {
 		!errors.Location &&
 		!errors.Category &&
 		!errors.Price &&
-		!errors.Quantity
+		!errors.Quantity &&
+		!errors.Detail
 	) {
 		errors.check = 'approved';
 	}

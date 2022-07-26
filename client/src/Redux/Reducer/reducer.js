@@ -6,7 +6,7 @@ const initialState = {
     eventName: [],
     showToUser: [],
     filteredEvents: [],
-    eventDetail: {},
+    eventDetail: [],
     loginState: false,
     cart: []
 }

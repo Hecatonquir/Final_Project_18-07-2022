@@ -302,7 +302,7 @@ function AddEvent() {
 						/>
 					</div>
 					<div className={styles.divForms}>
-						<span className={styles.labelDetail}><label htmlFor='Detail'>Detail: &nbsp;</label></span>
+						<span className={styles.labelDetail}><label htmlFor='Detail'><span style={{ color: 'red' }}>*</span> Detail: &nbsp;</label></span>
 						<textarea
 							type='text'
 							value={input.Detail}

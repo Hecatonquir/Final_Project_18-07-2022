@@ -49,7 +49,7 @@ export default function Detail() {
 								<p>Tickets Available: {event[0].Quantity === 0 ? "Event does not require tickets" : event[0].Quantity }</p>
 								{/* <p>Rating: {event[0].Rating}</p> */}
 								<p>AgeRestriction: {event[0].AgeRestriction === 0 ? " Suitable for all ages" : event[0].AgeRestriction }</p>
-								<p>Restrictions: {!event[0].Restrictions.length === 0 ? event[0].Restrictions.join(' / ') : "Unrestricted Event"}</p>
+								<p>Restrictions: {event[0].Restrictions.length !== 0 ? event[0].Restrictions.join(' - ') : "Unrestricted Event"}</p>
 								<p>Price: ${event[0].Price === 0 ? " Free" : event[0].Price }</p>
 								<p>Date: {event[0].Date}</p>
 								<p>Detail: {event[0].Detail}</p>
