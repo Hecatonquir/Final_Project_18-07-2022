@@ -136,13 +136,7 @@ function NavBar() {
 							</Link>
 						</Box>
 					)}
-					<Box>
-						<Link to='/contact'>
-							<Button bg='#1a78b1'>
-								<Text>Contact Us</Text>
-							</Button>
-						</Link>
-					</Box>
+					
 					<Box>
 						<Link to='/cart'>
 							<Image src={imgcarrito} alt='img carrito' width={10} />
