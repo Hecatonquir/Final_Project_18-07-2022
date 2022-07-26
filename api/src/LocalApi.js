@@ -12,7 +12,7 @@ const eventsApi = [
 		RedFlags: '1',
 		Date: '2023-05-22T12:30',
 		Detail: 'Este es el detalle de este evento!',
-		Carrousel: true,
+		Carrousel: 'sd',
 	},
 	{
 		Name: 'Trío Acústico Leonel García',
@@ -30,7 +30,7 @@ const eventsApi = [
 		RedFlags: '1',
 		Date: '2023-05-22T12:30',
 		Detail: 'Este es el detalle de este evento!',
-		Carrousel: true,
+		Carrousel: 'sd',
 	},
 	{
 		Name: 'Wild Card en vivo',
@@ -48,7 +48,7 @@ const eventsApi = [
 		RedFlags: '1',
 		Date: '2023-05-22T12:30',
 		Detail: 'Este es el detalle de este evento!',
-		Carrousel: true,
+		Carrousel: 'sd',
 	},
 	{
 		Name: 'Fiesta de Maxi',
