@@ -1,9 +1,7 @@
 const eventsApi = [
 	{
 		Name: 'This is Michael',
-		Image: [
-			'https://d31tcnbxvxtafg.cloudfront.net/images/events/9Hno3i91GoiH.jpg'
-		],
+		Image: ['https://d31tcnbxvxtafg.cloudfront.net/images/events/9Hno3i91GoiH.jpg'],
 		Location: 'Teatro Gran Rex',
 		Price: 150,
 		Quantity: 15,
@@ -14,11 +12,13 @@ const eventsApi = [
 		RedFlags: '1',
 		Date: '2023-05-22T12:30',
 		Detail: 'Este es el detalle de este evento!',
+		Carrousel:
+			'https://static6.ticketek.com.ar/cms_static/sites/default/files/images/show-header/this960.png',
 	},
 	{
 		Name: 'Trío Acústico Leonel García',
 		Image: [
-			'https://vivo.perfil.com/storage/uploads/shows/photo_gallery/preview/size1/b26517a79601ff45de14ed968e94c9f6.jpg'
+			'https://vivo.perfil.com/storage/uploads/shows/photo_gallery/preview/size1/b26517a79601ff45de14ed968e94c9f6.jpg',
 		],
 		Location: 'Teatro Gran Rex',
 		Price: 150,
@@ -31,11 +31,13 @@ const eventsApi = [
 		RedFlags: '1',
 		Date: '2023-05-22T12:30',
 		Detail: 'Este es el detalle de este evento!',
+		Carrousel:
+			'https://teatro-granrex.com.ar/wp-content/files_mf/cache/th_c055d477418f3f7668860a05610bcd1f_1656359190920.jpg',
 	},
 	{
 		Name: 'Wild Card en vivo',
 		Image: [
-			'https://elcomercio.pe/resizer/o66i_NMuB1L76oB4XZ0OMrLBRpY=/1200x900/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/M6UWF5P7DFAT7EXYIM7VR2UHXU.jpg'
+			'https://elcomercio.pe/resizer/o66i_NMuB1L76oB4XZ0OMrLBRpY=/1200x900/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/M6UWF5P7DFAT7EXYIM7VR2UHXU.jpg',
 		],
 		Location: 'averiguo y te digo',
 		Price: 150,
@@ -48,6 +50,7 @@ const eventsApi = [
 		RedFlags: '1',
 		Date: '2023-05-22T12:30',
 		Detail: 'Este es el detalle de este evento!',
+		Carrousel: 'https://www.ninshi.net/kardargentina2022/img/banner.jpg',
 	},
 	{
 		Name: 'Fiesta de Maxi',

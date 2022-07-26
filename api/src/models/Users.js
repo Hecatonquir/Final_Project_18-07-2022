@@ -15,21 +15,15 @@ module.exports = (sequelize) => {
 				type: DataTypes.STRING,
 				defaultValue: 'Guest',
 			},
-
 			Username: {
 				type: DataTypes.STRING,
 				isUnique: true,
-				allowNull: true
-				
+				allowNull: true,
 			},
-
 			Password: {
 				type: DataTypes.STRING,
-				allowNull: false
-				
+				allowNull: false,
 			},
-
-			
 			Email: {
 				type: DataTypes.STRING,
 				isUnique: true,
@@ -46,7 +40,7 @@ module.exports = (sequelize) => {
 			Role: {
 				type: DataTypes.STRING,
 				allowNull: true,
-				defaultValue:"Guest"
+				defaultValue: 'Guest',
 			},
 			Favourites: {
 				type: DataTypes.ARRAY(DataTypes.STRING),
@@ -62,7 +56,8 @@ module.exports = (sequelize) => {
 			},
 			RedFlags: {
 				type: DataTypes.INTEGER,
-			},LoggedIn: {
+			},
+			LoggedIn: {
 				type: DataTypes.BOOLEAN,
 				defaultValue: false,
 			},

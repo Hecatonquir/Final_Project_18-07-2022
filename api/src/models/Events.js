@@ -58,6 +58,10 @@ module.exports = (sequelize) => {
 				type: DataTypes.TEXT,
 				allowNull: false,
 			},
+			Carrousel: {
+				type: DataTypes.STRING,
+				defaultValue: null,
+			},
 		},
 		{ timestamps: false }
 	);
