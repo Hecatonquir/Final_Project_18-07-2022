@@ -105,6 +105,11 @@
     text-align: end;
 }
 
+.labelCarrousel {
+    margin-left: 7px;
+    text-align: end;
+}
+
 .labelPrice {
     margin-left: 91px;
     text-align: end;
@@ -121,7 +126,7 @@
 }
 
 .labelDetail {
-    margin-left: 83px;
+    margin-left: 72px;
     text-align: end;
 }
 
