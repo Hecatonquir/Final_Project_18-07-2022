@@ -7,10 +7,16 @@ const SupportRoutes = require('./SupportRoutes');
 
 /* routes.use(express.json);  Esto al parecer no se pone aca */
 
+/*------------ IMPLEMENTANDO EL PAGO CON STRIPE  ---------------*/
+const cors = require('cors');
+const { StripePayment } = require('../Functions/Extra');
+routes.use(cors());
+routes.post('/payment', cors(), StripePayment);
+/*------------ FIN DE STRIPE ------------*/
+
 routes.use('/user', UserRoutes);
 routes.use('/event', EventRoutes);
 routes.use('/support', SupportRoutes);
-
 
 /* Aca pueden ir otras rutas que sólo se usen 1 vez. Por ejemplo: */
 

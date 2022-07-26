@@ -24,9 +24,10 @@ export default function Home() {
 	const dispatch = useDispatch();
 	const events = useSelector((state) => state.showToUser);
 	const stateUser = useSelector(state => state.loginState)
+	const carrouselEvents = events.filter((ev) => ev.Carrousel);
 
-	console.log(tokenDecoded)
-     // 
+	//console.log(tokenDecoded)
+      
 	if(!token) {
 		dispatch(registerGmail(user))
 	}
@@ -51,7 +52,7 @@ export default function Home() {
 						{stateUser || !isExpired(token) ?<p>Welcome {tokenDecoded? tokenDecoded.name: "Guest"}</p>: <p>Welcome Guest</p>}
 				</div>
 				<div className={styles.carousel}>
-					<EventCarousel />
+					<EventCarousel carrouselEvents={carrouselEvents}/>
 				</div>
 				<div className={styles.filter}>
 				<ButtonFilter />
