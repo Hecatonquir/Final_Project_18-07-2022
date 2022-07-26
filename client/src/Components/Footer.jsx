@@ -1,6 +1,7 @@
 import React from "react";
 // import { MDBFooter, MDBContainer, MDBCol, MDBRow } from "mdb-react-ui-kit";
 import { Box, Text, Heading, Link, Flex } from "@chakra-ui/react";
+import ContactUs from "./ContacUs";
 
 function Footer() {
   // return (
@@ -12,6 +13,7 @@ function Footer() {
   //       <MDBRow>
   //         <MDBCol lg="6" md="12" className="mb-4 mb-md-0">
   //           <h5 className="text-uppercase">EVENTS HENRY</h5>
+
 
   //           <p>
   //             Diseñado y construido con todo el amor del mundo por el equipo de
@@ -82,6 +84,7 @@ function Footer() {
         </Box>
     </Box>
   );
+
 }
 
 export default Footer;

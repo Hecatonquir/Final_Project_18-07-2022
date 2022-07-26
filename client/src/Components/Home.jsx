@@ -14,6 +14,8 @@ import { decodeToken, isExpired } from 'react-jwt';
 import { useAuth0 } from '@auth0/auth0-react';
 import registerGmail from '../Redux/Actions/registerGmail.js';
 import { UPDATE_STATE_TRUE } from '../Redux/ActionTypes/actiontypes.js';
+
+
 import { Box, SimpleGrid, Center, Text } from "@chakra-ui/react";
 
 export default function Home() {
@@ -91,9 +93,8 @@ export default function Home() {
 		</Box>
 
 
+return (
 
-
-	return (
 		<Box bgGradient='linear(to-r, #1c2333, #371a1e)' minHeight='100vh'>
 			<Box> 
         	<NavBar />
@@ -108,10 +109,10 @@ export default function Home() {
 	  		<ButtonFilter />
       		{/* <CalendarEvents /> */}
 	  	</Box>
+
 			<div className={styles.search}>
 				<Search />
 			</div>
-		
 		<Center>
 			<Box marginTop={10} marginBottom={10}>
 			<SimpleGrid columns={2} spacing={10}>

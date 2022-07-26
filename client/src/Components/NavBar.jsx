@@ -105,6 +105,9 @@ function NavBar(){
                       <Text>Log Out</Text>
                     </Button>}
 
+
+ 
+
                   {token && tokenDecoded.role === "Partner"  && active && 
                     <Link to="/createEvent">
                       <Button bg='#1a78b1'>Create an Event</Button>
@@ -135,7 +138,8 @@ function NavBar(){
           </Flex>
         </Box>
       </Box>
-      
+
+     
   )
 };
 

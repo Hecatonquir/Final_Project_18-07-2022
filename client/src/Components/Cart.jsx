@@ -19,6 +19,7 @@ export default function Cart() {
 		totalAmount = totalAmount + cart[i].Price * cart[i].PurchasedItem;
 	}
 
+
 	function hundleClick() {
 		dispatch(clearCart());
 	}
