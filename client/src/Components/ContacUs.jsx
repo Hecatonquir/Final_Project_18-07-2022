@@ -18,16 +18,21 @@ export default function ContactUs() {
 	const dispatch = useDispatch();
 	const [basicModal, setBasicModal] = useState(false);
 
+
 	const toggleShow = () => setBasicModal(!basicModal);
 	const [note, setNote] = useState({
 		reason: '',
 		problemType: '',
 	});
 
+
 	
   
-  function handleChange(e) {
-		setNote({
+  
+
+
+	function handleChange(e) {
+       setNote({
 			...note,
 			[e.target.name]: e.target.value,
 		});
