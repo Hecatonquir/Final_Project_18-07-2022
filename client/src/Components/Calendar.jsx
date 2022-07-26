@@ -4,7 +4,9 @@ import "react-date-range/dist/theme/default.css"
 import {Calendar} from "react-date-range"
 import {format} from "date-fns"
 import {useSelector} from "react-redux"
-import styles from '../Styles/Calendar.module.css'
+// import styles from '../Styles/Calendar.module.css'
+import { Box, Text, Input } from '@chakra-ui/react';
+
 
 function CalendarEvents() {
     const reference = useRef(null)
@@ -36,14 +38,24 @@ function CalendarEvents() {
     
     ,[])
 
+  // return (
+  //   <div className={styles.container}>
+  //       <label>Events By Date</label>
+  //       <input placeholder={format(new Date(), 'dd/MM/yyyy')}value={date} onClick={() => setOpen(true)}></input>
+  //       <div ref={reference} className={styles.calendar}>
+  //       {open && <Calendar onChange={(e) =>handleChange(e)}></Calendar>}
+  //       </div>
+  // </div>
+  // )
+
   return (
-    <div className={styles.container}>
-        <label>Events By Date</label>
-        <input placeholder={format(new Date(), 'dd/MM/yyyy')}value={date} onClick={() => setOpen(true)}></input>
-        <div ref={reference} className={styles.calendar}>
+    <Box marginLeft={4} color='gray'>
+        <Text>Events By Date</Text>
+        <Input placeholder={format(new Date(), 'dd/MM/yyyy')}value={date} onClick={() => setOpen(true)} width='30%'/>
+        <Box ref={reference}>
         {open && <Calendar onChange={(e) =>handleChange(e)}></Calendar>}
-        </div>
-  </div>
+        </Box>
+  </Box>
   )
 }
 

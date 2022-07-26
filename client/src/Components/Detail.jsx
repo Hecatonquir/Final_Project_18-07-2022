@@ -8,6 +8,10 @@ import styles from '../Styles/Detail.module.css';
 import { clearDetail } from '../Redux/Actions/clearDetail';
 import AddToCartButton from './AddToCartButton';
 import { Container } from 'react-bootstrap';
+import { Box, Button, Flex, Heading, Stack, Text, Center } from '@chakra-ui/react';
+import Nav from './Nav.jsx'
+import DetailCarousel from './DetailCarousel';
+
 
 export default function Detail() {
 	const { id } = useParams();
@@ -19,61 +23,54 @@ export default function Detail() {
 	}, [dispatch, id]);
 	let i = 0;
 
+
 	return (
-		<div className={styles.body}>
+		<Box bgGradient='linear(to-r, #1c2333, #371a1e)'>
 			{event[0] ? (
-				<div>
-					<nav className={styles.nav}>
-						<Link to='/'>
-							<button className={styles.Button}>Back</button>
-						</Link>
-					</nav>
-					<div className={styles.cards}>
-						<div className={styles.leftcolumn}>
-							{/* {event[0].Image.map((im) => {
-								i++;
-								if (im !== '')
-									return <img key={i} src={im} alt={event[0].Name} className={styles.img1} />;
-								else return '';
-							})} */}
-							<img src={event[0].Image[0]} alt={event[0].Image} className={styles.img1} />
-						</div>
-						<div className={styles.rightcolumn}>
-							<div>
-								<h2>{event[0].Name}</h2>
-								<h6>Category: {event[0].Category.join(' / ')}</h6>
-							</div>
-							<div className={styles.subtitles}>
-								<p>City: {event[0].City}</p>
-								<p>Location: {event[0].Location}</p>
-								<p>Tickets Available: {event[0].Quantity === 0 ? "Event does not require tickets" : event[0].Quantity }</p>
-								{/* <p>Rating: {event[0].Rating}</p> */}
-								<p>AgeRestriction: {event[0].AgeRestriction === 0 ? " Suitable for all ages" : event[0].AgeRestriction }</p>
-								<p>Restrictions: {!event[0].Restrictions.length === 0 ? event[0].Restrictions.join(' / ') : "Unrestricted Event"}</p>
-								<p>Price: ${event[0].Price === 0 ? " Free" : event[0].Price }</p>
-								<p>Date: {event[0].Date}</p>
-								<p>Detail: {event[0].Detail}</p>
-							</div>
-							<AddToCartButton id={id} className={styles.Button2}/>
-						</div>
-					</div>
-					<h6 className={styles.textpictures}>Additional Pictures: </h6>
-					<div className={styles.containerimg}>
-					{event[0].Image[1] ? <img src={event[0].Image[1]} alt={event[0].Image} className={styles.img2}/> : <div></div>}
-					{event[0].Image[2] ? <img src={event[0].Image[2]} alt={event[0].Image} className={styles.img2}/> : <div></div>}
-					{event[0].Image[3] ? <img src={event[0].Image[3]} alt={event[0].Image} className={styles.img2}/> : <div></div>}
-					</div>
-				</div>
+				<Box>
+					<Nav />
+					<Flex justifyContent='center' alignItems='center' height='100vh'>
+						<Box maxW='90%' bg="#b1b7b76a" border='1px solid #88cfd938' p={6}  boxShadow=" 10px 10px 20px #2c2b2b, -10px -10px 20px #5c5a5a;" borderRadius='20px'>
+							<Flex alignItems='center'>
+							<Box marginRight={4}>
+								<DetailCarousel />
+							</Box>
+							</Flex>
+							<Box marginTop={4} textAlign='center'>
+								<Stack spacing={3}>
+									<Heading as='h1'>{event[0].Name}</Heading>
+									<Text>City: {event[0].City}</Text>
+									<Text>Location: {event[0].Location}</Text>
+									<Text>Tickets Available: {event[0].Quantity === 0 ? "Event does not require tickets" : event[0].Quantity}</Text>
+									<Text>Category: {event[0].Category.join(' / ')}</Text>
+									{/* <Text>Rating: {event[0].Rating}</Text> */}
+									<Text>AgeRestriction: {event[0].AgeRestriction === 0 ? " Suitable for all ages" : event[0].AgeRestriction}</Text>
+									<Text>Restrictions: Restrictions: {event[0].Restrictions.length !== 0 ? event[0].Restrictions.join(' - ') : "Unrestricted Event"}</Text>
+									<Text>Price: ${event[0].Price === 0 ? " Free" : event[0].Price}</Text>
+									<Text>Date: {event[0].Date}</Text>
+									<Text>Detail: {event[0].Detail}</Text>
+								</Stack>
+								<Center>
+								<AddToCartButton id={id} className={styles.Button2}/>
+								{/* <Button onClick={() => hundleClick()} marginTop={6} bg='#f4a69a'>
+									Add To Cart
+								</Button> */}
+								</Center>
+							</Box>
+						</Box>
+					</Flex>
+				</Box>
 			) : (
-				<div>
+				<Box>
 					<nav className={styles.nav}>
 						<Link to='/'>
-							<button className={styles.Button}>Back</button>
+							<Button margin={2}  bg='#1a78b1'>Back</Button>
 						</Link>
 					</nav>
 					<Loader />
-				</div>
+				</Box>
 			)}
-		</div>
+		</Box>
 	);
 }
+

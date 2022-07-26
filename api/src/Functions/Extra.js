@@ -10,7 +10,6 @@ const uploadDataBase = async (req, res) => {
 		console.log('Data Base NOT Uploaded');
 
 		console.log('🐲🐲🐲 error:\n', error.stack);
-
 	}
 };
 

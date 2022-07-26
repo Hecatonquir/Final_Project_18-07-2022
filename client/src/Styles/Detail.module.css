@@ -21,9 +21,9 @@
     font-size: 12px;
     padding: 10px;
     
-}
+} 
 
-.Button {
+/* .Button {
     background-color: #229ddb;
     border: 2px solid white;
     border-radius: 70px;
@@ -32,12 +32,12 @@
     text-align: center;
     font-size: 12px;
     font-weight: bolder;
-    -webkit-transition-duration: 0.4s; /* Safari */
+    -webkit-transition-duration: 0.4s; Safari
     transition-duration: 0.4s;
     cursor: pointer;
     text-decoration: none;
     text-transform: uppercase;
-}
+} */
 
 .cards {
     background-color: white;
@@ -68,7 +68,8 @@
     margin-top: 1rem;
 }
 
-.Button2 {
+
+/* .Button2 {
     cursor: pointer;
     color: white;
     font-weight: bolder;
@@ -80,7 +81,7 @@
     margin-top: 20px;
     margin-bottom: 20px;
     align-self: flex-end;
-}
+}*/
 
 .img1 {
     width: 30rem;
@@ -118,3 +119,4 @@
     font-size: 16px;
     margin-left: 2rem;
 }
+
