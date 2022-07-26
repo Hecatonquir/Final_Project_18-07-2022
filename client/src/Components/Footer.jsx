@@ -72,7 +72,10 @@ function Footer() {
             isExternal>
             GitHub
           </Link>
-          <Link href="#!" isExternal>
+          <Link  isExternal>
+            <ContactUs/>
+          </Link>
+          <Link href="/aboutUs" isExternal>
             About Us
           </Link>
           </Flex>
