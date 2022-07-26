@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import { useDispatch, useSelector} from "react-redux"
 import { GET_EVENTS, SHOW_EVENTS_USER,ADD_REMOVE_FILTER } from '../Redux/ActionTypes/actiontypes'
 import styles from '../Styles/ButtonFilter.module.css'
+import { Box, Button, Flex, Select, Stack} from '@chakra-ui/react';
 
 function ButtonFilter() {
 
@@ -13,18 +14,11 @@ function ButtonFilter() {
 
     let cities = Array.from(new Set(backUp.slice().map(el => el.City)))
     let categories = Array.from(new Set(backUp.slice().map(el => el.Category[0])))
-  
-    
-  
-    
-
 
     function filterItems(el) {
      
         if(!controlFilter.includes(el)) {
           setReference(controlFilter = [el])
-        
-      
         
           let notFiltered =[]
           let filtered = backUp.filter(e => {
@@ -87,30 +81,26 @@ function ButtonFilter() {
     }
 
   return (
-    <div className={styles.filtercontainer}>
-    <div>
-    <select id='city' className={styles.select} onChange={(e) => handleSelect(e)}>
-        <option hidden>Filter By City</option>
-    {cities.map((el,i) => <option key={i} className="select" onClick={() => filterItems(el)}>{el}</option>)}
+    <>
+    <Stack spacing={10} marginTop={6} marginBottom={6}>
+    <Flex justifyContent='space-around' width='100%'>
+      <Select variant='flushed' width='30%' onChange={(e) => handleSelect(e)} color='gray' id='city'>
+        <option value='City'>Filter By City</option>
+        {cities.map((el,i) => <option key={i} onClick={() => filterItems(el)}>{el}</option>)}
+      </Select>
 
-    </select>
-    </div>
-    <div>
-        <select id='cat' className={styles.select}  onChange={(e) => handleSelect(e)}>
-            <option hidden>Filter By Categories</option>
-            {categories.map(el => <option key={el}className='select' onClick={() => filterItems(el)}>{el}</option>)}
-        
+      <Select variant='flushed' width='30%' onChange={(e) => handleSelect(e)} color='gray' id='cat'>
+        <option value='Categories'>Filter By Categories</option>
+        {categories.map(el => <option onClick={() => filterItems(el)}>{el}</option>)}
+      </Select>
 
-
-        </select>
-    </div>
-    <div>
-
-        <button className={styles.Button2} onClick={()=> { document.getElementById('city').value = 'Filter By City'; document.getElementById('cat').value = 'Filter By Categories'; return setReference(controlFilter = []), dispatch({type: GET_EVENTS, payload: backUp }), dispatch({type: SHOW_EVENTS_USER, payload: backUp.slice(0,15)})}}>Clear Filters</button>
-
-    </div>
-</div>
-  )
+      <Box>
+      <Button className={styles.Button2} onClick={()=> { document.getElementById('city').value = 'Filter By City'; document.getElementById('cat').value = 'Filter By Categories'; return setReference(controlFilter = []), dispatch({type: GET_EVENTS, payload: backUp }), dispatch({type: SHOW_EVENTS_USER, payload: backUp.slice(0,15)})}} bg='#f4a69a'>Clear Filters</Button>
+      </Box>
+    </Flex>
+    </Stack>
+ </>
+)
 }
 
 export default ButtonFilter

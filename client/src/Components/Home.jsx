@@ -14,6 +14,7 @@ import { decodeToken, isExpired } from 'react-jwt';
 import { useAuth0 } from '@auth0/auth0-react';
 import registerGmail from '../Redux/Actions/registerGmail.js';
 import { UPDATE_STATE_TRUE } from '../Redux/ActionTypes/actiontypes.js';
+import { Box, SimpleGrid, Center, Text } from "@chakra-ui/react";
 
 export default function Home() {
 	const { isAuthenticated, user } = useAuth0();
@@ -43,55 +44,102 @@ export default function Home() {
 		return () => {};
 	}, [stateUser]);
 
+
+	<Box bgGradient='linear(to-r, #1c2333, #371a1e)' minHeight='100vh'>
+		<Box> 
+        	<NavBar />
+        	<Box>
+          	<EventCarousel />
+        	</Box>
+      	</Box>
+		<Box className={styles.welcome}>
+			{stateUser || !isExpired(token) ?<p>Welcome {tokenDecoded? tokenDecoded.name: "Guest"}</p>: <p>Welcome Guest</p>}
+		</Box>
+		<Box>
+	  		<ButtonFilter />
+      		{/* <CalendarEvents /> */}
+	  	</Box>
+
+		<Center>
+			<Box marginTop={10} marginBottom={10}>
+			<SimpleGrid columns={2} spacing={10}>
+			{events.length ? (
+				events.map((event) => (
+					<Box key={event.ID} bg="#b1b7b76a" border="1px solid #88cfd938" p={6} boxShadow=" 10px 10px 20px #2a2929, -10px -10px 20px #494848;" borderRadius="20px" textAlign='center'>
+						<EventCard
+							id={event.ID}
+							name={event.Name}
+							image={event.Image[0]}
+							date={event.Date}
+							category={event.Category}
+							price={event.Price === 0 ? " Free" : event.Price}
+							quantity={event.Quantity}
+							city={event.City}
+							location={event.Location}
+						/>
+					</Box>
+				))
+			) : (
+				<Box>
+					<Text>No Events Found</Text>
+				</Box>
+			)}
+			</SimpleGrid>
+			</Box>
+		</Center>
+		<Footer />
+		</Box>
+
+
+
+
 	return (
-		<div className={styles.container}>
-			<div className={styles.navbar}>
-				<NavBar />
-			</div>
-			<div className={styles.items}>
-				<div className={styles.welcome}>
-					{stateUser || !isExpired(token) ? (
-						<p>Welcome {tokenDecoded ? tokenDecoded.name : 'Guest'}</p>
-					) : (
-						<p>Welcome Guest</p>
-					)}
-				</div>
-				<div className={styles.carousel}>
-					<EventCarousel carrouselEvents={carrouselEvents} />
-				</div>
-				<div className={styles.filter}>
-					<ButtonFilter />
-				</div>
-			</div>
+		<Box bgGradient='linear(to-r, #1c2333, #371a1e)' minHeight='100vh'>
+			<Box> 
+        	<NavBar />
+        	<Box>
+          	<EventCarousel />
+        	</Box>
+      	</Box>
+		<Box className={styles.welcome}>
+			{stateUser || !isExpired(token) ?<p>Welcome {tokenDecoded? tokenDecoded.name: "Guest"}</p>: <p>Welcome Guest</p>}
+		</Box>
+		<Box>
+	  		<ButtonFilter />
+      		{/* <CalendarEvents /> */}
+	  	</Box>
 			<div className={styles.search}>
 				<Search />
 			</div>
-
-			{/* <CalendarEvents></CalendarEvents> */}
-			<div className={styles.totalcards}>
-				{events.length ? (
-					events.map((event) => (
-						<div key={event.ID}>
-							<EventCard
-								id={event.ID}
-								name={event.Name}
-								image={event.Image[0]}
-								date={event.Date}
-								category={event.Category}
-								price={event.Price === 0 ? ' Free' : event.Price}
-								quantity={event.Quantity}
-								city={event.City}
-								location={event.Location}
-							/>
-						</div>
-					))
-				) : (
-					<div className={styles.notEvent}>
-						<p>No Events Found</p>
-					</div>
-				)}
-			</div>
+		
+		<Center>
+			<Box marginTop={10} marginBottom={10}>
+			<SimpleGrid columns={2} spacing={10}>
+			{events.length ? (
+				events.map((event) => (
+					<Box key={event.ID} bg="#b1b7b76a" border="1px solid #88cfd938" p={6} boxShadow=" 10px 10px 20px #2a2929, -10px -10px 20px #494848;" borderRadius="20px" textAlign='center'>
+						<EventCard
+							id={event.ID}
+							name={event.Name}
+							image={event.Image[0]}
+							date={event.Date}
+							category={event.Category}
+							price={event.Price === 0 ? ' Free' : event.Price}
+							quantity={event.Quantity}
+							city={event.City}
+							location={event.Location}
+						/>
+					</Box>
+				))
+			) : (
+				<Box>
+					<Text>No Events Found</Text>
+				</Box>
+			)}
+			</SimpleGrid>
+			</Box>
+		</Center>
 			<Footer />
-		</div>
+		</Box>
 	);
 }
