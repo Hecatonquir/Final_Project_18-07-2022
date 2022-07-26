@@ -20,11 +20,13 @@ export default function ContactUs() {
 	const dispatch = useDispatch();
 	const [basicModal, setBasicModal] = useState(false);
 
+
 	const toggleShow = () => setBasicModal(!basicModal);
 	const [note, setNote] = useState({
 		reason: '',
 		problemType: '',
 	});
+
 
 	function handleChange(e) {
 		setNote({
