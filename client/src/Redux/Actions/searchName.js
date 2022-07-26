@@ -1,4 +1,3 @@
-import axios from "axios";
 import { SHOW_EVENTS_USER } from "../ActionTypes/actiontypes";
 
 

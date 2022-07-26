@@ -5,7 +5,6 @@ import { clearCart } from '../Redux/Actions/clearCart';
 import CardItem from './CartItem';
 import styles from '../Styles/Cart.module.css';
 import imgcarrito from '../Media/emptycart.png';
-import StripeContainer from './StripeContainer';
 
 export default function Cart() {
 	const dispatch = useDispatch();
@@ -52,25 +51,16 @@ export default function Cart() {
 				</div>
 				<div /* className={styles.containeramount} */>
 					<h5 className={styles.amount}>
-						Total Price: ${totalAmount} - (arreglar esto para que se vea bien el "formulario" de
-						pago) -
+						Total Price: ${totalAmount} - arreglar esto para que se vea bien el "formulario" de
+						pago -
 					</h5>
-					<div>
-						{showItem ? (
-							<StripeContainer /> //  ACA LE PASO INFO A ESTE COMPONENTE
-						) : (
-							<button
-								className={styles.Button2}
-								onClick={() => {
-									setShowItem(true);
-								}}>
-								Buy
-							</button>
-						)}
-					</div>
+					{showItem ? (
+						<h2>aca estaba stripe</h2> //  ACA LE PASO INFO A ESTE COMPONENTE
+					) : (
+						<button onClick={() => setShowItem(true)}>Buy Now!</button>
+					)}
 				</div>
 			</div>
-
 			<div className={styles.divButton}>
 				<button className={styles.Button2} onClick={() => hundleClick()}>
 					Empty Cart

@@ -25,13 +25,14 @@ export default function Home() {
 	let tokenDecoded = decodeToken(token);
 	const dispatch = useDispatch();
 	const events = useSelector((state) => state.showToUser);
-	const stateUser = useSelector(state => state.loginState)
+	console.log('🐲🐲🐲 / file: Home.jsx / line 28 / events', events);
+	const stateUser = useSelector((state) => state.loginState);
 	const carrouselEvents = events.filter((ev) => ev.Carrousel);
 
 	//console.log(tokenDecoded)
-      
-	if(!token) {
-		dispatch(registerGmail(user))
+
+	if (!token) {
+		dispatch(registerGmail(user));
 	}
 
 	useEffect(() => {
@@ -57,11 +58,7 @@ export default function Home() {
 					)}
 				</div>
 				<div className={styles.carousel}>
-<<<<<<< HEAD
-					<EventCarousel carrouselEvents={carrouselEvents}/>
-=======
 					<EventCarousel carrouselEvents={carrouselEvents} />
->>>>>>> ed041a662b96bbdf12f87609e74a767f1a67d741
 				</div>
 				<div className={styles.filter}>
 					<ButtonFilter />

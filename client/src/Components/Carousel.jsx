@@ -13,7 +13,7 @@ export default function EventCarousel(obj) {
 			{carrouselEvents.length
 				? carrouselEvents.map((ev) => {
 						return (
-							<Carousel.Item interval={2000}>
+							<Carousel.Item key={ev.ID} interval={2000}>
 								<Link to={`/details/id/${ev.ID}`}>
 									<img
 										className='d-block w-100'
