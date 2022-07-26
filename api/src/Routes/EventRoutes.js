@@ -21,7 +21,7 @@ routes.get('/reported', F.getReported)
 
 routes.post('/', F.createEvent);
 routes.post('/report/:ID', F.reportEvent)
-routes.post("/login",U.loginRequest)
+
 
 routes.put('/', F.modifyEvent);
 

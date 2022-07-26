@@ -11,6 +11,7 @@ import Register from './Components/Register';
 import About from './Components/AboutUs'
 import Prepanel from './Components/verifyAdmin';
 import PageNotFound from './Components/Page404';
+import AdminPanel from './Components/AdminPanel';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
       <Route path='/aboutUs' element={<About/>}/>
       <Route path='/controlPanel' element={<Prepanel/>}/>
       <Route path='*' element={<PageNotFound/>}/>
+      <Route path='/welcomeA' element={<AdminPanel/>}/>
       </Routes>
     </div>
   );

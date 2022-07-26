@@ -236,7 +236,7 @@ const loginRequest = async(req,res) => {
 
 		if(user_) {
 			if(user_[0].Role === "Partner" || user_[0].Role === "Admin") {
-				 res.status(400).send("Invalid User/Password")
+				return res.status(400).send("Invalid User/Password")
 			}
 			console.log(user_)
 			bcrypt.compare(password, user_[0].Password, (error, response) => {
@@ -291,7 +291,7 @@ const loginRequestAP = async(req,res) => {
 					console.log(user_[0].ID)
 					const id = user_[0].ID
 				const token = jwt.sign({id: id, role:user_[0].Role, name: user_[0].Name, email:user_[0].Email},process.env.PRIVATEKEY,{
-					expiresIn: 300,
+					expiresIn: 5000,
 				})
 				console.log(token)
 				res.cookie("access-token", token,{

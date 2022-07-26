@@ -5,7 +5,7 @@ import {useNavigate} from "react-router-dom"
 import { UPDATE_STATE_TRUE } from '../Redux/ActionTypes/actiontypes'
 import { useDispatch } from 'react-redux'
 function Prepanel() {
-console.log(document.cookie)
+
     const navigate = useNavigate()
     let dispatch = useDispatch()
     const [user, setUser] = useState({
@@ -48,6 +48,8 @@ console.log(document.cookie)
             if(decodeToken(document.cookie.split(";").filter(el => el.includes("access-token")).toString().split("=")[1]).role === "Partner") {
                 navigate("/welcomeP")
             }
+            else if(decodeToken(document.cookie.split(";").filter(el => el.includes("access-token")).toString().split("=")[1]).role === "Admin") {
+                navigate("/welcomeA")}
 
          }, 300);
             

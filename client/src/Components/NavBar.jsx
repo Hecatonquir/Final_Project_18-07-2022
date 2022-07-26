@@ -30,9 +30,9 @@ function NavBar(){
           </div>
           
           <div className={styles.menu}>
-        {!token  || isExpired(token) || !active ? <div> <Link to="/login"><button className={styles.Button}>Login/Sign Up</button></Link></div>:<div></div>}
+        {!token || !active ? <div> <Link to="/login"><button className={styles.Button}>Login/Sign Up</button></Link></div>:<div></div>}
               <div>
-             {!isExpired(token) && tokenDecoded.role !== "Guest" && active &&
+             {token && tokenDecoded.role !== "Guest" && active &&
                      
                       <button className={styles.Button} onClick={() => (logOut("access-token",dispatch, isAuthenticated, logout))}>
                         <span>Log Out</span>
