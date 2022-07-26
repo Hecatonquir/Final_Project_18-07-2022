@@ -4,6 +4,9 @@
   "private": true,
   "dependencies": {
     "@auth0/auth0-react": "^1.10.2",
+    "@chakra-ui/react": "^2.2.4",
+    "@emotion/react": "^11.9.3",
+    "@emotion/styled": "^11.9.3",
     "@stripe/react-stripe-js": "^1.9.0",
     "@stripe/stripe-js": "^1.32.0",
     "@testing-library/jest-dom": "^5.16.4",
@@ -15,6 +18,7 @@
     "date-fns": "^2.28.0",
     "dotenv": "^16.0.1",
     "jsonwebtoken": "^8.5.1",
+    "framer-motion": "^6.5.1",
     "mdb-react-ui-kit": "^4.1.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.4.0",
