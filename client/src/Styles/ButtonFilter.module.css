@@ -1,9 +1,11 @@
+
 .filtercontainer {
     background-color: #1C517A;
     display: flex;
    justify-content: space-around;
    padding: 20px;
-}
+} 
+
 
 .select {
     width: 180px;
@@ -12,12 +14,12 @@
     border-radius: 5px;
     color: #1C517A;
     border: 1px solid #1C517A;
-}
+} 
 
-.Button2{
+/* .Button2{
     background-color:white;
     color: #1C517A;
     padding: 3px 15px 3px 15px;
     border-radius: 40px;
     border: none;
-}
+} */

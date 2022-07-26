@@ -1,59 +1,72 @@
-import {React, useEffect} from 'react'
-import {Link} from 'react-router-dom'
-import {useDispatch, useSelector} from 'react-redux'
-import { clearCart } from '../Redux/Actions/clearCart'
-import CardItem from './CartItem'
-import styles from '../Styles/Cart.module.css'
-import imgcarrito from '../Media/emptycart.png'
+import { React, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { clearCart } from '../Redux/Actions/clearCart';
+import CardItem from './CartItem';
+import styles from '../Styles/Cart.module.css';
+import imgcarrito from '../Media/emptycart.png';
+import StripeContainer from './StripeContainer';
+import Nav from "./Nav";
+import { Box, Button, Center, Heading, Text, Image } from "@chakra-ui/react";
 
 export default function Cart() {
-    const dispatch = useDispatch()
-    const cart = useSelector((state) => state.cart)
-    var totalAmount = 0;
-    
-    for (let i = 0; i < cart.length; i++) {
-        totalAmount = totalAmount + (cart[i].Price * cart[i].PurchasedItem);
-    }
+	const dispatch = useDispatch();
+	const cart = useSelector((state) => state.cart);
+	var totalAmount = 0;
+	const [showItem, setShowItem] = useState(false);
 
-    function hundleClick(){
-        dispatch(clearCart())
-    }
-    
-    return(
-        <div>
-            <nav className={styles.nav}>
-            <Link to='/'><button className={styles.Button}>BACK</button></Link>
-            </nav>
-            <h4 className={styles.title}>SHOPPING CART</h4>
-            <p className={styles.subtitle}>Your selected events</p>
-            <div className={styles.container}>
-                <div>
-                    {
-                    cart.length ? cart.map( (item) => (
-                        <div key={item.ID}>
-                            <CardItem
-                            id={item.ID}
-                            name={item.Name}
-                            image={item.Image[0]}
-                            price={item.Price}
-                            purchasedItem={item.PurchasedItem}
-                            />
-                        </div>
-                    ))
-                    :  <div>
-                        <img className={styles.imgcarrito} src={imgcarrito} alt='not imgcarrito' />
-                    </div>
-                    }
-                </div>
-            <div className={styles.containeramount}>
-            <h5 className={styles.amount}>Total Price: ${totalAmount}</h5>
-            <button className={styles.Button2}>Buy</button>
-            </div>
-            </div>
-            <div className={styles.divButton}>
-                <button className={styles.Button2} onClick={() => hundleClick()}>Remove</button>
-                
-            </div>
-        </div>
-    )
+	for (let i = 0; i < cart.length; i++) {
+		totalAmount = totalAmount + cart[i].Price * cart[i].PurchasedItem;
+	}
+
+
+	function hundleClick() {
+		dispatch(clearCart());
+	}
+
+	return (
+		<Box bgGradient="linear(to-r, #1c2333, #371a1e)" minHeight='100vh' >
+			<Nav />
+           <Heading as="h4" margin={6} color="white">SHOPPING CART</Heading>
+           <Text margin={6} color="white">Your selected events</Text>
+			<Box className={styles.container}>
+				<Box>
+					{cart.length ? (
+						cart.map((item) => (
+							<Box key={item.ID}>
+								<CardItem
+									id={item.ID}
+									name={item.Name}
+									image={item.Image[0]}
+									price={item.Price}
+									purchasedItem={item.PurchasedItem}
+								/>
+							</Box>
+						))
+					) : (
+						<Box>
+							<Image className={styles.imgcarrito} src={imgcarrito} alt='not imgcarrito' />
+						</Box>
+					)}
+				</Box>
+
+				<Box className={styles.containeramount}>
+            		<Heading as="h4" color="white">Total Price: ${totalAmount}</Heading>
+					<Box>
+						{showItem ? (
+							<StripeContainer /> //  ACA LE PASO INFO A ESTE COMPONENTE
+						) : (
+							<Button className={styles.Button2} onClick={() => {setShowItem(true);}}>Buy</Button>
+						)}
+					</Box>
+            	</Box>
+			</Box>
+			<Box margin={6}>
+				<Button className={styles.Button2} onClick={() => hundleClick()}>
+					Remove
+				</Button>
+			</Box>
+		</Box>
+	);
+
 }

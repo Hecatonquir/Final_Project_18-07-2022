@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import { postSupports } from '../Redux/Actions/postSupports';
 import styles from '../Styles/ContactUs.module.css'
 import swal from 'sweetalert'
@@ -14,8 +14,6 @@ import { MDBBtn,
     MDBModalFooter,
     MDBContainer
   } from 'mdb-react-ui-kit';
- 
-
 
 export default function ContactUs(){
      const dispatch = useDispatch()
@@ -26,8 +24,7 @@ export default function ContactUs(){
         reason:"",
         problemType:""
     })
-    
-const handleChange = function (e){
+
          setNote({
             ...note,
             [e.target.name]: e.target.value
@@ -49,7 +46,6 @@ const handleChange = function (e){
            
                 
         }}
-
 
     return (
         <div>

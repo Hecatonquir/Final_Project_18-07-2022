@@ -1,7 +1,9 @@
 export default function validate(input) {
-	let { Name, img1, img2, img3, img4, Price, City, Location, Category, Date, Hour, Quantity } =
+	let { Name, img1, img2, img3, img4, Price, City, Location, Category, date, Hour, Quantity } =
 		input;
 	let errors = {};
+	let today = new Date().toISOString().slice(0, 16);   // En las dos fechas usamos el horario universal, sino hay una diferencia de 3hs
+	const dateInput = date && new Date(date).toISOString().slice(0, 16);
 	errors.check = 'failed';
 
 	if (!Name) {
@@ -11,6 +13,10 @@ export default function validate(input) {
 			errors.Name =
 				"First letter must be uppercase and do not start with a number";
 		}
+	}
+	
+	if (dateInput < today) {
+		errors.date = 'Invalid date';
 	}
 
 	if (!img1) {
@@ -88,11 +94,13 @@ export default function validate(input) {
 	} */
 	if (
 		!errors.Name &&
+		!errors.date &&
 		!errors.img1 &&
 		!errors.City &&
 		!errors.Location &&
 		!errors.Category &&
-		!errors.Price
+		!errors.Price &&
+		!errors.Quantity
 	) {
 		errors.check = 'approved';
 	}
