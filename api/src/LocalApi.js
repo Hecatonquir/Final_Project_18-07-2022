@@ -12,7 +12,8 @@ const eventsApi = [
 		RedFlags: '1',
 		Date: '2023-05-22T12:30',
 		Detail: 'Este es el detalle de este evento!',
-		Carrousel: 'sd',
+		Carrousel:
+			'https://static6.ticketek.com.ar/cms_static/sites/default/files/images/show-header/this960.png',
 	},
 	{
 		Name: 'Trío Acústico Leonel García',
@@ -30,7 +31,8 @@ const eventsApi = [
 		RedFlags: '1',
 		Date: '2023-05-22T12:30',
 		Detail: 'Este es el detalle de este evento!',
-		Carrousel: 'sd',
+		Carrousel:
+			'https://teatro-granrex.com.ar/wp-content/files_mf/cache/th_c055d477418f3f7668860a05610bcd1f_1656359190920.jpg',
 	},
 	{
 		Name: 'Wild Card en vivo',
@@ -48,7 +50,7 @@ const eventsApi = [
 		RedFlags: '1',
 		Date: '2023-05-22T12:30',
 		Detail: 'Este es el detalle de este evento!',
-		Carrousel: 'sd',
+		Carrousel: 'https://www.ninshi.net/kardargentina2022/img/banner.jpg',
 	},
 	{
 		Name: 'Fiesta de Maxi',
