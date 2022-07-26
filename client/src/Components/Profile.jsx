@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 // import styles from "../Styles/Profile.module.css";
 import {decodeToken} from "react-jwt"
 import Nav from './Nav'
+import Tabs from "./UserAccount.jsx";
 import { Box, Flex, Heading, Image, Text } from "@chakra-ui/react";
 
 
@@ -29,6 +30,7 @@ function Profile() {
           </Flex>
           </Box>
          </Flex>
+         <Tabs/>
         </>
       ) : (
         <Flex justifyContent='center' alignItems='center' height='90vh'>
