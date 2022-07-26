@@ -37,6 +37,30 @@ const StripePayment = async (req, res) => {
 	}
 };
 
+const StripePayment = async (req, res) => {
+	let { amount, id } = req.body;
+	try {
+		const payment = await stripe.paymentIntents.create({
+			amount,
+			currency: 'USD',
+			description: 'Spatula company',
+			payment_method: id,
+			confirm: true,
+		});
+		console.log('🐲🐲🐲 / file: Extra.js / line 26 / payment:\n', payment);
+		res.json({
+			message: 'Payment successful',
+			success: true,
+		});
+	} catch (error) {
+		console.log('🐲🐲🐲 / file: Extra.js / line 32 / error:\n', error.stack);
+		res.json({
+			message: 'Payment failed',
+			success: false,
+		});
+	}
+};
+
 module.exports = {
 	uploadDataBase,
 	StripePayment,

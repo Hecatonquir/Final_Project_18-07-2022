@@ -4,7 +4,7 @@ const routes = express.Router();
 const UserRoutes = require('./UserRoutes');
 const EventRoutes = require('./EventRoutes');
 const SupportRoutes = require('./SupportRoutes');
-
+routes.use(express.json());
 /* routes.use(express.json);  Esto al parecer no se pone aca */
 
 /*------------ IMPLEMENTANDO EL PAGO CON STRIPE  ---------------*/
@@ -22,7 +22,7 @@ routes.use('/support', SupportRoutes);
 
 routes.get('/', (req, res) => {
 	console.log('Ejemplo');
-	res.send('Bienvenidos a la Homepage! ');
+	res.send('Bienvenidos a la Homepage! (0-Routes.js) ');
 });
 
 module.exports = routes;
