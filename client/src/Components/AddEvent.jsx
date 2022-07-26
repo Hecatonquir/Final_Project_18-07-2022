@@ -20,6 +20,7 @@ function AddEvent() {
 		img2: '',
 		img3: '',
 		img4: '',
+		carrousel: '',
 		Price: '',
 		Quantity: '',
 		Rating: '',
@@ -53,6 +54,7 @@ function AddEvent() {
 			postEvent({
 				Name: input.Name,
 				Image: [input.img1, input.img2, input.img3, input.img4],
+				Carrousel: input.carrousel,
 				Price: Number(input.Price),
 				Quantity: Number(input.Quantity),
 				Rating: Number(input.Rating),
@@ -71,6 +73,7 @@ function AddEvent() {
 				img2: '',
 				img3: '',
 				img4: '',
+				carrousel: '',
 				Price: '',
 				Quantity: '',
 				Rating: '',
@@ -229,6 +232,34 @@ function AddEvent() {
 						/>
 						{errors.img4 && <p style={{ color: 'red' }}>{errors.img4}</p>}
 					</div>
+					<div className={styles.divForms}>
+						<span className={styles.labelImg}><label htmlFor='img4'>Image 4: &nbsp; </label></span>
+						<input
+							type='text'
+							value={input.img4}
+							id='img4'
+							name='img4'
+							placeholder='Insert URL here'
+							className={styles.input}
+							onChange={(e) => handleChange(e)}
+						/>
+						{errors.img4 && <p style={{ color: 'red' }}>{errors.img4}</p>}
+					</div>
+
+					<div className={styles.divForms}>
+						<span className={styles.labelCarrousel}><label htmlFor='carrousel'>Carrousel image: &nbsp; </label></span>
+						<input
+							type='text'
+							value={input.carrousel}
+							id='carrousel'
+							name='carrousel'
+							placeholder='Insert URL here'
+							className={styles.input}
+							onChange={(e) => handleChange(e)}
+						/>
+						{errors.carrousel && <p style={{ color: 'red' }}>{errors.carrousel}</p>}
+					</div>
+
 					<div className={styles.divForms}>
 						<span className={styles.labelPrice}><label htmlFor='Price'>Price: &nbsp;</label></span>
 						<input

@@ -1,6 +1,5 @@
 export default function validate(input) {
-	let { Name, img1, img2, img3, img4, Price, City, Location, Category, date, Hour, Quantity } =
-		input;
+	let { Name, img1, img2, img3, img4, carrousel, Price, City, Location, Category, date, Hour, Quantity } = input;
 	let errors = {};
 	let today = new Date().toISOString().slice(0, 16);   // En las dos fechas usamos el horario universal, sino hay una diferencia de 3hs
 	const dateInput = date && new Date(date).toISOString().slice(0, 16);
@@ -42,6 +41,13 @@ export default function validate(input) {
 			errors.img4 = 'It must be a valid "URL" or be empty.';
 		}
 	}
+
+	if (carrousel) {
+		if (carrousel && !/[a-z0-9-.]+\.[a-z]{2,4}\/?([^\s<>#%",{}\\|^[\]`]+)?$/.test(carrousel)) {
+			errors.carrousel = 'It must be a valid "URL" or be empty.';
+		}
+	}
+
 	if (Price < 0) {
 		errors.Price = 'Only insert positive numbers.';
 	}
@@ -62,8 +68,8 @@ export default function validate(input) {
 	if (!Category) {
 		errors.Category = 'At least one category is required.';
 	}
-	if (!Date) {
-		errors.Date = 'A date is required.';
+	if (!date) {
+		errors.date = 'A date is required.';
 	}
 	if (!Hour) {
 		errors.Hour = 'An hour is required.';
@@ -96,6 +102,7 @@ export default function validate(input) {
 		!errors.Name &&
 		!errors.date &&
 		!errors.img1 &&
+		!errors.carrousel &&
 		!errors.City &&
 		!errors.Location &&
 		!errors.Category &&
