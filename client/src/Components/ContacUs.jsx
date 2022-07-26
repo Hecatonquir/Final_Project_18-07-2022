@@ -25,6 +25,7 @@ export default function ContactUs(){
         problemType:""
     })
 
+    const handleChange = function (e){
          setNote({
             ...note,
             [e.target.name]: e.target.value
