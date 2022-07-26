@@ -26,6 +26,7 @@ function NavBar() {
 	const active = useSelector((state) => state.loginState);
 	const count = cart.length;
 
+
 	//  return (
 	//     <Box marginBottom={6} padding={2} bgGradient='linear(to-b, #a28748, #6c5727)'>
 	//       <Flex justifyContent="space-around" alignItems="center">
@@ -36,7 +37,7 @@ function NavBar() {
 	//         <Box>
 	//           <Flex alignItems="center" width="35em" justifyContent="space-between">
 	//             <Box>
-	//               {!isAuthenticated ? (
+	//               {!token || !active ? (
 	//                 <Button bg='#1a78b1' onClick={() => loginWithRedirect()}>
 	//                   <span>Log In/Sign Up</span>
 	//                 </Button>
@@ -45,12 +46,13 @@ function NavBar() {
 	//                   <span>Log Out</span>
 	//                 </Button>
 	//               )}
-	//               {isAuthenticated && (
+	//               {token &&tokenDecoded.role !== "Guest" && tokenDecoded.role !== "User" && active && (
 	//                 <Link to="/createEvent">
 	//                   <Button marginLeft={4} bg='#1a78b1'>Create an Event</Button>
 	//                 </Link>
 	//               )}
 	//             </Box>
+
 
 	//             {isAuthenticated ? (
 	//               <Box>
