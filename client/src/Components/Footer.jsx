@@ -62,7 +62,6 @@ function Footer() {
             HENRY EVENTS con la ayuda de nuestros colaboradores. Version: 1.0
           </Text>
         </Box>
-
         <Box width='50%' textAlign='center'>
         <Heading as="h5" fontSize={20}>LINKS</Heading>
           <Flex flexDirection='column'>

@@ -19,19 +19,17 @@ module.exports = (sequelize) => {
 			Username: {
 				type: DataTypes.STRING,
 				isUnique: true,
-				allowNull: false
+				allowNull: true
 				
 			},
 
 			Password: {
 				type: DataTypes.STRING,
 				allowNull: false
+				
 			},
 
-			LoggedIn: {
-				type: DataTypes.BOOLEAN,
-				defaultValue: false,
-			},
+			
 			Email: {
 				type: DataTypes.STRING,
 				isUnique: true,
@@ -46,8 +44,9 @@ module.exports = (sequelize) => {
 				type: DataTypes.STRING,
 			},
 			Role: {
-				type: DataTypes.ENUM('Guest', 'User', 'Partner', 'Admin'),
+				type: DataTypes.STRING,
 				allowNull: true,
+				defaultValue:"Guest"
 			},
 			Favourites: {
 				type: DataTypes.ARRAY(DataTypes.STRING),
@@ -63,6 +62,9 @@ module.exports = (sequelize) => {
 			},
 			RedFlags: {
 				type: DataTypes.INTEGER,
+			},LoggedIn: {
+				type: DataTypes.BOOLEAN,
+				defaultValue: false,
 			},
 		},
 		{ timestamps: false }

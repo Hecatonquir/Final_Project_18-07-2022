@@ -26,12 +26,11 @@ module.exports = (sequelize) => {
 			},
 			Price: {
 				type: DataTypes.INTEGER,
+				defaultValue: 0,
 			},
 			Quantity: {
 				type: DataTypes.INTEGER,
-			},
-			Rating: {
-				type: DataTypes.INTEGER,
+				defaultValue: 0,
 			},
 			Restrictions: {
 				type: DataTypes.ARRAY(DataTypes.STRING),
@@ -42,6 +41,7 @@ module.exports = (sequelize) => {
 			},
 			City: {
 				type: DataTypes.STRING,
+				allowNull: false,
 			},
 			AgeRestriction: {
 				type: DataTypes.INTEGER,
@@ -49,12 +49,14 @@ module.exports = (sequelize) => {
 			},
 			RedFlags: {
 				type: DataTypes.INTEGER,
+				defaultValue: 0,
 			},
 			Date: {
 				type: DataTypes.DATE,
 			},
 			Detail: {
 				type: DataTypes.TEXT,
+				allowNull: false,
 			},
 		},
 		{ timestamps: false }

@@ -1,19 +1,20 @@
-/* .filtercontainer {
-    background-color: #229ddb;
+
+.filtercontainer {
+    background-color: #1C517A;
     display: flex;
    justify-content: space-around;
-   color: white;
    padding: 20px;
-} */
+} 
 
-/* .select {
-    width: 150px;
+
+.select {
+    width: 180px;
     padding: 5px;
     margin: 2px auto 2px auto;
     border-radius: 5px;
     color: #1C517A;
     border: 1px solid #1C517A;
-} */
+} 
 
 /* .Button2{
     background-color:white;

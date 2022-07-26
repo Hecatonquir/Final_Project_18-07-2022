@@ -1,15 +1,21 @@
 import axios from "axios"
-
+import swal from 'sweetalert'
 
 
 export function postSupports(payload){
-    return async (dispatch) => {
+  console.log("soy el soporte",payload)
+    return async () => {
       try {
-        var createNote= await axios.post("http://localhost:3001/",payload);
-         alert("note create")
+         await axios.post("http://localhost:3001/support/",payload);
+         
+         swal("Note Created!", {
+          icon: "success",
+        })
 
       } catch (error) {
-    
+       swal("Note Not Created!",{
+        icon:"error"
+       })
         console.log(error);
       }
     };

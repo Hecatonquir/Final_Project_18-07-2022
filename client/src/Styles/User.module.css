@@ -25,29 +25,21 @@
 
 .container {
     width: 500px;
-    height: 80%;
+    height: 400px;
     margin: auto;
     margin-top: 50px;
     border: 4px solid #229ddb;
     background-color: white;
     border-radius: 10px;
-}
-
-.form {
-    padding: 0px 30px 0px 30px;
-    color: #146c98;
-    font-weight: bolder;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .title {
+    color: #1C517A;
     margin-top: 10px;
-    text-align: center;
-    color:  #1C517A;
-    margin-bottom: 15px;
-}
-.divButton {
-    display: flex;
-    justify-content: center;
+    margin-bottom: 10px;
 }
 
 .Button2 {
@@ -59,18 +51,42 @@
     font-size: 12px;
     padding: 10px 30px 10px 30px;
     border: none;
-    margin-top: 20px;
+    margin-top: 10px;
     margin-bottom: 20px;
 }
 
-.text {
+.title2 {
+    font-size: 12px;
+    margin-right: 10px;
+    padding-bottom: 2px;
+}
+
+.title3 {
+    font-size: 14px;
+}
+
+.register {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    color: #0e93d5;
+    align-items: center;
+}
+
+.Button3 {
+    cursor: pointer;
+    color:  #0e93d5;
+    font-weight: bolder;
+    background-color: white;
+    border: 2px solid #0e93d5;
+    border-radius: 70px;
+    font-size: 12px;
+    padding: 10px 30px 10px 30px;
     margin-top: 10px;
-    width:400px;
-    height: 150px;
+    margin-bottom: 20px;
 }
 
-.select {
-    margin-left: 20px;
-    border-radius: 5px;
+.icon {
+    width: 20px;
+    margin-right: 5px;
 }
-
