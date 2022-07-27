@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {decodeToken} from "react-jwt"
 import axios from "axios"
 import {useNavigate} from "react-router-dom"
@@ -19,12 +19,7 @@ function Prepanel() {
     
     console.log(tokenDecoded)
 
-    if(tokenDecoded && tokenDecoded.role !== "Partner") {
-        if(tokenDecoded.role !== "Admin") {
-        return alert("Not Allowed")
-        }
-    }
-
+    
     
 
     function handleChange(e) {
@@ -55,14 +50,27 @@ function Prepanel() {
          }, 300);
             
     
-            
-         
+        }
+
+        
+         useEffect(()=> {
+            if(tokenDecoded && tokenDecoded.role !== "Partner") {
+                if(tokenDecoded.role !== "Admin") {
+                return alert("Not Allowed")
+                }
+                else{
+                    navigate("/welcomeA")
+                }
+            }
+        
+
+         },[])
        
 
         
         
         
-    }
+    
 
     
        

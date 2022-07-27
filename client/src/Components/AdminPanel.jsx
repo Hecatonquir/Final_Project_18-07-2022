@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { deleteUserDB } from '../Redux/Actions/deleteUser'
 import {deleteEvent} from "../Redux/Actions/deleteEvent"
 import getEvents from '../Redux/Actions/getEvents'
+import { changeRole } from '../Redux/Actions/updateRole'
 
 
  function AdminPanel() {
@@ -30,6 +31,7 @@ let [userADM, setUser] = useState({
     posts: ""
 })
 
+let [actRoles, setAct] = useState(false)
 
 function handleChange(e) {
 
@@ -90,7 +92,10 @@ useEffect(() => {
         <div key={i}>
             <button onClick={() => {deleteUserDB(el.Email,dispatch)
                  setUser({username: "",posts: ""})}}>Delete User</button>
-            <button onClick={()=> {}}>Change Role</button>
+            <button onClick={()=> {actRoles? setAct(false):setAct(true)}}>Change Role</button>
+            <button hidden={actRoles? false: true}name="Admin" onClick={(e) => changeRole(e.target.name, el.Email,dispatch)}>Admin</button>
+            <button hidden={actRoles? false: true}name="Partner" onClick={(e) => changeRole(e.target.name, el.Email,dispatch)}>Partner</button>
+            <button hidden={actRoles? false: true} name="User"onClick={(e) => changeRole(e.target.name, el.Email,dispatch)}>User</button>
 
             <span>User: {el.Name} || Email: {el.Email} || Role: {el.Role}</span>
         </div>

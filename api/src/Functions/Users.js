@@ -3,6 +3,7 @@ require('dotenv').config();
 const { Op } = require('sequelize');
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken');
+const server = require('../app.js');
 
 
 
@@ -61,34 +62,61 @@ const validatePartner = (req,res,next) => {
 }
 
 const validateAdmin = (req,res,next) => {
+	
 	const accessToken = req.cookies["access-token"]
 	
 	if(!accessToken) return res.status(400).send("User is not authenticated")
-
 	try {
 		
 	 
 	const validToken = jwt.verify(accessToken, process.env.PRIVATEKEY)
+
+	console.log("validToken")
 		
 	if(validToken) {
 		if(validToken.role == "Admin") {
 		req.authenticated = true
-		return next()
+		
+		 next()
 		}
 		else{
-			res.status(400).send("You can't access here")
+			return res.status(400).send("You can't access here")
 		}
 	}
 	else{
-		res.status(401).send("Invalid Token")
+		return res.status(401).send("Invalid Token")
 	}
 	}catch (error) {
-		res.status(400).json({error})
+		return res.status(400).json({error})
 		
 	}
 }
 
 //////////////////////////////////////////////////////////////////////////////////
+
+const roleChange = async(req,res) => {
+	console.log(req.body.data.email)
+
+	try {
+		let coco = await Users.update({
+			Role: req.body.data.role},
+			{where: {
+				Email:req.body.data.email
+			} }
+		)
+		console.log(coco)
+		return res.send("Updated")
+	}
+
+	catch(error) {
+		return res.status(400).send("an Error has ocurred")
+
+	}
+
+
+}
+
+
 const getAllUsers = async (req, res, next) => {
 	res.send(await Users.findAll({
 		include: {
@@ -252,7 +280,7 @@ const loginRequest = async(req,res) => {
 					console.log(user_[0].ID)
 					const id = user_[0].ID
 				const token = jwt.sign({id: id, role:user_[0].Role, name: user_[0].Name, email:user_[0].Email},process.env.PRIVATEKEY,{
-					expiresIn: 300,
+					expiresIn: 9999,
 				})
 				console.log(token)
 				res.cookie("access-token", token,{
@@ -373,5 +401,6 @@ module.exports = {
 	validatePartner,
 	validateAdmin,
 	registerUserGmail,
-	loginRequestAP
+	loginRequestAP,
+	roleChange
 }
