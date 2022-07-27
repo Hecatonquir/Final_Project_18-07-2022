@@ -13,7 +13,7 @@ export function postSupports(payload){
         })
 
       } catch (error) {
-       swal("Note Not Created!",{
+       swal("Sorry, we cant send your inquiry at this moment...",{
         icon:"error"
        })
         console.log(error);

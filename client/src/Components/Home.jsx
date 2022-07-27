@@ -28,7 +28,9 @@ export default function Home() {
 	const dispatch = useDispatch();
 	const events = useSelector((state) => state.showToUser);
 	const stateUser = useSelector((state) => state.loginState);
-	const carrouselEvents = events.filter((ev) => ev.Carrousel);
+	const backup = useSelector(state => state.eventsBackUp)
+	const carrouselEvents = backup.filter((ev) => ev.Carrousel);
+	
 
 	//console.log(tokenDecoded)
 
