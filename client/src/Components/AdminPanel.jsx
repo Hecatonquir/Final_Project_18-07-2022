@@ -86,12 +86,8 @@ useEffect(() => {
             <div>
             {events.length && admin && events.filter(el=> el.Name.toLowerCase().includes(userADM.posts.toLowerCase()) && userADM.posts !== "" ? el: null).slice(0,3).map((el,i) => (
                 <div key={i}>
-                   <button onClick={() => {deleteUserDB(el.Email,dispatch)
-                 setUser({username: "",posts: ""})}}>Delete User</button>
-            <button onClick={()=> {actRoles? setAct(false):setAct(true)}}>Change Role</button>
-            <button hidden={actRoles? false: true}name="Admin" onClick={(e) => changeRole(e.target.name, el.Email,dispatch)}>Admin</button>
-            <button hidden={actRoles? false: true}name="Partner" onClick={(e) => changeRole(e.target.name, el.Email,dispatch)}>Partner</button>
-            <button hidden={actRoles? false: true} name="User"onClick={(e) => changeRole(e.target.name, el.Email,dispatch)}>User</button>
+                 <button onClick={() =>  {return deleteEvent(el.ID), setUser({username: "",posts: ""})}}>Delete Event</button>
+                    <button onClick={()=>{}}>Update Event</button>
 
                     <span>Name: {el.Name} || Price: {el.Price} || City: {el.City} || Quantity: {el.Quantity} || Partner: </span>
                 </div>
