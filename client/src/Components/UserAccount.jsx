@@ -32,7 +32,6 @@ export default function Tabs() {
 
         <div className={styles.contenttabs}>
           <div className={toggleState === 1 ? `${styles.content}  ${styles.activecontent}` : styles.content}>
-            <h2>Content 1</h2>
             <Favourites/>
           </div>
 

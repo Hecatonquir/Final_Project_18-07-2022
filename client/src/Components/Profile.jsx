@@ -19,18 +19,18 @@ function Profile() {
       {token ? (
         <>
          <Nav />
-         <Flex justifyContent='center' alignItems='center' height='90vh'>
-         <Box color='white' bg='gray' width='50%' padding={4}  borderRadius="2%">
+         <Flex justifyContent='center' alignItems='center' height='60vh'>
+         <Box color='white' bg='gray' width='40%' padding={4}  borderRadius="2%">
           <Flex justifyContent='center' alignItems='center' flexDirection='column'>
-          <Heading as='h4' marginBottom={6}>Profile</Heading>
-              <Image src={`${tokenDecoded.picture}`} alt="No img" marginBottom={6}></Image>
-              <Heading as='h3' marginBottom={6}>{`${tokenDecoded.name[0].toUpperCase()}${tokenDecoded.name.slice(1)}`}</Heading>
-              <Heading as='h3' marginBottom={6}>{tokenDecoded.city}</Heading>
-              <Text marginBottom={6}>{tokenDecoded.email}</Text>
+          <Heading as='h4' marginBottom={2}>Profile</Heading>
+              <Image src={`${tokenDecoded.picture}`} alt="No img" marginBottom={4}></Image>
+              <Heading as='h3' marginBottom={2}>{`${tokenDecoded.name[0].toUpperCase()}${tokenDecoded.name.slice(1)}`}</Heading>
+              <Heading as='h3' marginBottom={2}>{tokenDecoded.city}</Heading>
+              <Text marginBottom={2}>{tokenDecoded.email}</Text>
           </Flex>
           </Box>
          </Flex>
-         <Tabs/>
+         <Tabs />
         </>
       ) : (
         <Flex justifyContent='center' alignItems='center' height='90vh'>

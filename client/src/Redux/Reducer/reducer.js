@@ -1,4 +1,4 @@
-import {GET_EVENTS, GET_NAME_EVENTS,SHOW_EVENTS_USER, NEED_BACKUP, GET_DETAILS, ADD_REMOVE_FILTER,ADD_ITEM_CART, REMOVE_ITEM_CART, REMOVE_ALL_ITEM_CART, CLEAR_CART, UPDATE_STATE_FALSE, UPDATE_STATE_TRUE, CLEAR_DETAIL} from "../ActionTypes/actiontypes"
+import {GET_EVENTS, GET_NAME_EVENTS,ADD_TO_FAVOURITES,REMOVE_FROM_FAVOURITES, GET_USERS,SHOW_EVENTS_USER, NEED_BACKUP, GET_DETAILS, ADD_REMOVE_FILTER,ADD_ITEM_CART, REMOVE_ITEM_CART, REMOVE_ALL_ITEM_CART, CLEAR_CART, UPDATE_STATE_FALSE, UPDATE_STATE_TRUE, CLEAR_DETAIL} from "../ActionTypes/actiontypes"
 const initialState = {
 
     allEvents: [],
@@ -8,13 +8,18 @@ const initialState = {
     filteredEvents: [],
     eventDetail: [],
     loginState: false,
-    cart: []
+    allUsers: [],
+    cart: [],
+    favourites: []
 }
 
 export default function reducer(state = initialState,{type,payload}) {
     switch(type) {
         case GET_EVENTS:
             return{ ...state, allEvents: payload}
+
+            case GET_USERS:
+                return{...state, allUsers: payload}
 
             case NEED_BACKUP:
             return{ ...state, eventsBackUp: payload}
@@ -70,6 +75,19 @@ export default function reducer(state = initialState,{type,payload}) {
 
                     case UPDATE_STATE_FALSE:
                     return {...state, loginState: false}
+
+
+                    case ADD_TO_FAVOURITES: 
+            const item = state.allEvents.find((event) => event.ID === payload)
+            const itemFav = state.favourites.find((event) => event.ID === item.ID)
+            return itemFav
+            ? {...state}
+            : {...state, favourites: [...state.favourites, item]}
+
+
+            case REMOVE_FROM_FAVOURITES:
+                const filterFav = state.favourites.filter((item) => item.ID !== payload)
+                return {...state, favourites: filterFav}
 
             default:
                 return state

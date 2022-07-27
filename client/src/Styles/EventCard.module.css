@@ -66,3 +66,18 @@
 .link {
     text-decoration: none;
 }
+
+.favicon {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+}
+.containerButton {
+    display: flex;
+    justify-content: space-between
+}
+
+.ButtonFav {
+    margin-top: 13px;
+    border-radius: 50%;
+}

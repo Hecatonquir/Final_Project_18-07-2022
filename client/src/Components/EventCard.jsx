@@ -2,8 +2,10 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { addCart } from '../Redux/Actions/addToCart';
+import { addToFavourites } from '../Redux/Actions/addToFav';
 import styles from '../Styles/EventCard.module.css';
 import carticon from '../Media/carri.png'
+import fav from '../Media/favorito.png'
 import swal from 'sweetalert';
 import { Box, Heading, Image, Text, Button } from "@chakra-ui/react";
 
@@ -12,7 +14,11 @@ export default function EventCard({ id, image, name, price, quantity, city, loca
 	const dispatch = useDispatch()
 	function handleClick() {
 		dispatch(addCart(id));
-		swal('added product',{icon:"success"});
+		swal('Added product',{icon:"success"});
+	}
+	function handleClickFav() {
+		dispatch(addToFavourites(id));
+		swal('Added to favorite',{icon:"success"});
 	}
 
 	return (
@@ -26,11 +32,15 @@ export default function EventCard({ id, image, name, price, quantity, city, loca
 			<Text marginTop={2}>Category: {category}</Text>
 			<Text marginTop={2}>City: {city}</Text>
 			<Text marginTop={2}>Place: {location}</Text>
-
-			<Button className={styles.Button2} onClick={() => handleClick()}>
-				Add To
-				<img src={carticon} alt='not imgcart' className={styles.carticon}/>
-			</Button>
+			<div className={styles.containerButton}>
+				<Button className={styles.ButtonFav} >
+					<img src={fav} alt='not imgfav' className={styles.favicon} onClick={() => handleClickFav()}/>
+				</Button>
+				<Button className={styles.Button2} onClick={() => handleClick()}>
+					Add To
+					<img src={carticon} alt='not imgcart' className={styles.carticon}/>
+				</Button>
+			</div>
 		</Box>
 	);
 }
