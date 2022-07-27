@@ -34,7 +34,6 @@ const validatePartner = (req, res, next) => {
 
 	try {
 		const validToken = jwt.verify(accessToken, process.env.PRIVATEKEY);
-
 		if (validToken) {
 			if (validToken.role == 'Admin' || validToken.role === 'Partner') {
 				req.authenticated = true;
@@ -72,10 +71,7 @@ const validateAdmin = (req,res,next) => {
 		else{
 			return res.status(400).send("You can't access here")
 		}
-	} catch (error) {
-		res.status(400).json({ error });
 	}
-
 	else{
 		return res.status(401).send("Invalid Token")
 	}
@@ -184,6 +180,28 @@ const registerUser = async (req, res) => {
 			} else {
 				res.status(400).send('User already exist');
 			}
+
+			console.log(user_)
+			bcrypt.compare(password, user_[0].Password, (error, response) => {
+				if(response) {
+					console.log(user_[0].ID)
+					const id = user_[0].ID
+				const token = jwt.sign({id: id, role:user_[0].Role, name: user_[0].Name, email:user_[0].Email},process.env.PRIVATEKEY,{
+					expiresIn: 9999,
+				})
+				console.log(token)
+				res.cookie("access-token", token,{
+					maxAge: 60*60*1000,
+					httpOnly:false
+				})
+
+				return res.send("Logged In!")
+			} else{
+				return res.status(400).send("")
+			}
+				
+			})
+
 		} catch (error) {
 			res.status(400).send(error);
 		}
@@ -268,26 +286,29 @@ const loginRequest = async (req, res) => {
 			}
 			console.log(user_);
 			bcrypt.compare(password, user_[0].Password, (error, response) => {
-      
-				if(response) {
-					console.log(user_[0].ID)
-					const id = user_[0].ID
-				const token = jwt.sign({id: id, role:user_[0].Role, name: user_[0].Name, email:user_[0].Email},process.env.PRIVATEKEY,{
-					expiresIn: 9999,
-				})
-				console.log(token)
-				res.cookie("access-token", token,{
-					maxAge: 60*60*1000,
-					httpOnly:false
-				})
+				if (response) {
+					console.log(user_[0].ID);
+					const id = user_[0].ID;
+					const token = jwt.sign(
+						{ id: id, role: user_[0].Role, name: user_[0].Name, email: user_[0].Email },
+						process.env.PRIVATEKEY,
+						{
+							expiresIn: 5000,
+						}
+					);
+					console.log(token);
+					res.cookie('access-token', token, {
+						maxAge: 60 * 60 * 1000,
+						httpOnly: false,
+					});
 
-				return res.send("Logged In!")
-			} else{
-				return res.status(400).send("")
-			}
-				
-			})
-
+					return res.send('Logged In!');
+				} else {
+					return res.status(400).send('');
+				}
+			});
+		} else {
+			return res.status(400).send('');
 		}
 	} catch (error) {
 		return res.status(400).send('Username or Password invalid');
@@ -413,3 +434,4 @@ module.exports = {
 	roleChange,
 	addToCart,
 };
+
