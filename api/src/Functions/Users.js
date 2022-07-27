@@ -2,7 +2,7 @@ require('dotenv').config();
 const { Op } = require('sequelize');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { Events, Users, Supports Carts, sequelize } = require('../db.js');
+const { Events, Users, Supports, Carts, sequelize } = require('../db.js');
 
 
 // middleware
