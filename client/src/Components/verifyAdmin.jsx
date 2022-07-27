@@ -4,6 +4,7 @@ import axios from "axios"
 import {useNavigate} from "react-router-dom"
 import { UPDATE_STATE_TRUE } from '../Redux/ActionTypes/actiontypes'
 import { useDispatch } from 'react-redux'
+import styles from '../Styles/verifyAdmin.module.css'
 function Prepanel() {
 
     const navigate = useNavigate()
@@ -66,23 +67,25 @@ function Prepanel() {
     
        
             return (
-                <>
-
-                <h3>Control Panel</h3>
-                <form>
-                    <div>
-                <input name="username" type="text" value={user.username}onChange={(e) =>{handleChange(e)}}></input>
+                <div className={styles.Total}>
+                    <div className={styles.container}>
+                        <form className={styles.form}>
+                            <h2>Control Panel</h2>
+                            <div>
+                                <p>Username</p>
+                                <input placeholder='Enter your username' name="username" type="text" value={user.username}onChange={(e) =>{handleChange(e)}}></input>
+                            </div>
+                            <div>
+                                <p>Password</p>
+                                <input placeholder='Enter your password' name="password" type="text" value={user.password} onChange={(e) =>{handleChange(e)}}></input>
+                            </div>
+                            <div>
+                                <button onClick={(e) => handleSubmit(e,user)} >Log In</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <div>
-                <input name="password" type="text" value={user.password} onChange={(e) =>{handleChange(e)}}></input>
-                </div>
-                <button onClick={(e) => handleSubmit(e,user)} >Log In</button>
-                </form>
-                </>
             )
-        
-      
-
 }
 
 export default Prepanel
