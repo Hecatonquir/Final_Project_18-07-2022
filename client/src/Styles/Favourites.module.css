@@ -1,0 +1,53 @@
+.container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: space-around;
+}
+
+.cards {
+    background-color: white;
+    display: flex;
+    border-radius: 1rem;
+    margin: 1.5rem;
+    overflow: hidden;
+    width: 25rem;
+    height: 10rem;
+}
+
+.leftcolumn {
+    max-width: 10rem;
+    max-height: 10rem;
+}
+
+.rightcolumn {
+    max-width: 15rem;
+    max-height: 10rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.leftcolumn img {
+    width: 10rem;
+    height: 10rem;
+}
+
+.rightcolumn img {
+    width: 10rem;
+    height: 10rem;
+}
+
+.containerButton {
+    display: flex;
+    justify-content: right;
+}
+
+.buttonX {
+    background-color: rgb(188, 54, 54);;
+    border: 1px solid rgb(188, 54, 54);
+    padding: 5px 10px 5px 10px;
+    color: white;
+    border-radius: 5px;
+}

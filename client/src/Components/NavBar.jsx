@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import styles from '../Styles/NavBar.module.css';
 import { useAuth0 } from '@auth0/auth0-react';
 import imgcarrito from '../Media/carri.png';
+import imglogo from '../Media/logo2.png'
 import { isExpired, decodeToken } from 'react-jwt';
 import logOut from '../Redux/Actions/logOut';
 import Search from './Search.jsx';
@@ -26,6 +27,7 @@ function NavBar() {
 	const active = useSelector((state) => state.loginState);
 	const count = cart.length;
 
+
 	//  return (
 	//     <Box marginBottom={6} padding={2} bgGradient='linear(to-b, #a28748, #6c5727)'>
 	//       <Flex justifyContent="space-around" alignItems="center">
@@ -36,7 +38,7 @@ function NavBar() {
 	//         <Box>
 	//           <Flex alignItems="center" width="35em" justifyContent="space-between">
 	//             <Box>
-	//               {!isAuthenticated ? (
+	//               {!token || !active ? (
 	//                 <Button bg='#1a78b1' onClick={() => loginWithRedirect()}>
 	//                   <span>Log In/Sign Up</span>
 	//                 </Button>
@@ -45,12 +47,13 @@ function NavBar() {
 	//                   <span>Log Out</span>
 	//                 </Button>
 	//               )}
-	//               {isAuthenticated && (
+	//               {token &&tokenDecoded.role !== "Guest" && tokenDecoded.role !== "User" && active && (
 	//                 <Link to="/createEvent">
 	//                   <Button marginLeft={4} bg='#1a78b1'>Create an Event</Button>
 	//                 </Link>
 	//               )}
 	//             </Box>
+
 
 	//             {isAuthenticated ? (
 	//               <Box>
@@ -84,16 +87,12 @@ function NavBar() {
 
 	return (
 		<Box marginBottom={6} padding={2} bgGradient='linear(to-b, #a28748, #6c5727)'>
-			<Flex justifyContent='space-around' alignItems='center'>
-				<Box>
-					<Heading as='h4' color='white'>
-						Events Henry
-					</Heading>
-				</Box>
-				<Search />
-			</Flex>
-			<Box>
-				<Flex alignItems='center' width='35em' justifyContent='space-between'>
+				<Flex alignItems='center' width='100%' justifyContent='space-between' margin='0.5rem'>
+					<Box>
+						<Heading as='h4' color='white'>
+						<Image src={imglogo} alt='img logo' width='6.5rem' height='4rem' marginLeft='1rem' marginTop='0rem'/>
+						</Heading>
+					</Box>
 					<Box>
 						{!token || isExpired(token) || !active ? (
 							<Box>
@@ -135,20 +134,15 @@ function NavBar() {
 						</Box>
 					)}
 					<Box>
-						<Link to='/contact'>
-							<Button bg='#1a78b1'>
-								<Text>Contact Us</Text>
-							</Button>
-						</Link>
+						<Search />
 					</Box>
 					<Box>
 						<Link to='/cart'>
-							<Image src={imgcarrito} alt='img carrito' width={10} />
+							<Image src={imgcarrito} alt='img carrito' width='3rem' marginRight='1rem' />
 							<span className={styles.count}>{count}</span>
 						</Link>
 					</Box>
 				</Flex>
-			</Box>
 		</Box>
 	);
 }
