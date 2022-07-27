@@ -2,7 +2,11 @@
 const express = require('express');
 const routes = express.Router();
 
+<<<<<<< HEAD
 const { getAllUsers,loginRequestAP, getUserByName, getUserById, deleteUser, getPartnerCreatedEvents, loginRequest, registerUser, validateToken, validateAdmin, registerUserGmail, roleChange } = require('../Functions/Users.js');
+=======
+const { getAllUsers,loginRequestAP, getUserByName, getUserById, deleteUser, getPartnerCreatedEvents, loginRequest, registerUser, validateToken, validateAdmin, registerUserGmail,addToCart } = require('../Functions/Users.js');
+>>>>>>> Development
 
 routes.get('/all', getAllUsers); // --------------------Working
 routes.get('/name/:Name', getUserByName); // -----------Working
@@ -23,8 +27,12 @@ routes.post("/verify",validateToken, (req,res) => {
 routes.post("/registerG", registerUserGmail)
 
 
+<<<<<<< HEAD
 
 routes.put('/changeRole', validateAdmin, roleChange);
+=======
+routes.put('/addtocart/:IdUser/:IdEvento', addToCart);
+>>>>>>> Development
 
 routes.delete('/delete', deleteUser); // ------------------Working
 
