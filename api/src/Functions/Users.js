@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 const server = require('../app.js');
 
 =======
@@ -13,6 +14,10 @@ const { Events, Users, Supports, Carts, sequelize } = require('../db.js');
 const { Events, Users, Supports, Carts, sequelize } = require('../db.js');
 >>>>>>> Development
 
+=======
+
+const { Events, Users, Supports, Carts, sequelize } = require('../db.js');
+>>>>>>> Development
 
 // middleware
 
@@ -42,6 +47,7 @@ const validatePartner = (req, res, next) => {
 
 	try {
 		const validToken = jwt.verify(accessToken, process.env.PRIVATEKEY);
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -102,6 +108,8 @@ const roleChange = async(req,res) => {
 
 
 =======
+=======
+>>>>>>> Development
 		if (validToken) {
 			if (validToken.role == 'Admin' || validToken.role === 'Partner') {
 				req.authenticated = true;
@@ -121,10 +129,10 @@ const validateAdmin = (req, res, next) => {
 	const accessToken = req.cookies['access-token'];
 
 	if (!accessToken) return res.status(400).send('User is not authenticated');
-
 	try {
 		const validToken = jwt.verify(accessToken, process.env.PRIVATEKEY);
 
+<<<<<<< HEAD
 =======
 		if (validToken) {
 			if (validToken.role == 'Admin' || validToken.role === 'Partner') {
@@ -150,33 +158,71 @@ const validateAdmin = (req, res, next) => {
 		const validToken = jwt.verify(accessToken, process.env.PRIVATEKEY);
 
 >>>>>>> Development
+=======
+		console.log('validToken');
+
+>>>>>>> Development
 		if (validToken) {
 			if (validToken.role == 'Admin') {
 				req.authenticated = true;
-				return next();
+
+				next();
 			} else {
-				res.status(400).send("You can't access here");
+				return res.status(400).send("You can't access here");
 			}
-		} else {
-			res.status(401).send('Invalid Token');
 		}
+<<<<<<< HEAD
+	}
+	catch(error) {
+		return res.status(400).send("You can't access here")
+	}
+=======
 	} catch (error) {
 		res.status(400).json({ error });
 	}
+>>>>>>> b303f2bd155ad9b3ef043acba10972965f93c608
 };
 
+<<<<<<< HEAD
 ////////////////////////////////////////////////////////////////////////
 <<<<<<< HEAD
 >>>>>>> Development
 =======
 >>>>>>> Development
 const getAllUsers = async (req, res, next) => {
+=======
+///////////////////////////////////////////////////////////////////////////////////
+>>>>>>> Development
 
-	res.send(await Users.findAll({
-		include: {
-			model: Supports
-		}
-	}));
+const roleChange = async (req, res) => {
+	console.log(req.body.data.email);
+
+	try {
+		let coco = await Users.update(
+			{
+				Role: req.body.data.role,
+			},
+			{
+				where: {
+					Email: req.body.data.email,
+				},
+			}
+		);
+		console.log(coco);
+		return res.send('Updated');
+	} catch (error) {
+		return res.status(400).send('an Error has ocurred');
+	}
+};
+
+const getAllUsers = async (req, res, next) => {
+	res.send(
+		await Users.findAll({
+			include: {
+				model: Supports,
+			},
+		})
+	);
 };
 
 const getUserByName = async (req, res) => {
@@ -189,7 +235,7 @@ const getUserByName = async (req, res) => {
 				},
 			},
 			include: {
-				model: Supports
+				model: Supports,
 			},
 		});
 		res.send(usersBox);
@@ -245,6 +291,10 @@ const registerUser = async (req, res) => {
 			}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> Development
 			console.log(user_)
 			bcrypt.compare(password, user_[0].Password, (error, response) => {
 				if(response) {
@@ -265,11 +315,17 @@ const registerUser = async (req, res) => {
 			}
 				
 			})
+<<<<<<< HEAD
 =======
 		} catch (error) {
 			res.status(400).send(error);
 >>>>>>> Development
 =======
+		} catch (error) {
+			res.status(400).send(error);
+>>>>>>> Development
+=======
+
 		} catch (error) {
 			res.status(400).send(error);
 >>>>>>> Development
@@ -362,7 +418,7 @@ const loginRequest = async (req, res) => {
 						{ id: id, role: user_[0].Role, name: user_[0].Name, email: user_[0].Email },
 						process.env.PRIVATEKEY,
 						{
-							expiresIn: 5000,
+							expiresIn: 9999,
 						}
 					);
 					console.log(token);
@@ -376,8 +432,6 @@ const loginRequest = async (req, res) => {
 					return res.status(400).send('');
 				}
 			});
-		} else {
-			return res.status(400).send('');
 		}
 	} catch (error) {
 		return res.status(400).send('Username or Password invalid');
@@ -430,15 +484,15 @@ const loginRequestAP = async (req, res) => {
 
 const deleteUser = async (req, res) => {
 	try {
-		console.log(req.body)
+		console.log(req.body);
 		const targetUser = await Users.findOne({
 			where: {
-				Email: req.body.email
-			}
+				Email: req.body.email,
+			},
 		});
-		console.log(targetUser)
+		console.log(targetUser);
 		await targetUser.destroy();
-		console.log(targetUser)
+		console.log(targetUser);
 		return res.send(`User Deleted`);
 	} catch (error) {
 		res.status(404).send(error.stack);
@@ -467,7 +521,7 @@ const addToCart = async (req, res) => {
 
 	try {
 		let emptyCart = await Carts.findAll({ where: { userID: IdUser } });
-		let cart;		
+		let cart;
 		var id;
 		if (!emptyCart.length) {
 			cart = await Carts.create({ userID: IdUser });
@@ -502,6 +556,7 @@ module.exports = {
 	loginRequestAP,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	roleChange
 }
 =======
@@ -511,4 +566,10 @@ module.exports = {
 =======
 	addToCart,
 };
+>>>>>>> Development
+=======
+	roleChange,
+	addToCart,
+};
+
 >>>>>>> Development

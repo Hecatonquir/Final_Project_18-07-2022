@@ -4,12 +4,17 @@ const routes = express.Router();
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 const { getAllUsers,loginRequestAP, getUserByName, getUserById, deleteUser, getPartnerCreatedEvents, loginRequest, registerUser, validateToken, validateAdmin, registerUserGmail, roleChange } = require('../Functions/Users.js');
 =======
 const { getAllUsers,loginRequestAP, getUserByName, getUserById, deleteUser, getPartnerCreatedEvents, loginRequest, registerUser, validateToken, validateAdmin, registerUserGmail,addToCart } = require('../Functions/Users.js');
 >>>>>>> Development
 =======
 const { getAllUsers,loginRequestAP, getUserByName, getUserById, deleteUser, getPartnerCreatedEvents, loginRequest, registerUser, validateToken, validateAdmin, registerUserGmail,addToCart } = require('../Functions/Users.js');
+>>>>>>> Development
+=======
+
+const { getAllUsers,loginRequestAP, getUserByName, getUserById, deleteUser, getPartnerCreatedEvents, loginRequest, registerUser, validateToken, validateAdmin, registerUserGmail, roleChange, addToCart }= require("../Functions/Users")
 >>>>>>> Development
 
 routes.get('/all', getAllUsers); // --------------------Working
@@ -33,6 +38,7 @@ routes.post("/registerG", registerUserGmail)
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 routes.put('/changeRole', validateAdmin, roleChange);
 =======
@@ -40,6 +46,13 @@ routes.put('/addtocart/:IdUser/:IdEvento', addToCart);
 >>>>>>> Development
 =======
 routes.put('/addtocart/:IdUser/:IdEvento', addToCart);
+>>>>>>> Development
+=======
+
+routes.put('/changeRole', validateAdmin, roleChange);
+
+routes.put('/addtocart/:IdUser/:IdEvento', addToCart);
+
 >>>>>>> Development
 
 routes.delete('/delete', deleteUser); // ------------------Working
