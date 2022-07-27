@@ -1,3 +1,11 @@
+.Total {
+    background-color: #1C8DA3;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    
+}
+
 .nav {
     background-color: #1C517A;
     color: white;
@@ -89,4 +97,11 @@
 .icon {
     width: 20px;
     margin-right: 5px;
+}
+
+.text {
+    font-size: 50px;
+    text-align: center;
+    color: white;
+    margin-top: 150px
 }

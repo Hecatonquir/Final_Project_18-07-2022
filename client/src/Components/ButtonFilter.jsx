@@ -77,7 +77,7 @@ function ButtonFilter() {
 						onChange={(e) => handleSelect(e)}
 						color='gray'
 						id='city'>
-						<option value='City'>Filter By City</option>
+						<option value='City' hidden >Filter By City</option>
 						{cities.map((el, i) => (
 							<option key={i} onClick={() => filterItems(el)}>
 								{el}
@@ -91,7 +91,7 @@ function ButtonFilter() {
 						onChange={(e) => handleSelect(e)}
 						color='gray'
 						id='cat'>
-						<option value='Categories'>Filter By Categories</option>
+						<option value='Categories' hidden >Filter By Categories</option>
 						{categories.map((el, i) => (
 							<option key={i} onClick={() => filterItems(el)}>
 								{el}
