@@ -40,6 +40,7 @@ const createEvent = async (req, res) => {
 		res.status(400).send(error.stack);
 	}
 };
+
 const modifyEvent = async (req, res, next) => {
 	return 'hola';
 };
