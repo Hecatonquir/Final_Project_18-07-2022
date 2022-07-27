@@ -3,7 +3,7 @@ const express = require('express');
 const routes = express.Router();
 
 
-const { getAllUsers,loginRequestAP, getUserByName, getUserById, deleteUser, getPartnerCreatedEvents, loginRequest, registerUser, validateToken, validateAdmin, registerUserGmail, roleChange, addToCart 
+const { getAllUsers,loginRequestAP, getUserByName, getUserById, deleteUser, getPartnerCreatedEvents, loginRequest, registerUser, validateToken, validateAdmin, registerUserGmail, roleChange, addToCart }= require("../Functions/Users")
 
 routes.get('/all', getAllUsers); // --------------------Working
 routes.get('/name/:Name', getUserByName); // -----------Working
@@ -24,7 +24,6 @@ routes.post("/verify",validateToken, (req,res) => {
 routes.post("/registerG", registerUserGmail)
 
 
-<<<
 
 routes.put('/changeRole', validateAdmin, roleChange);
 

@@ -1,27 +1,27 @@
-import { React, useEffect, useState } from "react";
+import { React, useEffect, useState } from 'react';
 /* import { useDispatch } from 'react-redux'; */
-import { Link /* , useNavigate */ } from "react-router-dom";
-import { postEvent } from "../Redux/Actions/postEvent";
+import { Link /* , useNavigate */ } from 'react-router-dom';
+import { postEvent } from '../Redux/Actions/postEvent';
 import styles from '../Styles/AddEvent.module.css';
-import validate from "./Validations";
-import { Widget } from "@uploadcare/react-widget";
-import Nav from "./Nav";
+import validate from './Validations';
+import { Widget } from '@uploadcare/react-widget';
+import Nav from './Nav';
 import {
-  Box,
-  Heading,
-  Button,
-  FormControl,
-  FormLabel,
-  Input,
-  Select,
-  Text,
-  Flex,
-  Center,
-  SelectField,
-} from "@chakra-ui/react";
+	Box,
+	Heading,
+	Button,
+	FormControl,
+	FormLabel,
+	Input,
+	Select,
+	Text,
+	Flex,
+	Center,
+	SelectField,
+} from '@chakra-ui/react';
 
 function AddEvent() {
-  /* 	const dispatch = useDispatch();
+	/* 	const dispatch = useDispatch();
 	const history = useNavigate(); */
 	const [errors, setErrors] = useState({});
 	const Cities = ['CABA', 'La Plata', 'La Pampa', 'Bariloche'];
@@ -45,7 +45,7 @@ function AddEvent() {
 		date: '',
 		Hour: '',
 		Detail: '',
-		Category: ''
+		Category: '',
 	});
 
 	function handleChange(e) {
@@ -68,7 +68,7 @@ function AddEvent() {
 		} else {
 			postEvent({
 				Name: input.Name,
-				Image: [input.img1, input.img2, input.img3,input.img4, input.imgPc],
+				Image: [input.img1, input.img2, input.img3, input.img4, input.imgPc],
 				Carrousel: input.carrousel,
 				Price: Number(input.Price),
 				Quantity: Number(input.Quantity),
@@ -102,11 +102,6 @@ function AddEvent() {
 		}
 	}
 
-
-
-
-     
-
 	return (
 		<div>
 			<nav className={styles.nav}>
@@ -118,21 +113,29 @@ function AddEvent() {
 				<h1 className={styles.title}>Add Event</h1>
 				<form className={styles.form}>
 					<div className={styles.divForms}>
-						<span className={styles.labelName}><label htmlFor='Name'><span style={{ color: 'red' }}>*</span> Event name: &nbsp; </label></span>
-							<input
-								type='text'
-								value={input.Name}
-								id='Name'
-								name='Name'
-								placeholder='(Max 25 characters)'
-								required
-								className={styles.input}
-								onChange={(e) => handleChange(e)}
-							/>
+						<span className={styles.labelName}>
+							<label htmlFor='Name'>
+								<span style={{ color: 'red' }}>*</span> Event name: &nbsp;{' '}
+							</label>
+						</span>
+						<input
+							type='text'
+							value={input.Name}
+							id='Name'
+							name='Name'
+							placeholder='(Max 25 characters)'
+							required
+							className={styles.input}
+							onChange={(e) => handleChange(e)}
+						/>
 						{input.Name !== '' && errors.Name && <p style={{ color: 'red' }}>{errors.Name}</p>}
 					</div>
 					<div className={styles.divForms}>
-						<span className={styles.labelDate}><label htmlFor='Date'><span style={{ color: 'red' }}>*</span> Date: &nbsp;</label></span>
+						<span className={styles.labelDate}>
+							<label htmlFor='Date'>
+								<span style={{ color: 'red' }}>*</span> Date: &nbsp;
+							</label>
+						</span>
 						<input
 							type='datetime-local'
 							min={today}
@@ -144,10 +147,18 @@ function AddEvent() {
 						/>{' '}
 						{input.date !== '' && errors.date && <p style={{ color: 'red' }}>{errors.date}</p>}
 					</div>
-					
+
 					<div className={styles.divForms}>
-						<span className={styles.labelCity}><label htmlFor='City'><span style={{ color: 'red' }}>*</span> City: &nbsp;</label></span>
-						<select className={styles.input} value={input.City} name='City' onChange={(e) => handleChange(e)}>
+						<span className={styles.labelCity}>
+							<label htmlFor='City'>
+								<span style={{ color: 'red' }}>*</span> City: &nbsp;
+							</label>
+						</span>
+						<select
+							className={styles.input}
+							value={input.City}
+							name='City'
+							onChange={(e) => handleChange(e)}>
 							<option value='' hidden>
 								Select City
 							</option>
@@ -162,7 +173,11 @@ function AddEvent() {
 						{input.City !== '' && errors.City && <p style={{ color: 'red' }}>{errors.City}</p>}
 					</div>
 					<div className={styles.divForms}>
-						<span className={styles.labelLocation}><label htmlFor='Location'><span style={{ color: 'red' }}>*</span> Exact Location: &nbsp;</label></span>
+						<span className={styles.labelLocation}>
+							<label htmlFor='Location'>
+								<span style={{ color: 'red' }}>*</span> Exact Location: &nbsp;
+							</label>
+						</span>
 						<input
 							type='text'
 							value={input.Location}
@@ -171,11 +186,21 @@ function AddEvent() {
 							className={styles.input}
 							onChange={(e) => handleChange(e)}
 						/>
-						{input.Location !== '' && errors.Location && <p style={{ color: 'red' }}>{errors.Location}</p>}
+						{input.Location !== '' && errors.Location && (
+							<p style={{ color: 'red' }}>{errors.Location}</p>
+						)}
 					</div>
 					<div className={styles.divForms}>
-						<span className={styles.labelCategory}><label htmlFor='Category'><span style={{ color: 'red' }}>*</span> Category: &nbsp;</label></span>
-						<select className={styles.input} value={input.Category} name='Category' onChange={(e) => handleChange(e)}>
+						<span className={styles.labelCategory}>
+							<label htmlFor='Category'>
+								<span style={{ color: 'red' }}>*</span> Category: &nbsp;
+							</label>
+						</span>
+						<select
+							className={styles.input}
+							value={input.Category}
+							name='Category'
+							onChange={(e) => handleChange(e)}>
 							<option value='' hidden>
 								Select Category
 							</option>
@@ -187,12 +212,17 @@ function AddEvent() {
 								);
 							})}
 						</select>
-						{input.Category !== '' && errors.Category && <p style={{ color: 'red' }}>{errors.Category}</p>}
+						{input.Category !== '' && errors.Category && (
+							<p style={{ color: 'red' }}>{errors.Category}</p>
+						)}
 					</div>
 					<div className={styles.divForms}>
-						<span className={styles.labelImg1}><label htmlFor='img1'><span style={{ color: 'red' }}>*</span> Image 1: &nbsp; </label></span>
-						
-						
+						<span className={styles.labelImg1}>
+							<label htmlFor='img1'>
+								<span style={{ color: 'red' }}>*</span> Image 1: &nbsp;{' '}
+							</label>
+						</span>
+
 						<input
 							type='text'
 							value={input.img1}
@@ -205,7 +235,9 @@ function AddEvent() {
 						{input.img1 !== '' && errors.img1 && <p style={{ color: 'red' }}>{errors.img1}</p>}
 					</div>
 					<div className={styles.divForms}>
-						<span className={styles.labelImg}><label htmlFor='img2'>Image 2: &nbsp; </label></span>
+						<span className={styles.labelImg}>
+							<label htmlFor='img2'>Image 2: &nbsp; </label>
+						</span>
 						<input
 							type='text'
 							value={input.img2}
@@ -215,11 +247,13 @@ function AddEvent() {
 							className={styles.input}
 							onChange={(e) => handleChange(e)}
 						/>
-					
+
 						{errors.img2 && <p style={{ color: 'red' }}>{errors.img2}</p>}
 					</div>
 					<div className={styles.divForms}>
-						<span className={styles.labelImg}><label htmlFor='img3'>Image 3: &nbsp; </label></span>
+						<span className={styles.labelImg}>
+							<label htmlFor='img3'>Image 3: &nbsp; </label>
+						</span>
 						<input
 							type='text'
 							value={input.img3}
@@ -232,7 +266,9 @@ function AddEvent() {
 						{errors.img3 && <p style={{ color: 'red' }}>{errors.img3}</p>}
 					</div>
 					<div className={styles.divForms}>
-						<span className={styles.labelImg}><label htmlFor='img4'>Image 4: &nbsp; </label></span>
+						<span className={styles.labelImg}>
+							<label htmlFor='img4'>Image 4: &nbsp; </label>
+						</span>
 						<input
 							type='text'
 							value={input.img4}
@@ -245,26 +281,27 @@ function AddEvent() {
 						{errors.img4 && <p style={{ color: 'red' }}>{errors.img4}</p>}
 					</div>
 					<div className={styles.divForms}>
-						<span className={styles.labelImg}><label htmlFor='img4'>Image 4: &nbsp; </label></span>
+						<span className={styles.labelImg}>
+							<label htmlFor='img4'>Image 4: &nbsp; </label>
+						</span>
 						<Widget
-            				publicKey="4a7fa09f2188af9b76a3"
-           					 id="file"
-            				name="photos"
+							publicKey='4a7fa09f2188af9b76a3'
+							id='file'
+							name='photos'
 							value={input.imgPc}
-            				onChange={(e) => {
-				
-              				setInput( {
-								...input,
-								imgPc : e.originalUrl,
-								}                     
-								);
+							onChange={(e) => {
+								setInput({
+									...input,
+									imgPc: e.originalUrl,
+								});
 							}}
-           	 			/>
-          						
+						/>
 					</div>
 
 					<div className={styles.divForms}>
-						<span className={styles.labelCarrousel}><label htmlFor='carrousel'>Carrousel image: &nbsp; </label></span>
+						<span className={styles.labelCarrousel}>
+							<label htmlFor='carrousel'>Carrousel image: &nbsp; </label>
+						</span>
 						<input
 							type='text'
 							value={input.carrousel}
@@ -278,7 +315,9 @@ function AddEvent() {
 					</div>
 
 					<div className={styles.divForms}>
-						<span className={styles.labelPrice}><label htmlFor='Price'>Price: &nbsp;</label></span>
+						<span className={styles.labelPrice}>
+							<label htmlFor='Price'>Price: &nbsp;</label>
+						</span>
 						<input
 							type='number'
 							value={input.Price}
@@ -294,7 +333,9 @@ function AddEvent() {
 					{errors.Price && <p style={{ color: 'red' }}>{errors.Price}</p>}
 
 					<div className={styles.divForms}>
-						<span className={styles.labelQuantity}><label htmlFor='Quantity'>Quantity: &nbsp;</label></span>
+						<span className={styles.labelQuantity}>
+							<label htmlFor='Quantity'>Quantity: &nbsp;</label>
+						</span>
 						<input
 							type='number'
 							value={input.Quantity}
@@ -308,7 +349,9 @@ function AddEvent() {
 					{errors.Quantity && <p style={{ color: 'red' }}>{errors.Quantity}</p>}
 
 					<div className={styles.divForms}>
-						<span className={styles.labelRestrictions}><label htmlFor='Restrictions'>Restrictions: &nbsp;</label></span>
+						<span className={styles.labelRestrictions}>
+							<label htmlFor='Restrictions'>Restrictions: &nbsp;</label>
+						</span>
 						<textarea
 							type='text'
 							value={input.Restrictions}
@@ -319,7 +362,11 @@ function AddEvent() {
 						/>
 					</div>
 					<div className={styles.divForms}>
-						<span className={styles.labelDetail}><label htmlFor='Detail'><span style={{ color: 'red' }}>*</span> Detail: &nbsp;</label></span>
+						<span className={styles.labelDetail}>
+							<label htmlFor='Detail'>
+								<span style={{ color: 'red' }}>*</span> Detail: &nbsp;
+							</label>
+						</span>
 						<textarea
 							type='text'
 							value={input.Detail}

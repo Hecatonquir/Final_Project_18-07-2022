@@ -5,7 +5,6 @@ const jwt = require('jsonwebtoken');
 
 const { Events, Users, Supports, Carts, sequelize } = require('../db.js');
 
-
 // middleware
 
 const validateToken = (req, res, next) => {
@@ -50,74 +49,60 @@ const validatePartner = (req, res, next) => {
 	}
 };
 
+const validateAdmin = (req, res, next) => {
+	const accessToken = req.cookies['access-token'];
 
-const validateAdmin = (req,res,next) => {
-	
-	const accessToken = req.cookies["access-token"]
-	
-	if(!accessToken) return res.status(400).send("User is not authenticated")
+	if (!accessToken) return res.status(400).send('User is not authenticated');
 	try {
-		
-	 
-	const validToken = jwt.verify(accessToken, process.env.PRIVATEKEY)
+		const validToken = jwt.verify(accessToken, process.env.PRIVATEKEY);
 
-	console.log("validToken")
-		
-	if(validToken) {
-		if(validToken.role == "Admin") {
-		req.authenticated = true
-		
-		 next()
-		}
-		else{
-			return res.status(400).send("You can't access here")
+		console.log('validToken');
+
+		if (validToken) {
+			if (validToken.role == 'Admin') {
+				req.authenticated = true;
+
+				next();
+			} else {
+				return res.status(400).send("You can't access here");
+			}
 		}
 	} catch (error) {
 		res.status(400).json({ error });
 	}
+};
 
-	else{
-		return res.status(401).send("Invalid Token")
-	}
-	}catch (error) {
-		return res.status(400).json({error})
-		
-	}
-}
+///////////////////////////////////////////////////////////////////////////////////
 
-//////////////////////////////////////////////////////////////////////////////////
-
-const roleChange = async(req,res) => {
-	console.log(req.body.data.email)
+const roleChange = async (req, res) => {
+	console.log(req.body.data.email);
 
 	try {
-		let coco = await Users.update({
-			Role: req.body.data.role},
-			{where: {
-				Email:req.body.data.email
-			} }
-		)
-		console.log(coco)
-		return res.send("Updated")
+		let coco = await Users.update(
+			{
+				Role: req.body.data.role,
+			},
+			{
+				where: {
+					Email: req.body.data.email,
+				},
+			}
+		);
+		console.log(coco);
+		return res.send('Updated');
+	} catch (error) {
+		return res.status(400).send('an Error has ocurred');
 	}
-
-	catch(error) {
-		return res.status(400).send("an Error has ocurred")
-
-	}
-
-
-}
-
-
+};
 
 const getAllUsers = async (req, res, next) => {
-
-	res.send(await Users.findAll({
-		include: {
-			model: Supports
-		}
-	}));
+	res.send(
+		await Users.findAll({
+			include: {
+				model: Supports,
+			},
+		})
+	);
 };
 
 const getUserByName = async (req, res) => {
@@ -130,7 +115,7 @@ const getUserByName = async (req, res) => {
 				},
 			},
 			include: {
-				model: Supports
+				model: Supports,
 			},
 		});
 		res.send(usersBox);
@@ -268,26 +253,27 @@ const loginRequest = async (req, res) => {
 			}
 			console.log(user_);
 			bcrypt.compare(password, user_[0].Password, (error, response) => {
-      
-				if(response) {
-					console.log(user_[0].ID)
-					const id = user_[0].ID
-				const token = jwt.sign({id: id, role:user_[0].Role, name: user_[0].Name, email:user_[0].Email},process.env.PRIVATEKEY,{
-					expiresIn: 9999,
-				})
-				console.log(token)
-				res.cookie("access-token", token,{
-					maxAge: 60*60*1000,
-					httpOnly:false
-				})
+				if (response) {
+					console.log(user_[0].ID);
+					const id = user_[0].ID;
+					const token = jwt.sign(
+						{ id: id, role: user_[0].Role, name: user_[0].Name, email: user_[0].Email },
+						process.env.PRIVATEKEY,
+						{
+							expiresIn: 9999,
+						}
+					);
+					console.log(token);
+					res.cookie('access-token', token, {
+						maxAge: 60 * 60 * 1000,
+						httpOnly: false,
+					});
 
-				return res.send("Logged In!")
-			} else{
-				return res.status(400).send("")
-			}
-				
-			})
-
+					return res.send('Logged In!');
+				} else {
+					return res.status(400).send('');
+				}
+			});
 		}
 	} catch (error) {
 		return res.status(400).send('Username or Password invalid');
@@ -340,15 +326,15 @@ const loginRequestAP = async (req, res) => {
 
 const deleteUser = async (req, res) => {
 	try {
-		console.log(req.body)
+		console.log(req.body);
 		const targetUser = await Users.findOne({
 			where: {
-				Email: req.body.email
-			}
+				Email: req.body.email,
+			},
 		});
-		console.log(targetUser)
+		console.log(targetUser);
 		await targetUser.destroy();
-		console.log(targetUser)
+		console.log(targetUser);
 		return res.send(`User Deleted`);
 	} catch (error) {
 		res.status(404).send(error.stack);
@@ -377,7 +363,7 @@ const addToCart = async (req, res) => {
 
 	try {
 		let emptyCart = await Carts.findAll({ where: { userID: IdUser } });
-		let cart;		
+		let cart;
 		var id;
 		if (!emptyCart.length) {
 			cart = await Carts.create({ userID: IdUser });
