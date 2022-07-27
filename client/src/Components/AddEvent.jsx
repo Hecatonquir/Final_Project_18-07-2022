@@ -1,9 +1,10 @@
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 /* import { useDispatch } from 'react-redux'; */
 import { Link /* , useNavigate */ } from "react-router-dom";
 import { postEvent } from "../Redux/Actions/postEvent";
 import styles from '../Styles/AddEvent.module.css';
 import validate from "./Validations";
+import { Widget } from "@uploadcare/react-widget";
 import Nav from "./Nav";
 import {
   Box,
@@ -16,6 +17,7 @@ import {
   Text,
   Flex,
   Center,
+  SelectField,
 } from "@chakra-ui/react";
 
 function AddEvent() {
@@ -32,6 +34,7 @@ function AddEvent() {
 		img2: '',
 		img3: '',
 		img4: '',
+		imgPc: '',
 		carrousel: '',
 		Price: '',
 		Quantity: '',
@@ -65,7 +68,7 @@ function AddEvent() {
 		} else {
 			postEvent({
 				Name: input.Name,
-				Image: [input.img1, input.img2, input.img3, input.img4],
+				Image: [input.img1, input.img2, input.img3,input.img4, input.imgPc],
 				Carrousel: input.carrousel,
 				Price: Number(input.Price),
 				Quantity: Number(input.Quantity),
@@ -84,6 +87,7 @@ function AddEvent() {
 				img2: '',
 				img3: '',
 				img4: '',
+				imgPc: '',
 				carrousel: '',
 				Price: '',
 				Quantity: '',
@@ -98,212 +102,10 @@ function AddEvent() {
 		}
 	}
 
-// HACER
 
-//   return (
-//     <Box bgGradient="linear(to-r, #1c2333, #371a1e)" minHeight='100vh'>
-//       <Nav />
-//       <Flex justifyContent="center">
-//         <Box bg="gray" width="55%" padding={4} marginTop={4} borderRadius="2%">
-//           <Heading as="h1" color="white" fontSize="2em" textAlign="center">
-//             Add Event
-//           </Heading>
 
-//           <FormControl isRequired marginTop={4}>
-//             <FormLabel>Event name</FormLabel>
-//             <Input
-//               type="text"
-//               value={input.Name}
-//               id="Name"
-//               name="Name"
-//               placeholder="Name"
-//               onChange={(e) => handleChange(e)}
-//             />
-//             {errors.Name && <Text style={{ color: "red" }}>{errors.Name}</Text>}
-//           </FormControl>
 
-//           <FormControl isRequired>
-//             <FormLabel>Date</FormLabel>
-//             <Input
-//               type="date"
-//               value={input.Date}
-//               name="Date"
-//               onChange={(e) => handleChange(e)}
-//             />
-//             {errors.Date && <Text style={{ color: "red" }}>{errors.Date}</Text>}
-//           </FormControl>
-
-//           <FormControl isRequired>
-//             <FormLabel>City</FormLabel>
-//             <Select
-//               placeholder="Select city"
-//               value={input.City}
-//               name="City"
-//               onChange={(e) => handleChange(e)}
-//             >
-//               {Cities.map((p) => {
-//                 return (
-//                   <option key={p} value={p}>
-//                     {p}
-//                   </option>
-//                 );
-//               })}
-//             </Select>
-//             {errors.City && <Text style={{ color: "red" }}>{errors.City}</Text>}
-//           </FormControl>
-
-//           <FormControl isRequired>
-//             <FormLabel>Exact location</FormLabel>
-//             <Input
-//               type="text"
-//               value={input.Location}
-//               name="Location"
-//               placeholder="Exact Location"
-//               onChange={(e) => handleChange(e)}
-//             />
-//             {errors.Location && (
-//               <Text style={{ color: "red" }}>{errors.Location}</Text>
-//             )}
-//           </FormControl>
-
-//           <FormControl isRequired>
-//             <FormLabel>Category</FormLabel>
-//             <Select
-//               placeholder="Select category"
-//               value={input.Category}
-//               name="Category"
-//               onChange={(e) => handleChange(e)}
-//             >
-//               {Categories.map((p) => {
-//                 return (
-//                   <option key={p} value={p}>
-//                     {p}
-//                   </option>
-//                 );
-//               })}
-//             </Select>
-//             {errors.Category && (
-//               <Text style={{ color: "red" }}>{errors.Category}</Text>
-//             )}
-//           </FormControl>
-
-//           <FormControl isRequired>
-//             <FormLabel>Image 1</FormLabel>
-//             <Input
-//               type="text"
-//               value={input.img1}
-//               id="img1"
-//               name="img1"
-//               placeholder="img"
-//               onChange={(e) => handleChange(e)}
-//             />
-//             {errors.img1 && <Text style={{ color: "red" }}>{errors.img1}</Text>}
-//           </FormControl>
-
-//           <FormControl>
-//             <FormLabel>Image 2</FormLabel>
-//             <Input
-//               type="text"
-//               value={input.img2}
-//               id="img2"
-//               name="img2"
-//               placeholder="img"
-//               onChange={(e) => handleChange(e)}
-//             />
-//             {errors.img2 && <Text style={{ color: "red" }}>{errors.img2}</Text>}
-//           </FormControl>
-
-//           <FormControl>
-//             <FormLabel>Image 3</FormLabel>
-//             <Input
-//               type="text"
-//               value={input.img3}
-//               id="img3"
-//               name="img3"
-//               placeholder="img"
-//               onChange={(e) => handleChange(e)}
-//             />
-//             {errors.img3 && <Text style={{ color: "red" }}>{errors.img3}</Text>}
-//           </FormControl>
-
-//           <FormControl>
-//             <FormLabel>Image 4</FormLabel>
-//             <Input
-//               type="text"
-//               value={input.img4}
-//               id="img4"
-//               name="img4"
-//               placeholder="img"
-//               onChange={(e) => handleChange(e)}
-//             />
-//             {errors.img4 && <Text style={{ color: "red" }}>{errors.img4}</Text>}
-//           </FormControl>
-
-//           <FormControl>
-//             <FormLabel>Price</FormLabel>
-//             <Input
-//               type="number"
-//               value={input.Price}
-//               id="Price"
-//               name="Price"
-//               placeholder="Price"
-//               onChange={(e) => handleChange(e)}
-//             />
-//           </FormControl>
-
-//           <FormControl>
-//             <FormLabel>Quantity</FormLabel>
-//             <Input
-//               type="text"
-//               value={input.Quantity}
-//               name="Quantity"
-//               placeholder="Quantity"
-//               onChange={(e) => handleChange(e)}
-//             />
-//           </FormControl>
-
-//           <FormControl>
-//             <FormLabel>Restrictions</FormLabel>
-//             <Input
-//               type="text"
-//               value={input.Restrictions}
-//               name="Restrictions"
-//               placeholder="Separate Restrictions using /"
-//               onChange={(e) => handleChange(e)}
-//             />
-//           </FormControl>
-
-//           <FormControl>
-//             <FormLabel>Detail</FormLabel>
-//             <Input
-//               type="text"
-//               value={input.Detail}
-//               name="Detail"
-//               placeholder="Separate Detail using /"
-//               onChange={(e) => handleChange(e)}
-//             />
-//           </FormControl>
-
-//           <Center>
-//             <Button
-//               marginTop={4}
-//               onClick={(e) => handleSubmit(e)}
-//               disabled={
-//                 Object.keys(errors).length
-//                   ? errors.check === "approved"
-//                     ? false
-//                     : true
-//                   : true
-//               }
-//             >
-//               Create
-//             </Button>
-//           </Center>
-//         </Box>
-//       </Flex>
-//     </Box>
-//   );
-
+     
 
 	return (
 		<div>
@@ -329,7 +131,6 @@ function AddEvent() {
 							/>
 						{input.Name !== '' && errors.Name && <p style={{ color: 'red' }}>{errors.Name}</p>}
 					</div>
-					
 					<div className={styles.divForms}>
 						<span className={styles.labelDate}><label htmlFor='Date'><span style={{ color: 'red' }}>*</span> Date: &nbsp;</label></span>
 						<input
@@ -343,17 +144,7 @@ function AddEvent() {
 						/>{' '}
 						{input.date !== '' && errors.date && <p style={{ color: 'red' }}>{errors.date}</p>}
 					</div>
-					{/* <div>
-						<label htmlFor='Hour'>* Hour: &nbsp;</label>
-						<input
-							type='time'
-							value={input.Hour}
-							name='Hour'
-							placeholder='Hour : minute'
-							onChange={(e) => handleChange(e)}
-						/>{' '}
-						{errors.Hour && <p style={{ color: 'red' }}>{errors.Hour}</p>}
-					</div> */}
+					
 					<div className={styles.divForms}>
 						<span className={styles.labelCity}><label htmlFor='City'><span style={{ color: 'red' }}>*</span> City: &nbsp;</label></span>
 						<select className={styles.input} value={input.City} name='City' onChange={(e) => handleChange(e)}>
@@ -400,6 +191,8 @@ function AddEvent() {
 					</div>
 					<div className={styles.divForms}>
 						<span className={styles.labelImg1}><label htmlFor='img1'><span style={{ color: 'red' }}>*</span> Image 1: &nbsp; </label></span>
+						
+						
 						<input
 							type='text'
 							value={input.img1}
@@ -422,6 +215,7 @@ function AddEvent() {
 							className={styles.input}
 							onChange={(e) => handleChange(e)}
 						/>
+					
 						{errors.img2 && <p style={{ color: 'red' }}>{errors.img2}</p>}
 					</div>
 					<div className={styles.divForms}>
@@ -452,16 +246,21 @@ function AddEvent() {
 					</div>
 					<div className={styles.divForms}>
 						<span className={styles.labelImg}><label htmlFor='img4'>Image 4: &nbsp; </label></span>
-						<input
-							type='text'
-							value={input.img4}
-							id='img4'
-							name='img4'
-							placeholder='Insert URL here'
-							className={styles.input}
-							onChange={(e) => handleChange(e)}
-						/>
-						{errors.img4 && <p style={{ color: 'red' }}>{errors.img4}</p>}
+						<Widget
+            				publicKey="4a7fa09f2188af9b76a3"
+           					 id="file"
+            				name="photos"
+							value={input.imgPc}
+            				onChange={(e) => {
+				
+              				setInput( {
+								...input,
+								imgPc : e.originalUrl,
+								}                     
+								);
+							}}
+           	 			/>
+          						
 					</div>
 
 					<div className={styles.divForms}>
