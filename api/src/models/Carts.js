@@ -1,21 +1,26 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-	sequelize.define('carts',
+	sequelize.define(
+		'carts',
 		{
-			cartID: {
+			ID: {
 				type: DataTypes.UUID,
 				primaryKey: true,
 				defaultValue: DataTypes.UUIDV4,
 			},
-			date: {
-				type: DataTypes.DATEONLY,
-                allowNull: false
+			items: {
+				type: DataTypes.ARRAY(DataTypes.STRING),
+				defaultValue: [],
 			},
-            time: {
-                type: DataTypes.TIME,
-                allowNull: false
-            }
+			/* date: {
+				type: DataTypes.DATEONLY,
+				allowNull: false,
+			},
+			time: {
+				type: DataTypes.TIME,
+				allowNull: false,
+			}, */
 		},
 		{ timestamps: false }
 	);
