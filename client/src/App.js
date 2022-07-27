@@ -12,6 +12,7 @@ import About from './Components/AboutUs'
 import Prepanel from './Components/verifyAdmin';
 import PageNotFound from './Components/Page404';
 import AdminPanel from './Components/AdminPanel';
+import FormPartner from './Components/FormPartner';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
       <Route path='/controlPanel' element={<Prepanel/>}/>
       <Route path='*' element={<PageNotFound/>}/>
       <Route path='/welcomeA' element={<AdminPanel/>}/>
+      <Route path='/reqPartner' element={<FormPartner/>}/>
       </Routes>
     </div>
   );
