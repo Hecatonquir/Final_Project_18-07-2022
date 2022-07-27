@@ -45,9 +45,6 @@ module.exports = (sequelize) => {
 			Favourites: {
 				type: DataTypes.ARRAY(DataTypes.STRING),
 			},
-			Cart: {
-				type: DataTypes.ARRAY(DataTypes.STRING),
-			},
 			shoppingHistory: {
 				type: DataTypes.ARRAY(DataTypes.STRING),
 			},
