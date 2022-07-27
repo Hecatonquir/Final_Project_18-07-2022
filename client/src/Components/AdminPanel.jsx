@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { deleteUserDB } from '../Redux/Actions/deleteUser'
 import {deleteEvent} from "../Redux/Actions/deleteEvent"
 import getEvents from '../Redux/Actions/getEvents'
+
+import { changeRole } from '../Redux/Actions/updateRole'
 import styles from '../Styles/AdminPanel.module.css'
 
 
@@ -31,6 +33,7 @@ let [userADM, setUser] = useState({
     posts: ""
 })
 
+let [actRoles, setAct] = useState(false)
 
 function handleChange(e) {
 
@@ -74,6 +77,7 @@ useEffect(() => {
             </div>
         </div>
 
+
         <div className={styles.rightcolumn}>
             <div className={styles.containerinput}>
             {admin && <input name="posts" type="text"  placeholder="Search Event" value={userADM.posts} onChange={(e) =>handleChange(e)} className={styles.input}></input>}
@@ -82,7 +86,7 @@ useEffect(() => {
             <div>
             {events.length && admin && events.filter(el=> el.Name.toLowerCase().includes(userADM.posts.toLowerCase()) && userADM.posts !== "" ? el: null).slice(0,3).map((el,i) => (
                 <div key={i}>
-                    <button onClick={() =>  {return deleteEvent(el.ID), setUser({username: "",posts: ""})}}>Delete Event</button>
+                 <button onClick={() =>  {return deleteEvent(el.ID), setUser({username: "",posts: ""})}}>Delete Event</button>
                     <button onClick={()=>{}}>Update Event</button>
 
                     <span>Name: {el.Name} || Price: {el.Price} || City: {el.City} || Quantity: {el.Quantity} || Partner: </span>
