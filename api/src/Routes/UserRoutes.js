@@ -25,6 +25,6 @@ routes.post("/registerG", registerUserGmail)
 
 routes.put('/addtocart/:IdUser/:IdEvento', addToCart);
 
-routes.delete('/:id', deleteUser); // ------------------Working
+routes.delete('/delete', deleteUser); // ------------------Working
 
 module.exports = routes;

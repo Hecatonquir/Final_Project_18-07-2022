@@ -2,7 +2,8 @@ require('dotenv').config();
 const { Op } = require('sequelize');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { Events, Users, Carts, sequelize } = require('../db.js');
+const { Events, Users, Supports Carts, sequelize } = require('../db.js');
+
 
 // middleware
 
@@ -73,13 +74,12 @@ const validateAdmin = (req, res, next) => {
 
 ////////////////////////////////////////////////////////////////////////
 const getAllUsers = async (req, res, next) => {
-	res.send(
-		await Users.findAll({
-			include: {
-				model: Events,
-			},
-		})
-	);
+
+	res.send(await Users.findAll({
+		include: {
+			model: Supports
+		}
+	}));
 };
 
 const getUserByName = async (req, res) => {
@@ -90,6 +90,9 @@ const getUserByName = async (req, res) => {
 				Name: {
 					[Op.iLike]: '%' + Name + '%',
 				},
+			},
+			include: {
+				model: Supports
 			},
 		});
 		res.send(usersBox);
@@ -302,10 +305,16 @@ const loginRequestAP = async (req, res) => {
 
 const deleteUser = async (req, res) => {
 	try {
-		const targetUser = await Users.findByPk(req.params.id);
-		const userBox = targetUser;
+		console.log(req.body)
+		const targetUser = await Users.findOne({
+			where: {
+				Email: req.body.email
+			}
+		});
+		console.log(targetUser)
 		await targetUser.destroy();
-		res.send(`User "${userBox.Name}" deleted successfully`);
+		console.log(targetUser)
+		return res.send(`User Deleted`);
 	} catch (error) {
 		res.status(404).send(error.stack);
 	}

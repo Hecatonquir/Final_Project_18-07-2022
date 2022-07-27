@@ -5,7 +5,9 @@ import {decodeToken} from "react-jwt"
 import PageNotFound from './Page404'
 import getUsers from '../Redux/Actions/getUsers'
 import { useDispatch, useSelector } from 'react-redux'
-
+import { deleteUserDB } from '../Redux/Actions/deleteUser'
+import {deleteEvent} from "../Redux/Actions/deleteEvent"
+import getEvents from '../Redux/Actions/getEvents'
 
 
  function AdminPanel() {
@@ -18,6 +20,7 @@ import { useDispatch, useSelector } from 'react-redux'
 	let tokenDecoded = decodeToken(token);
 
 let usersBD = useSelector(state => state.allUsers)
+let events = useSelector(state => state.allEvents)
 
 let dispatch = useDispatch()
 let navigate = useNavigate()
@@ -42,6 +45,7 @@ useEffect(() => {
     axios("http://localhost:3001/user/admin", {withCredentials: true})
     .then(response => setAdmin(true))
     .then(response => dispatch(getUsers()))
+    .then(response => dispatch(getEvents()))
     .catch(error => navigate("/"))
 
     
@@ -64,6 +68,19 @@ useEffect(() => {
        {admin && <input name="username" type="text"  placeholder="Search User" value={userADM.username} onChange={(e) =>handleChange(e)}></input>}
        </div>
 
+       <div>
+       {events.length && admin && events.filter(el=> el.Name.toLowerCase().includes(userADM.posts.toLowerCase()) && userADM.posts !== "" ? el: null).slice(0,3).map((el,i) => (
+        <div key={i}>
+            <button onClick={() =>  {return deleteEvent(el.ID), setUser({username: "",posts: ""})}}>Delete Event</button>
+            <button onClick={()=>{}}>Update Event</button>
+
+            <span>Name: {el.Name} || Price: {el.Price} || City: {el.City} || Quantity: {el.Quantity} || Partner: </span>
+        </div>
+     
+       ))}
+
+       </div>
+
         <div>
        {admin && <input name="posts" type="text"  placeholder="Search Event" value={userADM.posts} onChange={(e) =>handleChange(e)}></input>}
        </div>
@@ -71,9 +88,10 @@ useEffect(() => {
        <div>
        {usersBD.length && admin && usersBD.filter(el=> el.Name.toLowerCase().includes(userADM.username.toLowerCase()) && userADM.username !== "" ? el: null).slice(0,3).map((el,i) => (
         <div key={i}>
-            <button>Delete User</button>
-            <button>Change Role</button>
-            
+            <button onClick={() => {deleteUserDB(el.Email,dispatch)
+                 setUser({username: "",posts: ""})}}>Delete User</button>
+            <button onClick={()=> {}}>Change Role</button>
+
             <span>User: {el.Name} || Email: {el.Email} || Role: {el.Role}</span>
         </div>
      
@@ -90,5 +108,6 @@ useEffect(() => {
   
 
 }
+
 
 export default AdminPanel

@@ -189,7 +189,7 @@ const userApi = [
 		ID: 'd33f6250-6244-45d4-a5df-91e9657c6570',
 		Name: 'Maxi',
 		LoggedIn: false,
-		Email: 'tuemail@gmail.com',
+		Email: 'tuemail7@gmail.com',
 		Image:
 			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5Xow0BlUAfuXQPmpx1w8jdAZs_QOZin3CcMM6284qfkyc3NZ7DE1n5TOE8uNWVu8E3T8&usqp=CAU',
 		Role: 'Guest',
@@ -205,7 +205,7 @@ const userApi = [
 	{
 		Name: 'Rober',
 		LoggedIn: false,
-		Email: 'tuemail@gmail.com',
+		Email: 'tuemail6@gmail.com',
 		Image:
 			'https://upload.wikimedia.org/wikipedia/commons/f/ff/Robert_Pattinson_Premiere_of_The_Lost_City_of_Z_at_Zoo_Palast_Berlinale_2017_02.jpg',
 		Role: 'User',
@@ -221,7 +221,7 @@ const userApi = [
 	{
 		Name: 'Cesar',
 		LoggedIn: false,
-		Email: 'tuemail@gmail.com',
+		Email: 'tuemail5@gmail.com',
 		Image:
 			'https://mediaslide-europe.storage.googleapis.com/metromodels/pictures/763/629/large-1519386142-ad6df5799ba9ce3aa903de4b3874d544.jpg',
 		Role: 'Partner',
@@ -237,7 +237,7 @@ const userApi = [
 	{
 		Name: 'Sol',
 		LoggedIn: false,
-		Email: 'tuemail@gmail.com',
+		Email: 'tuemail4@gmail.com',
 		Image:
 			'https://i.pinimg.com/736x/33/50/30/335030fe4471cec50f022d352f81aeef--valentina-zenere-famous-models.jpg',
 		Role: 'Admin',
@@ -253,7 +253,7 @@ const userApi = [
 	{
 		Name: 'Eliseo',
 		LoggedIn: false,
-		Email: 'tuemail@gmail.com',
+		Email: 'tuemail3@gmail.com',
 		Image: 'https://i.pinimg.com/736x/91/e9/87/91e987f844df64dd4c77ebc406846502.jpg',
 		Role: 'Guest',
 		Favourites: ['aca tendría que tener relación con la tabla de eventos'],
@@ -268,7 +268,7 @@ const userApi = [
 	{
 		Name: 'Eric',
 		LoggedIn: false,
-		Email: 'tuemail@gmail.com',
+		Email: 'tuemail2@gmail.com',
 		Image:
 			'https://i0.wp.com/fashionablymale.net/wp-content/uploads/2021/09/Eric-Brezillon-by-Maurizio-Montani5.jpg?resize=819%2C1024&ssl=1',
 		Role: 'User',
@@ -284,7 +284,7 @@ const userApi = [
 	{
 		Name: 'Jhonatan',
 		LoggedIn: false,
-		Email: 'tuemail@gmail.com',
+		Email: 'tuemail1@gmail.com',
 		Image:
 			'https://i.pinimg.com/736x/8a/ef/a8/8aefa8e9c6838d5156161847c8a59e8a--famous-guys-famous-people.jpg',
 		Role: 'Partner',
