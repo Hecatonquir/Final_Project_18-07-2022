@@ -2,22 +2,8 @@ require('dotenv').config();
 const { Op } = require('sequelize');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-const server = require('../app.js');
-
-=======
-const { Events, Users, Supports, Carts, sequelize } = require('../db.js');
->>>>>>> Development
-=======
-const { Events, Users, Supports, Carts, sequelize } = require('../db.js');
->>>>>>> Development
-
-=======
 
 const { Events, Users, Supports, Carts, sequelize } = require('../db.js');
->>>>>>> Development
 
 // middleware
 
@@ -47,69 +33,6 @@ const validatePartner = (req, res, next) => {
 
 	try {
 		const validToken = jwt.verify(accessToken, process.env.PRIVATEKEY);
-<<<<<<< HEAD
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-const validateAdmin = (req,res,next) => {
-	
-	const accessToken = req.cookies["access-token"]
-	
-	if(!accessToken) return res.status(400).send("User is not authenticated")
-	try {
-		
-	 
-	const validToken = jwt.verify(accessToken, process.env.PRIVATEKEY)
-
-	console.log("validToken")
-		
-	if(validToken) {
-		if(validToken.role == "Admin") {
-		req.authenticated = true
-		
-		 next()
-		}
-		else{
-			return res.status(400).send("You can't access here")
-		}
-	}
-	else{
-		return res.status(401).send("Invalid Token")
-	}
-	}catch (error) {
-		return res.status(400).json({error})
-		
-	}
-}
-
-//////////////////////////////////////////////////////////////////////////////////
-
-const roleChange = async(req,res) => {
-	console.log(req.body.data.email)
-
-	try {
-		let coco = await Users.update({
-			Role: req.body.data.role},
-			{where: {
-				Email:req.body.data.email
-			} }
-		)
-		console.log(coco)
-		return res.send("Updated")
-	}
-
-	catch(error) {
-		return res.status(400).send("an Error has ocurred")
-
-	}
-
-
-}
-
-
-=======
-=======
->>>>>>> Development
 		if (validToken) {
 			if (validToken.role == 'Admin' || validToken.role === 'Partner') {
 				req.authenticated = true;
@@ -132,36 +55,8 @@ const validateAdmin = (req, res, next) => {
 	try {
 		const validToken = jwt.verify(accessToken, process.env.PRIVATEKEY);
 
-<<<<<<< HEAD
-=======
-		if (validToken) {
-			if (validToken.role == 'Admin' || validToken.role === 'Partner') {
-				req.authenticated = true;
-				return next();
-			} else {
-				res.status(400).send("You can't access here");
-			}
-		} else {
-			res.status(401).send('Invalid Token');
-		}
-	} catch (error) {
-		res.status(400).json({ error });
-	}
-};
-
-const validateAdmin = (req, res, next) => {
-	const accessToken = req.cookies['access-token'];
-
-	if (!accessToken) return res.status(400).send('User is not authenticated');
-
-	try {
-		const validToken = jwt.verify(accessToken, process.env.PRIVATEKEY);
-
->>>>>>> Development
-=======
 		console.log('validToken');
 
->>>>>>> Development
 		if (validToken) {
 			if (validToken.role == 'Admin') {
 				req.authenticated = true;
@@ -171,28 +66,12 @@ const validateAdmin = (req, res, next) => {
 				return res.status(400).send("You can't access here");
 			}
 		}
-<<<<<<< HEAD
-	}
-	catch(error) {
-		return res.status(400).send("You can't access here")
-	}
-=======
 	} catch (error) {
 		res.status(400).json({ error });
 	}
->>>>>>> b303f2bd155ad9b3ef043acba10972965f93c608
 };
 
-<<<<<<< HEAD
-////////////////////////////////////////////////////////////////////////
-<<<<<<< HEAD
->>>>>>> Development
-=======
->>>>>>> Development
-const getAllUsers = async (req, res, next) => {
-=======
 ///////////////////////////////////////////////////////////////////////////////////
->>>>>>> Development
 
 const roleChange = async (req, res) => {
 	console.log(req.body.data.email);
@@ -289,12 +168,7 @@ const registerUser = async (req, res) => {
 			} else {
 				res.status(400).send('User already exist');
 			}
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
->>>>>>> Development
 			console.log(user_)
 			bcrypt.compare(password, user_[0].Password, (error, response) => {
 				if(response) {
@@ -315,20 +189,9 @@ const registerUser = async (req, res) => {
 			}
 				
 			})
-<<<<<<< HEAD
-=======
-		} catch (error) {
-			res.status(400).send(error);
->>>>>>> Development
-=======
-		} catch (error) {
-			res.status(400).send(error);
->>>>>>> Development
-=======
 
 		} catch (error) {
 			res.status(400).send(error);
->>>>>>> Development
 		}
 	}
 };
@@ -554,22 +417,7 @@ module.exports = {
 	validateAdmin,
 	registerUserGmail,
 	loginRequestAP,
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-	roleChange
-}
-=======
-	addToCart,
-};
->>>>>>> Development
-=======
-	addToCart,
-};
->>>>>>> Development
-=======
 	roleChange,
 	addToCart,
 };
 
->>>>>>> Development

@@ -2,20 +2,8 @@
 const express = require('express');
 const routes = express.Router();
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-const { getAllUsers,loginRequestAP, getUserByName, getUserById, deleteUser, getPartnerCreatedEvents, loginRequest, registerUser, validateToken, validateAdmin, registerUserGmail, roleChange } = require('../Functions/Users.js');
-=======
-const { getAllUsers,loginRequestAP, getUserByName, getUserById, deleteUser, getPartnerCreatedEvents, loginRequest, registerUser, validateToken, validateAdmin, registerUserGmail,addToCart } = require('../Functions/Users.js');
->>>>>>> Development
-=======
-const { getAllUsers,loginRequestAP, getUserByName, getUserById, deleteUser, getPartnerCreatedEvents, loginRequest, registerUser, validateToken, validateAdmin, registerUserGmail,addToCart } = require('../Functions/Users.js');
->>>>>>> Development
-=======
 
-const { getAllUsers,loginRequestAP, getUserByName, getUserById, deleteUser, getPartnerCreatedEvents, loginRequest, registerUser, validateToken, validateAdmin, registerUserGmail, roleChange, addToCart }= require("../Functions/Users")
->>>>>>> Development
+const { getAllUsers,loginRequestAP, getUserByName, getUserById, deleteUser, getPartnerCreatedEvents, loginRequest, registerUser, validateToken, validateAdmin, registerUserGmail, roleChange, addToCart } = require('../Functions/Users.js');
 
 routes.get('/all', getAllUsers); // --------------------Working
 routes.get('/name/:Name', getUserByName); // -----------Working
@@ -36,24 +24,12 @@ routes.post("/verify",validateToken, (req,res) => {
 routes.post("/registerG", registerUserGmail)
 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-routes.put('/changeRole', validateAdmin, roleChange);
-=======
-routes.put('/addtocart/:IdUser/:IdEvento', addToCart);
->>>>>>> Development
-=======
-routes.put('/addtocart/:IdUser/:IdEvento', addToCart);
->>>>>>> Development
-=======
 
 routes.put('/changeRole', validateAdmin, roleChange);
 
 routes.put('/addtocart/:IdUser/:IdEvento', addToCart);
 
->>>>>>> Development
 
 routes.delete('/delete', deleteUser); // ------------------Working
 
