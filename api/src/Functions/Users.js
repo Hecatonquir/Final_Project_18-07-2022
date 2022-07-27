@@ -66,10 +66,16 @@ const validateAdmin = (req, res, next) => {
 				return res.status(400).send("You can't access here");
 			}
 		}
+<<<<<<< HEAD
 	}
 	catch(error) {
 		return res.status(400).send("You can't access here")
 	}
+=======
+	} catch (error) {
+		res.status(400).json({ error });
+	}
+>>>>>>> b303f2bd155ad9b3ef043acba10972965f93c608
 };
 
 ///////////////////////////////////////////////////////////////////////////////////
