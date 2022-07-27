@@ -22,7 +22,7 @@ module.exports = (sequelize) => {
 			},
 			Password: {
 				type: DataTypes.STRING,
-				allowNull: false,
+				/* allowNull: false, */
 			},
 			Email: {
 				type: DataTypes.STRING,
@@ -43,9 +43,6 @@ module.exports = (sequelize) => {
 				defaultValue: 'Guest',
 			},
 			Favourites: {
-				type: DataTypes.ARRAY(DataTypes.STRING),
-			},
-			Cart: {
 				type: DataTypes.ARRAY(DataTypes.STRING),
 			},
 			shoppingHistory: {
