@@ -41,18 +41,19 @@
 
 .cards {
     background-color: white;
+    display: flex;
     border-radius: 1rem;
     box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.2);
-    display: flex;
-    margin: 2rem;
+    margin: 1.5rem;
     overflow: hidden;
     width: 60rem;
     height: 30rem;
-    color: #1C517A;
 }
 
 .leftcolumn {
-    max-width: 35rem;
+    max-width: 30rem;
+    display: flex;
+    flex-direction: column;
 }
 
 .rightcolumn {
@@ -69,19 +70,24 @@
 }
 
 
-/* .Button2 {
+.Button2 {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
     cursor: pointer;
     color: white;
     font-weight: bolder;
     background-color: #229ddb;
-    border-radius: 70px;
     font-size: 12px;
-    padding: 1px 20px 1px 20px;
+    padding: 1px 10px 1px 10px;
     border: none;
     margin-top: 20px;
     margin-bottom: 20px;
-    align-self: flex-end;
-}*/
+    border-radius: 5px;
+
+}
 
 .img1 {
     width: 30rem;
@@ -120,3 +126,15 @@
     margin-left: 2rem;
 }
 
+.favicon {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+}
+ 
+.containerButton {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 10px;
+}
