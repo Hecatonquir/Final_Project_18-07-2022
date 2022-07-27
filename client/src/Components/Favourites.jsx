@@ -21,7 +21,7 @@ export default function Favourites() {
                     fav.length && fav.map( (item) => (
                         <div key={item.ID} className={styles.cards}>
                                 <div className={styles.leftcolumn}>
-                                    <img src={item.Image} alt='not img' />
+                                    <img src={item.Image[0]} alt='not img' />
                                 </div>
                                 <div className={styles.rightcolumn}>
                                     <h6>{item.Name}</h6>

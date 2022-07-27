@@ -44,12 +44,12 @@
 
 .count {
     position: absolute;
-    top: -3px;
+    top: -1px;
     right: 18px;
     background-color: #fff;
     padding: 1px 6px;
     border-radius: 50%;
-    color: red;
+    color: rgb(236, 72, 72);
     font-weight: 700;
     font-family: system-ui;
     line-height: 18px;
