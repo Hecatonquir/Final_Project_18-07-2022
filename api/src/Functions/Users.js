@@ -3,8 +3,12 @@ const { Op } = require('sequelize');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 <<<<<<< HEAD
+<<<<<<< HEAD
 const server = require('../app.js');
 
+=======
+const { Events, Users, Supports, Carts, sequelize } = require('../db.js');
+>>>>>>> Development
 =======
 const { Events, Users, Supports, Carts, sequelize } = require('../db.js');
 >>>>>>> Development
@@ -39,6 +43,7 @@ const validatePartner = (req, res, next) => {
 	try {
 		const validToken = jwt.verify(accessToken, process.env.PRIVATEKEY);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 const validateAdmin = (req,res,next) => {
 	
@@ -120,6 +125,31 @@ const validateAdmin = (req, res, next) => {
 	try {
 		const validToken = jwt.verify(accessToken, process.env.PRIVATEKEY);
 
+=======
+		if (validToken) {
+			if (validToken.role == 'Admin' || validToken.role === 'Partner') {
+				req.authenticated = true;
+				return next();
+			} else {
+				res.status(400).send("You can't access here");
+			}
+		} else {
+			res.status(401).send('Invalid Token');
+		}
+	} catch (error) {
+		res.status(400).json({ error });
+	}
+};
+
+const validateAdmin = (req, res, next) => {
+	const accessToken = req.cookies['access-token'];
+
+	if (!accessToken) return res.status(400).send('User is not authenticated');
+
+	try {
+		const validToken = jwt.verify(accessToken, process.env.PRIVATEKEY);
+
+>>>>>>> Development
 		if (validToken) {
 			if (validToken.role == 'Admin') {
 				req.authenticated = true;
@@ -136,6 +166,9 @@ const validateAdmin = (req, res, next) => {
 };
 
 ////////////////////////////////////////////////////////////////////////
+<<<<<<< HEAD
+>>>>>>> Development
+=======
 >>>>>>> Development
 const getAllUsers = async (req, res, next) => {
 
@@ -211,6 +244,7 @@ const registerUser = async (req, res) => {
 				res.status(400).send('User already exist');
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 			console.log(user_)
 			bcrypt.compare(password, user_[0].Password, (error, response) => {
 				if(response) {
@@ -231,6 +265,10 @@ const registerUser = async (req, res) => {
 			}
 				
 			})
+=======
+		} catch (error) {
+			res.status(400).send(error);
+>>>>>>> Development
 =======
 		} catch (error) {
 			res.status(400).send(error);
@@ -463,8 +501,13 @@ module.exports = {
 	registerUserGmail,
 	loginRequestAP,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	roleChange
 }
+=======
+	addToCart,
+};
+>>>>>>> Development
 =======
 	addToCart,
 };

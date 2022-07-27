@@ -9,7 +9,11 @@ import { deleteUserDB } from '../Redux/Actions/deleteUser'
 import {deleteEvent} from "../Redux/Actions/deleteEvent"
 import getEvents from '../Redux/Actions/getEvents'
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { changeRole } from '../Redux/Actions/updateRole'
+=======
+import styles from '../Styles/AdminPanel.module.css'
+>>>>>>> Development
 =======
 import styles from '../Styles/AdminPanel.module.css'
 >>>>>>> Development
@@ -96,6 +100,7 @@ useEffect(() => {
             </div>
         </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
      
        ))}
 
@@ -116,6 +121,8 @@ useEffect(() => {
             <button hidden={actRoles? false: true} name="User"onClick={(e) => changeRole(e.target.name, el.Email,dispatch)}>User</button>
 
             <span>User: {el.Name} || Email: {el.Email} || Role: {el.Role}</span>
+=======
+>>>>>>> Development
 =======
 >>>>>>> Development
         </div>
