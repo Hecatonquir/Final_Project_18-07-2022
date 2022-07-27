@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-// import { Link } from 'react-router-dom'
 import { postSupports } from '../Redux/Actions/postSupports';
 import styles from '../Styles/ContactUs.module.css';
 import swal from 'sweetalert';
@@ -10,7 +9,6 @@ import {
 	MDBModalDialog,
 	MDBModalContent,
 	MDBModalHeader,
-	MDBModalTitle,
 	MDBModalBody,
 	MDBModalFooter,
 	MDBContainer,
@@ -28,8 +26,13 @@ export default function ContactUs() {
 	});
 
 
+	
+  
+  
+
+
 	function handleChange(e) {
-		setNote({
+       setNote({
 			...note,
 			[e.target.name]: e.target.value,
 		});
@@ -45,7 +48,8 @@ export default function ContactUs() {
 			swal('fill formulary', {
 				icon: 'warning',
 			});
-		}
+      setNote({ reason: '', problemType: '' });
+    }
 	}
 
 	return (
@@ -89,7 +93,7 @@ export default function ContactUs() {
 								<MDBBtn className='btn-close' color='none' onClick={toggleShow}></MDBBtn>
 							</MDBModalHeader>
 							<MDBModalBody>
-								{' '}
+								
 								<textarea
 									className={styles.text}
 									id='exampleFormControlTextarea1'
