@@ -9,7 +9,6 @@ module.exports = (sequelize) => {
 		{
 			ID: {
 				type: DataTypes.UUID,
-				primaryKey: true,
 				defaultValue: DataTypes.UUIDV4,
 			},
 			Name: {
@@ -17,7 +16,7 @@ module.exports = (sequelize) => {
 				allowNull: false,
 			},
 			Image: {
-				type: DataTypes.ARRAY(DataTypes.STRING),
+				type: DataTypes.ARRAY(DataTypes.TEXT),
 				allowNull: false,
 			},
 			Location: {
@@ -44,8 +43,8 @@ module.exports = (sequelize) => {
 				allowNull: false,
 			},
 			AgeRestriction: {
-				type: DataTypes.INTEGER,
-				defaultValue: 0,
+				type: DataTypes.STRING,
+				defaultValue: '0',
 			},
 			RedFlags: {
 				type: DataTypes.INTEGER,

@@ -1,4 +1,5 @@
-import {GET_EVENTS, GET_NAME_EVENTS,ADD_TO_FAVOURITES,REMOVE_FROM_FAVOURITES, GET_USERS,SHOW_EVENTS_USER, NEED_BACKUP, GET_DETAILS, ADD_REMOVE_FILTER,ADD_ITEM_CART, REMOVE_ITEM_CART, REMOVE_ALL_ITEM_CART, CLEAR_CART, UPDATE_STATE_FALSE, UPDATE_STATE_TRUE, CLEAR_DETAIL} from "../ActionTypes/actiontypes"
+import axios from "axios"
+import {GET_EVENTS, GET_NAME_EVENTS,ADD_TO_FAVOURITES,REMOVE_FROM_FAVOURITES, GET_USERS,SHOW_EVENTS_USER, NEED_BACKUP, GET_DETAILS, ADD_REMOVE_FILTER,ADD_ITEM_CART, REMOVE_ITEM_CART, REMOVE_ALL_ITEM_CART, CLEAR_CART, UPDATE_STATE_FALSE, UPDATE_STATE_TRUE, CLEAR_DETAIL, UPDATE_DB_CART} from "../ActionTypes/actiontypes"
 const initialState = {
 
     allEvents: [],
@@ -36,6 +37,10 @@ export default function reducer(state = initialState,{type,payload}) {
             case GET_DETAILS: 
             return {...state, eventDetail: payload}
 
+            case UPDATE_DB_CART:
+                axios.put('http://localhost:3001/user/updateCart/'+payload, state.cart)
+                return state
+            
             case ADD_ITEM_CART: 
             const newItem = state.allEvents.find((event) => event.ID === payload)
            

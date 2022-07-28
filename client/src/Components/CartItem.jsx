@@ -6,22 +6,29 @@ import { removeAllCart } from '../Redux/Actions/removeAllFromCart';
 import styles from '../Styles/CartItem.module.css';
 import imgdelete from '../Media/delete.png';
 import { Box, Heading, Image, Button, Text, Flex, Center} from "@chakra-ui/react";
+import { decodeToken } from 'react-jwt';
+import { updateCart } from '../Redux/Actions/updateCart';
 
 
 export default function CardItem({id, name, image, price, purchasedItem}) {
 
     const dispatch = useDispatch()
+    let token= document.cookie.split(";").filter(el => el.includes("access-token")).toString().split("=")[1];
+	let tokenDecoded = decodeToken(token);
    
     function hundleAddItem() {
         dispatch(addCart(id))
+        dispatch(updateCart(tokenDecoded.id))
     }
 
     function hundleRemoveItem(){
         dispatch(removeCart(id))
+        dispatch(updateCart(tokenDecoded.id))
     }
 
     function hundleDelete(){
         dispatch(removeAllCart(id))
+        dispatch(updateCart(tokenDecoded.id))
     }
 
     return(

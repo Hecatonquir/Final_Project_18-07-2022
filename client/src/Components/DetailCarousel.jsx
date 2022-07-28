@@ -10,6 +10,13 @@ export default function EventCarousel() {
   const dispatch = useDispatch();
   var event = useSelector((state) => state.eventDetail);
 
+  const styles = {
+    prueba: {
+      width: '30rem',
+      height: '30rem'
+    }
+  }
+
   useEffect(() => {
     dispatch(getDetail(id));
   }, [dispatch, id]);
@@ -18,14 +25,14 @@ export default function EventCarousel() {
     if (im !== "")
       return (
             <Carousel.Item interval={2000}>
-                <img src={im} alt={event[0].Name} className="d-block w-100" style={{maxWidth: "800px"}}/>
+                <img src={im} alt={event[0].Name} className="d-block w-100" style={styles.prueba}/>
             </Carousel.Item>
       );
     else return "";
   });
 
   return (
-    <Carousel  style={{maxWidth: "800px"}}>
+    <Carousel  style={styles.prueba}>
         {CarouselItem}
     </Carousel>
   );

@@ -13,6 +13,7 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
+    "@uploadcare/react-widget": "^2.1.5",
     "axios": "^0.27.2",
     "boostrap": "^2.0.0",
     "bootstrap": "^5.1.3",
@@ -29,11 +30,14 @@
     "react-redux": "^8.0.2",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
+    "react-stripe-checkout": "^2.6.3",
+    "react-toastify": "^9.0.7",
     "redux": "^4.2.0",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.1",
     "sweetalert": "^2.1.2",
     "thunk": "^0.0.1",
+    "uploadcare-widget": "^3.17.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

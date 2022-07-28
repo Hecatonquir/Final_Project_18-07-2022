@@ -7,6 +7,8 @@ import img1 from '../Media/google.png'
 import {isExpired, decodeToken} from "react-jwt"
 import {useDispatch,useSelector} from "react-redux"
 
+
+
 function LogIn() {
     let dispatch = useDispatch()
     let navigate = useNavigate()
@@ -39,7 +41,7 @@ function LogIn() {
     return (
 
          <div>
-            {  !active || !token?
+            {  !token || ! active ?
             <div>
   
             <nav className={styles.nav}>
@@ -80,9 +82,20 @@ function LogIn() {
                     </button>
                 </div>
                 </div>
-            </div>:<div><p>Oops, you missed something? You are Logged In!</p>
-            <Link to="/"><button>Go Back</button></Link>
-            </div>}
+            </div>
+            : 
+            <div className={styles.Total}>
+                <nav className={styles.nav}>
+                <Link to= '/'>
+                <button className={styles.Button}>Back</button>
+                </Link>
+            </nav>
+            <div>
+                <p className={styles.text}>Oops, you missed something? You are Logged In!</p>
+            </div>
+            </div>
+            }
+
             </div>
     )
 }

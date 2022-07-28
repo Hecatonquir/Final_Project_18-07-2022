@@ -45,9 +45,6 @@ module.exports = (sequelize) => {
 			Favourites: {
 				type: DataTypes.ARRAY(DataTypes.STRING),
 			},
-			Cart: {
-				type: DataTypes.ARRAY(DataTypes.STRING),
-			},
 			shoppingHistory: {
 				type: DataTypes.ARRAY(DataTypes.STRING),
 			},
@@ -61,6 +58,17 @@ module.exports = (sequelize) => {
 				type: DataTypes.BOOLEAN,
 				defaultValue: false,
 			},
+			Cart: {
+				type: DataTypes.ARRAY( DataTypes.JSON )
+			},
+			isSupport: {
+				type: DataTypes.BOOLEAN,
+				defaultValue: false,
+			},
+			isBan: {
+				type: DataTypes.BOOLEAN,
+				defaultValue: false,
+			}
 		},
 		{ timestamps: false }
 	);

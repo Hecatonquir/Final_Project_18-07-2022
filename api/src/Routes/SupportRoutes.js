@@ -7,7 +7,7 @@ const { getSupportTickets, getSupportById, addSupportTicket, deleteSupportTicket
 routes.get('/all', getSupportTickets);
 routes.get('/id/:ID', getSupportById);
 
-routes.post('/', addSupportTicket);
+routes.post('/createTicket', addSupportTicket);
 // NOTA: ver de agregar una ruta de post que postee el mensaje de respuesta en una propiedad dentro del modelo de users
 
 routes.delete('/:id', deleteSupportTicket);

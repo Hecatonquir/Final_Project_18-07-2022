@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { Sequelize } = require('sequelize');
+const { Sequelize, DataTypes } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
@@ -37,11 +37,14 @@ const { Events, Users, Supports, Carts } = sequelize.models;
 Users.belongsToMany(Events, { through: 'UsersxEvents', timestamps: false });
 Events.belongsToMany(Users, { through: 'UsersxEvents', timestamps: false });
 
-Users.hasMany(Supports);
-Supports.belongsTo(Users);
-
 Users.hasOne(Carts);
 Carts.belongsTo(Users);
+
+Carts.hasMany(Events);
+Events.belongsTo(Carts);
+
+Users.hasMany(Supports);
+Supports.belongsTo(Users);
 
 module.exports = {
 	...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
