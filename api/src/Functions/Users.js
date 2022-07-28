@@ -330,9 +330,9 @@ const getPartnerCreatedEvents = async (req, res) => {
 		res.status(400).send(error.stack);
 	}
 };
-const addToCart = async (req, res) => {
-	const { IdUser, IdEvento } = req.params;
-	console.log('🐲🐲🐲 / file: Users.js / line 322 / IdUser', IdUser);
+const updateCart = async (req, res) => {
+	const { IdUser/*, idEvento*/ } = req.params;
+	console.log('🐲🐲🐲 / file: Users.js / line 335 / IdUser', IdUser);
 
 	/* 	Users.hasOne(Carts);
 			Carts.belongsTo(Users);
@@ -341,22 +341,25 @@ const addToCart = async (req, res) => {
 			Events.belongsTo(Carts);	*/
 
 	try {
-		let emptyCart = await Carts.findAll({ where: { userID: IdUser } });
-		let cart;		
-		var id;
-		if (!emptyCart.length) {
-			cart = await Carts.create({ userID: IdUser });
-			cart.items = [IdEvento];
-			await cart.save();
-		} else {
-			cart = await Carts.findAll({ userID: IdUser });
-			id = cart[0].dataValues.ID;
-			await Carts.update(
-				{ items: sequelize.fn('array_append', sequelize.col('items'), IdEvento) },
-				{ where: { ID: id } }
-			);
-		}
-		res.send('Event added to User Cart');
+		// let emptyCart = await Carts.findAll({ where: { userID: IdUser } });
+		// let cart;		
+		// var id;
+		// if (!emptyCart.length) {
+		// 	cart = await Carts.create({ userID: IdUser });
+		// 	cart.items = [IdEvento];
+		// 	await cart.save();
+		// } else {
+		// 	cart = await Carts.findAll({ userID: IdUser });
+		// 	id = cart[0].dataValues.ID;
+		// 	await Carts.update(
+		// 		{ items: sequelize.fn('array_append', sequelize.col('items'), IdEvento) },
+		// 		{ where: { ID: id } }
+		// 	);
+		// }
+		// res.send('Event added to User Cart');
+		let user = await Users.findByPk(IdUser)
+		user.Cart = req.body
+		user.save()
 	} catch (error) {
 		res.status(400).send(error.stack);
 	}
@@ -375,5 +378,5 @@ module.exports = {
 	validateAdmin,
 	registerUserGmail,
 	loginRequestAP,
-	addToCart,
+	updateCart,
 };

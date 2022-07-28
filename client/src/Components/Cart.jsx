@@ -8,8 +8,12 @@ import imgcarrito from '../Media/emptycart.png';
 
 import Nav from './Nav';
 import { Box, Button, Center, Heading, Text, Image } from '@chakra-ui/react';
+import { decodeToken } from 'react-jwt';
+import { updateCart } from '../Redux/Actions/updateCart';
 
 export default function Cart() {
+	let token= document.cookie.split(";").filter(el => el.includes("access-token")).toString().split("=")[1];
+	let tokenDecoded = decodeToken(token);
 	const dispatch = useDispatch();
 	const cart = useSelector((state) => state.cart);
 	var totalAmount = 0;
@@ -21,6 +25,7 @@ export default function Cart() {
 
 	function hundleClick() {
 		dispatch(clearCart());
+		dispatch(updateCart(tokenDecoded.id))
 	}
 
 	return (
