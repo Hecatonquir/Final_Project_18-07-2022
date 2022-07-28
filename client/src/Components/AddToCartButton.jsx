@@ -27,7 +27,7 @@ function AddToCartButton({id}) {
   return (
     <button className={styles.Button2} onClick={() => handleClick()}>
 		Add To <img src={carticon} alt='not imgcart' className={styles.carticon}/>
-	</button>
+	  </button>
   )
 }
 

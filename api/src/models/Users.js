@@ -22,7 +22,7 @@ module.exports = (sequelize) => {
 			},
 			Password: {
 				type: DataTypes.STRING,
-				/* allowNull: false, */
+				allowNull: false,
 			},
 			Email: {
 				type: DataTypes.STRING,
@@ -60,6 +60,14 @@ module.exports = (sequelize) => {
 			},
 			Cart: {
 				type: DataTypes.ARRAY( DataTypes.JSON )
+			},
+			isSupport: {
+				type: DataTypes.BOOLEAN,
+				defaultValue: false,
+			},
+			isBan: {
+				type: DataTypes.BOOLEAN,
+				defaultValue: false,
 			}
 		},
 		{ timestamps: false }

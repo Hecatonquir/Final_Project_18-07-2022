@@ -41,11 +41,11 @@ export default function ContactUs() {
 	function handleSubmit(e) {
 		e.preventDefault();
 		if (note.reason.length > 0 && note.problemType.length > 0) {
-			dispatch(postSupports(note));
+			postSupports(note);
 			// alert("Note was created successfully")
 			setNote({ reason: '', problemType: '' });
 		} else {
-			swal('fill formulary', {
+			swal('Fill Formulary', {
 				icon: 'warning',
 			});
       setNote({ reason: '', problemType: '' });
@@ -79,13 +79,13 @@ export default function ContactUs() {
 											value={note.problemType}
 											name='problemType'
 											onChange={handleChange}>
-											<option hidden>select options</option>
+											<option hidden>Select Options</option>
 											<option>return tickets</option>
-											<option>problems with the pay</option>
-											<option>inappropriate event</option>
-											<option>suggestions</option>
-											<option>report bugs</option>
-											<option>others</option>
+											<option>Troubles with payment</option>
+											<option>Inappropriate Event</option>
+											<option>Suggestions</option>
+											<option>Report Bugs</option>
+											<option>Others</option>
 										</select>
 									</div>
 								</form>

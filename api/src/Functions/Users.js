@@ -2,19 +2,15 @@ require('dotenv').config();
 const { Op } = require('sequelize');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+
 const { Events, Users, Supports, Carts, sequelize } = require('../db.js');
-
-
-// middleware
 
 const validateToken = (req, res, next) => {
 	const accessToken = req.cookies['access-token'];
 	console.log(accessToken);
 	if (!accessToken) return res.status(400).send('User is not authenticated');
-
 	try {
 		const validToken = jwt.verify(accessToken, process.env.PRIVATEKEY);
-
 		if (validToken) {
 			req.authenticated = true;
 			return next();
@@ -28,12 +24,9 @@ const validateToken = (req, res, next) => {
 
 const validatePartner = (req, res, next) => {
 	const accessToken = req.cookies['access-token'];
-
 	if (!accessToken) return res.status(400).send('User is not authenticated');
-
 	try {
 		const validToken = jwt.verify(accessToken, process.env.PRIVATEKEY);
-
 		if (validToken) {
 			if (validToken.role == 'Admin' || validToken.role === 'Partner') {
 				req.authenticated = true;
@@ -51,35 +44,53 @@ const validatePartner = (req, res, next) => {
 
 const validateAdmin = (req, res, next) => {
 	const accessToken = req.cookies['access-token'];
-
 	if (!accessToken) return res.status(400).send('User is not authenticated');
-
 	try {
 		const validToken = jwt.verify(accessToken, process.env.PRIVATEKEY);
-
+		console.log('validToken');
 		if (validToken) {
 			if (validToken.role == 'Admin') {
 				req.authenticated = true;
-				return next();
+				next();
 			} else {
-				res.status(400).send("You can't access here");
+				return res.status(400).send("You can't access here");
 			}
-		} else {
-			res.status(401).send('Invalid Token');
 		}
 	} catch (error) {
 		res.status(400).json({ error });
 	}
 };
 
-////////////////////////////////////////////////////////////////////////
-const getAllUsers = async (req, res, next) => {
+///////////////////////////////////////////////////////////////////////////////////
 
-	res.send(await Users.findAll({
-		include: {
-			model: Supports
-		}
-	}));
+const roleChange = async (req, res) => {
+	console.log(req.body.data.email);
+	try {
+		let coco = await Users.update(
+			{
+				Role: req.body.data.role,
+			},
+			{
+				where: {
+					Email: req.body.data.email,
+				},
+			}
+		);
+		console.log(coco);
+		return res.send('Updated');
+	} catch (error) {
+		return res.status(400).send('an Error has ocurred');
+	}
+};
+
+const getAllUsers = async (req, res, next) => {
+	res.send(
+		await Users.findAll({
+			include: {
+				model: Supports,
+			},
+		})
+	);
 };
 
 const getUserByName = async (req, res) => {
@@ -92,7 +103,7 @@ const getUserByName = async (req, res) => {
 				},
 			},
 			include: {
-				model: Supports
+				model: Supports,
 			},
 		});
 		res.send(usersBox);
@@ -121,7 +132,6 @@ const registerUser = async (req, res) => {
 	const { Name, Username, Password, Email } = req.body;
 	let reGex = /\S+@\S+\.\S+/;
 	let validateEmail = reGex.test(Email);
-
 	if (!Name || !Password) {
 		res.status(400).send('Please Provide User and Password');
 	} else if (!Username) {
@@ -146,6 +156,24 @@ const registerUser = async (req, res) => {
 			} else {
 				res.status(400).send('User already exist');
 			}
+			console.log(user_)
+			bcrypt.compare(password, user_[0].Password, (error, response) => {
+				if(response) {
+					console.log(user_[0].ID)
+					const id = user_[0].ID
+				const token = jwt.sign({id: id, role:user_[0].Role, name: user_[0].Name, email:user_[0].Email},process.env.PRIVATEKEY,{
+					expiresIn: 9999,
+				})
+				console.log(token)
+				res.cookie("access-token", token,{
+					maxAge: 60*60*1000,
+					httpOnly:false
+				})
+				return res.send("Logged In!")
+			} else{
+				return res.status(400).send("")
+			}				
+			})
 		} catch (error) {
 			res.status(400).send(error);
 		}
@@ -154,7 +182,6 @@ const registerUser = async (req, res) => {
 
 const registerUserGmail = async (req, res) => {
 	const { Username } = req.body;
-
 	try {
 		let foundOrCreate = await Users.findAll({
 			where: {
@@ -166,9 +193,7 @@ const registerUserGmail = async (req, res) => {
 			bcrypt.hash(process.env.DefaultPassword, 10).then(async (hash) => {
 				req.body.Password = hash;
 				req.body.Role = 'User';
-
 				let gmailUser = await Users.create(req.body);
-
 				const token = jwt.sign(
 					{
 						id: gmailUser.ID,
@@ -223,10 +248,12 @@ const loginRequest = async (req, res) => {
 				Username: username,
 			},
 		});
-
-		if (user_) {
+		if(user_[0].isBan) {			
+			return res.status(400).send("This account has been banned")
+		}
+		if (user_[0]) {
 			if (user_[0].Role === 'Partner' || user_[0].Role === 'Admin') {
-				res.status(400).send('Invalid User/Password');
+				return res.status(400).send('Invalid User/Password');
 			}
 			console.log(user_);
 			bcrypt.compare(password, user_[0].Password, (error, response) => {
@@ -237,7 +264,7 @@ const loginRequest = async (req, res) => {
 						{ id: id, role: user_[0].Role, name: user_[0].Name, email: user_[0].Email },
 						process.env.PRIVATEKEY,
 						{
-							expiresIn: 5000,
+							expiresIn: 9999,
 						}
 					);
 					console.log(token);
@@ -251,8 +278,6 @@ const loginRequest = async (req, res) => {
 					return res.status(400).send('');
 				}
 			});
-		} else {
-			return res.status(400).send('');
 		}
 	} catch (error) {
 		return res.status(400).send('Username or Password invalid');
@@ -267,12 +292,10 @@ const loginRequestAP = async (req, res) => {
 				Username: username,
 			},
 		});
-
 		if (user_) {
 			if (user_[0].Role === 'User') {
 				return res.status(400).send('Not Allowed');
 			}
-
 			bcrypt.compare(password, user_[0].Password, (error, response) => {
 				if (response) {
 					console.log(user_[0].ID);
@@ -281,7 +304,7 @@ const loginRequestAP = async (req, res) => {
 						{ id: id, role: user_[0].Role, name: user_[0].Name, email: user_[0].Email },
 						process.env.PRIVATEKEY,
 						{
-							expiresIn: 300,
+							expiresIn: 9999,
 						}
 					);
 					console.log(token);
@@ -305,15 +328,15 @@ const loginRequestAP = async (req, res) => {
 
 const deleteUser = async (req, res) => {
 	try {
-		console.log(req.body)
+		console.log(req.body);
 		const targetUser = await Users.findOne({
 			where: {
-				Email: req.body.email
-			}
+				Email: req.body.email,
+			},
 		});
-		console.log(targetUser)
+		console.log(targetUser);
 		await targetUser.destroy();
-		console.log(targetUser)
+		console.log(targetUser);
 		return res.send(`User Deleted`);
 	} catch (error) {
 		res.status(404).send(error.stack);
@@ -330,16 +353,9 @@ const getPartnerCreatedEvents = async (req, res) => {
 		res.status(400).send(error.stack);
 	}
 };
+
 const updateCart = async (req, res) => {
 	const { IdUser/*, idEvento*/ } = req.params;
-	console.log('🐲🐲🐲 / file: Users.js / line 335 / IdUser', IdUser);
-
-	/* 	Users.hasOne(Carts);
-			Carts.belongsTo(Users);
-		
-			Carts.hasMany(Events);
-			Events.belongsTo(Carts);	*/
-
 	try {
 		// let emptyCart = await Carts.findAll({ where: { userID: IdUser } });
 		// let cart;		
@@ -360,10 +376,28 @@ const updateCart = async (req, res) => {
 		let user = await Users.findByPk(IdUser)
 		user.Cart = req.body
 		user.save()
+    res.send('Event added to User Cart');
 	} catch (error) {
 		res.status(400).send(error.stack);
 	}
 };
+
+const banUser = async (req,res) => {
+	console.log(req.body.data)
+	try {
+	let banned = await Users.update({
+		isBan: req.body.data.ban},
+		{
+		where: {
+			Email: req.body.data.email}
+		},
+		)
+		console.log(banned)
+		return res.send("User Banned")
+	}catch (error) {
+		return res.status(400).send("Error")
+	}
+}
 
 module.exports = {
 	getAllUsers,
@@ -379,4 +413,8 @@ module.exports = {
 	registerUserGmail,
 	loginRequestAP,
 	updateCart,
+	roleChange,
+	addToCart,
+	banUser
 };
+
