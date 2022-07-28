@@ -61,7 +61,9 @@ function Prepanel() {
                 else{
                     navigate("/welcomeA")
                 }
+                
             }
+          
         
 
          },[])
