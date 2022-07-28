@@ -9,11 +9,18 @@ import imgcarrito from '../Media/emptycart.png';
 import Nav from './Nav';
 import { Box, Button, Center, Heading, Text, Image } from '@chakra-ui/react';
 
+import StripeCheckout from 'react-stripe-checkout';
+import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 export default function Cart() {
 	const dispatch = useDispatch();
 	const cart = useSelector((state) => state.cart);
 	var totalAmount = 0;
 	const [showItem, setShowItem] = useState(false);
+	const stripeKey =
+		'pk_test_51LOdlpIX9UMpYaskAq0EOuQYBwCNO0CWWVUIouFgSt4FP4eNMznvWxSTuflGp35HmZKZidvlVZOCYNrlyvviDVrc00V1E8tivg';
 
 	for (let i = 0; i < cart.length; i++) {
 		totalAmount = totalAmount + cart[i].Price * cart[i].PurchasedItem;
@@ -21,6 +28,16 @@ export default function Cart() {
 
 	function hundleClick() {
 		dispatch(clearCart());
+	}
+
+	async function handleToken(token) {
+		const response = await axios.post('http://localhost:3001/checkout', { token, totalAmount });
+		console.log('🐲🐲🐲 / file: Cart.jsx / line 35 / response', response);
+		const { status } = response.data;
+		console.log('🐲🐲🐲 / file: Cart.jsx / line 36 / response.data', response.data);
+		if (status === 'success')
+			toast.success('Your purchase was successful! Check your E-mail for more information');
+		else toast.error('Something went wrong. Purchase cancelled');
 	}
 
 	return (
@@ -52,31 +69,40 @@ export default function Cart() {
 						</Box>
 					)}
 				</Box>
-
-				<Box className={styles.containeramount}>
-					<Heading as='h4' color='white'>
-						Total Price: ${totalAmount}
-					</Heading>
-					<Box>
-						{showItem ? (
-							<br /> //  ACA LE PASO INFO A ESTE COMPONENTE
-						) : (
-							<Button
-								className={styles.Button2}
-								onClick={() => {
-									setShowItem(true);
-								}}>
-								Buy
-							</Button>
-						)}
-					</Box>
+			</Box>
+			<Box className={styles.containeramount}>
+				<Heading as='h4' color='white'>
+					Total Price: ${totalAmount} ARS
+				</Heading>
+				{/* <Button
+							className={styles.Button2}
+							onClick={() => {
+								setShowItem(true);
+							}}>
+							Buy
+						</Button> */}
+				<Box>
+					{showItem ? (
+						<h6>Loading...</h6>
+					) : (
+						<StripeCheckout
+							stripeKey={stripeKey}
+							token={handleToken}
+							amount={totalAmount * 100}
+							/* el *100 es para convertirlo a centavos, NO para estafar a la gente */
+							name='Entradas Para los Eventos!'
+						/>
+					)}
+					<ToastContainer />
 				</Box>
 			</Box>
+			<br />
 			<Box margin={6}>
 				<Button className={styles.Button2} onClick={() => hundleClick()}>
-					Remove
+					Clear Cart
 				</Button>
 			</Box>
+			<br />
 		</Box>
 	);
 }

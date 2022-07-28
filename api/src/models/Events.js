@@ -43,8 +43,8 @@ module.exports = (sequelize) => {
 				allowNull: false,
 			},
 			AgeRestriction: {
-				type: DataTypes.INTEGER,
-				defaultValue: 0,
+				type: DataTypes.STRING,
+				defaultValue: '0',
 			},
 			RedFlags: {
 				type: DataTypes.INTEGER,
