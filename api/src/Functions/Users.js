@@ -2,8 +2,9 @@ require('dotenv').config();
 const { Op } = require('sequelize');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-
 const { Events, Users, Supports, Carts, sequelize } = require('../db.js');
+//const nodemailer = require('nodemailer') // nodemailer y google api en caso de poder implementarlas
+//const { google } = require('googleapis')
 
 const validateToken = (req, res, next) => {
 	const accessToken = req.cookies['access-token'];
@@ -129,7 +130,81 @@ const getUserById = async (req, res) => {
 };
 
 const registerUser = async (req, res) => {
-	const { Name, Username, Password, Email } = req.body;
+	const { Name, Username, Password, Email } = req.body; // revisar location e image para mailing
+
+	//////////////////////////////////////// Usar en caso de RESOLVER implementacion nodemailer & Google Api //////////////////////////////
+	//////////////////////////////////////// Por movivo desconocido no funciona ///////////////////////////////////////////////////////////
+	/* const contentHTML = `
+		<h1>Mainstage account has been created successfully!</h1>
+		<ul>
+			<li>Name: ${Name}</li>
+			<li>Username: ${Username}</li>
+			<li>Email: ${Email}</li>
+		</ul>
+		<p>Please keep your password safe, we do not save it.</p>
+		<p>All your favorite artists are waiting for you at Mainstage.com, get your tickets soon!</p>
+		<h3>Mainstage Devs Team</h3>
+		<h5>Powered by Henry</h5> `
+
+	const CLIENT_ID = '502989553254-ngudomctts93nnmle74tpl90mn3lin9j.apps.googleusercontent.com'
+	const CLIENT_SECRET = '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'
+	const REDIRECT_URI = 'https://developers.google.com/oauthplayground'
+	const REFRESH_TOKEN = '1//04IiW5YLcPpfqCgYIARAAGAQSNwF-L9Ir3OyC3qZ42NlvXiQrwcrwhifxYB37Y7PaLe3hl58dqIcNfNBpDx6mL3e6U-iuhCOVK90'
+	const oAuth2Client = new google.auth.OAuth2( CLIENT_ID, CLIENT_SECRET, REDIRECT_URI );
+	oAuth2Client.setCredentials( {refresh_token: REFRESH_TOKEN} )
+
+	async function sendMail(){
+		try {
+			const accessToken = await oAuth2Client.getAccessToken()
+			const transporter = nodemailer.createTransport( {	service: 'gmail',
+																host: 'smtp.gmail.com',
+															  	auth: { type: 'OAuth2',
+																	  user: 'mainstage.project@gmail.com',
+																	  pass: 'Mainstageproyect',
+																	  clientId: CLIENT_ID,
+																	  clientSecret: CLIENT_SECRET,
+																	  refreshToken: REFRESH_TOKEN,
+																	  accessToken: accessToken  }
+															} )  */
+			
+			/* let transporter = nodemailer.createTransport({
+				host: "smtp.gmail.com",
+				port: 465,
+				secure: true, // true for 465, false for other ports
+				auth: {
+				  user: 'mainstage.project@gmail.com', 
+				  pass: 'ztjqezdqjysiwoew', 
+				},
+			  }); */
+			  /* const transporter = nodemailer.createTransport({
+				host: '127.0.0.1',
+				port: 2525,
+				auth: {
+					user: 'Mainstage_project',
+					pass: '<4bcefac33598c623f4f39b547dc0696fded72fffa6a1f5ec3503085311e0f1e0>'
+				}
+			}); */
+
+			/* const mailOptions = {
+				from: 'Mainstage Team <mainstage.project@gmail.com>',
+				to: `${Email}`,
+				subject: 'Mainstage account confirmed',
+				html: contentHTML
+			}
+
+			const result = await transporter.sendMail(mailOptions)
+			return result
+		}catch(error) {
+			console.log(error)
+		}
+	}	
+
+	sendMail()
+		.then((result) => console.log(result))
+		.catch((error) => console.log(error.message)); */
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 	let reGex = /\S+@\S+\.\S+/;
 	let validateEmail = reGex.test(Email);
 	if (!Name || !Password) {
@@ -157,8 +232,6 @@ const registerUser = async (req, res) => {
 			} else {
 				return res.status(400).send('User already exist');
 			}
-
-			
 		} catch (error) {
 			res.status(400).send(error);
 		}
