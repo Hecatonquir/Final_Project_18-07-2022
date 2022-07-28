@@ -195,6 +195,7 @@ function FormPartner() {
                 name="Name"
                 placeholder="Name"
                 variant="flushed"
+                required
                 _placeholder={{ opacity: 0.3, color: "inherit" }}
                 onChange={(e) => handleChange(e)}
               />
@@ -212,6 +213,7 @@ function FormPartner() {
                 name="LastName"
                 placeholder="Last name"
                 variant="flushed"
+                required
                 _placeholder={{ opacity: 0.3, color: "inherit" }}
                 onChange={(e) => handleChange(e)}
               />
@@ -231,6 +233,7 @@ function FormPartner() {
                 name="CompanyName"
                 placeholder="Company name"
                 variant="flushed"
+                required
                 _placeholder={{ opacity: 0.3, color: "inherit" }}
                 onChange={(e) => handleChange(e)}
               />
@@ -252,6 +255,7 @@ function FormPartner() {
                 name="FiscalAddress"
                 placeholder="Fiscal address"
                 variant="flushed"
+                required
                 _placeholder={{ opacity: 0.3, color: "inherit" }}
                 onChange={(e) => handleChange(e)}
               />
@@ -269,6 +273,7 @@ function FormPartner() {
                 name="ID"
                 placeholder="ID"
                 variant="flushed"
+                required
                 _placeholder={{ opacity: 0.3, color: "inherit" }}
                 onChange={(e) => handleChange(e)}
               />
@@ -288,6 +293,7 @@ function FormPartner() {
                 name="NumberPhone"
                 placeholder="Number phone"
                 variant="flushed"
+                required
                 _placeholder={{ opacity: 0.3, color: "inherit" }}
                 onChange={(e) => handleChange(e)}
               />
@@ -305,6 +311,7 @@ function FormPartner() {
                 name="CUIT"
                 placeholder="CUIT"
                 variant="flushed"
+                required
                 _placeholder={{ opacity: 0.3, color: "inherit" }}
                 onChange={(e) => handleChange(e)}
               />
@@ -320,6 +327,7 @@ function FormPartner() {
                 name="CBU"
                 placeholder="CBU"
                 variant="flushed"
+                required
                 _placeholder={{ opacity: 0.3, color: "inherit" }}
                 onChange={(e) => handleChange(e)}
               />
