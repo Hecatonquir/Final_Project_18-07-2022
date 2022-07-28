@@ -123,13 +123,14 @@ function AddEvent() {
           </Heading>
           <form style={{ width: "40em" }}>
             <FormControl marginBottom={4}>
-              <FormLabel>*Event name</FormLabel>
+              <FormLabel  color='white'>*Event name</FormLabel>
               <Input
                 type="text"
                 value={input.Name}
                 id="Name"
                 name="Name"
                 placeholder="(Max 25 characters)"
+                _placeholder={{ color: '#202531' }}
                 required
                 variant='flushed'
                 onChange={(e) => handleChange(e)}
@@ -140,14 +141,14 @@ function AddEvent() {
             </FormControl>
 
             <FormControl marginBottom={4}>
-              <FormLabel>*Date</FormLabel>
+              <FormLabel  color='white'>*Date</FormLabel>
               <Input
                 type="datetime-local"
                 min={today}
                 value={input.date}
                 name="date"
                 placeholder="day / month / year"
-				variant='flushed'
+				        variant='flushed'
                 onChange={(e) => handleChange(e)}
               />{" "}
               {input.date !== "" && errors.date && (
@@ -156,11 +157,11 @@ function AddEvent() {
             </FormControl>
 
             <FormControl marginBottom={4}>
-              <FormLabel>*City</FormLabel>
+              <FormLabel  color='white'>*City</FormLabel>
               <Select
                 value={input.City}
                 name="City"
-				variant='flushed'
+				        variant='flushed'
                 onChange={(e) => handleChange(e)}
               >
                 <option value="" hidden>
@@ -180,13 +181,14 @@ function AddEvent() {
             </FormControl>
 
             <FormControl marginBottom={4}>
-              <FormLabel>*Exact Location</FormLabel>
+              <FormLabel  color='white'>*Exact Location</FormLabel>
               <Input
                 type="text"
                 value={input.Location}
                 name="Location"
                 placeholder="(Max 25 characters)"
-				variant='flushed'
+                _placeholder={{ color: '#202531' }}
+				        variant='flushed'
                 onChange={(e) => handleChange(e)}
               />
               {input.Location !== "" && errors.Location && (
@@ -195,11 +197,11 @@ function AddEvent() {
             </FormControl>
 
             <FormControl marginBottom={4}>
-              <FormLabel>*Category</FormLabel>
+              <FormLabel  color='white'>*Category</FormLabel>
               <Select
                 value={input.Category}
                 name="Category"
-				variant='flushed'
+				        variant='flushed'
                 onChange={(e) => handleChange(e)}
               >
                 <option value="" hidden>
@@ -219,14 +221,15 @@ function AddEvent() {
             </FormControl>
 
             <FormControl marginBottom={4}> 
-              <FormLabel>*Image 1</FormLabel>
+              <FormLabel  color='white'>*Image 1</FormLabel>
               <Input
                 type="text"
                 value={input.img1}
                 id="img1"
                 name="img1"
                 placeholder="Insert URL here"
-				variant='flushed'
+                _placeholder={{ color: '#202531' }}
+				        variant='flushed'
                 onChange={(e) => handleChange(e)}
               />
               {input.img1 !== "" && errors.img1 && (
@@ -235,49 +238,52 @@ function AddEvent() {
             </FormControl>
 
             <FormControl marginBottom={4}>
-              <FormLabel>Image 2</FormLabel>
+              <FormLabel  color='white'>Image 2</FormLabel>
               <Input
                 type="text"
                 value={input.img2}
                 id="img2"
                 name="img2"
                 placeholder="Insert URL here"
-				variant='flushed'
+                _placeholder={{ color: '#202531' }}
+				        variant='flushed'
                 onChange={(e) => handleChange(e)}
               />
               {errors.img2 && <Text color="red">{errors.img2}</Text>}
             </FormControl>
 
             <FormControl marginBottom={4}>
-              <FormLabel>Image 3</FormLabel>
+              <FormLabel  color='white'>Image 3</FormLabel>
               <Input
                 type="text"
                 value={input.img3}
                 id="img3"
                 name="img3"
                 placeholder="Insert URL here"
-				variant='flushed'
+                _placeholder={{ color: '#202531' }}
+				        variant='flushed'
                 onChange={(e) => handleChange(e)}
               />
               {errors.img3 && <Text color="red">{errors.img3}</Text>}
             </FormControl>
 
             <FormControl marginBottom={4}>
-              <FormLabel>Image 4</FormLabel>
+              <FormLabel  color='white'>Image 4</FormLabel>
               <Input
                 type="text"
                 value={input.img4}
                 id="img4"
                 name="img4"
                 placeholder="Insert URL here"
-				variant='flushed'
+                _placeholder={{ color: '#202531' }} 
+				        variant='flushed'
                 onChange={(e) => handleChange(e)}
               />
               {errors.img4 && <Text color="red">{errors.img4}</Text>}
             </FormControl>
 
             <FormControl marginBottom={4}>
-              <FormLabel>Image 4</FormLabel>
+              <FormLabel  color='white'>Image 4</FormLabel>
               <Widget
                 publicKey="4a7fa09f2188af9b76a3"
                 id="file"
@@ -293,21 +299,22 @@ function AddEvent() {
             </FormControl>
 
             <FormControl marginBottom={4}>
-              <FormLabel>Carrousel image</FormLabel>
+              <FormLabel  color='white'>Carrousel image</FormLabel>
               <Input
                 type="text"
                 value={input.carrousel}
                 id="carrousel"
                 name="carrousel"
                 placeholder="Insert URL here"
-				variant='flushed'
+                _placeholder={{ color: '#202531' }}
+				        variant='flushed'
                 onChange={(e) => handleChange(e)}
               />
               {errors.carrousel && <Text color="red">{errors.carrousel}</Text>}
             </FormControl>
 
             <FormControl marginBottom={4}>
-              <FormLabel>Price</FormLabel>
+              <FormLabel  color='white'>Price</FormLabel>
               <Input
                 type="number"
                 value={input.Price}
@@ -315,29 +322,31 @@ function AddEvent() {
                 name="Price"
                 min="0"
                 placeholder="$ (in numbers)"
+                _placeholder={{ color: '#202531' }}
                 required
-				variant='flushed'
+				        variant='flushed'
                 onChange={(e) => handleChange(e)}
               />
               {errors.Price && <Text color="red">{errors.Price}</Text>}
             </FormControl>
 
             <FormControl marginBottom={4}>
-              <FormLabel>Quantity</FormLabel>
+              <FormLabel  color='white'>Quantity</FormLabel>
               <Input
                 type="number"
                 value={input.Quantity}
                 name="Quantity"
                 min="0"
                 placeholder="Quantity"
-				variant='flushed'
+                _placeholder={{ color: '#202531' }}
+				        variant='flushed'
                 onChange={(e) => handleChange(e)}
               />
               {errors.Quantity && <Text color="red">{errors.Quantity}</Text>}
             </FormControl>
 
             <FormControl marginBottom={4}>
-              <FormLabel>Age Restriction</FormLabel>
+              <FormLabel  color='white'>Age Restriction</FormLabel>
 			  <InputGroup>
 			  	<InputLeftAddon children='+'/>
 				  <Input
@@ -345,8 +354,9 @@ function AddEvent() {
                 value={input.AgeRestriction}
                 name="AgeRestriction"
                 placeholder="Put number"
-				variant='flushed'
-				marginLeft={1}
+                _placeholder={{ color: '#202531' }}
+				        variant='flushed'
+				        marginLeft={1}
                 onChange={(e) => handleChange(e)}
               />
 			  </InputGroup>
@@ -356,23 +366,25 @@ function AddEvent() {
             </FormControl>
 
             <FormControl marginBottom={4}>
-              <FormLabel>Restrictions</FormLabel>
+              <FormLabel  color='white'>Restrictions</FormLabel>
               <Textarea
                 type="text"
                 value={input.Restrictions}
                 name="Restrictions"
                 placeholder='Separate each one using "/" '
+                _placeholder={{ color: '#202531' }}
                 onChange={(e) => handleChange(e)}
               />
             </FormControl>
 
             <FormControl marginBottom={4}>
-              <FormLabel>*Detail</FormLabel>
+              <FormLabel  color='white'>*Detail</FormLabel>
               <Textarea
                 type="text"
                 value={input.Detail}
                 name="Detail"
                 placeholder="Insert Detail"
+                _placeholder={{ color: '#202531' }}
                 className={styles.input}
                 onChange={(e) => handleChange(e)}
               />
