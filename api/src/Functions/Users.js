@@ -33,7 +33,6 @@ const validatePartner = (req, res, next) => {
 
 	try {
 		const validToken = jwt.verify(accessToken, process.env.PRIVATEKEY);
-
 		if (validToken) {
 			if (validToken.role == 'Admin' || validToken.role === 'Partner') {
 				req.authenticated = true;
@@ -72,7 +71,7 @@ const validateAdmin = (req, res, next) => {
 	}
 };
 
-//////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
 
 const roleChange = async (req, res) => {
 	console.log(req.body.data.email);
@@ -169,6 +168,28 @@ const registerUser = async (req, res) => {
 			} else {
 				res.status(400).send('User already exist');
 			}
+
+			console.log(user_)
+			bcrypt.compare(password, user_[0].Password, (error, response) => {
+				if(response) {
+					console.log(user_[0].ID)
+					const id = user_[0].ID
+				const token = jwt.sign({id: id, role:user_[0].Role, name: user_[0].Name, email:user_[0].Email},process.env.PRIVATEKEY,{
+					expiresIn: 9999,
+				})
+				console.log(token)
+				res.cookie("access-token", token,{
+					maxAge: 60*60*1000,
+					httpOnly:false
+				})
+
+				return res.send("Logged In!")
+			} else{
+				return res.status(400).send("")
+			}
+				
+			})
+
 		} catch (error) {
 			res.status(400).send(error);
 		}
@@ -399,3 +420,4 @@ module.exports = {
 	roleChange,
 	addToCart,
 };
+

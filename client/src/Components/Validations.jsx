@@ -1,5 +1,5 @@
 export default function validate(input) {
-	let { Name, img1, img2, img3, img4, carrousel, Price, City, Location, Category, date, Hour, Quantity, Detail} = input;
+	let { Name, img1, img2, img3, img4, carrousel, Price, City, Location, Category, date, Hour, Quantity, Detail, AgeRestriction} = input;
 	let errors = {};
 	let today = new Date().toISOString().slice(0, 16);   // En las dos fechas usamos el horario universal, sino hay una diferencia de 3hs
 	const dateInput = date && new Date(date).toISOString().slice(0, 16);
@@ -53,6 +53,9 @@ export default function validate(input) {
 	}
 	if (Quantity < 0) {
 		errors.Quantity = 'Only insert positive numbers.';
+	}
+	if (AgeRestriction < 0 || AgeRestriction >= 100) {
+		errors.Quantity = 'Only insert positive numbers or less than 100.';
 	}
 	if (!Location) {
 		errors.Location = 'Location is required.';

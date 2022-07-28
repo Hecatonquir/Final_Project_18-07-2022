@@ -18,7 +18,7 @@
     text-align: center;
     font-size: 12px;
     font-weight: bolder;
-    -webkit-transition-duration: 0.4s; /* Safari */
+    -webkit-transition-duration: 0.4s;  
     transition-duration: 0.4s;
     cursor: pointer;
     text-decoration: none;
