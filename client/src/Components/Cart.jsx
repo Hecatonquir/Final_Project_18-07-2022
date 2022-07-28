@@ -82,7 +82,7 @@ export default function Cart() {
 							billingAddress
 							amount={totalAmount * 100}
 							/* el *100 es para convertirlo a centavos, NO para estafar a la gente */
-							name="Entradas Para los Eventos!"
+							name='Entradas Para los Eventos!'
 						/>
 					)}
 				</Box>

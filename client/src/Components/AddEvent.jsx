@@ -84,6 +84,22 @@ function AddEvent() {
         Detail: input.Detail,
         AgeRestriction: input.AgeRestriction,
       });
+      console.log("🐲🐲🐲 / file: AddEvent.jsx / line 87 / {input}", {
+        Name: input.Name,
+        Image: [input.img1, input.img2, input.img3, input.img4, input.imgPc],
+        Carrousel: input.carrousel,
+        Price: Number(input.Price),
+        Quantity: Number(input.Quantity),
+        Rating: Number(input.Rating),
+        Category: [input.Category],
+        Restrictions: input.Restrictions.split("/"),
+        City: input.City,
+        Location: input.Location,
+        Date: input.date,
+        Hour: input.Hour,
+        Detail: input.Detail,
+        AgeRestriction: input.AgeRestriction,
+      });
       setInput({
         Name: "",
         img1: "",
