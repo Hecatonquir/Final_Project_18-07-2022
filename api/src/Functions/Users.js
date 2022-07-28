@@ -145,12 +145,13 @@ const registerUser = async (req, res) => {
 	let validateEmail = reGex.test(Email);
 
 	if (!Name || !Password) {
-		res.status(400).send('Please Provide User and Password');
+		return res.status(400).send('Please Provide User and Password');
 	} else if (!Username) {
-		res.status(400).send('Please Provide an Username!!');
+		return res.status(400).send('Please Provide an Username!!');
 	} else if (!Email || !validateEmail) {
-		res.status(400).send('Please Provide a VALID Email');
+		return res.status(400).send('Please Provide a VALID Email');
 	} else {
+
 		try {
 			let foundOrCreate = await Users.findAll({
 				where: {
@@ -163,33 +164,13 @@ const registerUser = async (req, res) => {
 					req.body.Password = hash;
 					req.body.Role = 'User';
 					Users.create(req.body);
-					res.send('Created Succesfully');
+					return res.send('Created Succesfully');
 				});
 			} else {
-				res.status(400).send('User already exist');
+				return res.status(400).send('User already exist');
 			}
 
-			console.log(user_)
-			bcrypt.compare(password, user_[0].Password, (error, response) => {
-				if(response) {
-					console.log(user_[0].ID)
-					const id = user_[0].ID
-				const token = jwt.sign({id: id, role:user_[0].Role, name: user_[0].Name, email:user_[0].Email},process.env.PRIVATEKEY,{
-					expiresIn: 9999,
-				})
-				console.log(token)
-				res.cookie("access-token", token,{
-					maxAge: 60*60*1000,
-					httpOnly:false
-				})
-
-				return res.send("Logged In!")
-			} else{
-				return res.status(400).send("")
-			}
-				
-			})
-
+			
 		} catch (error) {
 			res.status(400).send(error);
 		}
