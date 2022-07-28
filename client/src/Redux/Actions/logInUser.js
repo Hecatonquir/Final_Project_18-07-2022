@@ -9,12 +9,20 @@ export async function logInUser(payload,dispatch,navigate){
              
              
             
+             swal({
+                title: 'Login Success',
+                text: 'Redirecting...',
+                icon: 'success',
+                timer: 2000,
+                buttons: false,
+            })
           
             setTimeout(() => {
                 navigate("/")
-                dispatch({type:UPDATE_STATE_TRUE});
+                                
             }, 2000);
                 
+           
            
             
         }
@@ -25,7 +33,7 @@ export async function logInUser(payload,dispatch,navigate){
                 title: 'Error',
                 icon: 'error',
                 text: error.response.data,
-                timer: 2000,
+                timer: 1000,
                 buttons: false,
             })
             
