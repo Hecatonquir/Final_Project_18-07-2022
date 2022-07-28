@@ -10,6 +10,8 @@ import { deleteEvent } from '../Redux/Actions/deleteEvent';
 import getEvents from '../Redux/Actions/getEvents';
 import styles from '../Styles/AdminPanel.module.css';
 import { changeRole } from '../Redux/Actions/updateRole';
+import { banUnbanUser } from '../Redux/Actions/banUnbanUser';
+import { eachWeekOfInterval } from 'date-fns';
 
 function AdminPanel() {
 	let token = document.cookie
@@ -54,7 +56,7 @@ function AdminPanel() {
 			</div>
 
 			<div className={styles.container}>
-				<div className={styles.leftcolumn}>
+				<div className={styles.rightcolumn}>
 					<div className={styles.containerinput}>
 						{admin && (
 							<input
@@ -81,23 +83,22 @@ function AdminPanel() {
 									<div key={i}>
 										<button
 											onClick={() => {
-												deleteEvent(el.ID);
-												setUser({ username: '', posts: '' });
+												return deleteEvent(el.ID), setUser({ username: '', posts: '' });
 											}}>
 											Delete Event
 										</button>
 										<button onClick={() => {}}>Update Event</button>
-
 										<span>
 											Name: {el.Name} || Price: {el.Price} || City: {el.City} || Quantity:{' '}
 											{el.Quantity} || Partner:{' '}
-										</span>
+										</span>{' '}
+										||
 									</div>
 								))}
 					</div>
 				</div>
 
-				<div className={styles.rightcolumn}>
+				<div className={styles.leftcolumn}>
 					<div className={styles.containerinput}>
 						{admin && (
 							<input
@@ -154,9 +155,15 @@ function AdminPanel() {
 											onClick={(e) => changeRole(e.target.name, el.Email, dispatch)}>
 											User
 										</button>
-
+										<button
+											onClick={() => {
+												banUnbanUser(el.isBan ? false : true, el.Email, dispatch);
+											}}>
+											{el.isBan ? 'Unban User' : 'Ban User'}
+										</button>
 										<span>
-											User: {el.Name} || Email: {el.Email} || Role: {el.Role}
+											User: {el.Name} || Email: {el.Email} || Role: {el.Role} || is Ban:{' '}
+											{el.isBan ? 'true' : 'false'}
 										</span>
 									</div>
 								))}
