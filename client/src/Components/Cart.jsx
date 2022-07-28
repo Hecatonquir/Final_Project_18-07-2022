@@ -10,6 +10,9 @@ import Nav from './Nav';
 import { Box, Button, Center, Heading, Text, Image } from '@chakra-ui/react';
 
 import StripeCheckout from 'react-stripe-checkout';
+import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Cart() {
 	const dispatch = useDispatch();
@@ -27,8 +30,14 @@ export default function Cart() {
 		dispatch(clearCart());
 	}
 
-	function handleToken(token, addresses) {
-		console.log('🐲🐲🐲 / file: Cart.jsx / line 31 / token, addresses:\n', { token, addresses });
+	async function handleToken(token) {
+		const response = await axios.post('http://localhost:3001/checkout', { token, totalAmount });
+		console.log('🐲🐲🐲 / file: Cart.jsx / line 35 / response', response);
+		const { status } = response.data;
+		console.log('🐲🐲🐲 / file: Cart.jsx / line 36 / response.data', response.data);
+		if (status === 'success')
+			toast.success('Your purchase was successful! Check your E-mail for more information');
+		else toast.error('Something went wrong. Purchase cancelled');
 	}
 
 	return (
@@ -63,7 +72,7 @@ export default function Cart() {
 			</Box>
 			<Box className={styles.containeramount}>
 				<Heading as='h4' color='white'>
-					Total Price: ${totalAmount}
+					Total Price: ${totalAmount} ARS
 				</Heading>
 				{/* <Button
 							className={styles.Button2}
@@ -74,17 +83,17 @@ export default function Cart() {
 						</Button> */}
 				<Box>
 					{showItem ? (
-						<br /> //  ACA LE PASO INFO A ESTE COMPONENTE
+						<h6>Loading...</h6>
 					) : (
 						<StripeCheckout
 							stripeKey={stripeKey}
 							token={handleToken}
-							billingAddress
 							amount={totalAmount * 100}
 							/* el *100 es para convertirlo a centavos, NO para estafar a la gente */
 							name='Entradas Para los Eventos!'
 						/>
 					)}
+					<ToastContainer />
 				</Box>
 			</Box>
 			<br />
