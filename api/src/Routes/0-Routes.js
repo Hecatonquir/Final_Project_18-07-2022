@@ -5,7 +5,7 @@ const UserRoutes = require('./UserRoutes');
 const EventRoutes = require('./EventRoutes');
 const SupportRoutes = require('./SupportRoutes');
 
-/* routes.use(express.json);  Esto al parecer no se pone aca */
+//routes.use(express.json); // Esto al parecer no se pone
 
 routes.use('/user', UserRoutes);
 routes.use('/event', EventRoutes);
