@@ -15,7 +15,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import registerGmail from '../Redux/Actions/registerGmail.js';
 import { UPDATE_STATE_TRUE } from '../Redux/ActionTypes/actiontypes.js';
 
-import { Box, SimpleGrid, Center, Text } from '@chakra-ui/react';
+import { Box, SimpleGrid, Center, Text, Flex } from '@chakra-ui/react';
 
 export default function Home() {
 	const { isAuthenticated, user } = useAuth0();
@@ -48,7 +48,9 @@ export default function Home() {
 
 	<Box bgGradient='linear(to-r, #1c2333, #371a1e)' minHeight='100vh'>
 		<Box>
+		
 			<NavBar />
+			
 			<Box>
 				<EventCarousel />
 			</Box>
@@ -92,10 +94,11 @@ export default function Home() {
 								/>
 							</Box>
 						))
-					) : (
-						<Box>
-							<Text>No Events Found</Text>
+					) : (  <Flex justifyContent='center'>
+						<Box fontSize='4em' fontFamily='cursive' color='#D69E2E'>
+							<Text >No Events Found</Text>
 						</Box>
+						</Flex>
 					)}
 				</SimpleGrid>
 			</Box>
@@ -153,10 +156,11 @@ export default function Home() {
 									/>
 								</Box>
 							))
-						) : (
-							<Box>
-								<Text>No Events Found</Text>
+						) : ( <Flex justifyContent='center'>
+							<Box fontSize='4em' fontFamily='cursive' color='#D69E2E' textAlign='center'>
+								<Text >No Events Found</Text>
 							</Box>
+							</Flex>
 						)}
 					</SimpleGrid>
 				</Box>
