@@ -1,54 +1,54 @@
-import { React, useEffect, useState } from "react";
+import { React, useEffect, useState } from 'react';
 /* import { useDispatch } from 'react-redux'; */
-import { Link /* , useNavigate */ } from "react-router-dom";
-import { postEvent } from "../Redux/Actions/postEvent";
-import styles from "../Styles/AddEvent.module.css";
-import validate from "./Validations";
-import { Widget } from "@uploadcare/react-widget";
-import Nav from "./Nav";
+import { Link /* , useNavigate */ } from 'react-router-dom';
+import { postEvent } from '../Redux/Actions/postEvent';
+import styles from '../Styles/AddEvent.module.css';
+import validate from './Validations';
+import { Widget } from '@uploadcare/react-widget';
+import Nav from './Nav';
 import {
-  Box,
-  Heading,
-  Button,
-  FormControl,
-  FormLabel,
-  Textarea,
-  Input,
-  Select,
-  Text,
-  Flex,
-  InputGroup,
-  InputLeftAddon 
-} from "@chakra-ui/react";
+	Box,
+	Heading,
+	Button,
+	FormControl,
+	FormLabel,
+	Textarea,
+	Input,
+	Select,
+	Text,
+	Flex,
+	InputGroup,
+	InputLeftAddon 
+} from '@chakra-ui/react';
 
 function AddEvent() {
-  /* 	const dispatch = useDispatch();
+	/* 	const dispatch = useDispatch();
 	const history = useNavigate(); */
   const [errors, setErrors] = useState({});
   const Cities = ["CABA", "La Plata", "La Pampa", "Bariloche"];
   const Categories = ["Boliche", "Recital", "Musical"];
   let today = new Date().toISOString().slice(0, 16); //------- Example of today 2022-07-24T14:30
 
-  let [input, setInput] = useState({
-    Name: "",
-    img1: "",
-    img2: "",
-    img3: "",
-    img4: "",
-    imgPc: "",
-    carrousel: "",
-    Price: "",
-    Quantity: "",
-    Rating: "",
-    Restrictions: "",
-    City: "",
-    Location: "",
-    date: "",
-    Hour: "",
-    Detail: "",
-    Category: "",
-    AgeRestriction: "",
-  });
+	let [input, setInput] = useState({
+		Name: '',
+		img1: '',
+		img2: '',
+		img3: '',
+		img4: '',
+		imgPc: '',
+		carrousel: '',
+		Price: '',
+		Quantity: '',
+		Rating: '',
+		Restrictions: '',
+		City: '',
+		Location: '',
+		date: '',
+		Hour: '',
+		Detail: '',
+		Category: '',
+		AgeRestriction: "",
+	});
 
   function handleChange(e) {
     setInput({
