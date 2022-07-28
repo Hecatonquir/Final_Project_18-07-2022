@@ -78,3 +78,13 @@
     cursor: pointer;
     color: rgb(37, 22, 22);
 }
+.mail{
+    box-shadow: #146c98;
+    background-color:rgb(237, 247, 247);
+}
+.close{
+    background-color: darkgrey;
+    border-radius: 20px;
+    
+    padding: 4px;
+}
