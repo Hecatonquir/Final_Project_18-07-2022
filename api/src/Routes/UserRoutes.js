@@ -2,8 +2,7 @@
 const express = require('express');
 const routes = express.Router();
 
-
-const { getAllUsers,loginRequestAP, getUserByName, getUserById, deleteUser, getPartnerCreatedEvents, loginRequest, registerUser, validateToken, validateAdmin, registerUserGmail, roleChange, addToCart,banUser } = require('../Functions/Users.js');
+const { getAllUsers,loginRequestAP, getUserByName, getUserById, deleteUser, getPartnerCreatedEvents, loginRequest, registerUser, validateToken, validateAdmin, registerUserGmail, roleChange, banUser, updateCart } = require('../Functions/Users.js');
 
 routes.get('/all', getAllUsers); // --------------------Working
 routes.get('/name/:Name', getUserByName); // -----------Working
@@ -18,20 +17,14 @@ routes.post("/login", loginRequest)
 routes.post("/login2", loginRequestAP)
 routes.post("/verify",validateToken, (req,res) => {
     res.send("Verified")
-    
 })
 
 routes.post("/registerG", registerUserGmail)
 
-
-
-
 routes.put('/changeRole', validateAdmin, roleChange);
 routes.put('/banUnban', validateAdmin, banUser);
 
-
-routes.put('/addtocart/:IdUser/:IdEvento', addToCart);
-
+routes.put('/updateCart/:IdUser', updateCart);//'/addtocart/:IdUser/:IdEvento'
 
 routes.delete('/delete', deleteUser); // ------------------Working
 

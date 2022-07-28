@@ -2,19 +2,16 @@ require('dotenv').config();
 const { Op } = require('sequelize');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-
 const { Events, Users, Supports, Carts, sequelize } = require('../db.js');
-
-// middleware
+//const nodemailer = require('nodemailer') // nodemailer y google api en caso de poder implementarlas
+//const { google } = require('googleapis')
 
 const validateToken = (req, res, next) => {
 	const accessToken = req.cookies['access-token'];
 	console.log(accessToken);
 	if (!accessToken) return res.status(400).send('User is not authenticated');
-
 	try {
 		const validToken = jwt.verify(accessToken, process.env.PRIVATEKEY);
-
 		if (validToken) {
 			req.authenticated = true;
 			return next();
@@ -28,9 +25,7 @@ const validateToken = (req, res, next) => {
 
 const validatePartner = (req, res, next) => {
 	const accessToken = req.cookies['access-token'];
-
 	if (!accessToken) return res.status(400).send('User is not authenticated');
-
 	try {
 		const validToken = jwt.verify(accessToken, process.env.PRIVATEKEY);
 		if (validToken) {
@@ -50,17 +45,13 @@ const validatePartner = (req, res, next) => {
 
 const validateAdmin = (req, res, next) => {
 	const accessToken = req.cookies['access-token'];
-
 	if (!accessToken) return res.status(400).send('User is not authenticated');
 	try {
 		const validToken = jwt.verify(accessToken, process.env.PRIVATEKEY);
-
 		console.log('validToken');
-
 		if (validToken) {
 			if (validToken.role == 'Admin') {
 				req.authenticated = true;
-
 				next();
 			} else {
 				return res.status(400).send("You can't access here");
@@ -75,7 +66,6 @@ const validateAdmin = (req, res, next) => {
 
 const roleChange = async (req, res) => {
 	console.log(req.body.data.email);
-
 	try {
 		let coco = await Users.update(
 			{
@@ -140,17 +130,91 @@ const getUserById = async (req, res) => {
 };
 
 const registerUser = async (req, res) => {
-	const { Name, Username, Password, Email } = req.body;
+	const { Name, Username, Password, Email } = req.body; // revisar location e image para mailing
+
+	//////////////////////////////////////// Usar en caso de RESOLVER implementacion nodemailer & Google Api //////////////////////////////
+	//////////////////////////////////////// Por movivo desconocido no funciona ///////////////////////////////////////////////////////////
+	/* const contentHTML = `
+		<h1>Mainstage account has been created successfully!</h1>
+		<ul>
+			<li>Name: ${Name}</li>
+			<li>Username: ${Username}</li>
+			<li>Email: ${Email}</li>
+		</ul>
+		<p>Please keep your password safe, we do not save it.</p>
+		<p>All your favorite artists are waiting for you at Mainstage.com, get your tickets soon!</p>
+		<h3>Mainstage Devs Team</h3>
+		<h5>Powered by Henry</h5> `
+
+	const CLIENT_ID = '502989553254-ngudomctts93nnmle74tpl90mn3lin9j.apps.googleusercontent.com'
+	const CLIENT_SECRET = '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'
+	const REDIRECT_URI = 'https://developers.google.com/oauthplayground'
+	const REFRESH_TOKEN = '1//04IiW5YLcPpfqCgYIARAAGAQSNwF-L9Ir3OyC3qZ42NlvXiQrwcrwhifxYB37Y7PaLe3hl58dqIcNfNBpDx6mL3e6U-iuhCOVK90'
+	const oAuth2Client = new google.auth.OAuth2( CLIENT_ID, CLIENT_SECRET, REDIRECT_URI );
+	oAuth2Client.setCredentials( {refresh_token: REFRESH_TOKEN} )
+
+	async function sendMail(){
+		try {
+			const accessToken = await oAuth2Client.getAccessToken()
+			const transporter = nodemailer.createTransport( {	service: 'gmail',
+																host: 'smtp.gmail.com',
+															  	auth: { type: 'OAuth2',
+																	  user: 'mainstage.project@gmail.com',
+																	  pass: 'Mainstageproyect',
+																	  clientId: CLIENT_ID,
+																	  clientSecret: CLIENT_SECRET,
+																	  refreshToken: REFRESH_TOKEN,
+																	  accessToken: accessToken  }
+															} )  */
+			
+			/* let transporter = nodemailer.createTransport({
+				host: "smtp.gmail.com",
+				port: 465,
+				secure: true, // true for 465, false for other ports
+				auth: {
+				  user: 'mainstage.project@gmail.com', 
+				  pass: 'ztjqezdqjysiwoew', 
+				},
+			  }); */
+			  /* const transporter = nodemailer.createTransport({
+				host: '127.0.0.1',
+				port: 2525,
+				auth: {
+					user: 'Mainstage_project',
+					pass: '<4bcefac33598c623f4f39b547dc0696fded72fffa6a1f5ec3503085311e0f1e0>'
+				}
+			}); */
+
+			/* const mailOptions = {
+				from: 'Mainstage Team <mainstage.project@gmail.com>',
+				to: `${Email}`,
+				subject: 'Mainstage account confirmed',
+				html: contentHTML
+			}
+
+			const result = await transporter.sendMail(mailOptions)
+			return result
+		}catch(error) {
+			console.log(error)
+		}
+	}	
+
+	sendMail()
+		.then((result) => console.log(result))
+		.catch((error) => console.log(error.message)); */
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 	let reGex = /\S+@\S+\.\S+/;
 	let validateEmail = reGex.test(Email);
-
 	if (!Name || !Password) {
-		res.status(400).send('Please Provide User and Password');
+		return res.status(400).send('Please Provide User and Password');
 	} else if (!Username) {
-		res.status(400).send('Please Provide an Username!!');
+		return res.status(400).send('Please Provide an Username!!');
 	} else if (!Email || !validateEmail) {
-		res.status(400).send('Please Provide a VALID Email');
+		return res.status(400).send('Please Provide a VALID Email');
 	} else {
+
 		try {
 			let foundOrCreate = await Users.findAll({
 				where: {
@@ -163,33 +227,11 @@ const registerUser = async (req, res) => {
 					req.body.Password = hash;
 					req.body.Role = 'User';
 					Users.create(req.body);
-					res.send('Created Succesfully');
+					return res.send('Created Succesfully');
 				});
 			} else {
-				res.status(400).send('User already exist');
+				return res.status(400).send('User already exist');
 			}
-
-			console.log(user_)
-			bcrypt.compare(password, user_[0].Password, (error, response) => {
-				if(response) {
-					console.log(user_[0].ID)
-					const id = user_[0].ID
-				const token = jwt.sign({id: id, role:user_[0].Role, name: user_[0].Name, email:user_[0].Email},process.env.PRIVATEKEY,{
-					expiresIn: 9999,
-				})
-				console.log(token)
-				res.cookie("access-token", token,{
-					maxAge: 60*60*1000,
-					httpOnly:false
-				})
-
-				return res.send("Logged In!")
-			} else{
-				return res.status(400).send("")
-			}
-				
-			})
-
 		} catch (error) {
 			res.status(400).send(error);
 		}
@@ -198,7 +240,6 @@ const registerUser = async (req, res) => {
 
 const registerUserGmail = async (req, res) => {
 	const { Username } = req.body;
-
 	try {
 		let foundOrCreate = await Users.findAll({
 			where: {
@@ -210,9 +251,7 @@ const registerUserGmail = async (req, res) => {
 			bcrypt.hash(process.env.DefaultPassword, 10).then(async (hash) => {
 				req.body.Password = hash;
 				req.body.Role = 'User';
-
 				let gmailUser = await Users.create(req.body);
-
 				const token = jwt.sign(
 					{
 						id: gmailUser.ID,
@@ -267,15 +306,10 @@ const loginRequest = async (req, res) => {
 				Username: username,
 			},
 		});
-
-
-		if(user_[0].isBan) {
-			
+		if(user_[0].isBan) {			
 			return res.status(400).send("This account has been banned")
 		}
 		if (user_[0]) {
-			
-			
 			if (user_[0].Role === 'Partner' || user_[0].Role === 'Admin') {
 				return res.status(400).send('Invalid User/Password');
 			}
@@ -316,12 +350,10 @@ const loginRequestAP = async (req, res) => {
 				Username: username,
 			},
 		});
-
 		if (user_) {
 			if (user_[0].Role === 'User') {
 				return res.status(400).send('Not Allowed');
 			}
-
 			bcrypt.compare(password, user_[0].Password, (error, response) => {
 				if (response) {
 					console.log(user_[0].ID);
@@ -379,44 +411,38 @@ const getPartnerCreatedEvents = async (req, res) => {
 		res.status(400).send(error.stack);
 	}
 };
-const addToCart = async (req, res) => {
-	const { IdUser, IdEvento } = req.params;
-	console.log('🐲🐲🐲 / file: Users.js / line 322 / IdUser', IdUser);
 
-	/* 	Users.hasOne(Carts);
-			Carts.belongsTo(Users);
-		
-			Carts.hasMany(Events);
-			Events.belongsTo(Carts);	*/
-
+const updateCart = async (req, res) => {
+	const { IdUser/*, idEvento*/ } = req.params;
 	try {
-		let emptyCart = await Carts.findAll({ where: { userID: IdUser } });
-		let cart;
-		var id;
-		if (!emptyCart.length) {
-			cart = await Carts.create({ userID: IdUser });
-			cart.items = [IdEvento];
-			await cart.save();
-		} else {
-			cart = await Carts.findAll({ userID: IdUser });
-			id = cart[0].dataValues.ID;
-			await Carts.update(
-				{ items: sequelize.fn('array_append', sequelize.col('items'), IdEvento) },
-				{ where: { ID: id } }
-			);
-		}
-		res.send('Event added to User Cart');
+		// let emptyCart = await Carts.findAll({ where: { userID: IdUser } });
+		// let cart;		
+		// var id;
+		// if (!emptyCart.length) {
+		// 	cart = await Carts.create({ userID: IdUser });
+		// 	cart.items = [IdEvento];
+		// 	await cart.save();
+		// } else {
+		// 	cart = await Carts.findAll({ userID: IdUser });
+		// 	id = cart[0].dataValues.ID;
+		// 	await Carts.update(
+		// 		{ items: sequelize.fn('array_append', sequelize.col('items'), IdEvento) },
+		// 		{ where: { ID: id } }
+		// 	);
+		// }
+		// res.send('Event added to User Cart');
+		let user = await Users.findByPk(IdUser)
+		user.Cart = req.body
+		user.save()
+    res.send('Event added to User Cart');
 	} catch (error) {
 		res.status(400).send(error.stack);
 	}
 };
 
-
 const banUser = async (req,res) => {
 	console.log(req.body.data)
-
 	try {
-
 	let banned = await Users.update({
 		isBan: req.body.data.ban},
 		{
@@ -426,14 +452,9 @@ const banUser = async (req,res) => {
 		)
 		console.log(banned)
 		return res.send("User Banned")
-
-		
-
 	}catch (error) {
 		return res.status(400).send("Error")
 	}
-
-
 }
 
 module.exports = {
@@ -449,8 +470,8 @@ module.exports = {
 	validateAdmin,
 	registerUserGmail,
 	loginRequestAP,
-	roleChange,
-	addToCart,
+	updateCart,
+	roleChange,	
 	banUser
 };
 
