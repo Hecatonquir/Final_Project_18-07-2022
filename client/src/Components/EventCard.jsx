@@ -8,6 +8,7 @@ import carticon from '../Media/carri.png'
 import fav from '../Media/favorito.png'
 import swal from 'sweetalert';
 import { Box, Heading, Image, Text, Button } from "@chakra-ui/react";
+import AddToCartButton from './AddToCartButton';
 
 
 export default function EventCard({ id, image, name, price, quantity, city, location, date, category }) {
@@ -36,10 +37,12 @@ export default function EventCard({ id, image, name, price, quantity, city, loca
 				<Button className={styles.ButtonFav} >
 					<img src={fav} alt='not imgfav' className={styles.favicon} onClick={() => handleClickFav()}/>
 				</Button>
-				<Button className={styles.Button2} onClick={() => handleClick()}>
+				{/* <Button className={styles.Button2} onClick={() => handleClick()}>
 					Add To
 					<img src={carticon} alt='not imgcart' className={styles.carticon}/>
-				</Button>
+				</Button> */}
+				{/* pero te modularice el botoncito para que lo uses asi :c */}
+				<AddToCartButton id={id} className={styles.Button2}/>
 			</div>
 		</Box>
 	);
