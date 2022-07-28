@@ -1,5 +1,8 @@
 const { Events, Users } = require('../db.js');
 const { eventsApi, userApi } = require('../LocalApi');
+require('dotenv').config;
+
+const stripe = require('stripe');
 
 const uploadDataBase = async (req, res) => {
 	try {

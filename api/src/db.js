@@ -34,8 +34,8 @@ sequelize.models = Object.fromEntries(capsEntries);
 const { Events, Users, Supports, Carts } = sequelize.models;
 
 ////// Associations //////
-/* Users.belongsToMany(Events, { through: 'UsersxEvents', timestamps: false });
-Events.belongsToMany(Users, { through: 'UsersxEvents', timestamps: false }); */
+Users.belongsToMany(Events, { through: 'UsersxEvents', timestamps: false });
+Events.belongsToMany(Users, { through: 'UsersxEvents', timestamps: false });
 
 Users.hasOne(Carts);
 Carts.belongsTo(Users);
@@ -43,8 +43,8 @@ Carts.belongsTo(Users);
 Carts.hasMany(Events);
 Events.belongsTo(Carts);
 
-/* Users.hasMany(Supports);
-Supports.belongsTo(Users); */
+Users.hasMany(Supports);
+Supports.belongsTo(Users);
 
 module.exports = {
 	...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

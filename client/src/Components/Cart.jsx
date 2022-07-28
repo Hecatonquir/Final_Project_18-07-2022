@@ -9,11 +9,15 @@ import imgcarrito from '../Media/emptycart.png';
 import Nav from './Nav';
 import { Box, Button, Center, Heading, Text, Image } from '@chakra-ui/react';
 
+import StripeCheckout from 'react-stripe-checkout';
+
 export default function Cart() {
 	const dispatch = useDispatch();
 	const cart = useSelector((state) => state.cart);
 	var totalAmount = 0;
 	const [showItem, setShowItem] = useState(false);
+	const stripeKey =
+		'pk_test_51LOdlpIX9UMpYaskAq0EOuQYBwCNO0CWWVUIouFgSt4FP4eNMznvWxSTuflGp35HmZKZidvlVZOCYNrlyvviDVrc00V1E8tivg';
 
 	for (let i = 0; i < cart.length; i++) {
 		totalAmount = totalAmount + cart[i].Price * cart[i].PurchasedItem;
@@ -21,6 +25,10 @@ export default function Cart() {
 
 	function hundleClick() {
 		dispatch(clearCart());
+	}
+
+	function handleToken(token, addresses) {
+		console.log('🐲🐲🐲 / file: Cart.jsx / line 31 / token, addresses:\n', { token, addresses });
 	}
 
 	return (
@@ -52,31 +60,40 @@ export default function Cart() {
 						</Box>
 					)}
 				</Box>
-
-				<Box className={styles.containeramount}>
-					<Heading as='h4' color='white'>
-						Total Price: ${totalAmount}
-					</Heading>
-					<Box>
-						{showItem ? (
-							<br /> //  ACA LE PASO INFO A ESTE COMPONENTE
-						) : (
-							<Button
-								className={styles.Button2}
-								onClick={() => {
-									setShowItem(true);
-								}}>
-								Buy
-							</Button>
-						)}
-					</Box>
+			</Box>
+			<Box className={styles.containeramount}>
+				<Heading as='h4' color='white'>
+					Total Price: ${totalAmount}
+				</Heading>
+				{/* <Button
+							className={styles.Button2}
+							onClick={() => {
+								setShowItem(true);
+							}}>
+							Buy
+						</Button> */}
+				<Box>
+					{showItem ? (
+						<br /> //  ACA LE PASO INFO A ESTE COMPONENTE
+					) : (
+						<StripeCheckout
+							stripeKey={stripeKey}
+							token={handleToken}
+							billingAddress
+							amount={totalAmount * 100}
+							/* el *100 es para convertirlo a centavos, NO para estafar a la gente */
+							name="Entradas Para los Eventos!"
+						/>
+					)}
 				</Box>
 			</Box>
+			<br />
 			<Box margin={6}>
 				<Button className={styles.Button2} onClick={() => hundleClick()}>
-					Remove
+					Clear Cart
 				</Button>
 			</Box>
+			<br />
 		</Box>
 	);
 }
