@@ -5,16 +5,12 @@ const jwt = require('jsonwebtoken');
 
 const { Events, Users, Supports, Carts, sequelize } = require('../db.js');
 
-// middleware
-
 const validateToken = (req, res, next) => {
 	const accessToken = req.cookies['access-token'];
 	console.log(accessToken);
 	if (!accessToken) return res.status(400).send('User is not authenticated');
-
 	try {
 		const validToken = jwt.verify(accessToken, process.env.PRIVATEKEY);
-
 		if (validToken) {
 			req.authenticated = true;
 			return next();
@@ -28,9 +24,7 @@ const validateToken = (req, res, next) => {
 
 const validatePartner = (req, res, next) => {
 	const accessToken = req.cookies['access-token'];
-
 	if (!accessToken) return res.status(400).send('User is not authenticated');
-
 	try {
 		const validToken = jwt.verify(accessToken, process.env.PRIVATEKEY);
 		if (validToken) {
@@ -50,17 +44,13 @@ const validatePartner = (req, res, next) => {
 
 const validateAdmin = (req, res, next) => {
 	const accessToken = req.cookies['access-token'];
-
 	if (!accessToken) return res.status(400).send('User is not authenticated');
 	try {
 		const validToken = jwt.verify(accessToken, process.env.PRIVATEKEY);
-
 		console.log('validToken');
-
 		if (validToken) {
 			if (validToken.role == 'Admin') {
 				req.authenticated = true;
-
 				next();
 			} else {
 				return res.status(400).send("You can't access here");
@@ -75,7 +65,6 @@ const validateAdmin = (req, res, next) => {
 
 const roleChange = async (req, res) => {
 	console.log(req.body.data.email);
-
 	try {
 		let coco = await Users.update(
 			{
@@ -143,7 +132,6 @@ const registerUser = async (req, res) => {
 	const { Name, Username, Password, Email } = req.body;
 	let reGex = /\S+@\S+\.\S+/;
 	let validateEmail = reGex.test(Email);
-
 	if (!Name || !Password) {
 		return res.status(400).send('Please Provide User and Password');
 	} else if (!Username) {
@@ -179,7 +167,6 @@ const registerUser = async (req, res) => {
 
 const registerUserGmail = async (req, res) => {
 	const { Username } = req.body;
-
 	try {
 		let foundOrCreate = await Users.findAll({
 			where: {
@@ -191,9 +178,7 @@ const registerUserGmail = async (req, res) => {
 			bcrypt.hash(process.env.DefaultPassword, 10).then(async (hash) => {
 				req.body.Password = hash;
 				req.body.Role = 'User';
-
 				let gmailUser = await Users.create(req.body);
-
 				const token = jwt.sign(
 					{
 						id: gmailUser.ID,
@@ -248,15 +233,10 @@ const loginRequest = async (req, res) => {
 				Username: username,
 			},
 		});
-
-
-		if(user_[0].isBan) {
-			
+		if(user_[0].isBan) {			
 			return res.status(400).send("This account has been banned")
 		}
 		if (user_[0]) {
-			
-			
 			if (user_[0].Role === 'Partner' || user_[0].Role === 'Admin') {
 				return res.status(400).send('Invalid User/Password');
 			}
@@ -297,12 +277,10 @@ const loginRequestAP = async (req, res) => {
 				Username: username,
 			},
 		});
-
 		if (user_) {
 			if (user_[0].Role === 'User') {
 				return res.status(400).send('Not Allowed');
 			}
-
 			bcrypt.compare(password, user_[0].Password, (error, response) => {
 				if (response) {
 					console.log(user_[0].ID);
@@ -360,44 +338,38 @@ const getPartnerCreatedEvents = async (req, res) => {
 		res.status(400).send(error.stack);
 	}
 };
-const addToCart = async (req, res) => {
-	const { IdUser, IdEvento } = req.params;
-	console.log('🐲🐲🐲 / file: Users.js / line 322 / IdUser', IdUser);
 
-	/* 	Users.hasOne(Carts);
-			Carts.belongsTo(Users);
-		
-			Carts.hasMany(Events);
-			Events.belongsTo(Carts);	*/
-
+const updateCart = async (req, res) => {
+	const { IdUser/*, idEvento*/ } = req.params;
 	try {
-		let emptyCart = await Carts.findAll({ where: { userID: IdUser } });
-		let cart;
-		var id;
-		if (!emptyCart.length) {
-			cart = await Carts.create({ userID: IdUser });
-			cart.items = [IdEvento];
-			await cart.save();
-		} else {
-			cart = await Carts.findAll({ userID: IdUser });
-			id = cart[0].dataValues.ID;
-			await Carts.update(
-				{ items: sequelize.fn('array_append', sequelize.col('items'), IdEvento) },
-				{ where: { ID: id } }
-			);
-		}
-		res.send('Event added to User Cart');
+		// let emptyCart = await Carts.findAll({ where: { userID: IdUser } });
+		// let cart;		
+		// var id;
+		// if (!emptyCart.length) {
+		// 	cart = await Carts.create({ userID: IdUser });
+		// 	cart.items = [IdEvento];
+		// 	await cart.save();
+		// } else {
+		// 	cart = await Carts.findAll({ userID: IdUser });
+		// 	id = cart[0].dataValues.ID;
+		// 	await Carts.update(
+		// 		{ items: sequelize.fn('array_append', sequelize.col('items'), IdEvento) },
+		// 		{ where: { ID: id } }
+		// 	);
+		// }
+		// res.send('Event added to User Cart');
+		let user = await Users.findByPk(IdUser)
+		user.Cart = req.body
+		user.save()
+    res.send('Event added to User Cart');
 	} catch (error) {
 		res.status(400).send(error.stack);
 	}
 };
 
-
 const banUser = async (req,res) => {
 	console.log(req.body.data)
-
 	try {
-
 	let banned = await Users.update({
 		isBan: req.body.data.ban},
 		{
@@ -407,14 +379,9 @@ const banUser = async (req,res) => {
 		)
 		console.log(banned)
 		return res.send("User Banned")
-
-		
-
 	}catch (error) {
 		return res.status(400).send("Error")
 	}
-
-
 }
 
 module.exports = {
@@ -430,8 +397,8 @@ module.exports = {
 	validateAdmin,
 	registerUserGmail,
 	loginRequestAP,
-	roleChange,
-	addToCart,
+	updateCart,
+	roleChange,	
 	banUser
 };
 
