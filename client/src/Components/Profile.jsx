@@ -6,7 +6,7 @@ import {decodeToken} from "react-jwt"
 import Nav from './Nav'
 import Tabs from "./UserAccount.jsx";
 import { Box, Flex, Heading, Image, Text } from "@chakra-ui/react";
-
+import styles from '../Styles/User.module.css'
 
 function Profile() {
 
@@ -33,11 +33,19 @@ function Profile() {
          <Tabs />
         </>
       ) : (
+        <div>
+          <nav className={styles.nav}>
+                <Link to= '/'>
+                <button className={styles.Button}>Back</button>
+                </Link>
+            </nav>
+        
         <Flex justifyContent='center' alignItems='center' height='90vh'>
           <Box color='white' bg='gray' width='50%' padding={4}  borderRadius="2%">
             <Heading as='h1' textAlign='center' margin={6}>You need to register first</Heading>
           </Box>
         </Flex>
+        </div>
       )}
     </Box>
   );
