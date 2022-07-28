@@ -36,7 +36,6 @@ function AddEvent() {
 		img2: '',
 		img3: '',
 		img4: '',
-		imgPc: '',
 		carrousel: '',
 		Price: '',
 		Quantity: '',
@@ -71,7 +70,7 @@ function AddEvent() {
 		} else {
 			postEvent({
 				Name: input.Name,
-				Image: [input.img1, input.img2, input.img3, input.img4, input.imgPc],
+				Image: [input.img1, input.img2, input.img3, input.img4],
 				Carrousel: input.carrousel,
 				Price: Number(input.Price),
 				Quantity: Number(input.Quantity),
@@ -91,7 +90,6 @@ function AddEvent() {
 				img2: '',
 				img3: '',
 				img4: '',
-				imgPc: '',
 				carrousel: '',
 				Price: '',
 				Quantity: '',
@@ -214,91 +212,89 @@ function AddEvent() {
 
 						<FormControl marginBottom={4}>
 							<FormLabel color='white'>*Image 1</FormLabel>
-							<Input
-								type='text'
+							<Widget
+                publicKey='4a7fa09f2188af9b76a3'
+								type='file'
 								value={input.img1}
 								id='img1'
-								name='img1'
-								placeholder='Insert URL here'
-								_placeholder={{ color: '#202531' }}
-								variant='flushed'
-								onChange={(e) => handleChange(e)}
+							  variant='flushed'
+                data-tabs="file url facebook gdrive gphotos"
+								onChange={(e) => {
+									setInput({
+										...input,
+										img1: e.originalUrl,
+                    
+									});
+								}}
 							/>
 							{input.img1 !== '' && errors.img1 && <Text color='red'>{errors.img1}</Text>}
 						</FormControl>
 
 						<FormControl marginBottom={4}>
 							<FormLabel color='white'>Image 2</FormLabel>
-							<Input
+							<Widget
+               publicKey='4a7fa09f2188af9b76a3'
 								type='text'
 								value={input.img2}
 								id='img2'
-								name='img2'
-								placeholder='Insert URL here'
-								_placeholder={{ color: '#202531' }}
 								variant='flushed'
-								onChange={(e) => handleChange(e)}
+								onChange={(e) => {
+									setInput({
+										...input,
+										img2: e.originalUrl,
+                    });
+								}}
 							/>
 							{errors.img2 && <Text color='red'>{errors.img2}</Text>}
 						</FormControl>
 
 						<FormControl marginBottom={4}>
 							<FormLabel color='white'>Image 3</FormLabel>
-							<Input
+							<Widget
+                publicKey='4a7fa09f2188af9b76a3'
 								type='text'
 								value={input.img3}
 								id='img3'
-								name='img3'
-								placeholder='Insert URL here'
-								_placeholder={{ color: '#202531' }}
 								variant='flushed'
-								onChange={(e) => handleChange(e)}
+								onChange={(e) => {
+									setInput({
+										...input,
+										img3: e.originalUrl,
+                    });
+								}}
 							/>
 							{errors.img3 && <Text color='red'>{errors.img3}</Text>}
 						</FormControl>
 
 						<FormControl marginBottom={4}>
 							<FormLabel color='white'>Image 4</FormLabel>
-							<Input
-								type='text'
-								value={input.img4}
-								id='img4'
-								name='img4'
-								placeholder='Insert URL here'
-								_placeholder={{ color: '#202531' }}
-								variant='flushed'
-								onChange={(e) => handleChange(e)}
-							/>
-							{errors.img4 && <Text color='red'>{errors.img4}</Text>}
-						</FormControl>
-
-						<FormControl marginBottom={4}>
-							<FormLabel color='white'>Image 4</FormLabel>
 							<Widget
 								publicKey='4a7fa09f2188af9b76a3'
+								value={input.img4}
 								id='file'
-								name='photos'
-								value={input.imgPc}
+								variant='flushed'
 								onChange={(e) => {
 									setInput({
 										...input,
-										imgPc: e.originalUrl,
+										img4: e.originalUrl,
 									});
 								}}
 							/>
+							{errors.img4 && <Text color='red'>{errors.img4}</Text>}
 						</FormControl>
-
-						<FormControl marginBottom={4}>
+           <FormControl marginBottom={4}>
 							<FormLabel color='white'>Carrousel image</FormLabel>
-							<Input
-								type='text'
+							<Widget
+								publicKey='4a7fa09f2188af9b76a3'
 								value={input.carrousel}
 								id='carrousel'
-								name='carrousel'
-								placeholder='Insert URL here'
-								_placeholder={{ color: '#202531' }}
 								variant='flushed'
-								onChange={(e) => handleChange(e)}
+								onChange={(e) => {
+									setInput({
+										...input,
+										carrousel: e.originalUrl,
+									});
+								}}
 							/>
 							{errors.carrousel && <Text color='red'>{errors.carrousel}</Text>}
 						</FormControl>
