@@ -413,8 +413,7 @@ module.exports = {
 	registerUserGmail,
 	loginRequestAP,
 	updateCart,
-	roleChange,
-	addToCart,
+	roleChange,	
 	banUser
 };
 
