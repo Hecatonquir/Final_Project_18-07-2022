@@ -48,18 +48,16 @@ export default function Home() {
 
 	<Box bgGradient='linear(to-r, #1c2333, #371a1e)' minHeight='100vh'>
 		<Box>
-		
 			<NavBar />
-			
 			<Box>
 				<EventCarousel />
 			</Box>
 		</Box>
 		<Box className={styles.welcome}>
 			{stateUser || !isExpired(token) ? (
-				<p>Welcome {tokenDecoded ? tokenDecoded.name : 'Guest'}</p>
+				<Text>Welcome {tokenDecoded ? tokenDecoded.name : 'Guest'}</Text>
 			) : (
-				<p>Welcome Guest</p>
+				<Text>Welcome Guest</Text>
 			)}
 		</Box>
 		<Box>
@@ -156,9 +154,10 @@ export default function Home() {
 									/>
 								</Box>
 							))
-						) : ( <Flex justifyContent='center'>
-							<Box fontSize='4em' fontFamily='cursive' color='#D69E2E' textAlign='center'>
-								<Text >No Events Found</Text>
+						) : (
+							<Flex justifyContent='center' width='100vw'>
+								<Box fontSize='4em' fontFamily='cursive' color='#D69E2E' textAlign='center'>
+								<Text>No Events Found</Text>
 							</Box>
 							</Flex>
 						)}
