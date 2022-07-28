@@ -9,7 +9,7 @@ const SupportRoutes = require('./SupportRoutes');
 const { stripeFunction } = require('../Functions/Extra');
 
 routes.use(express.json());
-routes.use(cors());
+//routes.use(cors());
 
 routes.use('/user', UserRoutes);
 routes.use('/event', EventRoutes);
@@ -17,6 +17,6 @@ routes.use('/support', SupportRoutes);
 
 /* Aca pueden ir otras rutas que sólo se usen 1 vez. Por ejemplo: */
 
-routes.post('/checkout', cors(), stripeFunction);
+routes.post('/checkout', stripeFunction);
 
 module.exports = routes;
