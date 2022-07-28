@@ -41,7 +41,7 @@ function LogIn() {
     return (
 
          <div>
-            {  !active || !token ?
+            {  !token || ! active ?
             <div>
   
             <nav className={styles.nav}>

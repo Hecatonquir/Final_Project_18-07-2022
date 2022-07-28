@@ -268,9 +268,16 @@ const loginRequest = async (req, res) => {
 			},
 		});
 
-		if (user_) {
+
+		if(user_[0].isBan) {
+			
+			return res.status(400).send("This account has been banned")
+		}
+		if (user_[0]) {
+			
+			
 			if (user_[0].Role === 'Partner' || user_[0].Role === 'Admin') {
-				res.status(400).send('Invalid User/Password');
+				return res.status(400).send('Invalid User/Password');
 			}
 			console.log(user_);
 			bcrypt.compare(password, user_[0].Password, (error, response) => {
@@ -404,6 +411,31 @@ const addToCart = async (req, res) => {
 	}
 };
 
+
+const banUser = async (req,res) => {
+	console.log(req.body.data)
+
+	try {
+
+	let banned = await Users.update({
+		isBan: req.body.data.ban},
+		{
+		where: {
+			Email: req.body.data.email}
+		},
+		)
+		console.log(banned)
+		return res.send("User Banned")
+
+		
+
+	}catch (error) {
+		return res.status(400).send("Error")
+	}
+
+
+}
+
 module.exports = {
 	getAllUsers,
 	getUserByName,
@@ -419,5 +451,6 @@ module.exports = {
 	loginRequestAP,
 	roleChange,
 	addToCart,
+	banUser
 };
 
