@@ -7,13 +7,7 @@ export async function logInUser(payload,dispatch,navigate){
         try {
              await axios.post(`http://localhost:3001/user/login`, payload, {withCredentials: true});
              
-             swal({
-                title: 'Login Success',
-                text: 'Redirecting...',
-                icon: 'success',
-                timer: 2000,
-                buttons: false,
-            })
+             
             
           
             setTimeout(() => {
@@ -26,9 +20,11 @@ export async function logInUser(payload,dispatch,navigate){
         }
         
         catch (error) {
+            console.log(error.response.data)
             swal({
                 title: 'Error',
                 icon: 'error',
+                text: error.response.data,
                 timer: 2000,
                 buttons: false,
             })

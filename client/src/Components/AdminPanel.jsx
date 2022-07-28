@@ -10,6 +10,8 @@ import {deleteEvent} from "../Redux/Actions/deleteEvent"
 import getEvents from '../Redux/Actions/getEvents'
 import styles from "../Styles/AdminPanel.module.css"
 import { changeRole } from '../Redux/Actions/updateRole'
+import { banUnbanUser } from '../Redux/Actions/banUnbanUser'
+import { eachWeekOfInterval } from 'date-fns'
 
  function AdminPanel() {
     let token = document.cookie
@@ -68,7 +70,7 @@ useEffect(() => {
         </div>
 
         <div className={styles.container}>
-        <div className={styles.leftcolumn}>
+        <div className={styles.rightcolumn}>
             <div className={styles.containerinput}>
        {admin && <input name="username" type="text"  placeholder="Search User" value={userADM.username} onChange={(e) =>handleChange(e)}></input>}
        </div>
@@ -79,7 +81,7 @@ useEffect(() => {
             <button onClick={() =>  {return deleteEvent(el.ID), setUser({username: "",posts: ""})}}>Delete Event</button>
             <button onClick={()=>{}}>Update Event</button>
 
-            <span>Name: {el.Name} || Price: {el.Price} || City: {el.City} || Quantity: {el.Quantity} || Partner: </span>
+            <span>Name: {el.Name} || Price: {el.Price} || City: {el.City} || Quantity: {el.Quantity} || Partner: </span> || 
         </div>
      
        ))}
@@ -88,7 +90,7 @@ useEffect(() => {
        </div>
        
 
-       <div className={styles.rightcolumn}>
+       <div className={styles.leftcolumn}>
             <div className={styles.containerinput}>
         
        {admin && <input name="posts" type="text"  placeholder="Search Event" value={userADM.posts} onChange={(e) =>handleChange(e)}></input>}
@@ -104,8 +106,8 @@ useEffect(() => {
             <button hidden={actRoles? false: true}name="Admin" onClick={(e) => changeRole(e.target.name, el.Email,dispatch)}>Admin</button>
             <button hidden={actRoles? false: true}name="Partner" onClick={(e) => changeRole(e.target.name, el.Email,dispatch)}>Partner</button>
             <button hidden={actRoles? false: true} name="User"onClick={(e) => changeRole(e.target.name, el.Email,dispatch)}>User</button>
-
-            <span>User: {el.Name} || Email: {el.Email} || Role: {el.Role}</span>
+                <button onClick={() => {banUnbanUser(el.isBan ? false: true,el.Email,dispatch)}}>{el.isBan ? "Unban User" : "Ban User" }</button>
+            <span>User: {el.Name} || Email: {el.Email} || Role: {el.Role} || is Ban: {el.isBan ? "true": "false"}</span>
         </div>
      
        ))}
