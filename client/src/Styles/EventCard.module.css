@@ -2,18 +2,17 @@
 .cards {
     background-color: white;
     border-radius: 1rem;
-    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.2);
     display: flex;
     margin: 1rem;
     overflow: hidden;
-    width: 38rem;
-    height: 18rem;
+    width: 40rem;
+    height: 20rem;
     color: #1C517A;
 }
 
 .img {
-    width:18rem;
-    height: 18rem;
+    width: 20rem;
+    height: 20rem;
 }
 .cards h4 {
     margin: 1rem 0;
@@ -25,6 +24,7 @@
 
 .leftcolumn {
     max-width: 20rem;
+    height: 20rem;
 }
 
 .rightcolumn {
@@ -34,10 +34,11 @@
     align-items: flex-start;
     justify-content: space-between;
     margin: 0.1rem;
+    height: 20rem;
 }
 
 .subtitles p {
-    margin: 5px;
+    margin: 2px;
 }
 
 .Button2 {
@@ -78,6 +79,8 @@
 }
 
 .ButtonFav {
-    margin-top: 13px;
+    margin-top: 20px;
     border-radius: 50%;
+    background-color: white;
+    margin-right: 100px;
 }

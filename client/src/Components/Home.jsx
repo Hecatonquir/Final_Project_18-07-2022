@@ -55,7 +55,7 @@ export default function Home() {
 				<EventCarousel />
 			</Box>
 		</Box>
-		<Box className={styles.welcome}>
+		<Box className={styles.welcome} >
 			{stateUser || !isExpired(token) ? (
 				<p>Welcome {tokenDecoded ? tokenDecoded.name : 'Guest'}</p>
 			) : (

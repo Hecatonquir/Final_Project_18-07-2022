@@ -1,16 +1,13 @@
 import { React, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearCart } from '../Redux/Actions/clearCart';
 import CardItem from './CartItem';
 import styles from '../Styles/Cart.module.css';
 import imgcarrito from '../Media/emptycart.png';
-
 import Nav from './Nav';
 import { Box, Button, Center, Heading, Text, Image } from '@chakra-ui/react';
 import { decodeToken } from 'react-jwt';
 import { updateCart } from '../Redux/Actions/updateCart';
-
 import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
@@ -37,9 +34,7 @@ export default function Cart() {
 
 	async function handleToken(token) {
 		const response = await axios.post('http://localhost:3001/checkout', { token, totalAmount });
-		console.log('🐲🐲🐲 / file: Cart.jsx / line 35 / response', response);
 		const { status } = response.data;
-		console.log('🐲🐲🐲 / file: Cart.jsx / line 36 / response.data', response.data);
 		if (status === 'success')
 			toast.success('Your purchase was successful! Check your E-mail for more information');
 		else toast.error('Something went wrong. Purchase cancelled');
@@ -61,8 +56,8 @@ export default function Cart() {
 							<Box key={item.ID}>
 								<CardItem
 									id={item.ID}
-									name={item.Name}
 									image={item.Image[0]}
+									name={item.Name}
 									price={item.Price}
 									purchasedItem={item.PurchasedItem}
 								/>
@@ -102,8 +97,8 @@ export default function Cart() {
 				</Box>
 			</Box>
 			<br />
-			<Box margin={6}>
-				<Button className={styles.Button2} onClick={() => hundleClick()}>
+			<Box margin={6} >
+				<Button bg='pink' onClick={() => hundleClick()}>
 					Clear Cart
 				</Button>
 			</Box>
