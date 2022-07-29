@@ -59,7 +59,7 @@ module.exports = (sequelize) => {
 				defaultValue: false,
 			},
 			Cart: {
-				type: DataTypes.ARRAY( DataTypes.JSON )
+				type: DataTypes.ARRAY(DataTypes.JSON),
 			},
 			isSupport: {
 				type: DataTypes.BOOLEAN,
@@ -68,7 +68,7 @@ module.exports = (sequelize) => {
 			isBan: {
 				type: DataTypes.BOOLEAN,
 				defaultValue: false,
-			}
+			},
 		},
 		{ timestamps: false }
 	);

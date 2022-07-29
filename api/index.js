@@ -22,7 +22,7 @@ const { conn } = require('./src/db.js');
 const { uploadDataBase } = require('./src/Functions/Extra');
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
+conn.sync({ force: false }).then(() => {
 	server.listen(3001, async () => {
 		await uploadDataBase();
 		console.log('%s listening at 3001');

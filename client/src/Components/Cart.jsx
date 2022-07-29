@@ -36,7 +36,7 @@ export default function Cart() {
 	}
 
 	async function handleToken(token) {
-		const response = await axios.post('http://localhost:3001/checkout', { token, totalAmount });
+		const response = await axios.post('/checkout', { token, totalAmount });
 		console.log('🐲🐲🐲 / file: Cart.jsx / line 35 / response', response);
 		const { status } = response.data;
 		console.log('🐲🐲🐲 / file: Cart.jsx / line 36 / response.data', response.data);
