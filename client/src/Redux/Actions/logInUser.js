@@ -2,12 +2,15 @@ import axios from "axios"
 import { UPDATE_STATE_TRUE } from "../ActionTypes/actiontypes";
 import swal from "sweetalert";
 
-export async function logInUser(payload,dispatch,navigate){
+
+export async function logInUser(payload,navigate){
+
+    
        
         try {
              await axios.post(`http://localhost:3001/user/login`, payload, {withCredentials: true});
              
-             
+            
             
              swal({
                 title: 'Login Success',
