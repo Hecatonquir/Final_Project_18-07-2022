@@ -59,7 +59,7 @@ export default function reducer(state = initialState, { type, payload }) {
 			return { ...state, cart: payload };
 
 		case UPDATE_DB_CART:
-			axios.put('http://localhost:3001/user/updateCart/' + payload, state.cart);
+			axios.put('/user/updateCart/' + payload, state.cart);
 			return state;
 
 		case ADD_ITEM_CART:

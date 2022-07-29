@@ -4,7 +4,7 @@ import swal from 'sweetalert';
 
 export async function logInUser(payload, navigate, dispatch) {
 	try {
-		let user = await axios.post(`http://localhost:3001/user/login`, payload, {
+		let user = await axios.post(`/user/login`, payload, {
 			withCredentials: true,
 		});
 		console.log(user.data[0].Cart);
