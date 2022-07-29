@@ -4,12 +4,12 @@ import getEvents from "./getEvents"
 import getUsers from "./getUsers"
 
 
-export async function deleteUserDB(mail,dispatch) {
+export async function deleteUserDB(veredict,mail,dispatch) {
     
     
         try {
 
-        let Deleted = await axios.delete("http://localhost:3001/user/delete",{data: {email: mail}})
+        let Deleted = await axios.delete("http://localhost:3001/user/delete",{data: {veredict,email: mail}})
 
             dispatch(getUsers())
 

@@ -30,7 +30,7 @@ routes.put('/changeRole', validateAdmin, roleChange);
 routes.put('/banUnban', validateAdmin, banUser);
 
 
-//routes.put('/addtocart/:IdUser/:IdEvento', addToCart);
+routes.put('/updateCart/:IdUser', updateCart);
 
 
 routes.delete('/delete',validateAdmin, deleteUser); // ------------------Working

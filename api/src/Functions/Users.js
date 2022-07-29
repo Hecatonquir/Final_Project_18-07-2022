@@ -332,7 +332,7 @@ const loginRequest = async (req, res) => {
 						httpOnly: false,
 					});
 
-					return res.send('Logged In!');
+					return res.send(user_);
 				} else {
 					return res.status(400).send('');
 				}
@@ -387,7 +387,8 @@ const loginRequestAP = async (req, res) => {
 
 const deleteUser = async (req, res) => {
 	try {
-		console.log(req.body);
+
+		console.log("hola");
 		const targetUser = await Users.findOne({
 			where: {
 				Email: req.body.email,
