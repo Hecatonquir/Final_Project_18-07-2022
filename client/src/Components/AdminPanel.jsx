@@ -92,7 +92,7 @@ function AdminPanel() {
 												}}>
 												Delete User
 											</button>
-											<button className={styles.button2} onClick={() => {}}>Change Role</button>
+											
 											<button
 												className={styles.button3}
 												onClick={() => {
@@ -130,8 +130,7 @@ function AdminPanel() {
 											</button>
 										</div>
 										<span>
-											User: {el.Name} || Email: {el.Email} || Role: {el.Role} || is Ban:{' '}
-											{el.isBan ? 'true' : 'false'}
+											User: {el.Name} || Email: {el.Email} || Role: {el.Role} || isBan: {el.isBan ? 'true' : 'false'}
 										</span>
 									</div>
 								))}
@@ -170,9 +169,9 @@ function AdminPanel() {
 											<button
 												className={styles.button1}
 												onClick={() => {
-													return deleteEvent(el.ID), setUser({ username: '', posts: '' });
+													return deleteEvent(el.ID,dispatch,el.isErased? false: true), setUser({ username: '', posts: '' });
 												}}>
-												Delete Event
+												{el.isErased ? "Restore Event": "Ban/Erase Event"}
 											</button>
 											<button className={styles.button2} onClick={() => {}}>Update Event</button>
 										</div>
