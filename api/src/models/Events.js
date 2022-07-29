@@ -36,7 +36,7 @@ module.exports = (sequelize) => {
 				defaultValue: ['None'],
 			},
 			Category: {
-				type: DataTypes.ARRAY(DataTypes.STRING),
+				type: DataTypes.STRING,
 			},
 			City: {
 				type: DataTypes.STRING,

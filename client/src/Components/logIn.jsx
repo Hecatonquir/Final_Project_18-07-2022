@@ -6,7 +6,15 @@ import styles from '../Styles/User.module.css'
 import img1 from '../Media/google.png'
 import {isExpired, decodeToken} from "react-jwt"
 import {useDispatch,useSelector} from "react-redux"
-
+import {
+    Box,
+    Heading,
+    Input,
+    Text,
+    Flex,
+    Button
+  } from "@chakra-ui/react";
+import Nav from './Nav';
 
 
 function LogIn() {
@@ -40,63 +48,73 @@ function LogIn() {
 
     return (
 
-         <div>
-            {  !token || ! active ?
-            <div>
+         <Box bgGradient="linear(to-r, #1c2333, #371a1e)" minHeight="100vh">
+            {  !token ||  !active ?
+            <Box>
   
-            <nav className={styles.nav}>
-                <Link to= '/'>
-                <button className={styles.Button}>Back</button>
-                </Link>
-            </nav>
-            <div>
-                <div className={styles.container}>
-                    <h2 className={styles.title}>Login</h2>
-                    <input 
+                <Nav/>
+            <Box>
+                <Flex justifyContent='center' alignItems='center' minHeight='90vh'>
+                <Box bg="gray" width="55%" padding={4} marginTop={4} borderRadius="2%">
+                    <Heading as='h2' color='white' textAlign='center' marginBottom={6}>Login</Heading>
+                    <Input 
                     type="text" 
                     name="username" 
                     onChange={handleChange} 
                     placeholder="Username" 
-                    value={input.username}/>
+                    value={input.username}
+                    _placeholder={{ opacity: 0.4, color: "inherit" }}
+                    color='white'
+                    variant="flushed"
+                    marginBottom={6}
+                    />
 
-                    <br/>
-
-                    <input 
+                    <Input 
                     type="password" 
                     name="password" 
                     onChange={handleChange} 
                     placeholder="Password" 
-                    value={input.password}/>
+                    value={input.password}
+                    _placeholder={{ opacity: 0.4, color: "inherit" }}
+                    color='white'
+                    variant="flushed"
+                    marginBottom={6}
+                    />
 
-                    <br/>
+                    <Box textAlign='center' marginBottom={8}>
+                    <Button onClick={submitButton}>Login</Button>
+                    </Box>
+        
+                    <Box color='white' marginBottom={8}>
+                        <Flex justifyContent='space-around' alignItems='center'>
+                        <Text>Don't have an account?</Text>
+                        <Link to="/register"><Text>Register</Text></Link>
+                        </Flex>
+                   
+                    </Box>
 
-                    <button className={styles.Button2} onClick={submitButton}>Login</button>
-
-                    <div className={styles.register}>
-                    <p className={styles.title2}>Don't have an account?</p>
-                    <Link to="/register"><p className={styles.title3}>Register</p></Link>
-                    </div>
-
-                    <button  onClick={() => loginWithRedirect()} className={styles.Button3}>
-                        <img src={img1} alt='not img' className={styles.icon}/><span>Register with google</span>
-                    </button>
-                </div>
-                </div>
-            </div>
+                    <Box textAlign='center' marginBottom={6}>
+                        <Button  onClick={() => loginWithRedirect()} className={styles.Button3}>
+                            <img src={img1} alt='not img' className={styles.icon}/><span>Register with google</span>
+                        </Button>
+                    </Box>
+                </Box>
+                </Flex>
+                </Box>
+            </Box>
             : 
-            <div className={styles.Total}>
-                <nav className={styles.nav}>
-                <Link to= '/'>
-                <button className={styles.Button}>Back</button>
-                </Link>
-            </nav>
-            <div>
-                <p className={styles.text}>Oops, you missed something? You are Logged In!</p>
-            </div>
-            </div>
+            <Box bgGradient="linear(to-r, #1c2333, #371a1e)" minHeight="100vh">
+                <Nav/>
+                <Flex justifyContent='center' alignItems='center' minHeight='90vh'>
+                <Box>
+                <Text color='white' fontSize='3.4em'>Oops, you missed something? You are Logged In!</Text>
+                </Box>
+                </Flex>
+                
+            </Box>
             }
 
-            </div>
+            </Box>
     )
 }
 

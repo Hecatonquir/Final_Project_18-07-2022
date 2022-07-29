@@ -156,7 +156,8 @@ export default function Home() {
 									/>
 								</Box>
 							))
-						) : ( <Flex justifyContent='center'>
+						) : ( 
+						<Flex justifyContent='center' width='100vw'>
 							<Box fontSize='4em' fontFamily='cursive' color='#D69E2E' textAlign='center'>
 								<Text >No Events Found</Text>
 							</Box>

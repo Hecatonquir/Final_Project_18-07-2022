@@ -23,12 +23,10 @@ export default function ContactUs() {
 	const [note, setNote] = useState({
 		reason: '',
 		problemType: '',
+		emailCustomer: '',
 	});
 
-
 	
-  
-  
 
 
 	function handleChange(e) {
@@ -36,19 +34,22 @@ export default function ContactUs() {
 			...note,
 			[e.target.name]: e.target.value,
 		});
-	}
+		
+	} 
 
 	function handleSubmit(e) {
 		e.preventDefault();
-		if (note.reason.length > 0 && note.problemType.length > 0) {
+		
+		if (note.reason.length > 0 && note.problemType.length > 0 && note.emailCustomer.length > 0) {
+			
 			postSupports(note);
 			// alert("Note was created successfully")
-			setNote({ reason: '', problemType: '' });
+			setNote({ reason: '', problemType: '',emailCustomer: '' });
 		} else {
-			swal('Fill Formulary', {
+			swal("Fill Formulary'problem' email 'reason", {
 				icon: 'warning',
 			});
-      setNote({ reason: '', problemType: '' });
+      setNote({ reason: '', problemType: '',emailCustomer: '' });
     }
 	}
 
@@ -88,6 +89,7 @@ export default function ContactUs() {
 											<option>Others</option>
 										</select>
 									</div>
+									
 								</form>
 
 								<MDBBtn className='btn-close' color='none' onClick={toggleShow}></MDBBtn>
@@ -102,12 +104,23 @@ export default function ContactUs() {
 									name='reason'
 									value={note.reason}
 									onChange={handleChange}></textarea>
+								
 							</MDBModalBody>
-
+							
 							<MDBModalFooter>
-								<MDBBtn color='secondary' onClick={toggleShow}>
+							<div> 
+								   <label>your mail:</label>
+										<input 
+										className={styles.mail}
+										type="text" 
+										name='emailCustomer'
+										value={note.emailCustomer}
+										onChange={handleChange}/>
+										
+									</div>
+								<button className={styles.close} onClick={toggleShow}>
 									Close
-								</MDBBtn>
+								</button>
 								<div className={styles.divButton}>
 									<button onClick={handleSubmit} className={styles.Button2} type='submit'>
 										Create Note
