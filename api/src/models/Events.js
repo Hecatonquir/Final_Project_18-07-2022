@@ -33,7 +33,7 @@ module.exports = (sequelize) => {
 			},
 			Restrictions: {
 				type: DataTypes.ARRAY(DataTypes.STRING),
-				defaultValue: ['None'],
+				defaultValue: [],
 			},
 			Category: {
 				type: DataTypes.STRING,
@@ -43,8 +43,8 @@ module.exports = (sequelize) => {
 				allowNull: false,
 			},
 			AgeRestriction: {
-				type: DataTypes.STRING,
-				defaultValue: '0',
+				type: DataTypes.INTEGER,
+				defaultValue: 0,
 			},
 			RedFlags: {
 				type: DataTypes.INTEGER,
@@ -52,6 +52,14 @@ module.exports = (sequelize) => {
 			},
 			Date: {
 				type: DataTypes.DATE,
+				dialectOptions: {
+					useUTC: false, // for reading from database
+				},
+				timezone: '-03:00',
+				/* get: function () {
+					// or use get(){ }
+					return this.getDataValue('Date').toLocaleString('en-GB');
+				}, */
 			},
 			Detail: {
 				type: DataTypes.TEXT,

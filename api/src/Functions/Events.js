@@ -6,7 +6,7 @@ const getAllEvents = async (req, res, next) => {
 		await Events.findAll({
 			attributes: {
 				include: [
-					[sequelize.fn('TO_CHAR', sequelize.col('Date'), 'Day DD-Mon-YYYY HH12:MIPM'), 'Date'],
+					[sequelize.fn('TO_CHAR', sequelize.col('Date'), 'Day DD-Mon-YYYY HH:MM'), 'Date'],
 				],
 			},
 		})
@@ -14,15 +14,14 @@ const getAllEvents = async (req, res, next) => {
 };
 
 const deleteEvent = async (req, res) => {
-	console.log(req.body.ID)
+	console.log(req.body.ID);
 	try {
-		
-		const trash = await Events.findOne( {
+		const trash = await Events.findOne({
 			where: {
-				ID: req.body.ID}}
-			
-		)
-		console.log(trash)
+				ID: req.body.ID,
+			},
+		});
+		console.log(trash);
 		const trash2 = trash;
 		await trash.destroy();
 		res.send(`Event ${trash2.Name} deleted successfully`);

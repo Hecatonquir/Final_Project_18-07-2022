@@ -40,7 +40,7 @@ function AddEvent() {
 		Price: '',
 		Quantity: '',
 		Rating: '',
-		Restrictions: '',
+		Restrictions: [],
 		City: '',
 		Location: '',
 		date: '',
@@ -82,7 +82,7 @@ function AddEvent() {
 				Date: input.date,
 				Hour: input.Hour,
 				Detail: input.Detail,
-				AgeRestriction: input.AgeRestriction,
+				AgeRestriction: Number(input.AgeRestriction),
 			});
 			setInput({
 				Name: '',
@@ -94,7 +94,7 @@ function AddEvent() {
 				Price: '',
 				Quantity: '',
 				Rating: '',
-				Restrictions: '',
+				Restrictions: [],
 				City: '',
 				Location: '',
 				date: '',
@@ -332,9 +332,7 @@ function AddEvent() {
 						</FormControl>
 
 						<FormControl marginBottom={4}>
-							<FormLabel color='white'>Age Restriction</FormLabel>
-							<InputGroup>
-								<InputLeftAddon children='+' />
+							<FormLabel color='white'>Age Restriction</FormLabel>															
 								<Input
 									type='number'
 									value={input.AgeRestriction}
@@ -344,8 +342,7 @@ function AddEvent() {
 									variant='flushed'
 									marginLeft={1}
 									onChange={(e) => handleChange(e)}
-								/>
-							</InputGroup>
+								/>							
 							{errors.AgeRestriction && <Text color='red'>{errors.AgeRestriction}</Text>}
 						</FormControl>
 
