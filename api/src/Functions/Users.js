@@ -333,7 +333,11 @@ const loginRequest = async (req, res) => {
 						httpOnly: false,
 					});
 
+<<<<<<< HEAD
 					return res.json(user_);
+=======
+					return res.send(user_);
+>>>>>>> Development
 				} else {
 					return res.status(400).send('');
 				}
