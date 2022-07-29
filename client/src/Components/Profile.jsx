@@ -11,8 +11,10 @@ import styles from '../Styles/User.module.css'
 function Profile() {
 
   let token= document.cookie.split(";").filter(el => el.includes("access-token")).toString().split("=")[1];
+
 	let tokenDecoded = decodeToken(token);
-	console.log("soy el profile",tokenDecoded);
+  console.log("🐲🐲🐲 / file: Profile.jsx / line 15 / tokenDecoded", tokenDecoded);
+	//console.log("soy el profile",tokenDecoded);
 
   return (
     <Box bgGradient='linear(to-r, #1c2333, #371a1e)' minHeight='100vh'>
@@ -23,7 +25,7 @@ function Profile() {
          <Box color='white' bg='gray' width='40%' padding={4}  borderRadius="2%">
           <Flex justifyContent='center' alignItems='center' flexDirection='column'>
           <Heading as='h4' marginBottom={2}>Profile</Heading>
-              <Image src={`${tokenDecoded.picture}`} alt="No img" marginBottom={4}></Image>
+              <Image src={`${tokenDecoded.picture}`} alt="No img" marginBottom={4} width="250" height="300" ></Image>
               <Heading as='h3' marginBottom={2}>{`${tokenDecoded.name[0].toUpperCase()}${tokenDecoded.name.slice(1)}`}</Heading>
               <Heading as='h3' marginBottom={2}>{tokenDecoded.city}</Heading>
               <Text marginBottom={2}>{tokenDecoded.email}</Text>

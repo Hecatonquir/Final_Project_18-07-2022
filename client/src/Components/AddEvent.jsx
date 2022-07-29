@@ -24,11 +24,35 @@ import {
 function AddEvent() {
 	/* 	const dispatch = useDispatch();
 	const history = useNavigate(); */
-  const [errors, setErrors] = useState({});
-  const Cities = ["Buenos Aires", "Buenos Aires Capital", "Catamarca", "Chaco", "Chubut", "Cordoba", "Corrientes", "Entre Rios", "Formosa", "Jujuy", 
-  "La Pampa", "La Rioja", "Mendoza", "Misiones", "Neuquen", "Rio Negro", "Salta", "San Juan", "San Luis", "Santa Cruz", "Santa Fe", "Santiago del Estero", "Tierra del Fuego", "Tucuman"];
-  const Categories = ["Boliche", "Recital", "Musical","Teatro","Festival"];
-  let today = new Date().toISOString().slice(0, 16); //------- Example of today 2022-07-24T14:30
+	const [errors, setErrors] = useState({});
+	const Cities = [
+		'Buenos Aires',
+		'Buenos Aires Capital',
+		'Catamarca',
+		'Chaco',
+		'Chubut',
+		'Cordoba',
+		'Corrientes',
+		'Entre Rios',
+		'Formosa',
+		'Jujuy',
+		'La Pampa',
+		'La Rioja',
+		'Mendoza',
+		'Misiones',
+		'Neuquen',
+		'Rio Negro',
+		'Salta',
+		'San Juan',
+		'San Luis',
+		'Santa Cruz',
+		'Santa Fe',
+		'Santiago del Estero',
+		'Tierra del Fuego',
+		'Tucuman',
+	];
+	const Categories = ['Boliche', 'Recital', 'Musical', 'Teatro', 'Festival'];
+	let today = new Date().toISOString().slice(0, 16); //------- Example of today 2022-07-24T14:30
 
 	let [input, setInput] = useState({
 		Name: '',
@@ -51,6 +75,23 @@ function AddEvent() {
 	});
 
 	function handleChange(e) {
+		console.log('🐲🐲🐲 / file: AddEvent.jsx / line 54 / e.target.name: ', e.name);
+
+		setInput({
+			...input,
+			[e.target.name]: e.target.value,
+		});
+		setErrors(
+			validate({
+				...input,
+				[e.target.name]: e.target.value,
+			})
+		);
+	}
+
+	function handleImageChange(e) {
+		console.log('🐲🐲🐲 / file: AddEvent.jsx / line 54 / e.target.name: ', e.name);
+
 		setInput({
 			...input,
 			[e.target.name]: e.target.value,
@@ -76,7 +117,7 @@ function AddEvent() {
 				Quantity: Number(input.Quantity),
 				Rating: Number(input.Rating),
 				Category: input.Category,
-				Restrictions: input.Restrictions.split('/'),
+				Restrictions: input.Restrictions.length ? input.Restrictions.split('/') : [],
 				City: input.City,
 				Location: input.Location,
 				Date: input.date,
@@ -213,18 +254,25 @@ function AddEvent() {
 						<FormControl marginBottom={4}>
 							<FormLabel color='white'>*Image 1</FormLabel>
 							<Widget
-                publicKey='4a7fa09f2188af9b76a3'
+								publicKey='4a7fa09f2188af9b76a3'
 								type='file'
 								value={input.img1}
 								id='img1'
-							  variant='flushed'
-                data-tabs="file url facebook gdrive gphotos"
+								name='img1'
+								variant='flushed'
+								data-tabs='file url facebook gdrive gphotos'
+								required
 								onChange={(e) => {
 									setInput({
 										...input,
 										img1: e.originalUrl,
-                    
 									});
+									setErrors(
+										validate({
+											...input,
+											img1: e.originalUrl,
+										})
+									);
 								}}
 							/>
 							{input.img1 !== '' && errors.img1 && <Text color='red'>{errors.img1}</Text>}
@@ -233,7 +281,7 @@ function AddEvent() {
 						<FormControl marginBottom={4}>
 							<FormLabel color='white'>Image 2</FormLabel>
 							<Widget
-               publicKey='4a7fa09f2188af9b76a3'
+								publicKey='4a7fa09f2188af9b76a3'
 								type='text'
 								value={input.img2}
 								id='img2'
@@ -242,7 +290,7 @@ function AddEvent() {
 									setInput({
 										...input,
 										img2: e.originalUrl,
-                    });
+									});
 								}}
 							/>
 							{errors.img2 && <Text color='red'>{errors.img2}</Text>}
@@ -251,7 +299,7 @@ function AddEvent() {
 						<FormControl marginBottom={4}>
 							<FormLabel color='white'>Image 3</FormLabel>
 							<Widget
-                publicKey='4a7fa09f2188af9b76a3'
+								publicKey='4a7fa09f2188af9b76a3'
 								type='text'
 								value={input.img3}
 								id='img3'
@@ -260,7 +308,7 @@ function AddEvent() {
 									setInput({
 										...input,
 										img3: e.originalUrl,
-                    });
+									});
 								}}
 							/>
 							{errors.img3 && <Text color='red'>{errors.img3}</Text>}
@@ -282,7 +330,7 @@ function AddEvent() {
 							/>
 							{errors.img4 && <Text color='red'>{errors.img4}</Text>}
 						</FormControl>
-           <FormControl marginBottom={4}>
+						<FormControl marginBottom={4}>
 							<FormLabel color='white'>Carrousel image</FormLabel>
 							<Widget
 								publicKey='4a7fa09f2188af9b76a3'
@@ -332,17 +380,17 @@ function AddEvent() {
 						</FormControl>
 
 						<FormControl marginBottom={4}>
-							<FormLabel color='white'>Age Restriction</FormLabel>															
-								<Input
-									type='number'
-									value={input.AgeRestriction}
-									name='AgeRestriction'
-									placeholder='Put number'
-									_placeholder={{ color: '#202531' }}
-									variant='flushed'
-									marginLeft={1}
-									onChange={(e) => handleChange(e)}
-								/>							
+							<FormLabel color='white'>Age Restriction</FormLabel>
+							<Input
+								type='number'
+								value={input.AgeRestriction}
+								name='AgeRestriction'
+								placeholder='Put number'
+								_placeholder={{ color: '#202531' }}
+								variant='flushed'
+								marginLeft={1}
+								onChange={(e) => handleChange(e)}
+							/>
 							{errors.AgeRestriction && <Text color='red'>{errors.AgeRestriction}</Text>}
 						</FormControl>
 

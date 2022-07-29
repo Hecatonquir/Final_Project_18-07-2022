@@ -54,7 +54,7 @@ export default function Detail() {
 									{/* <Text>Rating: {event[0].Rating}</Text> */}									
 									<Text>AgeRestriction: {event[0].AgeRestriction === 0 ? " Suitable for all ages" : event[0].AgeRestriction}</Text>
 									{console.log("🐲🐲🐲 / file: Detail.jsx / line 57 / event[0]:\n", event[0])}                  
-									<Text>Restrictions: {!event[0].Restrictions.length ? event[0].Restrictions.join(' - ') : "Unrestricted Event"}</Text>
+									<Text>Restrictions: {event[0].Restrictions.length ? event[0].Restrictions.join(' - ') : "Unrestricted Event"}</Text>
 									<Text>Price: ${event[0].Price === 0 ? " Free" : event[0].Price}</Text>
 									<Text>Date: {event[0].Date}</Text>
 									<Text>Detail: {event[0].Detail}</Text>

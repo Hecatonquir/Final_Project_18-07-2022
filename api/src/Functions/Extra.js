@@ -7,6 +7,7 @@ const { v4: uuidv4 } = require('uuid'); // uuidv4();⇨ '1b9d6bcd-bbfd-4b2d-9b5d
 
 const uploadDataBase = async (req, res) => {
 	try {
+		/* ESTO HAY QUE CAMBIAR POR UN FIND OR CREATE */
 		await Events.bulkCreate(eventsApi);
 		await Users.bulkCreate(userApi);
 		console.log('Data Base Uploaded');

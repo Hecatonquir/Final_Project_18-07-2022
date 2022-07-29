@@ -52,14 +52,16 @@ module.exports = (sequelize) => {
 			},
 			Date: {
 				type: DataTypes.DATE,
-				dialectOptions: {
-					useUTC: false, // for reading from database
+				get() {
+					return this.getDataValue('Date').toLocaleString('en-GB', {
+						weekday: 'long',
+						day: 'numeric',
+						month: 'long',
+						year: 'numeric',
+						hour: 'numeric',
+						minute: 'numeric',
+					});
 				},
-				timezone: '-03:00',
-				/* get: function () {
-					// or use get(){ }
-					return this.getDataValue('Date').toLocaleString('en-GB');
-				}, */
 			},
 			Detail: {
 				type: DataTypes.TEXT,

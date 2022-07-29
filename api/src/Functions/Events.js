@@ -5,9 +5,9 @@ const getAllEvents = async (req, res, next) => {
 	res.send(
 		await Events.findAll({
 			attributes: {
-				include: [
-					[sequelize.fn('TO_CHAR', sequelize.col('Date'), 'Day DD-Mon-YYYY HH:MM'), 'Date'],
-				],
+				/* include: [
+					[sequelize.fn('TO_CHAR', sequelize.col('Date'), 'Day DD-Mon-YYYY HH:MM'),'Date'],
+				], */
 			},
 		})
 	);
