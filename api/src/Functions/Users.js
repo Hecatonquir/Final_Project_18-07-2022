@@ -332,7 +332,7 @@ const loginRequest = async (req, res) => {
 						httpOnly: false,
 					});
 
-					return res.send('Logged In!');
+					return res.send(user_);
 				} else {
 					return res.status(400).send('');
 				}

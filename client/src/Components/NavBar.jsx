@@ -9,6 +9,7 @@ import { isExpired, decodeToken } from 'react-jwt';
 import logOut from '../Redux/Actions/logOut';
 import Search from './Search.jsx';
 import { Box, Button, Flex, Heading, Image, Text } from '@chakra-ui/react';
+import { CLEAR_CART } from '../Redux/ActionTypes/actiontypes';
 
 function NavBar() {
 	let { isAuthenticated, logout, user } = useAuth0();
@@ -109,7 +110,7 @@ function NavBar() {
 								bg='#f4a69a'
 								className={styles.Button}
 								color='white'
-								onClick={() => logOut('access-token', dispatch, isAuthenticated, logout)}>
+								onClick={() => { dispatch({type: CLEAR_CART}); return logOut('access-token', dispatch, isAuthenticated, logout)}}>
 								<Text>Log Out</Text>
 							</Button>
 						)}

@@ -17,6 +17,7 @@ import {
 	UPDATE_STATE_TRUE,
 	CLEAR_DETAIL,
 	UPDATE_DB_CART,
+	LOAD_CART,
 } from '../ActionTypes/actiontypes';
 const initialState = {
 	allEvents: [],
@@ -54,8 +55,11 @@ export default function reducer(state = initialState, { type, payload }) {
 		case GET_DETAILS:
 			return { ...state, eventDetail: payload };
 
+		case LOAD_CART:
+			return { ...state, cart: payload };
+
 		case UPDATE_DB_CART:
-			axios.put('/user/updateCart/' + payload, state.cart);
+			axios.put('http://localhost:3001/user/updateCart/' + payload, state.cart);
 			return state;
 
 		case ADD_ITEM_CART:

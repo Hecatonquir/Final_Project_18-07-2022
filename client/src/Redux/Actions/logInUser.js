@@ -1,10 +1,14 @@
 import axios from 'axios';
-/* import { UPDATE_STATE_TRUE } from '../ActionTypes/actiontypes'; */
+import { LOAD_CART /* , UPDATE_STATE_TRUE */ } from '../ActionTypes/actiontypes';
 import swal from 'sweetalert';
 
-export async function logInUser(payload, navigate) {
+export async function logInUser(payload, navigate, dispatch) {
 	try {
-		await axios.post(`/user/login`, payload, { withCredentials: true });
+		let user = await axios.post(`http://localhost:3001/user/login`, payload, {
+			withCredentials: true,
+		});
+		console.log(user.data[0].Cart);
+		dispatch({ type: LOAD_CART, payload: user.data[0].Cart });
 
 		swal({
 			title: 'Login Success',
