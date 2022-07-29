@@ -387,7 +387,8 @@ const loginRequestAP = async (req, res) => {
 
 const deleteUser = async (req, res) => {
 	try {
-		console.log(req.body);
+
+		console.log("hola");
 		const targetUser = await Users.findOne({
 			where: {
 				Email: req.body.email,
