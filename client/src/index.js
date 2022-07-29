@@ -14,8 +14,9 @@ import axios from 'axios';
 dotenv.config(); */
 axios.defaults.baseURL = process.env.REACT_APP_API || 'http://localhost:3001';
 /* ------------ End of Deploy config ---------------- */
-
-/* Intentando arreglar el logg in 2 (agregué REACT_APP_API) */
+/* 
+"Intentando arreglar el logg in 3 (agregué REACT_APP_AUTH0_DOMAIN)"
+*/
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
