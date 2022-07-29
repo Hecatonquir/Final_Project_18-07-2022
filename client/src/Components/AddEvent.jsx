@@ -76,7 +76,7 @@ function AddEvent() {
 				Price: Number(input.Price),
 				Quantity: Number(input.Quantity),
 				Rating: Number(input.Rating),
-				Category: [input.Category],
+				Category: input.Category,
 				Restrictions: input.Restrictions.split('/'),
 				City: input.City,
 				Location: input.Location,
