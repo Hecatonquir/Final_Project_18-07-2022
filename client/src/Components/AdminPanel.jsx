@@ -12,6 +12,7 @@ import styles from '../Styles/AdminPanel.module.css';
 import { changeRole } from '../Redux/Actions/updateRole';
 import { banUnbanUser } from '../Redux/Actions/banUnbanUser';
 import { eachWeekOfInterval } from 'date-fns';
+import { Box, Heading, Image, Text, Button } from "@chakra-ui/react";
 
 function AdminPanel() {
 	let token = document.cookie
@@ -129,10 +130,10 @@ function AdminPanel() {
 												{el.isBan ? 'Unban User' : 'Ban User'}
 											</button>
 										</div>
-										<span>
+										<Text >
 											User: {el.Name} || Email: {el.Email} || Role: {el.Role} || is Ban:{' '}
 											{el.isBan ? 'true' : 'false'}
-										</span>
+										</Text>
 									</div>
 								))}
 					</div>
@@ -176,11 +177,10 @@ function AdminPanel() {
 											</button>
 											<button className={styles.button2} onClick={() => {}}>Update Event</button>
 										</div>
-										<span>
+										<Text>
 											Name: {el.Name} || Price: {el.Price} || City: {el.City} || Quantity:{' '}
 											{el.Quantity} || Partner:{' '}
-										</span>{' '}
-										||
+										</Text>{' '}
 									</div>
 								))}
 					</div>
