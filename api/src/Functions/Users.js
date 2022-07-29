@@ -3,7 +3,7 @@ const { Op } = require('sequelize');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-const { Events, Users, Supports, Carts, sequelize } = require('../db.js');
+const { Events, Users, Supports, Carts } = require('../db.js');
 
 const validateToken = (req, res, next) => {
 	const accessToken = req.cookies['access-token'];
@@ -227,6 +227,7 @@ const registerUserGmail = async (req, res) => {
 
 const loginRequest = async (req, res) => {
 	const { username, password } = req.body;
+	console.log(username)
 	try {
 		const user_ = await Users.findAll({
 			where: {
@@ -237,7 +238,7 @@ const loginRequest = async (req, res) => {
 			return res.status(400).send("This account has been banned")
 		}
 		if (user_[0]) {
-			if (user_[0].Role === 'Partner' || user_[0].Role === 'Admin') {
+			if (user_[0].Role === 'Admin') {
 				return res.status(400).send('Invalid User/Password');
 			}
 			console.log(user_);
