@@ -8,8 +8,9 @@ export async function logInUser(payload,navigate){
     
        
         try {
-             await axios.post(`http://localhost:3001/user/login`, payload, {withCredentials: true});
-             
+            let userr = await axios.post(`http://localhost:3001/user/login`, payload, {withCredentials: true});
+       
+            console.log(userr)
             
             
              swal({

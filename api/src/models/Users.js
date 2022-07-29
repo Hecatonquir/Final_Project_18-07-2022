@@ -68,7 +68,9 @@ module.exports = (sequelize) => {
 			isBan: {
 				type: DataTypes.BOOLEAN,
 				defaultValue: false,
-			}
+			},
+
+		
 		},
 		{ timestamps: false }
 	);

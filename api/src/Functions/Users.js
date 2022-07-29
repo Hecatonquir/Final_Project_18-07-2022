@@ -116,10 +116,10 @@ const getUserByName = async (req, res) => {
 const getUserById = async (req, res) => {
 	const ID = req.params;
 	try {
-		const userBox = await Users.findAll({
+		const userBox = await Users.finOne({
 			where: ID,
 			include: {
-				model: Carts,
+				model: Carts, Supports,
 				attributes: ['items'],
 			},
 		});
@@ -314,25 +314,26 @@ const loginRequest = async (req, res) => {
 			if (user_[0].Role === 'Admin') {
 				return res.status(400).send('Invalid User/Password');
 			}
-			console.log(user_);
+
 			bcrypt.compare(password, user_[0].Password, (error, response) => {
 				if (response) {
-					console.log(user_[0].ID);
-					const id = user_[0].ID;
+					
+					
+					
 					const token = jwt.sign(
-						{ id: id, role: user_[0].Role, name: user_[0].Name, email: user_[0].Email },
+						{ id: user_[0].ID, role: user_[0].Role, name: user_[0].Name, email: user_[0].Email },
 						process.env.PRIVATEKEY,
 						{
 							expiresIn: 9999,
 						}
 					);
-					console.log(token);
+					
 					res.cookie('access-token', token, {
 						maxAge: 60 * 60 * 1000,
 						httpOnly: false,
 					});
 
-					return res.send('Logged In!');
+					return res.json(user_);
 				} else {
 					return res.status(400).send('');
 				}
@@ -416,6 +417,8 @@ const getPartnerCreatedEvents = async (req, res) => {
 
 const updateCart = async (req, res) => {
 	const { IdUser/*, idEvento*/ } = req.params;
+
+	
 	try {
 		// let emptyCart = await Carts.findAll({ where: { userID: IdUser } });
 		// let cart;		
@@ -433,8 +436,11 @@ const updateCart = async (req, res) => {
 		// 	);
 		// }
 		// res.send('Event added to User Cart');
+		console.log(console.log(req.body))
 		let user = await Users.findByPk(IdUser)
-		user.Cart = req.body
+			
+			console.log(user)
+		user.Cart = [...user.Cart, ...req.body]
 		user.save()
     res.send('Event added to User Cart');
 	} catch (error) {

@@ -11,7 +11,9 @@ import { updateCart } from '../Redux/Actions/updateCart';
 
 function AddToCartButton({id}) {
   let token= document.cookie.split(";").filter(el => el.includes("access-token")).toString().split("=")[1];
+
 	let tokenDecoded = decodeToken(token);
+  console.log(tokenDecoded)
     const dispatch = useDispatch()
     const {cart} = useSelector(s=> s)
     const navigate = useNavigate()
