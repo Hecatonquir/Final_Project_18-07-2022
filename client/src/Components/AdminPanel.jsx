@@ -156,7 +156,7 @@ function AdminPanel() {
 									<div key={i}>
 										<button
 											onClick={() => {
-												return deleteEvent(el.ID), setUser({ username: '', posts: '' });
+												return deleteEvent(el.ID,dispatch,el.isErased? false: true), setUser({ username: '', posts: '' });
 											}}>
 											Delete Event
 										</button>

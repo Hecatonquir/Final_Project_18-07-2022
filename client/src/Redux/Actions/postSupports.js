@@ -2,13 +2,14 @@ import axios from "axios"
 import swal from 'sweetalert'
 
 
-export function postSupports(payload){
-  console.log("soy el soporte",payload)
-    return async () => {
+export async function postSupports(payload){
+  console.log("soy el soporte")
+   
       try {
-         await axios.post("http://localhost:3001/support/",payload);
+         await axios.post("http://localhost:3001/support/createTicket",payload);
          
-         swal("Note Created!", {
+         swal({title:"Ticket Created!",
+         text: "You'll receive an answer from Support as soon as possible",
           icon: "success",
         })
 
@@ -19,4 +20,3 @@ export function postSupports(payload){
         console.log(error);
       }
     };
-  }; 

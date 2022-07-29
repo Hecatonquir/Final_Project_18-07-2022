@@ -25,7 +25,7 @@ routes.post('/report/:ID', F.reportEvent)
 
 routes.put('/', F.modifyEvent);
 
-routes.delete('/delete', F.deleteEvent);
+routes.put('/delete', F.deleteEvent);
 
 routes.get('/', (req, res) => {
 	console.log('Ejemplo2');
