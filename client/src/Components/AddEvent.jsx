@@ -24,10 +24,12 @@ import {
 function AddEvent() {
 	/* 	const dispatch = useDispatch();
 	const history = useNavigate(); */
+	
   const [errors, setErrors] = useState({});
+ 
   const Cities = ["Buenos Aires", "Buenos Aires Capital", "Catamarca", "Chaco", "Chubut", "Cordoba", "Corrientes", "Entre Rios", "Formosa", "Jujuy", 
   "La Pampa", "La Rioja", "Mendoza", "Misiones", "Neuquen", "Rio Negro", "Salta", "San Juan", "San Luis", "Santa Cruz", "Santa Fe", "Santiago del Estero", "Tierra del Fuego", "Tucuman"];
-  const Categories = ["Boliche", "Recital", "Musical","Teatro","Festival"];
+  const Categories = ["Boliches", "Recital", "Musical","Teatro","Festival","Concierto","Deportes"];
   let today = new Date().toISOString().slice(0, 16); //------- Example of today 2022-07-24T14:30
 
 	let [input, setInput] = useState({
