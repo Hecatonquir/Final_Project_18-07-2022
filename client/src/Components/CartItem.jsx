@@ -33,11 +33,12 @@ export default function CardItem({id, name, image, price, purchasedItem}) {
 
     return(
         <Center>
-            <Box marginBottom={8} bg='gray' borderRadius="10px" border='3px solid red'>
+            <div className={styles.container}>
+            <Box marginBottom={8} bg='white' borderRadius="10px" border='0px solid red'>
             <Box width='80vw'>
                 <Flex justifyContent='space-around' alignItems='center'>
-                <Heading as='h4' fontSize='2em'>{name}</Heading>
                 <Image src={image} alt='img event'width='150px' height='150px'/>
+                <Heading as='h4' fontSize='1.5em'>{name}</Heading>
                 <Box>
                     <Flex flexDirection='column' alignItems='center'>
                         <Heading as='h5' fontSize='1.5em' marginBottom={4}>Quantity Item</Heading>
@@ -59,6 +60,7 @@ export default function CardItem({id, name, image, price, purchasedItem}) {
                 </Flex>
             </Box>
             </Box>
+            </div>
         </Center>
     )
 }
