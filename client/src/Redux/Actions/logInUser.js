@@ -35,7 +35,7 @@ export async function logInUser(payload,navigate){
             swal({
                 title: 'Error',
                 icon: 'error',
-                text: error.response,
+                text: error.response.data,
                 timer: 1000,
                 buttons: false,
             })
