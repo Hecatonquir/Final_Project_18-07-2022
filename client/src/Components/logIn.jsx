@@ -55,7 +55,7 @@ function LogIn() {
                 <Nav/>
             <Box>
                 <Flex justifyContent='center' alignItems='center' minHeight='90vh'>
-                <Box bg="gray" width="55%" padding={4} marginTop={4} borderRadius="2%">
+                <Box bg="gray" width="40%" padding={4} marginTop={4} borderRadius="2%">
                     <Heading as='h2' color='white' textAlign='center' marginBottom={6}>Login</Heading>
                     <Input 
                     type="text" 
