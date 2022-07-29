@@ -112,11 +112,11 @@ function NavBar() {
 							</Button>
 						)}
 
-						{token && tokenDecoded.role === 'Partner' && active && (
+						{/* {token && tokenDecoded.role === 'Partner' && active && (
 							<Link to='/createEvent'>
 								<button className={styles.Button}>Create an Event</button>
 							</Link>
-						)}
+						)} */}
 
 						{token && tokenDecoded.role === 'Partner' && active && (
 							<Link to='/createEvent'>
