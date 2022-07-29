@@ -6,13 +6,7 @@
 }
 
 .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #1C517A;
-    border: 2px solid rgb(233, 70, 70);
-    width: 900px;
-    border-radius: 10px;
+    margin-left: 30px;
 }
 
 .img {

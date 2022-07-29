@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { addCart } from '../Redux/Actions/addToCart';
 import { addToFavourites } from '../Redux/Actions/addToFav';
 import styles from '../Styles/EventCard.module.css';
-import carticon from '../Media/carri.png'
 import fav from '../Media/favorito.png'
 import swal from 'sweetalert';
 import { Box, Heading, Image, Text, Button } from "@chakra-ui/react";
@@ -23,26 +22,28 @@ export default function EventCard({ id, image, name, price, quantity, city, loca
 	}
 
 	return (
-		<Box>
-			<Link to={`/details/id/${id}`}>
- 				<Image src={image} alt='img eventCard' width='500px' height='300px'/>
-				<Heading as='h4' fontSize='2em' marginTop={4}>{name}</Heading>
-			</Link>
-			<Text marginTop={2}>Date: {date} </Text>
-			<Text marginTop={2}>Price: ${price}</Text>
-			<Text marginTop={2}>Category: {category}</Text>
-			<Text marginTop={2}>City: {city}</Text>
-			<Text marginTop={2}>Place: {location}</Text>
-			<div className={styles.containerButton}>
-				<Button className={styles.ButtonFav} >
-					<img src={fav} alt='not imgfav' className={styles.favicon} onClick={() => handleClickFav()}/>
-				</Button>
-				{/* <Button className={styles.Button2} onClick={() => handleClick()}>
-					Add To
-					<img src={carticon} alt='not imgcart' className={styles.carticon}/>
-				</Button> */}
-				{/* pero te modularice el botoncito para que lo uses asi :c */}
-				<AddToCartButton id={id} className={styles.Button2}/>
+		<Box >
+			<div className={styles.cards}>
+				<div className={styles.leftcolumn}>
+					<Link to={`/details/id/${id}`}>
+						<Image src={image} alt='img eventCard' width='20rem' height='20rem'/>
+					</Link>
+				</div>
+				<div className={styles.rightcolumn}>
+					<Heading as='h5' fontSize='1.5em' marginTop={4}>{name}</Heading>
+					<Text marginTop={2}>Date: {date} </Text>
+					<Text marginTop={2}>Price: ${price}</Text>
+					<Text marginTop={2}>Category: {category}</Text>
+					<Text marginTop={2}>City: {city}</Text>
+					<Text marginTop={2}>Place: {location}</Text>
+					<div className={styles.containerButton}>
+			
+						<Button className={styles.ButtonFav} backgroundColor='white'>
+							<img src={fav} alt='not imgfav' className={styles.favicon} onClick={() => handleClickFav()}/>
+						</Button>
+						<AddToCartButton id={id} className={styles.Button2}/>
+					</div>
+				</div>
 			</div>
 		</Box>
 	);

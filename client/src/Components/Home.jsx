@@ -55,7 +55,7 @@ export default function Home() {
 				<EventCarousel />
 			</Box>
 		</Box>
-		<Box className={styles.welcome}>
+		<Box className={styles.welcome} >
 			{stateUser || !isExpired(token) ? (
 				<p>Welcome {tokenDecoded ? tokenDecoded.name : 'Guest'}</p>
 			) : (
@@ -156,7 +156,8 @@ export default function Home() {
 									/>
 								</Box>
 							))
-						) : ( <Flex justifyContent='center'>
+						) : ( 
+						<Flex justifyContent='center' width='100vw'>
 							<Box fontSize='4em' fontFamily='cursive' color='#D69E2E' textAlign='center'>
 								<Text >No Events Found</Text>
 							</Box>
