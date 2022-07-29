@@ -15,7 +15,7 @@ dotenv.config(); */
 axios.defaults.baseURL = process.env.REACT_APP_API || 'http://localhost:3001';
 /* ------------ End of Deploy config ---------------- */
 /* 
-"Intentando arreglar el logg in 3 (agregué REACT_APP_AUTH0_DOMAIN)"
+"Intentando arreglar el logg in 4 (agregué REACT_APP_AUTH0_CLIENT_ID)"
 */
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
