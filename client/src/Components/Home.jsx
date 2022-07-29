@@ -55,7 +55,7 @@ export default function Home() {
 				<EventCarousel />
 			</Box>
 		</Box>
-		<Box className={styles.welcome}>
+		<Box className={styles.welcome} >
 			{stateUser || !isExpired(token) ? (
 				<p>Welcome {tokenDecoded ? tokenDecoded.name : 'Guest'}</p>
 			) : (
@@ -133,7 +133,7 @@ export default function Home() {
 				<Box marginTop={10} marginBottom={10}>
 					<SimpleGrid columns={2} spacing={10}>
 						{events.length ? (
-							events.map((event) => (
+							events.filter(el => el.isErased !== true).map((event) => (
 								<Box
 									key={event.ID}
 									bg='#b1b7b76a'
@@ -156,7 +156,8 @@ export default function Home() {
 									/>
 								</Box>
 							))
-						) : ( <Flex justifyContent='center'>
+						) : ( 
+						<Flex justifyContent='center' width='100vw'>
 							<Box fontSize='4em' fontFamily='cursive' color='#D69E2E' textAlign='center'>
 								<Text >No Events Found</Text>
 							</Box>

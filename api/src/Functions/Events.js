@@ -14,17 +14,17 @@ const getAllEvents = async (req, res, next) => {
 };
 
 const deleteEvent = async (req, res) => {
-	console.log(req.body.ID)
+	console.log(req.body.data.ID)
 	try {
 		
 		const trash = await Events.findOne( {
 			where: {
-				ID: req.body.ID}}
+				ID: req.body.data.ID}}
 			
 		)
 		console.log(trash)
 		const trash2 = trash;
-		await trash.destroy();
+		await trash.update({isErased: req.body.data.veredict});
 		res.send(`Event ${trash2.Name} deleted successfully`);
 	} catch (error) {
 		res.status(404).send(error.stack);

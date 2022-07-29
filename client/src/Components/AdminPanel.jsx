@@ -12,6 +12,7 @@ import styles from '../Styles/AdminPanel.module.css';
 import { changeRole } from '../Redux/Actions/updateRole';
 import { banUnbanUser } from '../Redux/Actions/banUnbanUser';
 import { eachWeekOfInterval } from 'date-fns';
+import { Box, Heading, Image, Text, Button } from "@chakra-ui/react";
 
 function AdminPanel() {
 	let token = document.cookie
@@ -57,13 +58,104 @@ function AdminPanel() {
 
 			<div className={styles.container}>
 				<div className={styles.rightcolumn}>
+					<h4 className={styles.subtitle}>All Users</h4>
 					<div className={styles.containerinput}>
 						{admin && (
 							<input
+								className={styles.input}
 								name='username'
 								type='text'
 								placeholder='Search User'
 								value={userADM.username}
+								onChange={(e) => handleChange(e)}></input>
+						)}
+					</div>
+				
+					<div>
+						{usersBD.length &&
+							admin &&
+							usersBD
+								.filter((el) =>
+									el.Name.toLowerCase().includes(userADM.username.toLowerCase()) &&
+									userADM.username !== ''
+										? el
+										: null
+								)
+								.slice(0, 3)
+								.map((el, i) => (
+									<div key={i}>
+										<div className={styles.containerButton}>
+											<button
+												className={styles.button1}
+												onClick={() => {
+													deleteUserDB(el.Email, dispatch);
+													setUser({ username: '', posts: '' });
+												}}>
+												Delete User
+											</button>
+											
+											<button
+												className={styles.button3}
+												onClick={() => {
+													actRoles ? setAct(false) : setAct(true);
+												}}>
+												Change Role
+											</button>
+											<button
+												className={styles.button4}
+												hidden={actRoles ? false : true}
+												name='Admin'
+												onClick={(e) => changeRole(e.target.name, el.Email, dispatch)}>
+												Admin
+											</button>
+											<button
+												className={styles.button4}
+												hidden={actRoles ? false : true}
+												name='Partner'
+												onClick={(e) => changeRole(e.target.name, el.Email, dispatch)}>
+												Partner
+											</button>
+											<button
+												className={styles.button4}
+												hidden={actRoles ? false : true}
+												name='User'
+												onClick={(e) => changeRole(e.target.name, el.Email, dispatch)}>
+												User
+											</button>
+											<button
+												className={styles.button5}
+												onClick={() => {
+													banUnbanUser(el.isBan ? false : true, el.Email, dispatch);
+												}}>
+												{el.isBan ? 'Unban User' : 'Ban User'}
+											</button>
+										</div>
+
+										<Text >
+											User: {el.Name} || Email: {el.Email} || Role: {el.Role} || is Ban:{' '}
+											{el.isBan ? 'true' : 'false'}
+										</Text>
+
+										/* <span>
+											User: {el.Name} || Email: {el.Email} || Role: {el.Role} || isBan: {el.isBan ? 'true' : 'false'}
+										</span> */
+
+									</div>
+								))}
+					</div>
+					
+				</div>
+
+				<div className={styles.leftcolumn}>
+					<h4 className={styles.subtitle}>All Events</h4>
+					<div className={styles.containerinput}>
+						{admin && (
+							<input
+								className={styles.input}
+								name='posts'
+								type='text'
+								placeholder='Search Event'
+								value={userADM.posts}
 								onChange={(e) => handleChange(e)}></input>
 						)}
 					</div>
@@ -80,94 +172,28 @@ function AdminPanel() {
 								)
 								.slice(0, 3)
 								.map((el, i) => (
-									<div key={i}>
-										<button
-											onClick={() => {
-												return deleteEvent(el.ID), setUser({ username: '', posts: '' });
-											}}>
-											Delete Event
-										</button>
-										<button onClick={() => {}}>Update Event</button>
-										<span>
+									<div key={i} >
+										<div className={styles.containerButton}>
+											<button
+												className={styles.button1}
+												onClick={() => {
+													return deleteEvent(el.ID,dispatch,el.isErased? false: true), setUser({ username: '', posts: '' });
+												}}>
+												{el.isErased ? "Restore Event": "Ban/Erase Event"}
+											</button>
+											<button className={styles.button2} onClick={() => {}}>Update Event</button>
+										</div>
+										<Text>
 											Name: {el.Name} || Price: {el.Price} || City: {el.City} || Quantity:{' '}
 											{el.Quantity} || Partner:{' '}
-										</span>{' '}
-										||
+										</Text>{' '}
 									</div>
 								))}
 					</div>
-				</div>
 
-				<div className={styles.leftcolumn}>
-					<div className={styles.containerinput}>
-						{admin && (
-							<input
-								name='posts'
-								type='text'
-								placeholder='Search Event'
-								value={userADM.posts}
-								onChange={(e) => handleChange(e)}></input>
-						)}
-					</div>
 
-					<div>
-						{usersBD.length &&
-							admin &&
-							usersBD
-								.filter((el) =>
-									el.Name.toLowerCase().includes(userADM.username.toLowerCase()) &&
-									userADM.username !== ''
-										? el
-										: null
-								)
-								.slice(0, 3)
-								.map((el, i) => (
-									<div key={i}>
-										<button
-											onClick={() => {
-												deleteUserDB(el.Email, dispatch);
-												setUser({ username: '', posts: '' });
-											}}>
-											Delete User
-										</button>
-										<button onClick={() => {}}>Change Role</button>
-										<button
-											onClick={() => {
-												actRoles ? setAct(false) : setAct(true);
-											}}>
-											Change Role
-										</button>
-										<button
-											hidden={actRoles ? false : true}
-											name='Admin'
-											onClick={(e) => changeRole(e.target.name, el.Email, dispatch)}>
-											Admin
-										</button>
-										<button
-											hidden={actRoles ? false : true}
-											name='Partner'
-											onClick={(e) => changeRole(e.target.name, el.Email, dispatch)}>
-											Partner
-										</button>
-										<button
-											hidden={actRoles ? false : true}
-											name='User'
-											onClick={(e) => changeRole(e.target.name, el.Email, dispatch)}>
-											User
-										</button>
-										<button
-											onClick={() => {
-												banUnbanUser(el.isBan ? false : true, el.Email, dispatch);
-											}}>
-											{el.isBan ? 'Unban User' : 'Ban User'}
-										</button>
-										<span>
-											User: {el.Name} || Email: {el.Email} || Role: {el.Role} || is Ban:{' '}
-											{el.isBan ? 'true' : 'false'}
-										</span>
-									</div>
-								))}
-					</div>
+
+					
 				</div>
 			</div>
 		</div>

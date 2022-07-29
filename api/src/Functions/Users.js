@@ -300,6 +300,7 @@ const registerUserGmail = async (req, res) => {
 
 const loginRequest = async (req, res) => {
 	const { username, password } = req.body;
+	console.log(username)
 	try {
 		const user_ = await Users.findAll({
 			where: {
@@ -310,7 +311,7 @@ const loginRequest = async (req, res) => {
 			return res.status(400).send("This account has been banned")
 		}
 		if (user_[0]) {
-			if (user_[0].Role === 'Partner' || user_[0].Role === 'Admin') {
+			if (user_[0].Role === 'Admin') {
 				return res.status(400).send('Invalid User/Password');
 			}
 			console.log(user_);
@@ -331,7 +332,7 @@ const loginRequest = async (req, res) => {
 						httpOnly: false,
 					});
 
-					return res.send('Logged In!');
+					return res.send(user_);
 				} else {
 					return res.status(400).send('');
 				}
@@ -386,7 +387,8 @@ const loginRequestAP = async (req, res) => {
 
 const deleteUser = async (req, res) => {
 	try {
-		console.log(req.body);
+
+		console.log("hola");
 		const targetUser = await Users.findOne({
 			where: {
 				Email: req.body.email,

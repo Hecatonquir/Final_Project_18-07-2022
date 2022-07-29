@@ -51,3 +51,10 @@
     color: white;
     border-radius: 5px;
 }
+
+.text {
+    margin-top: 50px;
+    font-size: 30px;
+    color: whitesmoke;
+    font-weight: bolder;
+}

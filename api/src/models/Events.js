@@ -1,3 +1,4 @@
+const { BOOLEAN } = require('sequelize');
 const { DataTypes } = require('sequelize');
 
 // Exportamos una funcion que define el modelo
@@ -36,7 +37,7 @@ module.exports = (sequelize) => {
 				defaultValue: ['None'],
 			},
 			Category: {
-				type: DataTypes.ARRAY(DataTypes.STRING),
+				type: DataTypes.STRING,
 			},
 			City: {
 				type: DataTypes.STRING,
@@ -61,6 +62,10 @@ module.exports = (sequelize) => {
 				type: DataTypes.STRING,
 				defaultValue: null,
 			},
+			isErased: {
+				type: DataTypes.BOOLEAN,
+				defaultValue: false
+			}
 		},
 		{ timestamps: false }
 	);

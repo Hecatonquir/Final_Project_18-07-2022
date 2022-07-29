@@ -7,7 +7,7 @@ function Footer() {
   
 
   return (
-    <Box color='gray.700' bgGradient='linear(to-t, #a28748, #6c5727)'>
+    <Box color='white' bgGradient='linear(to-t, blue.600, green.600)'>
       <Flex>
         <Box width='50%' textAlign='center'>
           <Heading as="h5" fontSize={20}>MAIN-STAGE</Heading>

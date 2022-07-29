@@ -9,6 +9,7 @@ import { isExpired, decodeToken } from 'react-jwt';
 import logOut from '../Redux/Actions/logOut';
 import Search from './Search.jsx';
 import { Box, Button, Flex, Heading, Image, Text } from '@chakra-ui/react';
+import { CLEAR_CART } from '../Redux/ActionTypes/actiontypes';
 
 function NavBar() {
 	let { isAuthenticated, logout, user } = useAuth0();
@@ -86,7 +87,7 @@ function NavBar() {
 	//   )
 
 	return (
-		<Box marginBottom={6} padding={2} bgGradient='linear(to-b, #a28748, #6c5727)'>
+		<Box marginBottom={6} padding={2} bgGradient='linear(to-b, blue.700, green.500)'>
 				<Flex alignItems='center' width='100%' justifyContent='space-between' margin='0.5rem'>
 					<Box>
 						<Heading as='h4' color='white'>
@@ -97,7 +98,7 @@ function NavBar() {
 						{!token || isExpired(token) || !active ? (
 							<Box>
 								<Link to='/login'>
-									<Button bg='#1a78b1'>Login/Sign Up</Button>
+									<Button bg='#f4a69a' >Login/Sign Up</Button>
 								</Link>
 							</Box>
 						) : (
@@ -106,28 +107,30 @@ function NavBar() {
 
 						{!isExpired(token) && tokenDecoded.role !== 'Guest' && active && (
 							<Button
+								bg='#f4a69a'
 								className={styles.Button}
-								onClick={() => logOut('access-token', dispatch, isAuthenticated, logout)}>
+								color='white'
+								onClick={() => { dispatch({type: CLEAR_CART}); return logOut('access-token', dispatch, isAuthenticated, logout)}}>
 								<Text>Log Out</Text>
 							</Button>
 						)}
 
-						{token && tokenDecoded.role === 'Partner' && active && (
+						{/* {token && tokenDecoded.role === 'Partner' && active && (
 							<Link to='/createEvent'>
 								<button className={styles.Button}>Create an Event</button>
 							</Link>
-						)}
+						)} */}
 
 						{token && tokenDecoded.role === 'Partner' && active && (
 							<Link to='/createEvent'>
-								<Button bg='#1a78b1'>Create an Event</Button>
+								<Button bg='#f4a69a' >Create an Event</Button>
 							</Link>
 						)}
 					</Box>
 					{token && active && (
 						<Box>
 							<Link to='/profile'>
-								<Button bg='#1a78b1'>
+								<Button bg='#f4a69a'>
 									<Text>Profile</Text>
 								</Button>
 							</Link>
