@@ -338,7 +338,7 @@ const loginRequest = async (req, res) => {
 					
 					console.log('🐲🐲🐲 / file: Users.js / line 340 / res.cookie', res.cookie);
 
-					return res.send(token);
+					return res.json(token);
 				} else {
 					return res.status(400).send('');
 				}

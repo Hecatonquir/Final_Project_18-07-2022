@@ -15,6 +15,7 @@ import {
     Button
   } from "@chakra-ui/react";
 import Nav from './Nav';
+import {useCookies} from "react-cookie"
 
 
 function LogIn() {
@@ -27,6 +28,7 @@ function LogIn() {
 
    
     const {loginWithRedirect} = useAuth0()
+    const [cookies,setCookie] = useCookies(['access-control'])
     const [input , setInput] = useState({
         username:"",
         password:""
@@ -41,7 +43,7 @@ function LogIn() {
 
     const submitButton = function (e){
         e.preventDefault();
-       logInUser(input,navigate,dispatch)
+       logInUser(input,navigate,dispatch,setCookie)
              
             }
                  

@@ -14,7 +14,7 @@ export async function logInUser(payload, navigate, dispatch, setCookie) {
 
 		
 
-
+		console.log(user)
 
 		dispatch({ type: LOAD_CART, payload: user.data[0].Cart });
 
@@ -32,7 +32,7 @@ export async function logInUser(payload, navigate, dispatch, setCookie) {
 			navigate('/');
 		}, 2000);
 	} catch (error) {
-		console.log(error.response.data);
+		console.log(error);
 		swal({
 			title: 'Error',
 			icon: 'error',
