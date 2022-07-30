@@ -14,7 +14,7 @@ const validateToken = (req, res, next) => {
 		const validToken = jwt.verify(accessToken, process.env.PRIVATEKEY);
 		if (validToken) {
 			req.authenticated = true;
-			return next();
+			return next()
 		} else {
 			res.status(401).send('Invalid Token');
 		}
@@ -114,17 +114,21 @@ const getUserByName = async (req, res) => {
 };
 
 const getUserById = async (req, res) => {
-	const ID = req.params;
+
+	let ID = req.params.id
 	try {
-		const userBox = await Users.findAll({
-			where: ID,
-			include: {
-				model: Carts,
-				attributes: ['items'],
+		const userBox = await Users.findOne({
+			where:{ 
+				ID,},
+			include: [{
+				model: Supports,
 			},
+			{model: Carts}], 
+			attributes: {exclude:["Password"]}
 		});
 		res.send(userBox);
 	} catch (error) {
+		console.log(error)
 		res.status(400).send(error.stack);
 	}
 };
@@ -314,19 +318,20 @@ const loginRequest = async (req, res) => {
 			if (user_[0].Role === 'Admin') {
 				return res.status(400).send('Invalid User/Password');
 			}
-			console.log(user_);
+
 			bcrypt.compare(password, user_[0].Password, (error, response) => {
 				if (response) {
-					console.log(user_[0].ID);
-					const id = user_[0].ID;
+					
+					
+					
 					const token = jwt.sign(
-						{ id: id, role: user_[0].Role, name: user_[0].Name, email: user_[0].Email,picture: user_[0].Image },
+						{ id: user_[0].ID, role: user_[0].Role, name: user_[0].Name, email: user_[0].Email,picture: user_[0].Image },
 						process.env.PRIVATEKEY, 
 						{
 							expiresIn: 9999,
 						}
 					);
-					console.log(token);
+					
 					res.cookie('access-token', token, {
 						maxAge: 60 * 60 * 1000,
 						httpOnly: false,
@@ -416,6 +421,8 @@ const getPartnerCreatedEvents = async (req, res) => {
 
 const updateCart = async (req, res) => {
 	const { IdUser/*, idEvento*/ } = req.params;
+
+	
 	try {
 		// let emptyCart = await Carts.findAll({ where: { userID: IdUser } });
 		// let cart;		
@@ -433,8 +440,11 @@ const updateCart = async (req, res) => {
 		// 	);
 		// }
 		// res.send('Event added to User Cart');
+		console.log(console.log(req.body))
 		let user = await Users.findByPk(IdUser)
-		user.Cart = req.body
+			
+			console.log(user)
+		user.Cart = [...user.Cart, ...req.body]
 		user.save()
     res.send('Event added to User Cart');
 	} catch (error) {
