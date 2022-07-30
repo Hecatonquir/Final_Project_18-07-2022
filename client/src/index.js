@@ -23,14 +23,15 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
 	<Provider store={store}>
-		<CookiesProvider>
 		<BrowserRouter>
+		<CookiesProvider>
 			<Auth0ProviderWithHistory>
 				<ChakraProvider>
 					<App />
 				</ChakraProvider>
 			</Auth0ProviderWithHistory>
+			</CookiesProvider>
 		</BrowserRouter>
-		</CookiesProvider>
+		
 	</Provider>
 );
