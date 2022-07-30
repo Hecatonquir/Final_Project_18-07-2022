@@ -1,6 +1,6 @@
 const { DataTypes } = require('sequelize');
 
-// Exportamos una funcion que define el modelo
+// Exportamos una funcion que define el model
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
 	sequelize.define(
@@ -10,6 +10,7 @@ module.exports = (sequelize) => {
 				type: DataTypes.UUID,
 				primaryKey: true,
 				defaultValue: DataTypes.UUIDV4,
+				
 			},
 			Name: {
 				type: DataTypes.STRING,
@@ -59,7 +60,7 @@ module.exports = (sequelize) => {
 				defaultValue: false,
 			},
 			Cart: {
-				type: DataTypes.ARRAY( DataTypes.JSON )
+				type: DataTypes.ARRAY(DataTypes.JSON),
 			},
 			isSupport: {
 				type: DataTypes.BOOLEAN,
@@ -72,6 +73,6 @@ module.exports = (sequelize) => {
 
 		
 		},
-		{ timestamps: false }
+		{ timestamps: false}
 	);
 };

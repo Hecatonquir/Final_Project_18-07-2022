@@ -14,7 +14,7 @@ const validateToken = (req, res, next) => {
 		const validToken = jwt.verify(accessToken, process.env.PRIVATEKEY);
 		if (validToken) {
 			req.authenticated = true;
-			return next();
+			return next()
 		} else {
 			res.status(401).send('Invalid Token');
 		}
@@ -325,8 +325,8 @@ const loginRequest = async (req, res) => {
 					
 					
 					const token = jwt.sign(
-						{ id: user_[0].ID, role: user_[0].Role, name: user_[0].Name, email: user_[0].Email },
-						process.env.PRIVATEKEY,
+						{ id: id, role: user_[0].Role, name: user_[0].Name, email: user_[0].Email,picture: user_[0].Image },
+						process.env.PRIVATEKEY, 
 						{
 							expiresIn: 9999,
 						}

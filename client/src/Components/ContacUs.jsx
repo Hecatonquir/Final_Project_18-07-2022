@@ -115,8 +115,7 @@ export default function ContactUs() {
 										type="text" 
 										name='emailCustomer'
 										value={note.emailCustomer}
-										onChange={handleChange}/>
-										
+										onChange={handleChange}/>										
 									</div>
 								<button className={styles.close} onClick={toggleShow}>
 									Close
