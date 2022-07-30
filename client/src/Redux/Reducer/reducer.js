@@ -18,6 +18,8 @@ import {
 	CLEAR_DETAIL,
 	UPDATE_DB_CART,
 	LOAD_CART,
+    USER_DETAILS,
+    CLEAR_USER_DETAILS
 } from '../ActionTypes/actiontypes';
 const initialState = {
 	allEvents: [],
@@ -30,7 +32,10 @@ const initialState = {
 	allUsers: [],
 	cart: [],
 	favourites: [],
+    userDetails: {},
 };
+
+  
 
 export default function reducer(state = initialState, { type, payload }) {
 	switch (type) {
@@ -112,7 +117,14 @@ export default function reducer(state = initialState, { type, payload }) {
 
 		case REMOVE_FROM_FAVOURITES:
 			const filterFav = state.favourites.filter((item) => item.ID !== payload);
-			return { ...state, favourites: filterFav };
+			return { ...state, favourites: filterFav }
+
+            case USER_DETAILS:
+                return {...state, userDetails: payload}
+
+
+            case CLEAR_USER_DETAILS:
+                return {...state, userDetails: []};
 
 		default:
 			return state;
