@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { addToFavourites } from '../Redux/Actions/addToFav';
 import { removeFromFavourites } from '../Redux/Actions/removeFromFav';
 import styles from '../Styles/EventCard.module.css';
@@ -9,6 +9,7 @@ import fav2 from '../Media/favorito2.png';
 import swal from 'sweetalert';
 import { Box, Heading, Image, Text, Button } from '@chakra-ui/react';
 import AddToCartButton from './AddToCartButton';
+import { decodeToken } from 'react-jwt';
 
 export default function EventCard({
 	id,
@@ -24,14 +25,21 @@ export default function EventCard({
 	const dispatch = useDispatch();
 	const Allfavourites = useSelector((state) => state.favourites);
 	var exitFav = Allfavourites.find((e) => e.ID === id);
+	let token= document.cookie.split(";").filter(el => el.includes("access-token")).toString().split("=")[1]
+	let tokenDecoded = decodeToken(token)
+	const navigate = useNavigate()
 
 	function handleClickFav() {
+		if(token){
 		if (!exitFav) {
-			dispatch(addToFavourites(id));
-			swal('Added to favorite', { icon: 'success' });
+				dispatch(addToFavourites(id));
+				swal('Added to favorite', { icon: 'success' });
+			} else {
+				dispatch(removeFromFavourites(id));
+				swal('Removed from favorites', { icon: 'warning' });
+			}
 		} else {
-			dispatch(removeFromFavourites(id));
-			swal('Removed from favorites', { icon: 'warning' });
+			navigate('/login')
 		}
 	}
 
