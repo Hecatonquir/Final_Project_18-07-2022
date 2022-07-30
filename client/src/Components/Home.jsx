@@ -47,14 +47,14 @@ export default function Home() {
 	}, [stateUser]);
 
 	<Box bgGradient='linear(to-r, #1c2333, #371a1e)' minHeight='100vh'>
-		<Box>
+		<Box >
 		
-			<NavBar />
-			
+			<NavBar/>
+			</Box>
 			<Box>
 				<EventCarousel />
 			</Box>
-		</Box>
+		
 		<Box className={styles.welcome} >
 			{stateUser || !isExpired(token) ? (
 				<p>Welcome {tokenDecoded ? tokenDecoded.name : 'Guest'}</p>

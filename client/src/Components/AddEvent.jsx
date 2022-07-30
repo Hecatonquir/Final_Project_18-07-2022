@@ -6,6 +6,7 @@ import styles from '../Styles/AddEvent.module.css';
 import validate from './Validations';
 import { Widget } from '@uploadcare/react-widget';
 import Nav from './Nav';
+import swal from 'sweetalert';
 import {
 	Box,
 	Heading,
@@ -98,7 +99,7 @@ function AddEvent() {
 	function handleSubmit(e) {
 		e.preventDefault();
 		if (errors.check !== 'approved') {
-			alert('Not created');
+			swal('Not created',"","error");
 		} else {
 			postEvent({
 				Name: input.Name,
