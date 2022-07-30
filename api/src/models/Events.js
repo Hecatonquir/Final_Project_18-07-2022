@@ -36,16 +36,16 @@ module.exports = (sequelize) => {
 				type: DataTypes.ARRAY(DataTypes.STRING),
 				defaultValue: [],
 			},
+			AgeRestriction: {
+				type: DataTypes.INTEGER,
+				defaultValue: 0,
+			},
 			Category: {
 				type: DataTypes.STRING,
 			},
 			City: {
 				type: DataTypes.STRING,
 				allowNull: false,
-			},
-			AgeRestriction: {
-				type: DataTypes.INTEGER,
-				defaultValue: 0,
 			},
 			RedFlags: {
 				type: DataTypes.INTEGER,
@@ -74,8 +74,8 @@ module.exports = (sequelize) => {
 			},
 			isErased: {
 				type: DataTypes.BOOLEAN,
-				defaultValue: false
-			}
+				defaultValue: false,
+			},
 		},
 		{ timestamps: false }
 	);
