@@ -1,3 +1,4 @@
+
 import React, {useEffect, useState} from 'react'
 import {decodeToken} from "react-jwt"
 import axios from "axios"
@@ -6,30 +7,60 @@ import { UPDATE_STATE_TRUE } from '../Redux/ActionTypes/actiontypes'
 import { useDispatch } from 'react-redux'
 import styles from '../Styles/verifyAdmin.module.css'
 import swal from 'sweetalert'
+
 function Prepanel() {
+	const navigate = useNavigate();
+	let dispatch = useDispatch();
+	const [user, setUser] = useState({
+		username: '',
+		password: '',
+	});
 
-    const navigate = useNavigate()
-    let dispatch = useDispatch()
-    const [user, setUser] = useState({
-        username: "",
-        password: ""
-    })
+	let token = document.cookie
+		.split(';')
+		.filter((el) => el.includes('access-token'))
+		.toString()
+		.split('=')[1];
+	let tokenDecoded = decodeToken(token);
 
-    let token= document.cookie.split(";").filter(el => el.includes("access-token")).toString().split("=")[1]
-	let tokenDecoded = decodeToken(token)
-    
-    console.log(tokenDecoded)
+	console.log(tokenDecoded);
 
-    
-    
+	function handleChange(e) {
+		return setUser({ ...user, [e.target.name]: e.target.value });
+	}
 
-    function handleChange(e) {
-        
+	function handleSubmit(e, person) {
+		e.preventDefault();
 
-        return setUser({...user, [e.target.name] : e.target.value})
-        
-    
-    } 
+		axios
+			.post('/user/login2', person, { withCredentials: true })
+			.then((res) => dispatch({ type: UPDATE_STATE_TRUE }))
+			.catch((error) => alert('Not Allowed!'));
+
+		setTimeout(() => {
+			if (
+				decodeToken(
+					document.cookie
+						.split(';')
+						.filter((el) => el.includes('access-token'))
+						.toString()
+						.split('=')[1]
+				).role === 'Partner'
+			) {
+				navigate('/welcomeP');
+			} else if (
+				decodeToken(
+					document.cookie
+						.split(';')
+						.filter((el) => el.includes('access-token'))
+						.toString()
+						.split('=')[1]
+				).role === 'Admin'
+			) {
+				navigate('/welcomeA');
+			}
+		}, 300);
+	}
 
 
     function handleSubmit(e,person) {
@@ -96,7 +127,11 @@ function Prepanel() {
                         </form>
                     </div>
                 </div>
-            )
+            );
+
+	
+	
+
 }
 
-export default Prepanel
+export default Prepanel;

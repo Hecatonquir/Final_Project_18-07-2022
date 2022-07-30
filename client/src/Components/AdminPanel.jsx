@@ -41,7 +41,7 @@ function AdminPanel() {
 	}
 
 	useEffect(() => {
-		axios('http://localhost:3001/user/admin', { withCredentials: true })
+		axios('/user/admin', { withCredentials: true })
 			.then((response) => setAdmin(true))
 			.then((response) => dispatch(getUsers()))
 			.then((response) => dispatch(getEvents()))
