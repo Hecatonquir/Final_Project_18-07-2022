@@ -330,6 +330,7 @@ const loginRequest = async (req, res) => {
 					res.cookie('access-token', token, {
 						maxAge: 60 * 60 * 1000,
 						httpOnly: false,
+						sameSite: null
 					});
 
 					return res.send(user_);

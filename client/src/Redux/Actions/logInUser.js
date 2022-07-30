@@ -6,6 +6,7 @@ export async function logInUser(payload, navigate, dispatch) {
 	try {
 		let user = await axios.post(`/user/login`, payload, {
 			withCredentials: true,
+			crossDomain: true
 		});
 		console.log(user.data[0].Cart);
 		dispatch({ type: LOAD_CART, payload: user.data[0].Cart });
