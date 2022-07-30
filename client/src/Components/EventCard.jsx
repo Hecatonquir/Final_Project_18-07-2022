@@ -1,10 +1,11 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { addCart } from '../Redux/Actions/addToCart';
 import { addToFavourites } from '../Redux/Actions/addToFav';
+import { removeFromFavourites } from '../Redux/Actions/removeFromFav';
 import styles from '../Styles/EventCard.module.css';
-import fav from '../Media/favorito.png'
+import fav from '../Media/favorito.png';
+import fav2 from '../Media/favorito2.png';
 import swal from 'sweetalert';
 import { Box, Heading, Image, Text, Button } from "@chakra-ui/react";
 import AddToCartButton from './AddToCartButton';
@@ -12,13 +13,17 @@ import AddToCartButton from './AddToCartButton';
 
 export default function EventCard({ id, image, name, price, quantity, city, location, date, category }) {
 	const dispatch = useDispatch()
-	function handleClick() {
-		dispatch(addCart(id));
-		swal('Added product',{icon:"success"});
-	}
+	const Allfavourites = useSelector((state) => state.favourites)
+  	var exitFav = Allfavourites.find(e => e.ID === id)
+
 	function handleClickFav() {
-		dispatch(addToFavourites(id));
-		swal('Added to favorite',{icon:"success"});
+		if(!exitFav) {
+			dispatch(addToFavourites(id))
+			swal('Added to favorite',{icon:"success"});
+			} else {
+			dispatch(removeFromFavourites(id))
+				swal('Removed from favorites',{icon:"warning"});
+			}
 	}
 
 	return (
@@ -39,7 +44,11 @@ export default function EventCard({ id, image, name, price, quantity, city, loca
 					<div className={styles.containerButton}>
 			
 						<Button className={styles.ButtonFav} backgroundColor='white'>
-							<img src={fav} alt='not imgfav' className={styles.favicon} onClick={() => handleClickFav()}/>
+							{
+							exitFav
+							? <img src={fav2} alt='not imgfav' className={styles.favicon} onClick={() => handleClickFav()}/>
+							: <img src={fav} alt='not imgfav' className={styles.favicon} onClick={() => handleClickFav()}/>
+							}
 						</Button>
 						<AddToCartButton id={id} className={styles.Button2}/>
 					</div>

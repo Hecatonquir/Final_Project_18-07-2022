@@ -3,13 +3,15 @@ import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetail } from "../Redux/Actions/getDetails";
 import Loader from "./Loader.jsx";
-import fav from "../Media/favorito.png";
 import styles from "../Styles/Detail.module.css";
 import { clearDetail } from "../Redux/Actions/clearDetail";
 import AddToCartButton from "./AddToCartButton";
 import { addToFavourites } from "../Redux/Actions/addToFav";
+import {removeFromFavourites} from '../Redux/Actions/removeFromFav'
 import { Box, Button, Flex, Heading, Stack, Text } from "@chakra-ui/react";
 import Nav from "./Nav.jsx";
+import fav from "../Media/favorito.png";
+import fav2 from '../Media/favorito2.png'
 import DetailCarousel from "./DetailCarousel";
 import swal from "sweetalert";
 
@@ -17,14 +19,22 @@ export default function Detail() {
   const { id } = useParams();
   const dispatch = useDispatch();
   var event = useSelector((state) => state.eventDetail);
+  const Allfavourites = useSelector((state) => state.favourites)
+  var exitFav = Allfavourites.find(e => e.ID === id)
+
   useEffect(() => {
     dispatch(getDetail(id));
     return () => dispatch(clearDetail());
   }, [dispatch, id]);
 
   function handleClickFav(id) {
-    dispatch(addToFavourites(id));
-    swal("Added to favorite", { icon: "success" });
+    if(!exitFav) {
+		dispatch(addToFavourites(id))
+		swal('Added to favorite',{icon:"success"});
+		} else {
+		dispatch(removeFromFavourites(id))
+			swal('Removed from favorites',{icon:"warning"});
+		}
   }
 
   return (
@@ -89,15 +99,24 @@ export default function Detail() {
                     </Stack>
                     <div className={styles.containerButton}>
                       <Button
-                        className={styles.ButtonFav}
-                        backgroundColor="white"
+                        bg="white"
                       >
+                        {
+                        exitFav
+                        ? <img
+                          src={fav2}
+                          alt="not imgfav"
+                          className={styles.favicon}
+                          onClick={() => handleClickFav(event[0].ID)}
+                        />
+                        : 
                         <img
                           src={fav}
                           alt="not imgfav"
                           className={styles.favicon}
                           onClick={() => handleClickFav(event[0].ID)}
                         />
+                      }
                       </Button>
                       <AddToCartButton id={id} />
                     </div>
