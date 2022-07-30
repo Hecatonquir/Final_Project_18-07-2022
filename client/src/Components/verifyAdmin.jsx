@@ -5,6 +5,7 @@ import {useNavigate} from "react-router-dom"
 import { UPDATE_STATE_TRUE } from '../Redux/ActionTypes/actiontypes'
 import { useDispatch } from 'react-redux'
 import styles from '../Styles/verifyAdmin.module.css'
+import swal from 'sweetalert'
 function Prepanel() {
 
     const navigate = useNavigate()
@@ -37,7 +38,7 @@ function Prepanel() {
        
          axios.post("http://localhost:3001/user/login2", person, {withCredentials: true})
          .then(res => dispatch({type: UPDATE_STATE_TRUE}))
-         .catch(error => (alert("Not Allowed!")))
+         .catch(error => (swal("Not Allowed!","","error")))
 
 
          setTimeout(() => {
@@ -56,7 +57,7 @@ function Prepanel() {
          useEffect(()=> {
             if(tokenDecoded && tokenDecoded.role !== "Partner") {
                 if(tokenDecoded.role !== "Admin") {
-                return alert("Not Allowed")
+                return swal("Not Allowed","","error")
                 }
                 else{
                     navigate("/welcomeA")
