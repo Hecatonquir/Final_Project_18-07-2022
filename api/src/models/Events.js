@@ -10,6 +10,7 @@ module.exports = (sequelize) => {
 		{
 			ID: {
 				type: DataTypes.UUID,
+				primaryKey: true,
 				defaultValue: DataTypes.UUIDV4,
 			},
 			Name: {
@@ -29,6 +30,11 @@ module.exports = (sequelize) => {
 				defaultValue: 0,
 			},
 			Quantity: {
+				type: DataTypes.INTEGER,
+				defaultValue: 0,
+			},
+			InitialQtty: {
+				/* Significa Initial Quantity. Está para ver si se agotaron las entradas o si e el evento siempre tuvo Entradas = 0 (que significa que no requería entradas al crearlo) */
 				type: DataTypes.INTEGER,
 				defaultValue: 0,
 			},

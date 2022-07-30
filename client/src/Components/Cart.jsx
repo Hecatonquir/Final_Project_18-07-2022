@@ -14,7 +14,11 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function Cart() {
-	let token= document.cookie.split(";").filter(el => el.includes("access-token")).toString().split("=")[1];
+	let token = document.cookie
+		.split(';')
+		.filter((el) => el.includes('access-token'))
+		.toString()
+		.split('=')[1];
 	let tokenDecoded = decodeToken(token);
 	const dispatch = useDispatch();
 	const cart = useSelector((state) => state.cart);
@@ -29,18 +33,19 @@ export default function Cart() {
 
 	function hundleClick() {
 		dispatch(clearCart());
-		dispatch(updateCart(tokenDecoded.id))
+		dispatch(updateCart(tokenDecoded.id));
 	}
 
 	async function handleToken(token) {
 		const response = await axios.post('/checkout', { token, totalAmount });
 		const { status } = response.data;
 		if (status === 'success') {
-			toast.success('Your purchase was successful! Check your E-mail for more information')
+			toast.success('Your purchase was successful! Check your E-mail for more information');
+			/* dispatch(removeQuantityFromEvent(X)) <---------- ACA Se despacha al back para restar numeros al valor de Quantity de cada evento. (hacer 1 para cada evento)  */
 			dispatch(clearCart());
-		}else {
-			toast.error('Something went wrong. Purchase cancelled')
-		};
+		} else {
+			toast.error('Something went wrong. Purchase cancelled');
+		}
 	}
 
 	return (
@@ -100,7 +105,7 @@ export default function Cart() {
 				</Box>
 			</Box>
 			<br />
-			<Box margin={6} >
+			<Box margin={6}>
 				<Button bg='pink' onClick={() => hundleClick()}>
 					Clear Cart
 				</Button>
