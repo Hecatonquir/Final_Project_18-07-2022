@@ -88,7 +88,7 @@ function NavBar() {
 
 	return (
 		<Box marginBottom={6} padding={2} bgGradient='linear(to-b, blue.700, green.500)'>
-				<Flex alignItems='center' width='100%' justifyContent='space-between' margin='0.5rem'>
+				<Flex alignItems='center' width='100%' justifyContent='space-between' margin='0.5rem' position='sticky' top='0px' zIndex='10'>
 					<Box>
 						<Heading as='h4' color='white'>
 						<Image src={imglogo} alt='img logo' width='6.5rem' height='4rem' marginLeft='1rem' marginTop='0rem'/>
