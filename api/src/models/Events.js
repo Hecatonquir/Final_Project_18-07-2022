@@ -1,3 +1,4 @@
+const { BOOLEAN } = require('sequelize');
 const { DataTypes } = require('sequelize');
 
 // Exportamos una funcion que define el modelo
@@ -71,6 +72,10 @@ module.exports = (sequelize) => {
 				type: DataTypes.STRING,
 				defaultValue: null,
 			},
+			isErased: {
+				type: DataTypes.BOOLEAN,
+				defaultValue: false
+			}
 		},
 		{ timestamps: false }
 	);

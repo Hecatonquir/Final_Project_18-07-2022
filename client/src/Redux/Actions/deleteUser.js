@@ -1,11 +1,13 @@
 import axios from 'axios';
 import swal from 'sweetalert';
-import getEvents from './getEvents';
+/* import getEvents from './getEvents'; */
 import getUsers from './getUsers';
-
-export async function deleteUserDB(mail, dispatch) {
+export async function deleteUserDB(veredict, mail, dispatch) {
 	try {
-		let Deleted = await axios.delete('/user/delete', { data: { email: mail } });
+		/* let Deleted = Lo comenté porque no se está usando nunca esta variable y no hace falta para llamar una función (lo comento para que eslint no tire errores nada más) */
+		await axios.delete('/user/delete', {
+			data: { veredict, email: mail },
+		});
 
 		dispatch(getUsers());
 

@@ -1,6 +1,6 @@
-import { React, useEffect, useState } from 'react';
+import { React, /* useEffect ,*/ useState } from 'react';
 /* import { useDispatch } from 'react-redux'; */
-import { Link /* , useNavigate */ } from 'react-router-dom';
+import /*Link  , useNavigate */ 'react-router-dom';
 import { postEvent } from '../Redux/Actions/postEvent';
 import styles from '../Styles/AddEvent.module.css';
 import validate from './Validations';
@@ -17,8 +17,8 @@ import {
 	Select,
 	Text,
 	Flex,
-	InputGroup,
-	InputLeftAddon,
+	/* InputGroup,
+	InputLeftAddon, */
 } from '@chakra-ui/react';
 
 function AddEvent() {
@@ -51,7 +51,15 @@ function AddEvent() {
 		'Tierra del Fuego',
 		'Tucuman',
 	];
-	const Categories = ['Boliche', 'Recital', 'Musical', 'Teatro', 'Festival'];
+	const Categories = [
+		'Boliches',
+		'Recital',
+		'Musical',
+		'Teatro',
+		'Festival',
+		'Concierto',
+		'Deportes',
+	];
 	let today = new Date().toISOString().slice(0, 16); //------- Example of today 2022-07-24T14:30
 
 	let [input, setInput] = useState({
@@ -75,23 +83,6 @@ function AddEvent() {
 	});
 
 	function handleChange(e) {
-		console.log('🐲🐲🐲 / file: AddEvent.jsx / line 54 / e.target.name: ', e.name);
-
-		setInput({
-			...input,
-			[e.target.name]: e.target.value,
-		});
-		setErrors(
-			validate({
-				...input,
-				[e.target.name]: e.target.value,
-			})
-		);
-	}
-
-	function handleImageChange(e) {
-		console.log('🐲🐲🐲 / file: AddEvent.jsx / line 54 / e.target.name: ', e.name);
-
 		setInput({
 			...input,
 			[e.target.name]: e.target.value,

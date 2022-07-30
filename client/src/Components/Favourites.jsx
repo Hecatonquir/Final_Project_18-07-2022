@@ -18,7 +18,7 @@ export default function Favourites() {
     return (
         <div className={styles.container}>
             {
-                    fav.length && fav.map( (item) => (
+                    fav.length ? fav.map( (item) => (
                         <div key={item.ID} className={styles.cards}>
                             <Link to={`/details/id/${item.ID}`}>
                                 <div className={styles.leftcolumn}>
@@ -35,7 +35,9 @@ export default function Favourites() {
                                 </div>
                         </div>
                     ))
-                   
+                   : <div>
+                    <h2 className={styles.text}>You have no events selected as favorites!</h2>
+                   </div>
                     }
         </div>
     )
