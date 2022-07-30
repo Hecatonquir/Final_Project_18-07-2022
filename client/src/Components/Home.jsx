@@ -20,18 +20,18 @@ import { Box, SimpleGrid, Center, Text, Flex } from '@chakra-ui/react';
 export default function Home() {
 	const { isAuthenticated, user } = useAuth0();
 	let token = document.cookie
-		.split(';')
-		.filter((el) => el.includes('access-token'))
-		.toString()
-		.split('=')[1];
-	let tokenDecoded = decodeToken(token);
+		.split(';')[0]
+	let token1 = 
+		token
+		.split('=')[1]
+	let tokenDecoded = decodeToken(token1);
 	const dispatch = useDispatch();
 	const events = useSelector((state) => state.showToUser);
 	const stateUser = useSelector((state) => state.loginState);
 	const backup = useSelector((state) => state.eventsBackUp);
 	const carrouselEvents = backup.filter((ev) => ev.Carrousel);
 
-	//console.log(tokenDecoded)
+	console.log(tokenDecoded)
 
 	if (!token) {
 		dispatch(registerGmail(user));

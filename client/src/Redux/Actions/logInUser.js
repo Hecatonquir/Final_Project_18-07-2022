@@ -10,13 +10,15 @@ export async function logInUser(payload, navigate, dispatch, setCookie) {
 		});
 		
 
-		setCookie('access-control', user, {path: "/"})
+
+		console.log(user)
+		setCookie('access-control', user.data, {path: "/"})
 
 		
 
-		console.log(user)
+		
 
-		dispatch({ type: LOAD_CART, payload: user.data[0].Cart });
+		
 
 		dispatch({ type: UPDATE_STATE_TRUE });
 
@@ -36,7 +38,6 @@ export async function logInUser(payload, navigate, dispatch, setCookie) {
 		swal({
 			title: 'Error',
 			icon: 'error',
-			text: error.response.data,
 			timer: 1000,
 			buttons: false,
 		});
