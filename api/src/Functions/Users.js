@@ -338,11 +338,7 @@ const loginRequest = async (req, res) => {
 					res.cookie('access-token', token, {
 						maxAge: 60 * 60 * 1000,
 						httpOnly: false,
-<<<<<<< HEAD
 						sameSite: null
-=======
-						SameSite: 'none',
->>>>>>> 3b2849f6b79d88337ebe329a519044f2d6271fbd
 					});
 					console.log('🐲🐲🐲 / file: Users.js / line 340 / res.cookie', res.cookie);
 
