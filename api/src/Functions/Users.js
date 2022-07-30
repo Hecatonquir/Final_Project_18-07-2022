@@ -443,11 +443,8 @@ const updateCart = async (req, res) => {
 		// 	);
 		// }
 		// res.send('Event added to User Cart');
-		console.log(console.log(req.body));
 		let user = await Users.findByPk(IdUser);
-
-		console.log(user);
-		user.Cart = [...user.Cart, ...req.body];
+		user.Cart = req.body;
 		user.save();
 		res.send('Event added to User Cart');
 	} catch (error) {
