@@ -5,7 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import { UPDATE_STATE_TRUE } from '../Redux/ActionTypes/actiontypes';
 import { useDispatch } from 'react-redux';
 import styles from '../Styles/verifyAdmin.module.css';
+import {useCookies} from "react-cookie"
 function Prepanel() {
+	let {setCookie} = useCookies()
 	const navigate = useNavigate();
 	let dispatch = useDispatch();
 	const [user, setUser] = useState({
@@ -32,7 +34,9 @@ function Prepanel() {
 
 		axios
 			.post('/user/login2', person, { withCredentials: true })
+			.then(res => setCookie("access-control", res.data, {path:"/"}))
 			.then((res) => dispatch({ type: UPDATE_STATE_TRUE }))
+			
 			.catch((error) => alert('Not Allowed!'));
 
 		setTimeout(() => {
