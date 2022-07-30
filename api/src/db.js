@@ -11,8 +11,8 @@ let sequelize =
 				dialect: 'postgres',
 				host: `${DB_HOST}`,
 				port: 5432,
-				username: `znensmsttkvxdb`,
-				password: `I1L2V3Y4S5M6T7I8C9LWUCWM1958`,
+				username: `${DB_USER}`,
+				password: `${DB_PASSWORD}`,
 				pool: {
 					max: 3,
 					min: 1,
