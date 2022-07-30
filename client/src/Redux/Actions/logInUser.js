@@ -8,15 +8,9 @@ export async function logInUser(payload,navigate,dispatch){
     
        
         try {
-<<<<<<< HEAD
-            let userr = await axios.post(`http://localhost:3001/user/login`, payload, {withCredentials: true});
-       
-            console.log(userr)
-=======
              let user = await axios.post(`http://localhost:3001/user/login`, payload, {withCredentials: true});
              console.log(user.data[0].Cart)
              dispatch({type: LOAD_CART, payload: user.data[0].Cart})
->>>>>>> Development
             
                 swal({
                     title: 'Login Success',

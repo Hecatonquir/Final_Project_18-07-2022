@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { decodeToken } from 'react-jwt';
 import PageNotFound from './Page404';
 import getUsers from '../Redux/Actions/getUsers';
@@ -129,9 +129,10 @@ function AdminPanel() {
 												{el.isBan ? 'Unban User' : 'Ban User'}
 											</button>
 										</div>
-										<span>
+
+										<Link to={`/user/${el.ID}`}><span>
 											User: {el.Name} || Email: {el.Email} || Role: {el.Role} || isBan: {el.isBan ? 'true' : 'false'}
-										</span>
+										</span></Link>
 									</div>
 								))}
 					</div>

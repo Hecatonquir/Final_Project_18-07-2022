@@ -114,17 +114,21 @@ const getUserByName = async (req, res) => {
 };
 
 const getUserById = async (req, res) => {
-	const ID = req.params;
+
+	let ID = req.params.id
 	try {
-		const userBox = await Users.finOne({
-			where: ID,
-			include: {
-				model: Carts, Supports,
-				attributes: ['items'],
+		const userBox = await Users.findOne({
+			where:{ 
+				ID,},
+			include: [{
+				model: Supports,
 			},
+			{model: Carts}], 
+			attributes: {exclude:["Password"]}
 		});
 		res.send(userBox);
 	} catch (error) {
+		console.log(error)
 		res.status(400).send(error.stack);
 	}
 };
@@ -333,11 +337,7 @@ const loginRequest = async (req, res) => {
 						httpOnly: false,
 					});
 
-<<<<<<< HEAD
-					return res.json(user_);
-=======
 					return res.send(user_);
->>>>>>> Development
 				} else {
 					return res.status(400).send('');
 				}

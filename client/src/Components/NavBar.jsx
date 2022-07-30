@@ -26,7 +26,7 @@ function NavBar() {
 	const cart = useSelector((state) => state.cart);
 	const events = useSelector((state) => state.showToUser);
 	const active = useSelector((state) => state.loginState);
-	const count = cart.length;
+	let count = cart ? cart.length : null;
 
 
 	//  return (

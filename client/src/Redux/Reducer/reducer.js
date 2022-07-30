@@ -1,5 +1,5 @@
 import axios from "axios"
-import {GET_EVENTS, GET_NAME_EVENTS,ADD_TO_FAVOURITES,REMOVE_FROM_FAVOURITES, GET_USERS,SHOW_EVENTS_USER, NEED_BACKUP, GET_DETAILS, ADD_REMOVE_FILTER,ADD_ITEM_CART, REMOVE_ITEM_CART, REMOVE_ALL_ITEM_CART, CLEAR_CART, UPDATE_STATE_FALSE, UPDATE_STATE_TRUE, CLEAR_DETAIL, UPDATE_DB_CART, LOAD_CART} from "../ActionTypes/actiontypes"
+import {GET_EVENTS, GET_NAME_EVENTS,ADD_TO_FAVOURITES,REMOVE_FROM_FAVOURITES,USER_DETAILS, GET_USERS,SHOW_EVENTS_USER, NEED_BACKUP, GET_DETAILS, ADD_REMOVE_FILTER,ADD_ITEM_CART, REMOVE_ITEM_CART, REMOVE_ALL_ITEM_CART, CLEAR_CART, UPDATE_STATE_FALSE, UPDATE_STATE_TRUE, CLEAR_DETAIL, UPDATE_DB_CART, CLEAR_USER_DETAILS, LOAD_CART} from "../ActionTypes/actiontypes"
 const initialState = {
 
     allEvents: [],
@@ -11,7 +11,8 @@ const initialState = {
     loginState: false,
     allUsers: [],
     cart: [],
-    favourites: []
+    favourites: [],
+    userDetails: {},
 }
 
 export default function reducer(state = initialState,{type,payload}) {
@@ -96,6 +97,14 @@ export default function reducer(state = initialState,{type,payload}) {
             case REMOVE_FROM_FAVOURITES:
                 const filterFav = state.favourites.filter((item) => item.ID !== payload)
                 return {...state, favourites: filterFav}
+
+
+                case USER_DETAILS:
+                    return {...state, userDetails: payload}
+
+
+                case CLEAR_USER_DETAILS:
+                    return {...state, userDetails: []}
 
             default:
                 return state
