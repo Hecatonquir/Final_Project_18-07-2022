@@ -5,7 +5,7 @@ body {
 
 
 .Total {
-    background-color: #1C8DA3;
+    background-color: #8A564F;
     width: 100vw;
     height: 100vh;
     position: absolute;
@@ -17,7 +17,7 @@ body {
     width: 400px;
     height: 350px;
     margin: auto;
-    margin-top: 50px;
+    margin-top: 100px;
     border: 2px solid white;
     border-radius: 10px;
     position: relative;
