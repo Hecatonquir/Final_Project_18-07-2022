@@ -20,6 +20,7 @@ function Prepanel() {
 		.split('=')[1]
 	let tokenDecoded = decodeToken(token1);
 
+
 	console.log(tokenDecoded);
 
 	function handleChange(e) {
@@ -35,23 +36,18 @@ function Prepanel() {
 			.catch((error) => alert('Not Allowed!'));
 
 		setTimeout(() => {
+			
+		token = document.cookie
+		.split(';')[0]
+
+		 token1 = 
+		token
+		.split('=')[1]
+
+				
+				
 			if (
-				decodeToken(
-					document.cookie
-						.split(';')
-						.filter((el) => el.includes('access-token'))
-						.toString()
-						.split('=')[1]
-				).role === 'Partner'
-			) {
-				navigate('/welcomeP');
-			} else if (
-				decodeToken(
-					document.cookie
-						.split(';')
-						.filter((el) => el.includes('access-token'))
-						.toString()
-						.split('=')[1]
+				decodeToken(token1
 				).role === 'Admin'
 			) {
 				navigate('/welcomeA');

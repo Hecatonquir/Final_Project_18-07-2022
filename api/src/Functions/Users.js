@@ -371,13 +371,8 @@ const loginRequestAP = async (req, res) => {
 							expiresIn: 9999,
 						}
 					);
-					console.log(token);
-					res.cookie('access-token', token, {
-						maxAge: 60 * 60 * 1000,
-						httpOnly: false,
-					});
-
-					return res.send('Logged In!');
+					
+					return res.json(token);
 				} else {
 					return res.status(400).send('No');
 				}
