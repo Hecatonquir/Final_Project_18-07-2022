@@ -140,7 +140,7 @@ function NavBar() {
 						<Search />
 					</Box>
 					<Box>
-						<Link to='/cart'>
+						<Link to={token? '/cart' : '/login'}>
 							<Image src={imgcarrito} alt='img carrito' width='3rem' marginRight='1rem' />
 							<span className={styles.count}>{count}</span>
 						</Link>
