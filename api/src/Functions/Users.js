@@ -335,14 +335,10 @@ const loginRequest = async (req, res) => {
 						}
 					);
 
-					res.cookie('access-token', token, {
-						maxAge: 60 * 60 * 1000,
-						httpOnly: false,
-						sameSite: null
-					});
+					
 					console.log('🐲🐲🐲 / file: Users.js / line 340 / res.cookie', res.cookie);
 
-					return res.send(user_);
+					return res.send(token);
 				} else {
 					return res.status(400).send('');
 				}

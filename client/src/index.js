@@ -6,6 +6,7 @@ import store from '../src/Redux/Store/store';
 import { Provider } from 'react-redux';
 import Auth0ProviderWithHistory from './Auth/auth0-provider-with-history';
 import { ChakraProvider } from '@chakra-ui/react';
+import {CookiesProvider} from "react-cookie"
 import './index.css';
 
 /* ------------ Configurations for Deploy ----------- */
@@ -22,6 +23,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
 	<Provider store={store}>
+		<CookiesProvider>
 		<BrowserRouter>
 			<Auth0ProviderWithHistory>
 				<ChakraProvider>
@@ -29,5 +31,6 @@ root.render(
 				</ChakraProvider>
 			</Auth0ProviderWithHistory>
 		</BrowserRouter>
+		</CookiesProvider>
 	</Provider>
 );

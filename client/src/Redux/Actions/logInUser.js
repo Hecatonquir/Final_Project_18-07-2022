@@ -2,14 +2,19 @@ import axios from 'axios';
 import { LOAD_CART, UPDATE_STATE_TRUE } from '../ActionTypes/actiontypes';
 import swal from 'sweetalert';
 
-export async function logInUser(payload, navigate, dispatch) {
+
+export async function logInUser(payload, navigate, dispatch, setCookie) {
 	try {
 		let user = await axios.post(`/user/login`, payload, {
 			withCredentials: true,
-			crossDomain: true,
 		});
-		console.log('🐲🐲🐲 / file: logInUser.js / line 10 / user.data[0].Cart', user.data[0].Cart);
-		console.log('🐲🐲🐲 / file: logInUser.js / line 10 / user', user);
+		
+
+		setCookie('access-control', user, {path: "/"})
+
+		
+
+
 
 		dispatch({ type: LOAD_CART, payload: user.data[0].Cart });
 
