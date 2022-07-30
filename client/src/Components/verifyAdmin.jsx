@@ -14,11 +14,11 @@ function Prepanel() {
 	});
 
 	let token = document.cookie
-		.split(';')
-		.filter((el) => el.includes('access-token'))
-		.toString()
-		.split('=')[1];
-	let tokenDecoded = decodeToken(token);
+		.split(';')[0]
+	let token1 = 
+		token
+		.split('=')[1]
+	let tokenDecoded = decodeToken(token1);
 
 	console.log(tokenDecoded);
 

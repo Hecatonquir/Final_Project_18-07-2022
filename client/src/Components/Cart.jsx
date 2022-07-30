@@ -14,8 +14,12 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function Cart() {
-	let token= document.cookie.split(";").filter(el => el.includes("access-token")).toString().split("=")[1];
-	let tokenDecoded = decodeToken(token);
+	let token = document.cookie
+		.split(';')[0]
+	let token1 = 
+		token
+		.split('=')[1]
+	let tokenDecoded = decodeToken(token1);
 	const dispatch = useDispatch();
 	const cart = useSelector((state) => state.cart);
 	var totalAmount = 0;

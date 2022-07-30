@@ -21,8 +21,12 @@ import {useCookies} from "react-cookie"
 function LogIn() {
     let dispatch = useDispatch()
     let navigate = useNavigate()
-    let token= document.cookie.split(";").filter(el => el.includes("access-token")).toString().split("=")[1]
-	let tokenDecoded = decodeToken(token)
+    let token = document.cookie
+		.split(';')[0]
+	let token1 = 
+		token
+		.split('=')[1]
+	let tokenDecoded = decodeToken(token1)
     let active = useSelector(state => state.loginState)
 
 

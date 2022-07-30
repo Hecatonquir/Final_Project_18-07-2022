@@ -10,9 +10,13 @@ import styles from '../Styles/User.module.css'
 
 function Profile() {
 
-  let token= document.cookie.split(";").filter(el => el.includes("access-token")).toString().split("=")[1];
+  let token = document.cookie
+		.split(';')[0]
+	let token1 = 
+		token
+		.split('=')[1]
 
-	let tokenDecoded = decodeToken(token);
+	let tokenDecoded = decodeToken(token1);
   console.log("🐲🐲🐲 / file: Profile.jsx / line 15 / tokenDecoded", tokenDecoded);
 	//console.log("soy el profile",tokenDecoded);
 
