@@ -12,7 +12,7 @@ let sequelize =
 				host: `${DB_HOST}`,
 				port: 5432,
 				username: `${DB_USER}`,
-				password: `${DB_PASSWORD}`,
+				password: `6c855cbb111a854ba706d5886b1c618efeca24ce5efbe794e6505d00d78b10c4`,
 				pool: {
 					max: 3,
 					min: 1,
