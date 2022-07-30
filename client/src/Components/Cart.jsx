@@ -5,7 +5,7 @@ import CardItem from './CartItem';
 import styles from '../Styles/Cart.module.css';
 import imgcarrito from '../Media/emptycart.png';
 import Nav from './Nav';
-import { Box, Button, Center, Heading, Text, Image } from '@chakra-ui/react';
+import { Box, Button, /* Center, */ Heading, Text, Image } from '@chakra-ui/react';
 import { decodeToken } from 'react-jwt';
 import { updateCart } from '../Redux/Actions/updateCart';
 import StripeCheckout from 'react-stripe-checkout';
@@ -23,6 +23,7 @@ export default function Cart() {
 	const dispatch = useDispatch();
 	const cart = useSelector((state) => state.cart);
 	var totalAmount = 0;
+	// eslint-disable-next-line no-unused-vars
 	const [showItem, setShowItem] = useState(false);
 	const stripeKey =
 		'pk_test_51LOdlpIX9UMpYaskAq0EOuQYBwCNO0CWWVUIouFgSt4FP4eNMznvWxSTuflGp35HmZKZidvlVZOCYNrlyvviDVrc00V1E8tivg';

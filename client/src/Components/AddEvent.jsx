@@ -134,6 +134,7 @@ function AddEvent() {
 				date: '',
 				Hour: '',
 				Detail: '',
+				Category: '',
 				AgeRestriction: '',
 			});
 		}
@@ -384,7 +385,6 @@ function AddEvent() {
 							/>
 							{errors.Quantity && <Text color='red'>{errors.Quantity}</Text>}
 						</FormControl>
-
 						<FormControl marginBottom={4}>
 							<FormLabel color='white'>Age Restriction</FormLabel>
 							<InputGroup>
@@ -402,7 +402,6 @@ function AddEvent() {
 							</InputGroup>
 							{errors.AgeRestriction && <Text color='red'>{errors.AgeRestriction}</Text>}
 						</FormControl>
-
 						<FormControl marginBottom={4}>
 							<FormLabel color='white'>Restrictions</FormLabel>
 							<Textarea
