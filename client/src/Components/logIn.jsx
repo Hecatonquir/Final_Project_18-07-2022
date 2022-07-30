@@ -41,7 +41,7 @@ function LogIn() {
 
     const submitButton = function (e){
         e.preventDefault();
-       logInUser(input,navigate)
+       logInUser(input,navigate,dispatch)
              
             }
                  

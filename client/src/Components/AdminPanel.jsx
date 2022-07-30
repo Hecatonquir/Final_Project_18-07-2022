@@ -12,6 +12,7 @@ import styles from '../Styles/AdminPanel.module.css';
 import { changeRole } from '../Redux/Actions/updateRole';
 import { banUnbanUser } from '../Redux/Actions/banUnbanUser';
 import { eachWeekOfInterval } from 'date-fns';
+import { Box, Heading, Image, Text, Button } from "@chakra-ui/react";
 
 function AdminPanel() {
 	let token = document.cookie
@@ -92,7 +93,7 @@ function AdminPanel() {
 												}}>
 												Delete User
 											</button>
-											<button className={styles.button2} onClick={() => {}}>Change Role</button>
+											
 											<button
 												className={styles.button3}
 												onClick={() => {
@@ -129,10 +130,16 @@ function AdminPanel() {
 												{el.isBan ? 'Unban User' : 'Ban User'}
 											</button>
 										</div>
-										<span>
+
+										<Text >
 											User: {el.Name} || Email: {el.Email} || Role: {el.Role} || is Ban:{' '}
 											{el.isBan ? 'true' : 'false'}
-										</span>
+										</Text>
+
+										/* <span>
+											User: {el.Name} || Email: {el.Email} || Role: {el.Role} || isBan: {el.isBan ? 'true' : 'false'}
+										</span> */
+
 									</div>
 								))}
 					</div>
@@ -170,17 +177,16 @@ function AdminPanel() {
 											<button
 												className={styles.button1}
 												onClick={() => {
-													return deleteEvent(el.ID), setUser({ username: '', posts: '' });
+													return deleteEvent(el.ID,dispatch,el.isErased? false: true), setUser({ username: '', posts: '' });
 												}}>
-												Delete Event
+												{el.isErased ? "Restore Event": "Ban/Erase Event"}
 											</button>
 											<button className={styles.button2} onClick={() => {}}>Update Event</button>
 										</div>
-										<span>
+										<Text>
 											Name: {el.Name} || Price: {el.Price} || City: {el.City} || Quantity:{' '}
 											{el.Quantity} || Partner:{' '}
-										</span>{' '}
-										||
+										</Text>{' '}
 									</div>
 								))}
 					</div>

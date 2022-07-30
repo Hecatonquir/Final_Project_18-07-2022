@@ -133,7 +133,7 @@ export default function Home() {
 				<Box marginTop={10} marginBottom={10}>
 					<SimpleGrid columns={2} spacing={10}>
 						{events.length ? (
-							events.map((event) => (
+							events.filter(el => el.isErased !== true).map((event) => (
 								<Box
 									key={event.ID}
 									bg='#b1b7b76a'

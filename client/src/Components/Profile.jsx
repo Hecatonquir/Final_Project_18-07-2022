@@ -26,6 +26,7 @@ function Profile() {
               <Image src={`${tokenDecoded.picture}`} alt="No img" marginBottom={4}></Image>
               <Heading as='h3' marginBottom={2}>{`${tokenDecoded.name[0].toUpperCase()}${tokenDecoded.name.slice(1)}`}</Heading>
               <Heading as='h3' marginBottom={2}>{tokenDecoded.city}</Heading>
+              <Heading as='h3' marginBottom={2} fontSize='2xl'>Rol: {tokenDecoded.role}</Heading>
               <Text marginBottom={2}>{tokenDecoded.email}</Text>
           </Flex>
           </Box>

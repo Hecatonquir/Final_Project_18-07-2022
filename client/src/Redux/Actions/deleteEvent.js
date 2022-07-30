@@ -2,11 +2,12 @@ import axios from "axios"
 import swal from "sweetalert"
 import getEvents from "./getEvents"
 
-export const deleteEvent = async (id,dispatch) => {
+export const deleteEvent = async (id,dispatch, veredict) => {
 
 try {
+    console.log(veredict)
+    let DeletedEVENT = await axios.put("http://localhost:3001/event/delete",{data: {ID:id, veredict: veredict}})
 
-    let DeletedEVENT = await axios.delete("http://localhost:3001/event/delete",{data: {ID:id}})
 
     dispatch(getEvents())
 

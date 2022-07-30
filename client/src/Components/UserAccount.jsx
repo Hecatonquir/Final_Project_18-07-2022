@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from "../Styles/UserAccount.module.css";
 import Favourites from "./Favourites";
+import img1 from '../Media/construccion.png'
 
 export default function Tabs() {
   const [toggleState, setToggleState] = useState(1);
@@ -22,11 +23,11 @@ export default function Tabs() {
               onClick={() => toggleTab(2)}>
               My Shopping
             </button>
-            <button
+            {/* <button
               className={toggleState === 3 ? `${styles.tabs} ${styles.activetabs}` : styles.tabs}
               onClick={() => toggleTab(3)}>
               Tab 3
-            </button>
+            </button> */}
         </div>
         
 
@@ -36,12 +37,12 @@ export default function Tabs() {
           </div>
 
           <div className={toggleState === 2 ? `${styles.content}  ${styles.activecontent}` : styles.content}>
-            <h2>Content 2</h2>
+            <img className={styles.img} src={img1} alt='not imgconstruccion' />
           </div>
 
-          <div className={toggleState === 3 ? `${styles.content}  ${styles.activecontent}` : styles.content}>
+          {/* <div className={toggleState === 3 ? `${styles.content}  ${styles.activecontent}` : styles.content}>
             <h2>Content 3</h2>
-          </div>
+          </div> */}
         </div>
    </div>
   )
