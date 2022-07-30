@@ -18,8 +18,8 @@ import {
 	Select,
 	Text,
 	Flex,
-	/* InputGroup,
-	InputLeftAddon, */
+	InputGroup,
+	InputLeftAddon,
 } from '@chakra-ui/react';
 
 function AddEvent() {
@@ -99,7 +99,7 @@ function AddEvent() {
 	function handleSubmit(e) {
 		e.preventDefault();
 		if (errors.check !== 'approved') {
-			swal('Not created',"","error");
+			swal('Not created', '', 'error');
 		} else {
 			postEvent({
 				Name: input.Name,
@@ -107,6 +107,7 @@ function AddEvent() {
 				Carrousel: input.carrousel,
 				Price: Number(input.Price),
 				Quantity: Number(input.Quantity),
+				InitialQtty: Number(input.Quantity),
 				Rating: Number(input.Rating),
 				Category: input.Category,
 				Restrictions: input.Restrictions.length ? input.Restrictions.split('/') : [],
@@ -133,6 +134,7 @@ function AddEvent() {
 				date: '',
 				Hour: '',
 				Detail: '',
+				Category: '',
 				AgeRestriction: '',
 			});
 		}
@@ -141,7 +143,7 @@ function AddEvent() {
 	return (
 		<Box bgGradient='linear(to-r, #1c2333, #371a1e)' minHeight='100vh'>
 			<Nav />
-			<Flex marginTop='10vh' justifyContent='center'>
+			<Flex marginTop='5vh' justifyContent='center'>
 				<Box
 					maxW='100%'
 					bg='#b1b7b76a'
@@ -149,7 +151,7 @@ function AddEvent() {
 					p={2}
 					boxShadow=' 5px 5px 10px #2c2b2b, -10px -10px 20px #5c5a5a;'
 					borderRadius='20px'>
-					<Heading as='h1' color='white' textAlign='center' margin={6}>
+					<Heading as='h1' color='white' textAlign='center' margin={4}>
 						Add Event
 					</Heading>
 					<form style={{ width: '40em' }}>
@@ -170,20 +172,6 @@ function AddEvent() {
 						</FormControl>
 
 						<FormControl marginBottom={4}>
-							<FormLabel color='white'>*Date</FormLabel>
-							<Input
-								type='datetime-local'
-								min={today}
-								value={input.date}
-								name='date'
-								placeholder='day / month / year'
-								variant='flushed'
-								onChange={(e) => handleChange(e)}
-							/>{' '}
-							{input.date !== '' && errors.date && <Text color='red'>{errors.date}</Text>}
-						</FormControl>
-
-						<FormControl marginBottom={4}>
 							<FormLabel color='white'>*City</FormLabel>
 							<Select
 								value={input.City}
@@ -191,7 +179,7 @@ function AddEvent() {
 								variant='flushed'
 								onChange={(e) => handleChange(e)}>
 								<option value='' hidden>
-									Select City
+									(Select City)
 								</option>
 								{Cities.map((p) => {
 									return (
@@ -221,6 +209,33 @@ function AddEvent() {
 						</FormControl>
 
 						<FormControl marginBottom={4}>
+							<FormLabel color='white'>*Detail</FormLabel>
+							<Textarea
+								type='text'
+								value={input.Detail}
+								name='Detail'
+								placeholder='(Insert Detail)'
+								_placeholder={{ color: '#202531' }}
+								className={styles.input}
+								onChange={(e) => handleChange(e)}
+							/>
+						</FormControl>
+
+						<FormControl marginBottom={4}>
+							<FormLabel color='white'>*Date</FormLabel>
+							<Input
+								type='datetime-local'
+								min={today}
+								value={input.date}
+								name='date'
+								placeholder='day / month / year'
+								variant='flushed'
+								onChange={(e) => handleChange(e)}
+							/>{' '}
+							{input.date !== '' && errors.date && <Text color='red'>{errors.date}</Text>}
+						</FormControl>
+
+						<FormControl marginBottom={4}>
 							<FormLabel color='white'>*Category</FormLabel>
 							<Select
 								value={input.Category}
@@ -228,7 +243,7 @@ function AddEvent() {
 								variant='flushed'
 								onChange={(e) => handleChange(e)}>
 								<option value='' hidden>
-									Select Category
+									(Select Category)
 								</option>
 								{Categories.map((p) => {
 									return (
@@ -323,7 +338,7 @@ function AddEvent() {
 							{errors.img4 && <Text color='red'>{errors.img4}</Text>}
 						</FormControl>
 						<FormControl marginBottom={4}>
-							<FormLabel color='white'>Carrousel image</FormLabel>
+							<FormLabel color='white'>Carrousel image (increased cost)</FormLabel>
 							<Widget
 								publicKey='4a7fa09f2188af9b76a3'
 								value={input.carrousel}
@@ -347,7 +362,7 @@ function AddEvent() {
 								id='Price'
 								name='Price'
 								min='0'
-								placeholder='$ (in numbers)'
+								placeholder='$ (Insert Number)'
 								_placeholder={{ color: '#202531' }}
 								required
 								variant='flushed'
@@ -363,58 +378,45 @@ function AddEvent() {
 								value={input.Quantity}
 								name='Quantity'
 								min='0'
-								placeholder='Quantity'
+								placeholder='(Insert Number)'
 								_placeholder={{ color: '#202531' }}
 								variant='flushed'
 								onChange={(e) => handleChange(e)}
 							/>
 							{errors.Quantity && <Text color='red'>{errors.Quantity}</Text>}
 						</FormControl>
-
 						<FormControl marginBottom={4}>
 							<FormLabel color='white'>Age Restriction</FormLabel>
-							<Input
-								type='number'
-								value={input.AgeRestriction}
-								name='AgeRestriction'
-								placeholder='Put number'
-								_placeholder={{ color: '#202531' }}
-								variant='flushed'
-								marginLeft={1}
-								onChange={(e) => handleChange(e)}
-							/>
+							<InputGroup>
+								<InputLeftAddon children='+' />
+								<Input
+									type='number'
+									value={input.AgeRestriction}
+									name='AgeRestriction'
+									placeholder='(Insert Number)'
+									_placeholder={{ color: '#202531' }}
+									variant='flushed'
+									marginLeft={1}
+									onChange={(e) => handleChange(e)}
+								/>
+							</InputGroup>
 							{errors.AgeRestriction && <Text color='red'>{errors.AgeRestriction}</Text>}
 						</FormControl>
-
 						<FormControl marginBottom={4}>
 							<FormLabel color='white'>Restrictions</FormLabel>
 							<Textarea
 								type='text'
 								value={input.Restrictions}
 								name='Restrictions'
-								placeholder='Separate each one using "/" '
+								placeholder='(Separate each restriction using "/") '
 								_placeholder={{ color: '#202531' }}
 								onChange={(e) => handleChange(e)}
 							/>
 						</FormControl>
-
-						<FormControl marginBottom={4}>
-							<FormLabel color='white'>*Detail</FormLabel>
-							<Textarea
-								type='text'
-								value={input.Detail}
-								name='Detail'
-								placeholder='Insert Detail'
-								_placeholder={{ color: '#202531' }}
-								className={styles.input}
-								onChange={(e) => handleChange(e)}
-							/>
-						</FormControl>
-
+						<br />
 						<Box marginBottom={4}>
 							<Text color='red'>*Required fields</Text>
 						</Box>
-
 						<Box textAlign='center' marginBottom={4}>
 							<Button
 								bg='#f4a69a'
@@ -428,6 +430,7 @@ function AddEvent() {
 					</form>
 				</Box>
 			</Flex>
+			<br />
 		</Box>
 	);
 }

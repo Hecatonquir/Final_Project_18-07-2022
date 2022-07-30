@@ -10,6 +10,7 @@ module.exports = (sequelize) => {
 		{
 			ID: {
 				type: DataTypes.UUID,
+				primaryKey: true,
 				defaultValue: DataTypes.UUIDV4,
 			},
 			Name: {
@@ -32,9 +33,18 @@ module.exports = (sequelize) => {
 				type: DataTypes.INTEGER,
 				defaultValue: 0,
 			},
+			InitialQtty: {
+				/* Significa Initial Quantity. Está para ver si se agotaron las entradas o si e el evento siempre tuvo Entradas = 0 (que significa que no requería entradas al crearlo) */
+				type: DataTypes.INTEGER,
+				defaultValue: 0,
+			},
 			Restrictions: {
 				type: DataTypes.ARRAY(DataTypes.STRING),
 				defaultValue: [],
+			},
+			AgeRestriction: {
+				type: DataTypes.INTEGER,
+				defaultValue: 0,
 			},
 			Category: {
 				type: DataTypes.STRING,
@@ -42,10 +52,6 @@ module.exports = (sequelize) => {
 			City: {
 				type: DataTypes.STRING,
 				allowNull: false,
-			},
-			AgeRestriction: {
-				type: DataTypes.INTEGER,
-				defaultValue: 0,
 			},
 			RedFlags: {
 				type: DataTypes.INTEGER,
@@ -74,8 +80,8 @@ module.exports = (sequelize) => {
 			},
 			isErased: {
 				type: DataTypes.BOOLEAN,
-				defaultValue: false
-			}
+				defaultValue: false,
+			},
 		},
 		{ timestamps: false }
 	);
