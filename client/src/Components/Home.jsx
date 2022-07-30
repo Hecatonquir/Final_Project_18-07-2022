@@ -16,6 +16,7 @@ import registerGmail from '../Redux/Actions/registerGmail.js';
 import { UPDATE_STATE_TRUE } from '../Redux/ActionTypes/actiontypes.js';
 
 import { Box, SimpleGrid, Center, Text, Flex } from '@chakra-ui/react';
+import BackToTopButton from './BackToTopButton.jsx';
 
 export default function Home() {
 	const { isAuthenticated, user } = useAuth0();
@@ -166,6 +167,7 @@ export default function Home() {
 					</SimpleGrid>
 				</Box>
 			</Center>
+			<BackToTopButton />
 			<Footer />
 		</Box>
 	);
