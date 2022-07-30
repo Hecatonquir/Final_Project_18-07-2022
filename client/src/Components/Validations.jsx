@@ -1,7 +1,23 @@
 export default function validate(input) {
-	let { Name, img1, img2, img3, img4, carrousel, Price, City, Location, Category, date, Hour, Quantity, Detail, AgeRestriction} = input;
+	let {
+		Name,
+		img1,
+		img2,
+		img3,
+		img4,
+		carrousel,
+		Price,
+		City,
+		Location,
+		Category,
+		date,
+		Hour,
+		Quantity,
+		Detail,
+		AgeRestriction,
+	} = input;
 	let errors = {};
-	let today = new Date().toISOString().slice(0, 16);   // En las dos fechas usamos el horario universal, sino hay una diferencia de 3hs
+	let today = new Date().toISOString().slice(0, 16); // En las dos fechas usamos el horario universal, sino hay una diferencia de 3hs
 	const dateInput = date && new Date(date).toISOString().slice(0, 16);
 	errors.check = 'failed';
 
@@ -9,14 +25,14 @@ export default function validate(input) {
 		errors.Name = 'Name is required.';
 	} else if (Name.length !== 0) {
 		if (!/^[A-Z]+[A-Za-z0-9\s]+$/g.test(Name) || Name.length > 25) {
-			errors.Name =
-				"First letter must be uppercase and do not start with a number";
+			errors.Name = 'First letter must be uppercase and do not start with a number';
 		}
 	}
-	
+
 	if (dateInput < today) {
 		errors.date = 'Invalid date';
 	}
+	console.log('🐲🐲🐲 / file: Validations.jsx / line 139 / img1', img1);
 
 	if (!img1) {
 		errors.img1 = 'At least one picture is required.';
@@ -61,8 +77,7 @@ export default function validate(input) {
 		errors.Location = 'Location is required.';
 	} else if (Location.length !== 0) {
 		if (!/^[A-Z]+[A-Za-z0-9\s]+$/g.test(Location) || Location.length > 25) {
-			errors.Location =
-				"First letter must be uppercase and do not start with a number";
+			errors.Location = 'First letter must be uppercase and do not start with a number';
 		}
 	}
 	if (!City) {
@@ -76,7 +91,7 @@ export default function validate(input) {
 	}
 
 	if (!Detail) {
-		errors.Detail = 'Event detail required'
+		errors.Detail = 'Event detail required';
 	}
 
 	if (!Hour) {

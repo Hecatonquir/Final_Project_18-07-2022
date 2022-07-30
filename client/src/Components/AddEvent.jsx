@@ -1,6 +1,6 @@
-import { React, useEffect, useState } from 'react';
+import { React, /* useEffect ,*/ useState } from 'react';
 /* import { useDispatch } from 'react-redux'; */
-import { Link /* , useNavigate */ } from 'react-router-dom';
+import /*Link  , useNavigate */ 'react-router-dom';
 import { postEvent } from '../Redux/Actions/postEvent';
 import styles from '../Styles/AddEvent.module.css';
 import validate from './Validations';
@@ -17,20 +17,50 @@ import {
 	Select,
 	Text,
 	Flex,
-	InputGroup,
-	InputLeftAddon,
+	/* InputGroup,
+	InputLeftAddon, */
 } from '@chakra-ui/react';
 
 function AddEvent() {
 	/* 	const dispatch = useDispatch();
 	const history = useNavigate(); */
-	
-  const [errors, setErrors] = useState({});
- 
-  const Cities = ["Buenos Aires", "Buenos Aires Capital", "Catamarca", "Chaco", "Chubut", "Cordoba", "Corrientes", "Entre Rios", "Formosa", "Jujuy", 
-  "La Pampa", "La Rioja", "Mendoza", "Misiones", "Neuquen", "Rio Negro", "Salta", "San Juan", "San Luis", "Santa Cruz", "Santa Fe", "Santiago del Estero", "Tierra del Fuego", "Tucuman"];
-  const Categories = ["Boliches", "Recital", "Musical","Teatro","Festival","Concierto","Deportes"];
-  let today = new Date().toISOString().slice(0, 16); //------- Example of today 2022-07-24T14:30
+	const [errors, setErrors] = useState({});
+	const Cities = [
+		'Buenos Aires',
+		'Buenos Aires Capital',
+		'Catamarca',
+		'Chaco',
+		'Chubut',
+		'Cordoba',
+		'Corrientes',
+		'Entre Rios',
+		'Formosa',
+		'Jujuy',
+		'La Pampa',
+		'La Rioja',
+		'Mendoza',
+		'Misiones',
+		'Neuquen',
+		'Rio Negro',
+		'Salta',
+		'San Juan',
+		'San Luis',
+		'Santa Cruz',
+		'Santa Fe',
+		'Santiago del Estero',
+		'Tierra del Fuego',
+		'Tucuman',
+	];
+	const Categories = [
+		'Boliches',
+		'Recital',
+		'Musical',
+		'Teatro',
+		'Festival',
+		'Concierto',
+		'Deportes',
+	];
+	let today = new Date().toISOString().slice(0, 16); //------- Example of today 2022-07-24T14:30
 
 	let [input, setInput] = useState({
 		Name: '',
@@ -42,7 +72,7 @@ function AddEvent() {
 		Price: '',
 		Quantity: '',
 		Rating: '',
-		Restrictions: '',
+		Restrictions: [],
 		City: '',
 		Location: '',
 		date: '',
@@ -78,13 +108,13 @@ function AddEvent() {
 				Quantity: Number(input.Quantity),
 				Rating: Number(input.Rating),
 				Category: input.Category,
-				Restrictions: input.Restrictions.split('/'),
+				Restrictions: input.Restrictions.length ? input.Restrictions.split('/') : [],
 				City: input.City,
 				Location: input.Location,
 				Date: input.date,
 				Hour: input.Hour,
 				Detail: input.Detail,
-				AgeRestriction: input.AgeRestriction,
+				AgeRestriction: Number(input.AgeRestriction),
 			});
 			setInput({
 				Name: '',
@@ -96,7 +126,7 @@ function AddEvent() {
 				Price: '',
 				Quantity: '',
 				Rating: '',
-				Restrictions: '',
+				Restrictions: [],
 				City: '',
 				Location: '',
 				date: '',
@@ -215,18 +245,25 @@ function AddEvent() {
 						<FormControl marginBottom={4}>
 							<FormLabel color='white'>*Image 1</FormLabel>
 							<Widget
-                publicKey='4a7fa09f2188af9b76a3'
+								publicKey='4a7fa09f2188af9b76a3'
 								type='file'
 								value={input.img1}
 								id='img1'
-							  variant='flushed'
-                data-tabs="file url facebook gdrive gphotos"
+								name='img1'
+								variant='flushed'
+								data-tabs='file url facebook gdrive gphotos'
+								required
 								onChange={(e) => {
 									setInput({
 										...input,
 										img1: e.originalUrl,
-                    
 									});
+									setErrors(
+										validate({
+											...input,
+											img1: e.originalUrl,
+										})
+									);
 								}}
 							/>
 							{input.img1 !== '' && errors.img1 && <Text color='red'>{errors.img1}</Text>}
@@ -235,7 +272,7 @@ function AddEvent() {
 						<FormControl marginBottom={4}>
 							<FormLabel color='white'>Image 2</FormLabel>
 							<Widget
-               publicKey='4a7fa09f2188af9b76a3'
+								publicKey='4a7fa09f2188af9b76a3'
 								type='text'
 								value={input.img2}
 								id='img2'
@@ -244,7 +281,7 @@ function AddEvent() {
 									setInput({
 										...input,
 										img2: e.originalUrl,
-                    });
+									});
 								}}
 							/>
 							{errors.img2 && <Text color='red'>{errors.img2}</Text>}
@@ -253,7 +290,7 @@ function AddEvent() {
 						<FormControl marginBottom={4}>
 							<FormLabel color='white'>Image 3</FormLabel>
 							<Widget
-                publicKey='4a7fa09f2188af9b76a3'
+								publicKey='4a7fa09f2188af9b76a3'
 								type='text'
 								value={input.img3}
 								id='img3'
@@ -262,7 +299,7 @@ function AddEvent() {
 									setInput({
 										...input,
 										img3: e.originalUrl,
-                    });
+									});
 								}}
 							/>
 							{errors.img3 && <Text color='red'>{errors.img3}</Text>}
@@ -284,7 +321,7 @@ function AddEvent() {
 							/>
 							{errors.img4 && <Text color='red'>{errors.img4}</Text>}
 						</FormControl>
-           <FormControl marginBottom={4}>
+						<FormControl marginBottom={4}>
 							<FormLabel color='white'>Carrousel image</FormLabel>
 							<Widget
 								publicKey='4a7fa09f2188af9b76a3'
@@ -335,19 +372,16 @@ function AddEvent() {
 
 						<FormControl marginBottom={4}>
 							<FormLabel color='white'>Age Restriction</FormLabel>
-							<InputGroup>
-								<InputLeftAddon children='+' />
-								<Input
-									type='number'
-									value={input.AgeRestriction}
-									name='AgeRestriction'
-									placeholder='Put number'
-									_placeholder={{ color: '#202531' }}
-									variant='flushed'
-									marginLeft={1}
-									onChange={(e) => handleChange(e)}
-								/>
-							</InputGroup>
+							<Input
+								type='number'
+								value={input.AgeRestriction}
+								name='AgeRestriction'
+								placeholder='Put number'
+								_placeholder={{ color: '#202531' }}
+								variant='flushed'
+								marginLeft={1}
+								onChange={(e) => handleChange(e)}
+							/>
 							{errors.AgeRestriction && <Text color='red'>{errors.AgeRestriction}</Text>}
 						</FormControl>
 

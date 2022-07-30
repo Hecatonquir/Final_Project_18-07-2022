@@ -33,7 +33,8 @@ export default function Cart() {
 	}
 
 	async function handleToken(token) {
-		const response = await axios.post('http://localhost:3001/checkout', { token, totalAmount });
+		const response = await axios.post('/checkout', { token, totalAmount });
+		console.log('🐲🐲🐲 / file: Cart.jsx / line 35 / response', response);
 		const { status } = response.data;
 		if (status === 'success')
 			toast.success('Your purchase was successful! Check your E-mail for more information');
