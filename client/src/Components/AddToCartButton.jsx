@@ -9,24 +9,6 @@ import { decodeToken } from 'react-jwt';
 import axios from 'axios';
 import { updateCart } from '../Redux/Actions/updateCart';
 
-<<<<<<< HEAD
-function AddToCartButton({id}) {
-  let token= document.cookie.split(";").filter(el => el.includes("access-token")).toString().split("=")[1];
-
-	let tokenDecoded = decodeToken(token);
-  console.log(tokenDecoded)
-    const dispatch = useDispatch()
-    const {cart} = useSelector(s=> s)
-    const navigate = useNavigate()
-    function handleClick() {
-    if(token){
-      dispatch(addCart(id))
-      dispatch(updateCart(tokenDecoded.id))
-		  swal('added product'," ","success");
-    } else{
-      navigate('/login')
-    }
-=======
 function AddToCartButton({ id }) {
 	let token = document.cookie
 		.split(';')
@@ -45,7 +27,6 @@ function AddToCartButton({ id }) {
 		} else {
 			navigate('/login');
 		}
->>>>>>> Development
 	}
 	return (
 		<button className={styles.Button2} onClick={() => handleClick()}>

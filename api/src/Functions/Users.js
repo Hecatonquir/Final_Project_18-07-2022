@@ -325,7 +325,7 @@ const loginRequest = async (req, res) => {
 					
 					
 					const token = jwt.sign(
-						{ id: id, role: user_[0].Role, name: user_[0].Name, email: user_[0].Email,picture: user_[0].Image },
+						{ id: user_[0].ID, role: user_[0].Role, name: user_[0].Name, email: user_[0].Email,picture: user_[0].Image },
 						process.env.PRIVATEKEY, 
 						{
 							expiresIn: 9999,
