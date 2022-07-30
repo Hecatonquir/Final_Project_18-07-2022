@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { deleteUserDB } from '../Redux/Actions/deleteUser';
 import { deleteEvent } from '../Redux/Actions/deleteEvent';
 import getEvents from '../Redux/Actions/getEvents';
+import Nav from './Nav'
 import styles from '../Styles/AdminPanel.module.css';
 import { changeRole } from '../Redux/Actions/updateRole';
 import { banUnbanUser } from '../Redux/Actions/banUnbanUser';
@@ -52,6 +53,8 @@ function AdminPanel() {
 
 	return (
 		<div className={styles.Total}>
+			<Nav />
+			<div className={styles.subTotal}>
 			<div>
 				{admin && <h1 className={styles.title}>Welcome {tokenDecoded && tokenDecoded.name}</h1>}
 			</div>
@@ -194,6 +197,7 @@ function AdminPanel() {
 
 					
 				</div>
+			</div>
 			</div>
 		</div>
 	);

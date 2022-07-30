@@ -5,10 +5,14 @@ body {
 
 
 .Total {
-    background-color: #1C8DA3;
+    background-color: #8A564F;
     width: 100vw;
     height: 100vh;
     position: absolute;
+    
+}
+
+.subTotal {
     display: grid;
     grid-template-columns: auto;
     justify-content: center;
@@ -16,8 +20,8 @@ body {
 
 .title {
     color: white;
-    margin-top: 40px;
-    font-size: 50px;
+    margin-top: 20px;
+    font-size: 40px;
     font-weight: bolder;
     text-align: center;
 }
@@ -32,7 +36,7 @@ body {
     background-color: white;
     width: 80rem;
     height: 35rem;
-    margin-top: 20px;
+    margin-top: 10px;
     display: flex;
     flex-direction: row;
 }

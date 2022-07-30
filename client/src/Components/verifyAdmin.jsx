@@ -5,6 +5,7 @@ import axios from "axios"
 import {useNavigate} from "react-router-dom"
 import { UPDATE_STATE_TRUE } from '../Redux/ActionTypes/actiontypes'
 import { useDispatch } from 'react-redux'
+import Nav from './Nav'
 import styles from '../Styles/verifyAdmin.module.css'
 import swal from 'sweetalert'
 
@@ -110,6 +111,7 @@ function Prepanel() {
        
             return (
                 <div className={styles.Total}>
+					<Nav />
                     <div className={styles.container}>
                         <form className={styles.form}>
                             <h2>Control Panel</h2>
