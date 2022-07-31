@@ -64,8 +64,8 @@ export default function Cart() {
 			};
 
 			/////////////////////--->Envio de mail de confirmacion de pago <---///////////////////////////
-			emailjs.send( SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY )
-			.then((result) => { console.log(result.text); } , (error) => { console.log(error.text); });
+			/* emailjs.send( SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY )
+			.then((result) => { console.log(result.text); } , (error) => { console.log(error.text); }); */
 		  	/////////////////////////////////////////////////////////////////////////////////////////////
 			toast.success('Your purchase was successful! Check your E-mail for more information');
       /* dispatch(removeQuantityFromEvent(X)) <---------- ACA Se despacha al back para restar numeros al valor de Quantity de cada evento. (hacer 1 para cada evento)  */
