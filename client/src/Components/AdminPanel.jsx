@@ -17,12 +17,11 @@ import { Box, Heading, Image, Text, Button } from "@chakra-ui/react";
 
 function AdminPanel() {
 	let token = document.cookie
-		.split(';')
-		.filter((el) => el.includes('access-token'))
-		.toString()
-		.split('=')[1];
-
-	let tokenDecoded = decodeToken(token);
+		.split(';')[0]
+	let token1 = 
+		token
+		.split('=')[1]
+	let tokenDecoded = decodeToken(token1);
 
 	let usersBD = useSelector((state) => state.allUsers);
 	let events = useSelector((state) => state.allEvents);
@@ -42,7 +41,7 @@ function AdminPanel() {
 	}
 
 	useEffect(() => {
-		axios('/user/admin', { withCredentials: true })
+		axios.post('/user/admin', {token: token1})
 			.then((response) => setAdmin(true))
 			.then((response) => dispatch(getUsers()))
 			.then((response) => dispatch(getEvents()))
