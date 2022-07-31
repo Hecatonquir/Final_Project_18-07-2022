@@ -10,7 +10,6 @@ module.exports = (sequelize) => {
 				type: DataTypes.UUID,
 				primaryKey: true,
 				defaultValue: DataTypes.UUIDV4,
-				
 			},
 			Name: {
 				type: DataTypes.STRING,
@@ -19,7 +18,7 @@ module.exports = (sequelize) => {
 			Username: {
 				type: DataTypes.STRING,
 				isUnique: true,
-				allowNull: true,
+				allowNull: false,
 			},
 			Password: {
 				type: DataTypes.STRING,
@@ -35,12 +34,14 @@ module.exports = (sequelize) => {
 			Image: {
 				type: DataTypes.TEXT,
 			},
+			City: {
+				type: DataTypes.STRING,
+			},
 			Location: {
 				type: DataTypes.STRING,
 			},
 			Role: {
 				type: DataTypes.STRING,
-				allowNull: true,
 				defaultValue: 'Guest',
 			},
 			Favourites: {
@@ -54,6 +55,7 @@ module.exports = (sequelize) => {
 			},
 			RedFlags: {
 				type: DataTypes.INTEGER,
+				defaultValue: 0,
 			},
 			LoggedIn: {
 				type: DataTypes.BOOLEAN,
@@ -61,6 +63,7 @@ module.exports = (sequelize) => {
 			},
 			Cart: {
 				type: DataTypes.ARRAY(DataTypes.JSON),
+				defaultValue: [],
 			},
 			isSupport: {
 				type: DataTypes.BOOLEAN,
@@ -70,9 +73,7 @@ module.exports = (sequelize) => {
 				type: DataTypes.BOOLEAN,
 				defaultValue: false,
 			},
-
-		
 		},
-		{ timestamps: false}
+		{ timestamps: false }
 	);
 };

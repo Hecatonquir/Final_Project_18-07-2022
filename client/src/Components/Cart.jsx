@@ -1,28 +1,27 @@
-import { React, useState } from 'react';
+import { React, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearCart } from '../Redux/Actions/clearCart';
 import CardItem from './CartItem';
 import styles from '../Styles/Cart.module.css';
 import imgcarrito from '../Media/emptycart.png';
 import Nav from './Nav';
-import { Box, Button, Center, Heading, Text, Image } from '@chakra-ui/react';
+import { Box, Button, /* Center, */ Heading, Text, Image } from '@chakra-ui/react';
 import { decodeToken } from 'react-jwt';
 import { updateCart } from '../Redux/Actions/updateCart';
 import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { LOAD_CART } from '../Redux/ActionTypes/actiontypes';
 
 export default function Cart() {
-	let token = document.cookie
-		.split(';')[0]
-	let token1 = 
-		token
-		.split('=')[1]
+	let token = document.cookie.split(';')[0];
+	let token1 = token.split('=')[1];
 	let tokenDecoded = decodeToken(token1);
 	const dispatch = useDispatch();
 	const cart = useSelector((state) => state.cart);
 	var totalAmount = 0;
+	// eslint-disable-next-line no-unused-vars
 	const [showItem, setShowItem] = useState(false);
 	const stripeKey =
 		'pk_test_51LOdlpIX9UMpYaskAq0EOuQYBwCNO0CWWVUIouFgSt4FP4eNMznvWxSTuflGp35HmZKZidvlVZOCYNrlyvviDVrc00V1E8tivg';
@@ -33,17 +32,28 @@ export default function Cart() {
 
 	function hundleClick() {
 		dispatch(clearCart());
-		dispatch(updateCart(tokenDecoded.id))
+		dispatch(updateCart(tokenDecoded.id));
 	}
 
 	async function handleToken(token) {
 		const response = await axios.post('/checkout', { token, totalAmount });
-		console.log('🐲🐲🐲 / file: Cart.jsx / line 35 / response', response);
 		const { status } = response.data;
-		if (status === 'success')
+		if (status === 'success') {
 			toast.success('Your purchase was successful! Check your E-mail for more information');
-		else toast.error('Something went wrong. Purchase cancelled');
+			/* dispatch(removeQuantityFromEvent(X)) <---------- ACA Se despacha al back para restar numeros al valor de Quantity de cada evento. (hacer 1 para cada evento)  */
+			dispatch(clearCart());
+		} else {
+			toast.error('Something went wrong. Purchase cancelled');
+		}
 	}
+
+	useEffect(() => {
+		if (token) {
+			axios
+				.put('/user/getUserById/' + tokenDecoded.id)
+				.then((r) => dispatch({ type: LOAD_CART, payload: r.data.Cart }));
+		}
+	}, [dispatch]);
 
 	return (
 		<Box bgGradient='linear(to-r, #1c2333, #371a1e)' minHeight='100vh'>
@@ -102,7 +112,7 @@ export default function Cart() {
 				</Box>
 			</Box>
 			<br />
-			<Box margin={6} >
+			<Box margin={6}>
 				<Button bg='pink' onClick={() => hundleClick()}>
 					Clear Cart
 				</Button>

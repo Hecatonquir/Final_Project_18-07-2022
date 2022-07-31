@@ -1,6 +1,7 @@
 import { React, useState } from "react";
 import { sendPartnerForm } from "../Redux/Actions/sendPartnerForm";
 import Nav from "./Nav";
+import swal from "sweetalert";
 import {
   Box,
   Heading,
@@ -151,7 +152,7 @@ function FormPartner() {
   function handleSubmit(e) {
     e.preventDefault();
     if (errors.check !== "approved") {
-      alert("Not created");
+      swal("Not created","","error");
     } else {
       sendPartnerForm({
         Name: input.Name,
