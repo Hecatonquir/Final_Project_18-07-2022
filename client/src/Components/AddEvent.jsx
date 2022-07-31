@@ -1,6 +1,6 @@
-import { React, /* useEffect ,*/ useState } from 'react';
+import { React, useEffect, /* useEffect ,*/ useState } from 'react';
 /* import { useDispatch } from 'react-redux'; */
-import /*Link  , useNavigate */ 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import { postEvent } from '../Redux/Actions/postEvent';
 import styles from '../Styles/AddEvent.module.css';
 import validate from './Validations';
@@ -21,9 +21,13 @@ import {
 	InputLeftAddon, */
 } from '@chakra-ui/react';
 
+import { decodeToken } from 'react-jwt';
+
+
 function AddEvent() {
 	/* 	const dispatch = useDispatch();
 	const history = useNavigate(); */
+	let navigate = useNavigate()
 	const [errors, setErrors] = useState({});
 	const Cities = [
 		'Buenos Aires',
@@ -136,6 +140,26 @@ function AddEvent() {
 			});
 		}
 	}
+
+	let token = document.cookie
+	.split(';')[0]
+let token1 = 
+	token
+	.split('=')[1]
+let tokenDecoded = decodeToken(token1);
+
+console.log(tokenDecoded)
+
+useEffect( () => {
+ if(tokenDecoded && tokenDecoded.role === "User") {
+	navigate("/")
+}
+if(!tokenDecoded) {
+	navigate("/")
+}})
+
+
+
 
 	return (
 		<Box bgGradient='linear(to-r, #1c2333, #371a1e)' minHeight='100vh'>
