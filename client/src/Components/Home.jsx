@@ -31,18 +31,21 @@ export default function Home() {
 	const backup = useSelector((state) => state.eventsBackUp);
 	const carrouselEvents = backup.filter((ev) => ev.Carrousel);
 
-	
-	console.log(document.cookie.split("="))
-	
+	console.log(document.cookie.split('='));
+
 	if (!stateUser && user) {
-		dispatch(registerGmail(user,logout));
+		dispatch(registerGmail(user, logout));
 	}
 	useEffect(() => {
 		if (!stateUser && token) {
 			dispatch({ type: UPDATE_STATE_TRUE });
 		}
-		
-		
+		if (token) {
+			axios
+				.put('/user/getUserById/' + tokenDecoded.id)
+				.then((r) => dispatch({ type: LOAD_CART, payload: r.data.Cart }));
+		}
+
 		dispatch(getEvents());
 
 		return () => {};
