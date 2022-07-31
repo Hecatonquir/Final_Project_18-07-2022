@@ -17,11 +17,13 @@ import { LOAD_CART, UPDATE_STATE_TRUE } from '../Redux/ActionTypes/actiontypes.j
 
 import { Box, SimpleGrid, Center, Text, Flex } from '@chakra-ui/react';
 import BackToTopButton from './BackToTopButton.jsx';
+// eslint-disable-next-line no-unused-vars
 import { updateCart } from '../Redux/Actions/updateCart.js';
 import axios from 'axios';
 
 export default function Home() {
-	const { /* isAuthenticated, */ user } = useAuth0();
+	// eslint-disable-next-line no-unused-vars
+	const { isAuthenticated, user } = useAuth0();
 	let token = document.cookie
 		.split(';')
 		.filter((el) => el.includes('access-token'))
@@ -44,8 +46,10 @@ export default function Home() {
 			dispatch({ type: UPDATE_STATE_TRUE });
 		}
 		dispatch(getEvents());
-		if(token){
-			axios.put('/user/getUserById/'+tokenDecoded.id).then(r=> dispatch({type: LOAD_CART, payload: r.data.Cart}))
+		if (token) {
+			axios
+				.put('/user/getUserById/' + tokenDecoded.id)
+				.then((r) => dispatch({ type: LOAD_CART, payload: r.data.Cart }));
 		}
 		return () => {}; /* Esto está vacío. Está para algo en el futuro? */
 		// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -124,6 +128,7 @@ export default function Home() {
 	);
 }
 
+// eslint-disable-next-line no-lone-blocks
 {
 	/*<Box bgGradient='linear(to-r, #1c2333, #371a1e)' minHeight='100vh'>
 <Box>
