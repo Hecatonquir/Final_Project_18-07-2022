@@ -6,6 +6,7 @@ import { UPDATE_STATE_TRUE } from '../Redux/ActionTypes/actiontypes';
 import { useDispatch } from 'react-redux';
 import styles from '../Styles/verifyAdmin.module.css';
 import Cookies from "universal-cookie"
+import swal from "sweetalert"
 function Prepanel() {
 	const cookies = new Cookies() 
 	const navigate = useNavigate();
@@ -40,6 +41,8 @@ try {
 	
 	cookies.set('access-control', adminLogin.data,{path:"/"})
 	dispatch({ type: UPDATE_STATE_TRUE })
+
+	navigate("/welcomeA")
 	
 } catch (error) {
 	alert('Not Allowed!')
@@ -48,33 +51,17 @@ try {
 
 
 
-		setTimeout(() => {
-			
-		token = document.cookie
-		.split(';')[0]
-
-		 token1 = 
-		token
-		.split('=')[1]
-			console.log(token1)
-				
-			
-		}, 300);
 	}
 
 	useEffect(() => {
 		
 			if (tokenDecoded &&tokenDecoded.role !== 'Admin') { 
-				alert('Not Allowed')
+				swal({title:'Not Allowed',
+			icon: "error"})
 				navigate("/")
 
 			}
-			else if ( tokenDecoded &&
-				decodeToken(token1
-				).role === 'Admin'
-			) {
-				navigate('/welcomeA');
-			} 
+			
 			
 			
 		
