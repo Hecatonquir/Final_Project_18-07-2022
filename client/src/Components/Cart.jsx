@@ -102,6 +102,7 @@ export default function Cart() {
 									name={item.Name}
 									price={item.Price}
 									purchasedItem={item.PurchasedItem}
+									quantity={item.Quantity}
 								/>
 							</Box>
 						))
