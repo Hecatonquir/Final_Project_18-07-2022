@@ -1,4 +1,4 @@
-import React, {useState, useRef } from 'react';  // useRef for mailing
+import React, {useState, useRef } from 'react';  // useRef: for send form mail
 import {useDispatch} from 'react-redux'
 import {Link, useNavigate} from 'react-router-dom'
 import userRegister from '../Redux/Actions/postRegister';
@@ -72,7 +72,6 @@ function Register() {
     //console.log(form.current)
 
     const submitButton = function (e){
-        //console.log('ENTRO A SUBMIT BUTTON')
         e.preventDefault();
 
         /////////////////////////////Envio de mail de confirmacion //////////////////////////////////
