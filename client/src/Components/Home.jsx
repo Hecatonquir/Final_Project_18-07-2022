@@ -17,10 +17,12 @@ import { LOAD_CART, UPDATE_STATE_TRUE } from '../Redux/ActionTypes/actiontypes.j
 
 import { Box, SimpleGrid, Center, Text, Flex } from '@chakra-ui/react';
 import BackToTopButton from './BackToTopButton.jsx';
+// eslint-disable-next-line no-unused-vars
 import { updateCart } from '../Redux/Actions/updateCart.js';
 import axios from 'axios';
 
 export default function Home() {
+
 	const { user, logout } = useAuth0();
 	let token = document.cookie.split(';')[0];
 	let token1 = token.split('=')[1];

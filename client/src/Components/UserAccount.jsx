@@ -21,7 +21,7 @@ export default function Tabs() {
             <button
               className={toggleState === 2 ? `${styles.tabs} ${styles.activetabs}` : styles.tabs}
               onClick={() => toggleTab(2)}>
-              My Shopping
+              My Shopping History
             </button>
             {/* <button
               className={toggleState === 3 ? `${styles.tabs} ${styles.activetabs}` : styles.tabs}
