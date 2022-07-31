@@ -10,11 +10,9 @@ import logOut from '../Redux/Actions/logOut';
 import Search from './Search.jsx';
 import { Box, Button, Flex, Heading, Image, Text } from '@chakra-ui/react';
 import { CLEAR_CART } from '../Redux/ActionTypes/actiontypes';
-import { useCookies} from "react-cookie"
 
 function NavBar() {
 	let { isAuthenticated, logout, user } = useAuth0();
-	let { remove} = useCookies()
 	let token = document.cookie
 		.split(';')[0]
 	let token1 = 
@@ -111,7 +109,7 @@ function NavBar() {
 								bg='#f4a69a'
 								className={styles.Button}
 								color='white'
-								onClick={() => { dispatch({type: CLEAR_CART}); return logOut('access-token', dispatch, isAuthenticated, logout, remove)}}>
+								onClick={() => { dispatch({type: CLEAR_CART}); return logOut('access-token', dispatch, isAuthenticated, logout,)}}>
 								<Text>Log Out</Text>
 							</Button>
 						)}

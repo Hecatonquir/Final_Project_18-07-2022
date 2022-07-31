@@ -11,7 +11,7 @@ export async function logInUser(payload, navigate, dispatch, setCookie) {
 		
 
 
-		console.log(user)
+	
 		setCookie('access-control', user.data, {path: "/"})
 
 		

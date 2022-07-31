@@ -5,15 +5,16 @@ import { useNavigate } from 'react-router-dom';
 import { UPDATE_STATE_TRUE } from '../Redux/ActionTypes/actiontypes';
 import { useDispatch } from 'react-redux';
 import styles from '../Styles/verifyAdmin.module.css';
-import {useCookies} from "react-cookie"
+import Cookies from "universal-cookie"
 function Prepanel() {
-	let {setCookie} = useCookies()
+	const cookies = new Cookies() 
 	const navigate = useNavigate();
 	let dispatch = useDispatch();
 	const [user, setUser] = useState({
 		username: '',
 		password: '',
 	});
+
 
 	let token = document.cookie
 		.split(';')[0]
@@ -23,21 +24,29 @@ function Prepanel() {
 	let tokenDecoded = decodeToken(token1);
 
 
-	console.log(tokenDecoded);
+
 
 	function handleChange(e) {
 		return setUser({ ...user, [e.target.name]: e.target.value });
 	}
 
-	function handleSubmit(e, person) {
+	async function handleSubmit(e, person) {
 		e.preventDefault();
 
-		axios
-			.post('/user/login2', person, { withCredentials: true })
-			.then(res => setCookie("access-control", res.data, {path:"/"}))
-			.then((res) => dispatch({ type: UPDATE_STATE_TRUE }))
-			
-			.catch((error) => alert('Not Allowed!'));
+		
+try {
+
+	let adminLogin = await axios.post('/user/login2', person, { withCredentials: true })
+	
+	cookies.set('access-control', adminLogin.data,{path:"/"})
+	dispatch({ type: UPDATE_STATE_TRUE })
+	
+} catch (error) {
+	alert('Not Allowed!')
+	
+}
+
+
 
 		setTimeout(() => {
 			
@@ -47,8 +56,7 @@ function Prepanel() {
 		 token1 = 
 		token
 		.split('=')[1]
-
-				
+			console.log(token1)
 				
 			if (
 				decodeToken(token1

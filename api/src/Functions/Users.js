@@ -44,7 +44,8 @@ const validatePartner = (req, res, next) => {
 };
 
 const validateAdmin = (req, res, next) => {
-	const accessToken = req.cookies['access-token'];
+	const accessToken = req.body.token;
+	
 	if (!accessToken) return res.status(400).send('User is not authenticated');
 	try {
 		const validToken = jwt.verify(accessToken, process.env.PRIVATEKEY);
@@ -362,7 +363,7 @@ const loginRequestAP = async (req, res) => {
 			}
 			bcrypt.compare(password, user_[0].Password, (error, response) => {
 				if (response) {
-					console.log(user_[0].ID);
+					
 					const id = user_[0].ID;
 					const token = jwt.sign(
 						{ id: id, role: user_[0].Role, name: user_[0].Name, email: user_[0].Email },

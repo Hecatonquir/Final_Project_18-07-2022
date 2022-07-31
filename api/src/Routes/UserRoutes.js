@@ -9,7 +9,7 @@ routes.get('/all', getAllUsers); // --------------------Working
 routes.get('/name/:Name', getUserByName); // -----------Working
 routes.put('/getUserById/:id', getUserById); //----------------- Working
 routes.get('/partner/:ID', getPartnerCreatedEvents); // Working
-routes.get("/admin", validateAdmin, (req,res) =>{ 
+routes.post("/admin", validateAdmin, (req,res) =>{ 
     res.send("welcome")
 })
 

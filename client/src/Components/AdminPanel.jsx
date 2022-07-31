@@ -40,7 +40,7 @@ function AdminPanel() {
 	}
 
 	useEffect(() => {
-		axios('/user/admin', { withCredentials: true })
+		axios.post('/user/admin', {token: token1})
 			.then((response) => setAdmin(true))
 			.then((response) => dispatch(getUsers()))
 			.then((response) => dispatch(getEvents()))
