@@ -31,9 +31,10 @@ export default function Home() {
 	const backup = useSelector((state) => state.eventsBackUp);
 	const carrouselEvents = backup.filter((ev) => ev.Carrousel);
 
-	console.log(tokenDecoded)
-
-	if (!token) {
+	
+	console.log(document.cookie.split("="))
+	
+	if (!tokenDecoded && !stateUser && user) {
 		dispatch(registerGmail(user));
 	}
 
@@ -41,10 +42,12 @@ export default function Home() {
 		if (!stateUser && token) {
 			dispatch({ type: UPDATE_STATE_TRUE });
 		}
+		
+		
 		dispatch(getEvents());
 
 		return () => {};
-	}, [stateUser]);
+	}, []);
 
 	<Box bgGradient='linear(to-r, #1c2333, #371a1e)' minHeight='100vh'>
 		<Box>

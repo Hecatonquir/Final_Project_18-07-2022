@@ -32,8 +32,9 @@ export async function logInUser(payload, navigate, dispatch, setCookie) {
 
 		setTimeout(() => {
 			navigate('/');
-			dispatch({ type: UPDATE_STATE_TRUE });
 			setCookie('access-control', user.data, {path: "/"})
+			
+			
 			
 		}, 2000);
 	} catch (error) {

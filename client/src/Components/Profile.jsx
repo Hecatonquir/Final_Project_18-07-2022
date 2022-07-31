@@ -16,14 +16,14 @@ function Profile() {
 		token
 		.split('=')[1]
 
-    console.log(user)
+   
 	let tokenDecoded = decodeToken(token1);
-  console.log("🐲🐲🐲 / file: Profile.jsx / line 15 / tokenDecoded", tokenDecoded);
-	//console.log("soy el profile",tokenDecoded);
+  
+
 
   return (
     <Box bgGradient='linear(to-r, #1c2333, #371a1e)' minHeight='100vh'>
-      {token ? (
+      {token && token ? (
         <>
          <Nav />
          <Flex justifyContent='center' alignItems='center' height='60vh'>

@@ -18,7 +18,7 @@ function NavBar() {
 	let token1 = 
 		token
 		.split('=')[1]
-		console.log(token)
+	
 	//console.log(document.cookie);
 	let tokenDecoded = decodeToken(token1);
 	let dispatch = useDispatch();
@@ -30,14 +30,6 @@ function NavBar() {
 
 	
 
-	useEffect(() => {
-		if(token) {
-			dispatch({type:UPDATE_STATE_TRUE})
-		}
-	
-	
-	  
-	}, [token])
 	
 
 	
@@ -124,7 +116,7 @@ function NavBar() {
 								bg='#f4a69a'
 								className={styles.Button}
 								color='white'
-								onClick={() => { dispatch({type: CLEAR_CART}); return logOut('access-token', dispatch, isAuthenticated, logout,)}}>
+								onClick={() => { dispatch({type: CLEAR_CART}); return logOut(dispatch)}}>
 								<Text>Log Out</Text>
 							</Button>
 						)}
