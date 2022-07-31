@@ -12,15 +12,15 @@ export async function logInUser(payload, navigate, dispatch, setCookie) {
 
 
 	
-		setCookie('access-control', user.data, {path: "/"})
-
 		
 
 		
 
 		
 
-		dispatch({ type: UPDATE_STATE_TRUE });
+		
+
+		
 
 		swal({
 			title: 'Login Success',
@@ -32,6 +32,9 @@ export async function logInUser(payload, navigate, dispatch, setCookie) {
 
 		setTimeout(() => {
 			navigate('/');
+			dispatch({ type: UPDATE_STATE_TRUE });
+			setCookie('access-control', user.data, {path: "/"})
+			
 		}, 2000);
 	} catch (error) {
 		console.log(error);

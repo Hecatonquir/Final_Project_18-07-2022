@@ -68,17 +68,20 @@ try {
 	}
 
 	useEffect(() => {
-		if (tokenDecoded && tokenDecoded.role !== 'Partner') {
-			if (tokenDecoded.role !== 'Admin') {
-				return alert('Not Allowed');
+		
+			if (tokenDecoded.role !== 'Admin') { 
+				alert('Not Allowed')
+				navigate("/")
+
 			} else {
 				navigate('/welcomeA');
 			}
-		}
+		
 	}, []);
 
 	return (
-		<div className={styles.Total}>
+		<>
+		{tokenDecoded && tokenDecoded.role === "Admin" && <div className={styles.Total}>
 			<div className={styles.container}>
 				<form className={styles.form}>
 					<h2>Control Panel</h2>
@@ -109,7 +112,8 @@ try {
 					</div>
 				</form>
 			</div>
-		</div>
+		</div>}
+		</>
 	);
 }
 

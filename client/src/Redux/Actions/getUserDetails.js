@@ -8,7 +8,7 @@ export  const getUserDetails =  (id) => {
 
         
         try {
-            console.log("hola")
+            
 
             let userFound = await axios(`/user/getUserById/${id.id}`, {withCredentials: true})
 

@@ -16,6 +16,7 @@ import {
   } from "@chakra-ui/react";
 import Nav from './Nav';
 import {useCookies} from "react-cookie"
+import { UPDATE_STATE_TRUE } from '../Redux/ActionTypes/actiontypes';
 
 
 function LogIn() {
@@ -50,12 +51,17 @@ function LogIn() {
        logInUser(input,navigate,dispatch,setCookie)
              
             }
+
+            if(token) {
+                dispatch({type: UPDATE_STATE_TRUE})
+            }
                  
+            
 
     return (
 
          <Box bgGradient="linear(to-r, #1c2333, #371a1e)" minHeight="100vh">
-            {  !token ||  !active ?
+            {  !active ?
             <Box>
   
                 <Nav/>

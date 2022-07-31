@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from '../Styles/NavBar.module.css';
@@ -9,7 +9,7 @@ import { isExpired, decodeToken } from 'react-jwt';
 import logOut from '../Redux/Actions/logOut';
 import Search from './Search.jsx';
 import { Box, Button, Flex, Heading, Image, Text } from '@chakra-ui/react';
-import { CLEAR_CART } from '../Redux/ActionTypes/actiontypes';
+import { CLEAR_CART, UPDATE_STATE_TRUE } from '../Redux/ActionTypes/actiontypes';
 
 function NavBar() {
 	let { isAuthenticated, logout, user } = useAuth0();
@@ -18,7 +18,7 @@ function NavBar() {
 	let token1 = 
 		token
 		.split('=')[1]
-		console.log("hola")
+		console.log(token)
 	//console.log(document.cookie);
 	let tokenDecoded = decodeToken(token1);
 	let dispatch = useDispatch();
@@ -28,14 +28,19 @@ function NavBar() {
 	const active = useSelector((state) => state.loginState);
 	let count = cart ? cart.length : null;
 
-	let tokengmail = decodeToken(document.cookie
-		.split(';')
-		.filter((el) => el.includes('access-token'))
-		.toString()
-		.split('=')[1])
+	
 
-		console.log(tokengmail)
+	useEffect(() => {
+		if(token) {
+			dispatch({type:UPDATE_STATE_TRUE})
+		}
+	
+	
+	  
+	}, [token])
+	
 
+	
 	
 
 	//  return (
@@ -104,7 +109,7 @@ function NavBar() {
 						</Heading>
 					</Box>
 					<Box>
-						{!token || isExpired(token) || !active ? (
+						{!token ? (
 							<Box>
 								<Link to='/login'>
 									<Button bg='#f4a69a' >Login/Sign Up</Button>
@@ -114,7 +119,7 @@ function NavBar() {
 							<Box></Box>
 						)}
 
-						{!isExpired(token) && active && (
+						{token && (
 							<Button
 								bg='#f4a69a'
 								className={styles.Button}
@@ -130,7 +135,7 @@ function NavBar() {
 							</Link>
 						)} */}
 
-						{token && (tokenDecoded.role || tokengmail.role) === 'Partner' && active && (
+						{token && tokenDecoded && tokenDecoded.role === 'Partner' && active && (
 							<Link to='/createEvent'>
 								<Button bg='#f4a69a' >Create an Event</Button>
 							</Link>
