@@ -15,12 +15,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import { LOAD_CART } from '../Redux/ActionTypes/actiontypes';
 
 export default function Cart() {
-	let token = document.cookie
-		.split(';')
-		.filter((el) => el.includes('access-token'))
-		.toString()
-		.split('=')[1];
-	let tokenDecoded = decodeToken(token);
+	let token = document.cookie.split(';')[0];
+	let token1 = token.split('=')[1];
+	let tokenDecoded = decodeToken(token1);
 	const dispatch = useDispatch();
 	const cart = useSelector((state) => state.cart);
 	var totalAmount = 0;
@@ -50,12 +47,14 @@ export default function Cart() {
 		}
 	}
 
-	useEffect(()=>{
-		if(token){
-			axios.put('/user/getUserById/'+tokenDecoded.id).then(r=> dispatch({type: LOAD_CART, payload: r.data.Cart}))
+	useEffect(() => {
+		if (token) {
+			axios
+				.put('/user/getUserById/' + tokenDecoded.id)
+				.then((r) => dispatch({ type: LOAD_CART, payload: r.data.Cart }));
 		}
-	}, [dispatch])
-	
+	}, [dispatch]);
+
 	return (
 		<Box bgGradient='linear(to-r, #1c2333, #371a1e)' minHeight='100vh'>
 			<Nav />

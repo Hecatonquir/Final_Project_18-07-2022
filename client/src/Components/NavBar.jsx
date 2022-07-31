@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from '../Styles/NavBar.module.css';
@@ -9,18 +9,18 @@ import { isExpired, decodeToken } from 'react-jwt';
 import logOut from '../Redux/Actions/logOut';
 import Search from './Search.jsx';
 import { Box, Button, Flex, Heading, Image, Text } from '@chakra-ui/react';
-import { CLEAR_CART } from '../Redux/ActionTypes/actiontypes';
+import { CLEAR_CART, UPDATE_STATE_TRUE } from '../Redux/ActionTypes/actiontypes';
 
 function NavBar() {
 	let { isAuthenticated, logout, user } = useAuth0();
-
 	let token = document.cookie
-		.split(';')
-		.filter((el) => el.includes('access-token'))
-		.toString()
-		.split('=')[1];
+		.split(';')[0]
+	let token1 = 
+		token
+		.split('=')[1]
+	
 	//console.log(document.cookie);
-	let tokenDecoded = decodeToken(token);
+	let tokenDecoded = decodeToken(token1);
 	let dispatch = useDispatch();
 	const logoutState = useSelector((state) => state.allEvents);
 	const cart = useSelector((state) => state.cart);
@@ -28,6 +28,12 @@ function NavBar() {
 	const active = useSelector((state) => state.loginState);
 	let count = cart ? cart.length : null;
 
+	
+
+	
+
+	
+	
 
 	//  return (
 	//     <Box marginBottom={6} padding={2} bgGradient='linear(to-b, #a28748, #6c5727)'>
@@ -95,7 +101,7 @@ function NavBar() {
 						</Heading>
 					</Box>
 					<Box>
-						{!token || isExpired(token) || !active ? (
+						{!token ? (
 							<Box>
 								<Link to='/login'>
 									<Button bg='#f4a69a' >Login/Sign Up</Button>
@@ -105,12 +111,12 @@ function NavBar() {
 							<Box></Box>
 						)}
 
-						{!isExpired(token) && tokenDecoded.role !== 'Guest' && active && (
+						{token && (
 							<Button
 								bg='#f4a69a'
 								className={styles.Button}
 								color='white'
-								onClick={() => { dispatch({type: CLEAR_CART}); return logOut('access-token', dispatch, isAuthenticated, logout)}}>
+								onClick={() => { dispatch({type: CLEAR_CART}); return logOut(dispatch)}}>
 								<Text>Log Out</Text>
 							</Button>
 						)}
@@ -121,7 +127,7 @@ function NavBar() {
 							</Link>
 						)} */}
 
-						{token && tokenDecoded.role === 'Partner' && active && (
+						{token && tokenDecoded && tokenDecoded.role === 'Partner' && active && (
 							<Link to='/createEvent'>
 								<Button bg='#f4a69a' >Create an Event</Button>
 							</Link>

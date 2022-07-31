@@ -15,18 +15,25 @@ import {
     Button
   } from "@chakra-ui/react";
 import Nav from './Nav';
+import {useCookies} from "react-cookie"
+import { UPDATE_STATE_TRUE } from '../Redux/ActionTypes/actiontypes';
 
 
 function LogIn() {
     let dispatch = useDispatch()
     let navigate = useNavigate()
-    let token= document.cookie.split(";").filter(el => el.includes("access-token")).toString().split("=")[1]
-	let tokenDecoded = decodeToken(token)
+    let token = document.cookie
+		.split(';')[0]
+	let token1 = 
+		token
+		.split('=')[1]
+	let tokenDecoded = decodeToken(token1)
     let active = useSelector(state => state.loginState)
 
 
    
     const {loginWithRedirect} = useAuth0()
+    const [cookies,setCookie] = useCookies(['access-control'])
     const [input , setInput] = useState({
         username:"",
         password:""
@@ -41,15 +48,20 @@ function LogIn() {
 
     const submitButton = function (e){
         e.preventDefault();
-       logInUser(input,navigate,dispatch)
+       logInUser(input,navigate,dispatch,setCookie)
              
             }
+
+            if(token) {
+                dispatch({type: UPDATE_STATE_TRUE})
+            }
                  
+            
 
     return (
 
          <Box bgGradient="linear(to-r, #1c2333, #371a1e)" minHeight="100vh">
-            {  !token ||  !active ?
+            {  !active ?
             <Box>
   
                 <Nav/>
@@ -94,7 +106,8 @@ function LogIn() {
                     </Box>
 
                     <Box textAlign='center' marginBottom={6}>
-                        <Button  onClick={() => loginWithRedirect()} className={styles.Button3}>
+                        <Button  onClick={() => {loginWithRedirect()
+                             navigate("/")}} className={styles.Button3}>
                             <img src={img1} alt='not img' className={styles.icon}/><span>Register with google</span>
                         </Button>
                     </Box>

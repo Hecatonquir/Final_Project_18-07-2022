@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
@@ -25,13 +26,14 @@ export default function EventCard({
 	const dispatch = useDispatch();
 	const Allfavourites = useSelector((state) => state.favourites);
 	var exitFav = Allfavourites.find((e) => e.ID === id);
-	let token= document.cookie.split(";").filter(el => el.includes("access-token")).toString().split("=")[1]
-	let tokenDecoded = decodeToken(token)
-	const navigate = useNavigate()
+	let token = document.cookie.split(';')[0];
+	let token1 = token.split('=')[1];
+	let tokenDecoded = decodeToken(token);
+	const navigate = useNavigate();
 
 	function handleClickFav() {
-		if(token){
-		if (!exitFav) {
+		if (token1) {
+			if (!exitFav) {
 				dispatch(addToFavourites(id));
 				swal('Added to favorite', { icon: 'success' });
 			} else {
@@ -39,7 +41,7 @@ export default function EventCard({
 				swal('Removed from favorites', { icon: 'warning' });
 			}
 		} else {
-			navigate('/login')
+			navigate('/login');
 		}
 	}
 

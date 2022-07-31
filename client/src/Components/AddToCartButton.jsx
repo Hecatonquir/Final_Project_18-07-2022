@@ -11,11 +11,11 @@ import { updateCart } from '../Redux/Actions/updateCart';
 
 function AddToCartButton({ id }) {
 	let token = document.cookie
-		.split(';')
-		.filter((el) => el.includes('access-token'))
-		.toString()
-		.split('=')[1];
-	let tokenDecoded = decodeToken(token);
+		.split(';')[0]
+	let token1 = 
+		token
+		.split('=')[1]
+	let tokenDecoded = decodeToken(token1);
 	const dispatch = useDispatch();
 	const { cart } = useSelector((s) => s);
 	const navigate = useNavigate();
