@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { React, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearCart } from '../Redux/Actions/clearCart';
 import CardItem from './CartItem';
@@ -12,6 +12,7 @@ import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { LOAD_CART } from '../Redux/ActionTypes/actiontypes';
 
 export default function Cart() {
 	let token = document.cookie
@@ -49,6 +50,12 @@ export default function Cart() {
 		}
 	}
 
+	useEffect(()=>{
+		if(token){
+			axios.put('/user/getUserById/'+tokenDecoded.id).then(r=> dispatch({type: LOAD_CART, payload: r.data.Cart}))
+		}
+	}, [dispatch])
+	
 	return (
 		<Box bgGradient='linear(to-r, #1c2333, #371a1e)' minHeight='100vh'>
 			<Nav />

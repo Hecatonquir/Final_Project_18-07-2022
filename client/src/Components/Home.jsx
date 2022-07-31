@@ -13,10 +13,12 @@ import Footer from './Footer.jsx';
 import { decodeToken, isExpired } from 'react-jwt';
 import { useAuth0 } from '@auth0/auth0-react';
 import registerGmail from '../Redux/Actions/registerGmail.js';
-import { UPDATE_STATE_TRUE } from '../Redux/ActionTypes/actiontypes.js';
+import { LOAD_CART, UPDATE_STATE_TRUE } from '../Redux/ActionTypes/actiontypes.js';
 
 import { Box, SimpleGrid, Center, Text, Flex } from '@chakra-ui/react';
 import BackToTopButton from './BackToTopButton.jsx';
+import { updateCart } from '../Redux/Actions/updateCart.js';
+import axios from 'axios';
 
 export default function Home() {
 	const { /* isAuthenticated, */ user } = useAuth0();
@@ -42,6 +44,9 @@ export default function Home() {
 			dispatch({ type: UPDATE_STATE_TRUE });
 		}
 		dispatch(getEvents());
+		if(token){
+			axios.put('/user/getUserById/'+tokenDecoded.id).then(r=> dispatch({type: LOAD_CART, payload: r.data.Cart}))
+		}
 		return () => {}; /* Esto está vacío. Está para algo en el futuro? */
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [stateUser]);
