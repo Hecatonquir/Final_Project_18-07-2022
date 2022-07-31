@@ -41,7 +41,8 @@ export default function Cart() {
 		console.log('Entered to handleToken')
 		
 		const response = await axios.post('http://localhost:3001/checkout', { token, totalAmount });
-		const payback = response.data  // payback -> ARRAY ['success', token, charge]
+		const payback = response.data  // payback -> ARRAY ['success', token, charge, qr]
+		console.log(payback[3])
 		
 		
 		if (payback[0] === 'success'){
@@ -57,7 +58,8 @@ export default function Cart() {
 				cardLast4: payback[1].card.last4,
 				amount: (payback[2].amount) / 100,
 				currency: payback[2].currency,
-				receiptUrl: payback[2].receipt_url
+				receiptUrl: payback[2].receipt_url,
+				qr: payback[3]
 			};
 
 			/////////////////////--->Envio de mail de confirmacion de pago <---///////////////////////////

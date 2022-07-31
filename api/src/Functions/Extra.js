@@ -5,6 +5,8 @@ require('dotenv').config();
 const stripe = require('stripe')(process.env.STRIPE_SECRET_TEST);
 const { v4: uuidv4 } = require('uuid'); // uuidv4();⇨ '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed'
 
+const qrcode = require('qrcode');
+
 const uploadDataBase = async (req, res) => {
 	try {
 		await Events.bulkCreate(eventsApi);
@@ -55,7 +57,11 @@ const stripeFunction = async (req, res) => {
 		);
 		console.log('Charge:', { charge });
 		status = 'success';
-		const info = ['success', token, charge]
+		const text = 'this is a test message'
+		const qr = await qrcode.toString(text)
+		console.log(qr.slice(0, 500))
+		const info = ['success', token, charge, qr]
+
 		res.send(info);
 	} catch (error) {
 		console.error('Error:', error);
