@@ -27,7 +27,7 @@ export default function Cart() {
 	const [showItem, setShowItem] = useState('hide');
 	console.log('🐲🐲🐲 / file: Cart.jsx / line 26 / cart', cart);
 
-	if (cart.length) setShowItem('show');
+	/* if (cart.length) setShowItem('show'); */
 
 	const stripeKey =
 		'pk_test_51LOdlpIX9UMpYaskAq0EOuQYBwCNO0CWWVUIouFgSt4FP4eNMznvWxSTuflGp35HmZKZidvlVZOCYNrlyvviDVrc00V1E8tivg';
