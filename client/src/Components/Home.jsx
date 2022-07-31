@@ -40,7 +40,7 @@ export default function Home() {
 		if (!stateUser && token) {
 			dispatch({ type: UPDATE_STATE_TRUE });
 		}
-		if (token) {
+		if (token1) {
 			axios
 				.put('/user/getUserById/' + tokenDecoded.id)
 				.then((r) => dispatch({ type: LOAD_CART, payload: r.data.Cart }));
