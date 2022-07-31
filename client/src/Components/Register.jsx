@@ -75,8 +75,8 @@ function Register() {
         e.preventDefault();
 
         /////////////////////////////Envio de mail de confirmacion //////////////////////////////////
-        emailjs.sendForm( SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY )
-          .then((result) => { console.log(result.text); } , (error) => { console.log(error.text); });
+        /* emailjs.sendForm( SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY )
+          .then((result) => { console.log(result.text); } , (error) => { console.log(error.text); }); */
         /////////////////////////////////////////////////////////////////////////////////////////////
 
         if(!input.Name || !input.Username|| !input.Password || !input.Email|| !input.Location) {
