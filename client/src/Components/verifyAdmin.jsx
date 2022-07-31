@@ -58,30 +58,31 @@ try {
 		.split('=')[1]
 			console.log(token1)
 				
-			if (
-				decodeToken(token1
-				).role === 'Admin'
-			) {
-				navigate('/welcomeA');
-			}
+			
 		}, 300);
 	}
 
 	useEffect(() => {
 		
-			if (tokenDecoded.role !== 'Admin') { 
+			if (tokenDecoded &&tokenDecoded.role !== 'Admin') { 
 				alert('Not Allowed')
 				navigate("/")
 
-			} else {
-				navigate('/welcomeA');
 			}
+			else if ( tokenDecoded &&
+				decodeToken(token1
+				).role === 'Admin'
+			) {
+				navigate('/welcomeA');
+			} 
+			
+			
 		
 	}, []);
 
 	return (
 		<>
-		{tokenDecoded && tokenDecoded.role === "Admin" && <div className={styles.Total}>
+		{<div className={styles.Total}>
 			<div className={styles.container}>
 				<form className={styles.form}>
 					<h2>Control Panel</h2>

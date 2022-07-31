@@ -289,15 +289,11 @@ const registerUserGmail = async (req, res) => {
 				},
 				process.env.PRIVATEKEY,
 				{
-					expiresIn: 300,
+					expiresIn: 9999,
 				}
 			);
-			console.log(tokenRegistered);
-			res.cookie('access-token', tokenRegistered, {
-				maxAge: 60 * 60 * 1000,
-				httpOnly: false,
-			});
-			res.send('Loged In!');
+			
+			res.json(tokenRegistered);
 		}
 	} catch (error) {
 		res.status(400).send(error);
