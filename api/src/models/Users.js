@@ -63,7 +63,7 @@ module.exports = (sequelize) => {
 			},
 			Cart: {
 				type: DataTypes.ARRAY(DataTypes.JSON),
-				defaultValue: [{}],
+				defaultValue: [],
 			},
 			isSupport: {
 				type: DataTypes.BOOLEAN,
