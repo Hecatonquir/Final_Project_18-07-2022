@@ -1,5 +1,5 @@
 import React from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch,useSelector} from 'react-redux';
 import { addCart } from '../Redux/Actions/addToCart';
 import { removeCart } from '../Redux/Actions/removeFromCart';
 import { removeAllCart } from '../Redux/Actions/removeAllFromCart';
@@ -13,8 +13,13 @@ import { updateCart } from '../Redux/Actions/updateCart';
 export default function CardItem({id, name, image, price, purchasedItem}) {
 
     const dispatch = useDispatch()
-    let token= document.cookie.split(";").filter(el => el.includes("access-token")).toString().split("=")[1];
-	let tokenDecoded = decodeToken(token);
+    const item = useSelector(state => state.cart)
+    let token = document.cookie
+		.split(';')[0]
+	let token1 = 
+		token
+		.split('=')[1]
+	let tokenDecoded = decodeToken(token1);
    
     function hundleAddItem() {
         dispatch(addCart(id))

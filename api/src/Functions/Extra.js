@@ -9,9 +9,17 @@ const qrcode = require('qrcode');
 
 const uploadDataBase = async (req, res) => {
 	try {
-		await Events.bulkCreate(eventsApi);
-		await Users.bulkCreate(userApi);
-		console.log('Data Base Uploaded');
+		await eventsApi.map((e) => {
+			Events.findOrCreate({
+				where: e,
+			});
+		});
+		await userApi.map((u) => {
+			Users.findOrCreate({
+				where: u,
+			});
+		});
+		console.log('🎉 Data Base Uploaded successfully! 🎉');
 	} catch (error) {
 		console.log('Data Base NOT Uploaded');
 		console.log('🐲🐲🐲 error:\n', error.stack);

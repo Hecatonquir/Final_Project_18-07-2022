@@ -41,7 +41,7 @@ export default function ContactUs() {
 		e.preventDefault();
 		
 		if (note.reason.length > 0 && note.problemType.length > 0 && note.emailCustomer.length > 0) {
-			
+			console.log(note)
 			postSupports(note);
 			// alert("Note was created successfully")
 			setNote({ reason: '', problemType: '',emailCustomer: '' });
@@ -81,7 +81,7 @@ export default function ContactUs() {
 											name='problemType'
 											onChange={handleChange}>
 											<option hidden>Select Options</option>
-											<option>return tickets</option>
+											<option>Return Tickets</option>
 											<option>Troubles with payment</option>
 											<option>Inappropriate Event</option>
 											<option>Suggestions</option>
@@ -109,14 +109,13 @@ export default function ContactUs() {
 							
 							<MDBModalFooter>
 							<div> 
-								   <label>your mail:</label>
+								   <label>Your Email:</label>
 										<input 
 										className={styles.mail}
 										type="text" 
 										name='emailCustomer'
 										value={note.emailCustomer}
-										onChange={handleChange}/>
-										
+										onChange={handleChange}/>										
 									</div>
 								<button className={styles.close} onClick={toggleShow}>
 									Close

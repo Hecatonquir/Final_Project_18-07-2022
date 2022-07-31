@@ -19,11 +19,23 @@ const getSupportById = async (req, res) => {
 
 const addSupportTicket = async (req, res) => {
 	try {
+		const userToTicket = await Users.findAll()
+		const finalAdd = userToTicket.filter(el => el.Email === req.body.emailCustomer || el.Role === "Admin")
+
 		const created = await Supports.create(req.body);
-		/* created.addUsers( {where: {ID: req.body.ID}} ) */ /////PENDING////
-		res.send(created);
+
+		let added = await created.addUser(finalAdd)
+			let coco = await Users.findOne({where: {Role: "Admin" }, include:
+				Supports
+			})
+			
+		let test = await Users.findAll({where:{Role: "Admin"},include: Supports})
+
+		console.log(test)
+		return res.send(added);
 	} catch (error) {
-		res.status(400).send(error.stack);
+		console.log(error)
+		res.status(400).send("error")
 	}
 };
 

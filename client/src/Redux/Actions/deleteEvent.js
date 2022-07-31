@@ -1,34 +1,29 @@
-import axios from "axios"
-import swal from "sweetalert"
-import getEvents from "./getEvents"
+import axios from 'axios';
+import swal from 'sweetalert';
+import getEvents from './getEvents';
 
-export const deleteEvent = async (id,dispatch) => {
+export const deleteEvent = async (id, dispatch, veredict) => {
+	try {
+		console.log(veredict);
+		let DeletedEVENT = await axios.put('/event/delete', {
+			data: { ID: id, veredict: veredict },
+		});
 
-try {
+		dispatch(getEvents());
 
-    let DeletedEVENT = await axios.delete("http://localhost:3001/event/delete",{data: {ID:id}})
-
-    dispatch(getEvents())
-
-    swal({
-        title: 'Done!',
-        text: "Event Deleted",
-        icon: 'success',
-        timer: 1500,
-        buttons: false,
-    })
-    
-} catch (error) {
-    swal({
-        title: 'Error',
-        icon: 'error',
-        timer: 2000,
-        buttons: false,
-    })
-    
-}
-   
-
-
-
-}
+		swal({
+			title: 'Done!',
+			text: 'Event Deleted',
+			icon: 'success',
+			timer: 1500,
+			buttons: false,
+		});
+	} catch (error) {
+		swal({
+			title: 'Error',
+			icon: 'error',
+			timer: 2000,
+			buttons: false,
+		});
+	}
+};

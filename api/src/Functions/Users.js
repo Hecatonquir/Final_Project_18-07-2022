@@ -44,7 +44,8 @@ const validatePartner = (req, res, next) => {
 };
 
 const validateAdmin = (req, res, next) => {
-	const accessToken = req.cookies['access-token'];
+	const accessToken = req.body.token;
+	
 	if (!accessToken) return res.status(400).send('User is not authenticated');
 	try {
 		const validToken = jwt.verify(accessToken, process.env.PRIVATEKEY);
@@ -114,17 +115,24 @@ const getUserByName = async (req, res) => {
 };
 
 const getUserById = async (req, res) => {
-	const ID = req.params;
+	let ID = req.params.id;
+	console.log(ID)
 	try {
-		const userBox = await Users.findAll({
-			where: ID,
-			include: {
-				model: Carts,
-				attributes: ['items'],
+		const userBox = await Users.findOne({
+			where: {
+				ID,
 			},
+			include: [
+				{
+					model: Supports,
+				},
+				{ model: Carts },
+			],
+			attributes: { exclude: ['Password'] },
 		});
 		res.send(userBox);
 	} catch (error) {
+		console.log(error);
 		res.status(400).send(error.stack);
 	}
 };
@@ -166,8 +174,8 @@ const registerUser = async (req, res) => {
 																	  refreshToken: REFRESH_TOKEN,
 																	  accessToken: accessToken  }
 															} )  */
-			
-			/* let transporter = nodemailer.createTransport({
+
+	/* let transporter = nodemailer.createTransport({
 				host: "smtp.gmail.com",
 				port: 465,
 				secure: true, // true for 465, false for other ports
@@ -176,7 +184,7 @@ const registerUser = async (req, res) => {
 				  pass: 'ztjqezdqjysiwoew', 
 				},
 			  }); */
-			  /* const transporter = nodemailer.createTransport({
+	/* const transporter = nodemailer.createTransport({
 				host: '127.0.0.1',
 				port: 2525,
 				auth: {
@@ -185,7 +193,7 @@ const registerUser = async (req, res) => {
 				}
 			}); */
 
-			/* const mailOptions = {
+	/* const mailOptions = {
 				from: 'Mainstage Team <mainstage.project@gmail.com>',
 				to: `${Email}`,
 				subject: 'Mainstage account confirmed',
@@ -202,8 +210,7 @@ const registerUser = async (req, res) => {
 	sendMail()
 		.then((result) => console.log(result))
 		.catch((error) => console.log(error.message)); */
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	let reGex = /\S+@\S+\.\S+/;
 	let validateEmail = reGex.test(Email);
@@ -214,7 +221,6 @@ const registerUser = async (req, res) => {
 	} else if (!Email || !validateEmail) {
 		return res.status(400).send('Please Provide a VALID Email');
 	} else {
-
 		try {
 			let foundOrCreate = await Users.findAll({
 				where: {
@@ -239,11 +245,14 @@ const registerUser = async (req, res) => {
 };
 
 const registerUserGmail = async (req, res) => {
-	const { Username } = req.body;
+	const { Email } = req.body;
+	console.log(Email)
 	try {
+		if(Email) {
+			
 		let foundOrCreate = await Users.findAll({
 			where: {
-				Username,
+				Email,
 			},
 		});
 		console.log(foundOrCreate);
@@ -251,6 +260,7 @@ const registerUserGmail = async (req, res) => {
 			bcrypt.hash(process.env.DefaultPassword, 10).then(async (hash) => {
 				req.body.Password = hash;
 				req.body.Role = 'User';
+				req.body.Username = Email
 				let gmailUser = await Users.create(req.body);
 				const token = jwt.sign(
 					{
@@ -265,12 +275,8 @@ const registerUserGmail = async (req, res) => {
 						expiresIn: 300,
 					}
 				);
-				console.log(token);
-				res.cookie('access-token', token, {
-					maxAge: 60 * 60 * 1000,
-					httpOnly: false,
-				});
-				res.send('Created');
+				
+			return	res.json(token);
 			});
 		} else {
 			const tokenRegistered = jwt.sign(
@@ -283,56 +289,55 @@ const registerUserGmail = async (req, res) => {
 				},
 				process.env.PRIVATEKEY,
 				{
-					expiresIn: 300,
+					expiresIn: 9999,
 				}
 			);
-			console.log(tokenRegistered);
-			res.cookie('access-token', tokenRegistered, {
-				maxAge: 60 * 60 * 1000,
-				httpOnly: false,
-			});
-			res.send('Loged In!');
+			
+			res.json(tokenRegistered);
 		}
+	}
+	else{res.status(400).send("no name provided")}
 	} catch (error) {
-		res.status(400).send(error);
+		return res.status(400).send(error);
 	}
 };
 
 const loginRequest = async (req, res) => {
 	const { username, password } = req.body;
-	console.log(username)
+	console.log(username);
 	try {
 		const user_ = await Users.findAll({
 			where: {
 				Username: username,
 			},
 		});
-		if(user_[0].isBan) {			
-			return res.status(400).send("This account has been banned")
+		if (user_[0].isBan) {
+			return res.status(400).send('This account has been banned');
 		}
 		if (user_[0]) {
 			if (user_[0].Role === 'Admin') {
 				return res.status(400).send('Invalid User/Password');
 			}
-			console.log(user_);
+
 			bcrypt.compare(password, user_[0].Password, (error, response) => {
 				if (response) {
-					console.log(user_[0].ID);
-					const id = user_[0].ID;
 					const token = jwt.sign(
-						{ id: id, role: user_[0].Role, name: user_[0].Name, email: user_[0].Email },
+						{
+							id: user_[0].ID,
+							role: user_[0].Role,
+							name: user_[0].Name,
+							email: user_[0].Email,
+							picture: user_[0].Image,
+						},
 						process.env.PRIVATEKEY,
 						{
 							expiresIn: 9999,
 						}
 					);
-					console.log(token);
-					res.cookie('access-token', token, {
-						maxAge: 60 * 60 * 1000,
-						httpOnly: false,
-					});
 
-					return res.send('Logged In!');
+					
+
+					return res.json(token);
 				} else {
 					return res.status(400).send('');
 				}
@@ -357,7 +362,7 @@ const loginRequestAP = async (req, res) => {
 			}
 			bcrypt.compare(password, user_[0].Password, (error, response) => {
 				if (response) {
-					console.log(user_[0].ID);
+					
 					const id = user_[0].ID;
 					const token = jwt.sign(
 						{ id: id, role: user_[0].Role, name: user_[0].Name, email: user_[0].Email },
@@ -366,13 +371,8 @@ const loginRequestAP = async (req, res) => {
 							expiresIn: 9999,
 						}
 					);
-					console.log(token);
-					res.cookie('access-token', token, {
-						maxAge: 60 * 60 * 1000,
-						httpOnly: false,
-					});
-
-					return res.send('Logged In!');
+					
+					return res.json(token);
 				} else {
 					return res.status(400).send('No');
 				}
@@ -387,7 +387,7 @@ const loginRequestAP = async (req, res) => {
 
 const deleteUser = async (req, res) => {
 	try {
-		console.log(req.body);
+		console.log('hola');
 		const targetUser = await Users.findOne({
 			where: {
 				Email: req.body.email,
@@ -414,10 +414,11 @@ const getPartnerCreatedEvents = async (req, res) => {
 };
 
 const updateCart = async (req, res) => {
-	const { IdUser/*, idEvento*/ } = req.params;
+	const { IdUser /*, idEvento*/ } = req.params;
+
 	try {
 		// let emptyCart = await Carts.findAll({ where: { userID: IdUser } });
-		// let cart;		
+		// let cart;
 		// var id;
 		// if (!emptyCart.length) {
 		// 	cart = await Carts.create({ userID: IdUser });
@@ -432,31 +433,34 @@ const updateCart = async (req, res) => {
 		// 	);
 		// }
 		// res.send('Event added to User Cart');
-		let user = await Users.findByPk(IdUser)
-		user.Cart = req.body
-		user.save()
-    res.send('Event added to User Cart');
+		let user = await Users.findByPk(IdUser);
+		user.Cart = req.body;
+		user.save();
+		res.send('Event added to User Cart');
 	} catch (error) {
 		res.status(400).send(error.stack);
 	}
 };
 
-const banUser = async (req,res) => {
-	console.log(req.body.data)
+const banUser = async (req, res) => {
+	console.log(req.body.data);
 	try {
-	let banned = await Users.update({
-		isBan: req.body.data.ban},
-		{
-		where: {
-			Email: req.body.data.email}
-		},
-		)
-		console.log(banned)
-		return res.send("User Banned")
-	}catch (error) {
-		return res.status(400).send("Error")
+		let banned = await Users.update(
+			{
+				isBan: req.body.data.ban,
+			},
+			{
+				where: {
+					Email: req.body.data.email,
+				},
+			}
+		);
+		console.log(banned);
+		return res.send('User Banned');
+	} catch (error) {
+		return res.status(400).send('Error');
 	}
-}
+};
 
 module.exports = {
 	getAllUsers,
@@ -472,7 +476,6 @@ module.exports = {
 	registerUserGmail,
 	loginRequestAP,
 	updateCart,
-	roleChange,	
-	banUser
+	roleChange,
+	banUser,
 };
-

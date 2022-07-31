@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { decodeToken } from 'react-jwt';
 import PageNotFound from './Page404';
 import getUsers from '../Redux/Actions/getUsers';
@@ -8,19 +8,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { deleteUserDB } from '../Redux/Actions/deleteUser';
 import { deleteEvent } from '../Redux/Actions/deleteEvent';
 import getEvents from '../Redux/Actions/getEvents';
+import Nav from './Nav'
 import styles from '../Styles/AdminPanel.module.css';
 import { changeRole } from '../Redux/Actions/updateRole';
 import { banUnbanUser } from '../Redux/Actions/banUnbanUser';
 import { eachWeekOfInterval } from 'date-fns';
+import { Box, Heading, Image, Text, Button } from "@chakra-ui/react";
 
 function AdminPanel() {
 	let token = document.cookie
-		.split(';')
-		.filter((el) => el.includes('access-token'))
-		.toString()
-		.split('=')[1];
-
-	let tokenDecoded = decodeToken(token);
+		.split(';')[0]
+	let token1 = 
+		token
+		.split('=')[1]
+	let tokenDecoded = decodeToken(token1);
 
 	let usersBD = useSelector((state) => state.allUsers);
 	let events = useSelector((state) => state.allEvents);
@@ -40,7 +41,7 @@ function AdminPanel() {
 	}
 
 	useEffect(() => {
-		axios('http://localhost:3001/user/admin', { withCredentials: true })
+		axios.post('/user/admin', {token: token1})
 			.then((response) => setAdmin(true))
 			.then((response) => dispatch(getUsers()))
 			.then((response) => dispatch(getEvents()))
@@ -51,6 +52,8 @@ function AdminPanel() {
 
 	return (
 		<div className={styles.Total}>
+			<Nav />
+			<div className={styles.subTotal}>
 			<div>
 				{admin && <h1 className={styles.title}>Welcome {tokenDecoded && tokenDecoded.name}</h1>}
 			</div>
@@ -92,7 +95,7 @@ function AdminPanel() {
 												}}>
 												Delete User
 											</button>
-											<button className={styles.button2} onClick={() => {}}>Change Role</button>
+											
 											<button
 												className={styles.button3}
 												onClick={() => {
@@ -129,10 +132,15 @@ function AdminPanel() {
 												{el.isBan ? 'Unban User' : 'Ban User'}
 											</button>
 										</div>
-										<span>
+
+									<Link to={`/user/${el.ID}`}>
+										<Text >
 											User: {el.Name} || Email: {el.Email} || Role: {el.Role} || is Ban:{' '}
 											{el.isBan ? 'true' : 'false'}
-										</span>
+										</Text>
+										</Link>
+
+
 									</div>
 								))}
 					</div>
@@ -170,17 +178,16 @@ function AdminPanel() {
 											<button
 												className={styles.button1}
 												onClick={() => {
-													return deleteEvent(el.ID), setUser({ username: '', posts: '' });
+													return deleteEvent(el.ID,dispatch,el.isErased? false: true), setUser({ username: '', posts: '' });
 												}}>
-												Delete Event
+												{el.isErased ? "Restore Event": "Ban/Erase Event"}
 											</button>
 											<button className={styles.button2} onClick={() => {}}>Update Event</button>
 										</div>
-										<span>
+										<Text>
 											Name: {el.Name} || Price: {el.Price} || City: {el.City} || Quantity:{' '}
 											{el.Quantity} || Partner:{' '}
-										</span>{' '}
-										||
+										</Text>{' '}
 									</div>
 								))}
 					</div>
@@ -189,6 +196,7 @@ function AdminPanel() {
 
 					
 				</div>
+			</div>
 			</div>
 		</div>
 	);
