@@ -13,16 +13,14 @@ function Profile() {
   let token= document.cookie.split(";").filter(el => el.includes("access-token")).toString().split("=")[1];
 
 	let tokenDecoded = decodeToken(token);
-  console.log("🐲🐲🐲 / file: Profile.jsx / line 15 / tokenDecoded", tokenDecoded);
-	//console.log("soy el profile",tokenDecoded);
-
+ console.log(tokenDecoded)
   return (
     <Box bgGradient='linear(to-r, #1c2333, #371a1e)' minHeight='100vh'>
       {token ? (
         <>
          <Nav />
-         <Flex justifyContent='center' alignItems='center' height='60vh'>
-         <Box color='white' bg='gray' width='40%' padding={4}  borderRadius="2%">
+        <Flex justifyContent='center' flexDirection='row'>
+         <Box color='white'  width='25%' padding={4} minHeight='100vh'>
           <Flex justifyContent='center' alignItems='center' flexDirection='column'>
           <Heading as='h4' marginBottom={2}>Profile</Heading>
               <Image src={`${tokenDecoded.picture}`} alt="No img" marginBottom={4} width="250" height="300" ></Image>
@@ -32,8 +30,12 @@ function Profile() {
               <Text marginBottom={2}>{tokenDecoded.email}</Text>
           </Flex>
           </Box>
+          <Box color='white'  width='75%' padding={4} minHeight='100vh'>
+         <Flex justifyContent='right' minHeight='85vh'>
+          <Tabs/>
          </Flex>
-         <Tabs />
+         </Box>
+         </Flex>
         </>
       ) : (
         <div>
