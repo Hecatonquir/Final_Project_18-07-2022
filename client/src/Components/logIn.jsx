@@ -106,7 +106,8 @@ function LogIn() {
                     </Box>
 
                     <Box textAlign='center' marginBottom={6}>
-                        <Button  onClick={() => loginWithRedirect()} className={styles.Button3}>
+                        <Button  onClick={() => {loginWithRedirect()
+                             navigate("/")}} className={styles.Button3}>
                             <img src={img1} alt='not img' className={styles.icon}/><span>Register with google</span>
                         </Button>
                     </Box>

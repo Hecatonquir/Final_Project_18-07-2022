@@ -2,7 +2,7 @@ import axios from 'axios';
 import { UPDATE_STATE_TRUE } from '../ActionTypes/actiontypes';
 import Cookies from "universal-cookie"
 
-export default function registerGmail(user) {
+export default function registerGmail(user,logout) {
 	return (dispatch) => {
 		const cookies = new Cookies() 
 		if (user) {
@@ -18,11 +18,14 @@ export default function registerGmail(user) {
 
 			axios
 				.post('/user/registerG', usertoRegister, { withCredentials: true })
+				
 				.then(response => cookies.set('access-control', response.data,{path:"/"}))
 				.then(res => {
 					document.cookie="auth0.2MXTHb1HKWD4UvsRtIwH3ZxR9hdC9QUW.is.authenticated=; Max-Age=-99999999;"
 					document.cookie="_legacy_auth0.2MXTHb1HKWD4UvsRtIwH3ZxR9hdC9QUW.is.authenticated=; Max-Age=-99999999;"
 				}).then(res => dispatch({type: UPDATE_STATE_TRUE}))
+				.then(res => logout())
+				
 				
 				.catch((error) => console.log(error));
 		}

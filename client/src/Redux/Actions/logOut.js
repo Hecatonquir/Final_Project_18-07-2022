@@ -11,7 +11,7 @@ export default function logOut(dispatch) {
 
     
         dispatch({type: UPDATE_STATE_FALSE})
-       
+        
     
   
 

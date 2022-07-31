@@ -245,11 +245,14 @@ const registerUser = async (req, res) => {
 };
 
 const registerUserGmail = async (req, res) => {
-	const { Username } = req.body;
+	const { Email } = req.body;
+	console.log(Email)
 	try {
+		if(Email) {
+			
 		let foundOrCreate = await Users.findAll({
 			where: {
-				Username,
+				Email,
 			},
 		});
 		console.log(foundOrCreate);
@@ -257,6 +260,7 @@ const registerUserGmail = async (req, res) => {
 			bcrypt.hash(process.env.DefaultPassword, 10).then(async (hash) => {
 				req.body.Password = hash;
 				req.body.Role = 'User';
+				req.body.Username = Email
 				let gmailUser = await Users.create(req.body);
 				const token = jwt.sign(
 					{
@@ -271,12 +275,8 @@ const registerUserGmail = async (req, res) => {
 						expiresIn: 300,
 					}
 				);
-				console.log(token);
-				res.cookie('access-token', token, {
-					maxAge: 60 * 60 * 1000,
-					httpOnly: false,
-				});
-				res.send('Created');
+				
+			return	res.json(token);
 			});
 		} else {
 			const tokenRegistered = jwt.sign(
@@ -295,8 +295,10 @@ const registerUserGmail = async (req, res) => {
 			
 			res.json(tokenRegistered);
 		}
+	}
+	else{res.status(400).send("no name provided")}
 	} catch (error) {
-		res.status(400).send(error);
+		return res.status(400).send(error);
 	}
 };
 

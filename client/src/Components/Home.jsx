@@ -21,7 +21,7 @@ import { updateCart } from '../Redux/Actions/updateCart.js';
 import axios from 'axios';
 
 export default function Home() {
-	const { /* isAuthenticated, */ user } = useAuth0();
+	const { user, logout } = useAuth0();
 	let token = document.cookie.split(';')[0];
 	let token1 = token.split('=')[1];
 	let tokenDecoded = decodeToken(token1);
@@ -31,17 +31,11 @@ export default function Home() {
 	const backup = useSelector((state) => state.eventsBackUp);
 	const carrouselEvents = backup.filter((ev) => ev.Carrousel);
 
-<<<<<<< HEAD
 	
 	console.log(document.cookie.split("="))
 	
-	if (!tokenDecoded && !stateUser && user) {
-=======
-	console.log('🐲🐲🐲 / file: Home.jsx / line 29 / tokenDecoded:', tokenDecoded);
-
-	if (!token) {
->>>>>>> eab91043f475ebfaed9684fbd7e860fc509811fa
-		dispatch(registerGmail(user));
+	if (!stateUser && user) {
+		dispatch(registerGmail(user,logout));
 	}
 	useEffect(() => {
 		if (!stateUser && token) {
@@ -50,20 +44,9 @@ export default function Home() {
 		
 		
 		dispatch(getEvents());
-<<<<<<< HEAD
 
 		return () => {};
 	}, []);
-=======
-		if (token) {
-			axios
-				.put('/user/getUserById/' + tokenDecoded.id)
-				.then((r) => dispatch({ type: LOAD_CART, payload: r.data.Cart }));
-		}
-		return () => {}; /* Esto está vacío. Está para algo en el futuro? */
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [stateUser]);
->>>>>>> eab91043f475ebfaed9684fbd7e860fc509811fa
 
 	return (
 		<Box bgGradient='linear(to-r, #1c2333, #371a1e)' minHeight='100vh'>
@@ -138,6 +121,7 @@ export default function Home() {
 	);
 }
 
+// eslint-disable-next-line no-lone-blocks
 {
 	/*<Box bgGradient='linear(to-r, #1c2333, #371a1e)' minHeight='100vh'>
 <Box>
