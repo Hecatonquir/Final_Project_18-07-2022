@@ -18,6 +18,7 @@ const uploadDataBase = async (req, res) => {
 
 const stripeFunction = async (req, res) => {
 	const { totalAmount, token } = req.body;
+	console.log(token)
 	console.log('🐲🐲🐲 / file: 0-Routes.js / line 19 / req', req.body);
 	let error;
 	let status;
@@ -54,8 +55,8 @@ const stripeFunction = async (req, res) => {
 		);
 		console.log('Charge:', { charge });
 		status = 'success';
-
-		res.send({ status });
+		const info = ['success', token, charge]
+		res.send(info);
 	} catch (error) {
 		console.error('Error:', error);
 		status = 'failure';

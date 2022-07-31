@@ -12,6 +12,7 @@ import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import emailjs from '@emailjs/browser';
 
 export default function Cart() {
 	let token= document.cookie.split(";").filter(el => el.includes("access-token")).toString().split("=")[1];
@@ -20,8 +21,12 @@ export default function Cart() {
 	const cart = useSelector((state) => state.cart);
 	var totalAmount = 0;
 	const [showItem, setShowItem] = useState(false);
-	const stripeKey =
-		'pk_test_51LOdlpIX9UMpYaskAq0EOuQYBwCNO0CWWVUIouFgSt4FP4eNMznvWxSTuflGp35HmZKZidvlVZOCYNrlyvviDVrc00V1E8tivg';
+	const stripeKey = 'pk_test_51LOdlpIX9UMpYaskAq0EOuQYBwCNO0CWWVUIouFgSt4FP4eNMznvWxSTuflGp35HmZKZidvlVZOCYNrlyvviDVrc00V1E8tivg';
+
+	//Mail ID
+	const SERVICE_ID = 'service_7eiwsn5'
+    const TEMPLATE_ID = 'template_s6t7qdd' // Ticket purchase confirmation
+    const PUBLIC_KEY = 'qkuGOFSooilyep5Ho'
 
 	for (let i = 0; i < cart.length; i++) {
 		totalAmount = totalAmount + cart[i].Price * cart[i].PurchasedItem;
@@ -33,10 +38,34 @@ export default function Cart() {
 	}
 
 	async function handleToken(token) {
+		console.log('Entered to handleToken')
+		
 		const response = await axios.post('http://localhost:3001/checkout', { token, totalAmount });
-		const { status } = response.data;
-		if (status === 'success')
+		const payback = response.data  // payback -> ARRAY ['success', token, charge]
+		
+		
+		if (payback[0] === 'success'){
+			const itemsName = cart.map((it) => it.Name).join(' - ')
+			const itemsQuantity = cart.reduce( function(sum, el) {return sum + el.PurchasedItem} , 0 );
+
+			const templateParams = {
+				email: payback[1].email,
+				itemsName: itemsName,
+				itemsQuantity: itemsQuantity,
+				cardBrand: payback[1].card.brand,
+				cardFunding: payback[1].card.funding,
+				cardLast4: payback[1].card.last4,
+				amount: (payback[2].amount) / 100,
+				currency: payback[2].currency,
+				receiptUrl: payback[2].receipt_url
+			};
+
+			/////////////////////--->Envio de mail de confirmacion de pago <---///////////////////////////
+			emailjs.send( SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY )
+			.then((result) => { console.log(result.text); } , (error) => { console.log(error.text); });
+		  	/////////////////////////////////////////////////////////////////////////////////////////////
 			toast.success('Your purchase was successful! Check your E-mail for more information');
+		}
 		else toast.error('Something went wrong. Purchase cancelled');
 	}
 

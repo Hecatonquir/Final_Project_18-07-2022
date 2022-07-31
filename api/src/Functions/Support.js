@@ -2,7 +2,7 @@ const { Events, Users, Supports } = require('../db.js');
 
 async function getSupportTickets(req, res, next) {
 	res.send(await Supports.findAll());
-	//return 'hola';
+	
 }
 
 const getSupportById = async (req, res) => {
