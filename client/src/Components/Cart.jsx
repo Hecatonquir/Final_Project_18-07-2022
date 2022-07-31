@@ -22,8 +22,12 @@ export default function Cart() {
 	const dispatch = useDispatch();
 	const cart = useSelector((state) => state.cart);
 	var totalAmount = 0;
+	const [showBuyButton, setshowBuyButton] = useState('hide');
+	console.log('🐲🐲🐲 / file: Cart.jsx / line 26 / cart', cart);
+
+
+	/* if (cart.length) setshowBuyButton('show'); */	
 	// eslint-disable-next-line no-unused-vars
-	const [showItem, setShowItem] = useState(false);
 	const stripeKey = 'pk_test_51LOdlpIX9UMpYaskAq0EOuQYBwCNO0CWWVUIouFgSt4FP4eNMznvWxSTuflGp35HmZKZidvlVZOCYNrlyvviDVrc00V1E8tivg';
 
 	//Mail ID
@@ -70,16 +74,20 @@ export default function Cart() {
 			toast.success('Your purchase was successful! Check your E-mail for more information');
       /* dispatch(removeQuantityFromEvent(X)) <---------- ACA Se despacha al back para restar numeros al valor de Quantity de cada evento. (hacer 1 para cada evento)  */
 			dispatch(clearCart());
+			dispatch(updateCart(tokenDecoded.id));
+			setshowBuyButton('done');
 		}
 		else toast.error('Something went wrong. Purchase cancelled');
 	}
 
 	useEffect(() => {
+		if (cart.length) setshowBuyButton('show');
 		if (token) {
 			axios
 				.put('/user/getUserById/' + tokenDecoded.id)
 				.then((r) => dispatch({ type: LOAD_CART, payload: r.data.Cart }));
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [dispatch]);
 
 	return (
@@ -120,21 +128,30 @@ export default function Cart() {
 				{/* <Button
 							className={styles.Button2}
 							onClick={() => {
-								setShowItem(true);
+								setshowBuyButton(true);
 							}}>
 							Buy
-						</Button> */}
+						*/}
 				<Box>
-					{showItem ? (
-						<h6>Loading...</h6>
+					{showBuyButton === 'show' ? (
+						<Button
+							className={styles.Button2}
+							onClick={() => {
+								console.log('Me apretó!!');
+								setshowBuyButton('loading');
+							}}>
+							<StripeCheckout
+								stripeKey={stripeKey}
+								token={handleToken}
+								amount={totalAmount * 100}
+								/* el *100 es para convertirlo a centavos, NO para estafar a la gente */
+								name='Entradas Para los Eventos!'
+							/>
+						</Button>
+					) : showBuyButton === 'loading' ? (
+						<h3 style={{ color: 'white' }}>Loading...</h3>
 					) : (
-						<StripeCheckout
-							stripeKey={stripeKey}
-							token={handleToken}
-							amount={totalAmount * 100}
-							/* el *100 es para convertirlo a centavos, NO para estafar a la gente */
-							name='Entradas Para los Eventos!'
-						/>
+						<h3 style={{ color: 'white' }}>Thank you for your purchase! Have fun!</h3>
 					)}
 					<ToastContainer />
 				</Box>
