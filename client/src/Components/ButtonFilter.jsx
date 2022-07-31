@@ -4,6 +4,7 @@ import { GET_EVENTS, SHOW_EVENTS_USER } from '../Redux/ActionTypes/actiontypes';
 import styles from '../Styles/ButtonFilter.module.css';
 import { Box, Button, Flex, Select, Stack } from '@chakra-ui/react';
 import swal from 'sweetalert';
+import Search from './Search';
 
 function ButtonFilter() {
 
@@ -68,9 +69,11 @@ useEffect( () => {
 	return (
 		<>
 			<Stack spacing={10} marginTop={6} marginBottom={6}>
-				<Flex justifyContent='space-around' width='100%'>
+				<Flex justifyContent='space-around' width='100%' >
+				<Search/>
 					<Select
 						variant='flushed'
+						marginLeft="5rem"
 						width='30%'
 						onChange={(e) => handleSelect(e)}
 						color='gray'
@@ -85,6 +88,8 @@ useEffect( () => {
 
 					<Select
 						variant='flushed'
+						marginLeft="5rem"
+						marginRight="5rem"
 						width='30%'
 						onChange={(e) => handleSelect(e)}
 						color='gray'
@@ -96,7 +101,7 @@ useEffect( () => {
 							</option>
 						))}
 					</Select>
-
+                  
 					<Box>
 						<Button
 							className={styles.Button2}

@@ -47,12 +47,14 @@ export default function Home() {
 	}, [stateUser]);
 
 	return (
-		<Box bgGradient='linear(to-r, #1c2333, #371a1e)' minHeight='100vh'>
-			<Box>
-				<NavBar />
-				<Box>
-					<EventCarousel carrouselEvents={carrouselEvents} />
-				</Box>
+		<Box bgGradient='linear(to-r, #1c2333, #371a1e)' minHeight='100vh' >
+			<Box  padding="0" position="fixed" zIndex="100" width="100%">
+			<NavBar />
+			</Box>
+				<Box paddingTop="6.5rem">
+				
+				<EventCarousel carrouselEvents={carrouselEvents} />
+				
 			</Box>
 			<Box className={styles.welcome}>
 				{stateUser || !isExpired(token) ? (
@@ -61,13 +63,16 @@ export default function Home() {
 					<p>Welcome Guest</p>
 				)}
 			</Box>
-			<Box>
-				<ButtonFilter />
+			<Box width="70rem" alignContent="center" alignItems="center" marginLeft="30rem">
+			
+				<ButtonFilter  />
+				{/* <Search /> */}
+				<div className={styles.search}>
 				{/* <CalendarEvents /> */}
+				</div>
 			</Box>
-			<div className={styles.search}>
-				<Search />
-			</div>
+			
+			
 			<Center>
 				<Box marginTop={10} marginBottom={10}>
 					<SimpleGrid columns={2} spacing={10}>
