@@ -116,6 +116,7 @@ const getUserByName = async (req, res) => {
 
 const getUserById = async (req, res) => {
 	let ID = req.params.id;
+	console.log(ID)
 	try {
 		const userBox = await Users.findOne({
 			where: {

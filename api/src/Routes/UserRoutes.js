@@ -7,7 +7,7 @@ const { getAllUsers,loginRequestAP, getUserByName, getUserById, deleteUser, getP
 
 routes.get('/all', getAllUsers); // --------------------Working
 routes.get('/name/:Name', getUserByName); // -----------Working
-routes.put('/getUserById/:id', getUserById); //----------------- Working
+routes.get('/getUserById/:id', getUserById); //----------------- Working
 routes.get('/partner/:ID', getPartnerCreatedEvents); // Working
 routes.post("/admin", validateAdmin, (req,res) =>{ 
     res.send("welcome")

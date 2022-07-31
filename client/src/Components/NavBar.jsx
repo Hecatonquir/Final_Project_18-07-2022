@@ -18,6 +18,7 @@ function NavBar() {
 	let token1 = 
 		token
 		.split('=')[1]
+		console.log("hola")
 	//console.log(document.cookie);
 	let tokenDecoded = decodeToken(token1);
 	let dispatch = useDispatch();
@@ -27,6 +28,15 @@ function NavBar() {
 	const active = useSelector((state) => state.loginState);
 	let count = cart ? cart.length : null;
 
+	let tokengmail = decodeToken(document.cookie
+		.split(';')
+		.filter((el) => el.includes('access-token'))
+		.toString()
+		.split('=')[1])
+
+		console.log(tokengmail)
+
+	
 
 	//  return (
 	//     <Box marginBottom={6} padding={2} bgGradient='linear(to-b, #a28748, #6c5727)'>
@@ -104,7 +114,7 @@ function NavBar() {
 							<Box></Box>
 						)}
 
-						{!isExpired(token) && tokenDecoded.role !== 'Guest' && active && (
+						{!isExpired(token) && active && (
 							<Button
 								bg='#f4a69a'
 								className={styles.Button}
@@ -120,7 +130,7 @@ function NavBar() {
 							</Link>
 						)} */}
 
-						{token && tokenDecoded.role === 'Partner' && active && (
+						{token && (tokenDecoded.role || tokengmail.role) === 'Partner' && active && (
 							<Link to='/createEvent'>
 								<Button bg='#f4a69a' >Create an Event</Button>
 							</Link>
