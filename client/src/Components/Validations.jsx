@@ -64,14 +64,14 @@ export default function validate(input) {
 		}
 	}
 
-	if (Price < 0) {
-		errors.Price = 'Only insert positive numbers.';
+	if (Price < 0 || Price.length > 10) {
+		errors.Price = 'Insert a positive numbers with less than 11 Digits.';
 	}
-	if (Quantity < 0) {
-		errors.Quantity = 'Only insert positive numbers.';
+	if (Quantity < 0 || Quantity.length > 10) {
+		errors.Quantity = 'Insert a positive numbers with less than 11 Digits.';
 	}
 	if (AgeRestriction < 0 || AgeRestriction >= 100) {
-		errors.Quantity = 'Only insert positive numbers or less than 100.';
+		errors.AgeRestriction = 'Only insert positive numbers or less than 100.';
 	}
 	if (!Location) {
 		errors.Location = 'Location is required.';
