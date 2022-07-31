@@ -10,7 +10,7 @@ import { decodeToken } from 'react-jwt';
 import { updateCart } from '../Redux/Actions/updateCart';
 
 
-export default function CardItem({id, name, image, price, purchasedItem}) {
+export default function CardItem({id, name, image, price, purchasedItem, quantity}) {
 
     const dispatch = useDispatch()
     const item = useSelector(state => state.cart)
@@ -20,10 +20,12 @@ export default function CardItem({id, name, image, price, purchasedItem}) {
 		token
 		.split('=')[1]
 	let tokenDecoded = decodeToken(token1);
-   
+    
     function hundleAddItem() {
-        dispatch(addCart(id))
-        dispatch(updateCart(tokenDecoded.id))
+        if(purchasedItem < quantity ) {
+            dispatch(addCart(id))
+            dispatch(updateCart(tokenDecoded.id))
+        }else alert('No more tickets available')
     }
 
     function hundleRemoveItem(){
@@ -31,7 +33,7 @@ export default function CardItem({id, name, image, price, purchasedItem}) {
         dispatch(updateCart(tokenDecoded.id))
     }
 
-    function hundleDelete(){
+    function hundleDelete(){   // CLEAR CART BUTTON
         dispatch(removeAllCart(id))
         dispatch(updateCart(tokenDecoded.id))
     }
@@ -50,7 +52,7 @@ export default function CardItem({id, name, image, price, purchasedItem}) {
                     </Flex>
                 <Box >
                 <Flex alignItems='center'>
-                    <Button width='30px' height='30px' borderRadius='5px' bg='#229ddb' color='white' onClick={() => hundleRemoveItem()}>-</Button>
+                    <Button width='30px' height='30px' borderRadius='5px' bg='#229ddb' color='white' onClick={() => hundleRemoveItem()} disabled={purchasedItem === 1 ? true : false }>-</Button>
                     <Text margin='0 .5em' fontSize='1.5em'>{purchasedItem}</Text>
                     <Button width='30px' height='30px' borderRadius='5px' bg='#229ddb' color='white' onClick={() => hundleAddItem()}>+</Button>
                 </Flex>
