@@ -7,7 +7,7 @@ import NavBar from './NavBar.jsx';
 import Search from './Search.jsx';
 import EventCarousel from './Carousel.jsx';
 // import Loader from './Loader.jsx' ;
-// import CalendarEvents from './Calendar.jsx';
+// import CalendarEvents from './Calendar.jsx ';
 import styles from '../Styles/Home.module.css';
 import Footer from './Footer.jsx';
 import { decodeToken, isExpired } from 'react-jwt';
@@ -56,7 +56,7 @@ export default function Home() {
 			<Box padding='0' position='fixed' zIndex='100' width='100%'>
 				<NavBar />
 			</Box>
-			<Box paddingTop='5.5rem'>
+			<Box paddingTop='5.6rem'>
 				<EventCarousel carrouselEvents={carrouselEvents} />
 			</Box>
 			<Box className={styles.welcome} marginTop='5px'>
@@ -91,9 +91,9 @@ export default function Home() {
 										p={2}
 										boxShadow={
 											event.InitialQtty !== 0 && event.Quantity === 0
-												? "'5px 5px 10px #ff568c6e, -5px -5px 10px #ff568c6e'"
+												? '5px 5px 10px #ff568c, -5px -5px 10px #ff568c'
 												: event.Price === 0
-												? '5px 5px 10px #56ffb06e, -5px -5px 10px #56ffb06e'
+												? '5px 5px 10px #56ffb0, -5px -5px 10px #56ffb0'
 												: '10px 10px 20px #2a2929, -10px -10px 20px #494848'
 										}
 										borderRadius='20px'

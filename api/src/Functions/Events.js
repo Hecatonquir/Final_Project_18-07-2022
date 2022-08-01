@@ -4,6 +4,7 @@ const { Events, Users, sequelize } = require('../db.js');
 const getAllEvents = async (req, res, next) => {
 	res.send(
 		await Events.findAll({
+			order: [['Date', 'ASC']],
 			attributes: {
 				/* include: [
 					[sequelize.fn('TO_CHAR', sequelize.col('Date'), 'Day DD-Mon-YYYY HH:MM'),'Date'],
