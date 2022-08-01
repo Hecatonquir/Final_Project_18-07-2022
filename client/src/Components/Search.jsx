@@ -13,11 +13,13 @@ import {
   } from '@chakra-ui/react'
 
 
-export default function SearchEvent(){
+export default function SearchEvent({search, setSearch}){
     const events = useSelector(state => state.eventsBackUp)
     const dispatch = useDispatch();
     const [name, setName] = useState("");
 
+
+    console.log(search)
     function handleInputChange(e){
      
         setName(e.target.value)
@@ -32,7 +34,7 @@ export default function SearchEvent(){
 
 
    function handleInputChange(e){
-     
+        setSearch(e.target.value)
         setName(e.target.value)
         getNameEvent(name,events,dispatch)
 
@@ -51,9 +53,9 @@ export default function SearchEvent(){
 
     return (
         <>
-            <Editable placeholder='Search Event...' bg='white' borderRadius={10} width='10em' textAlign='center'>
+            <Editable   value={search} id="searchBar" placeholder='Search Event...' bg='white' borderRadius={10} width='10em' textAlign='center'>
             <EditablePreview />
-            <EditableInput onChange={(e) => handleInputChange(e)} />
+            <EditableInput  onChange={(e) => handleInputChange(e)} />
             </Editable>
         </>
     )

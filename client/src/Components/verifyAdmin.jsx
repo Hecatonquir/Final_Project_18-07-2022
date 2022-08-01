@@ -71,7 +71,7 @@ function Prepanel() {
 								<input
 									placeholder='Enter your password'
 									name='password'
-									type='text'
+									type='password'
 									value={user.password}
 									onChange={(e) => {
 										handleChange(e);
