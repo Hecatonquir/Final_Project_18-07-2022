@@ -6,7 +6,7 @@ import EventCard from './EventCard.jsx';
 import NavBar from './NavBar.jsx';
 import Search from './Search.jsx';
 import EventCarousel from './Carousel.jsx';
-// import Loader from './Loader.jsx';
+// import Loader from './Loader.jsx' ;
 // import CalendarEvents from './Calendar.jsx';
 import styles from '../Styles/Home.module.css';
 import Footer from './Footer.jsx';
