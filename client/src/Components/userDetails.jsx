@@ -105,6 +105,31 @@ return (
                     </div>
                   
                 ))}
+
+                <div>
+                  <label>Tickets</label>
+                  {user.supports && user.supports.map(el => (
+                    <div>
+                    <div>
+                      <label>Problem Type:</label>
+                      <h1>{el.problemType}</h1>
+                    </div>
+
+                    <div>
+                      <label>Details</label>
+                      <h1>{el.reason}</h1>
+                    </div>
+
+
+                    <div>
+                      <label>Solved:</label>
+                      <h1>{el.done? "Yes": "No"}</h1>
+                    </div>
+                    </div>
+                  ))}
+                </div>
+
+
                 </div>
                 
              </div>}

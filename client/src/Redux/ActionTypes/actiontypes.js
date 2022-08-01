@@ -18,3 +18,4 @@ export const UPDATE_DB_CART = 'UPDATE_DB_CART'
 export const USER_DETAILS =  "USER_DETAILS"
 export const CLEAR_USER_DETAILS = "CLEAR_USER_DETAILS"
 export const LOAD_CART = 'LOAD_CART'
+export const USERS_BACKUP = "USERS_BACKUP"

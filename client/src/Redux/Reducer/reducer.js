@@ -19,11 +19,13 @@ import {
 	UPDATE_DB_CART,
 	LOAD_CART,
     USER_DETAILS,
-    CLEAR_USER_DETAILS
+    CLEAR_USER_DETAILS,
+	USERS_BACKUP
 } from '../ActionTypes/actiontypes';
 const initialState = {
 	allEvents: [],
 	eventsBackUp: [],
+	usersBackUp: [],
 	eventName: [],
 	showToUser: [],
 	filteredEvents: [],
@@ -47,6 +49,9 @@ export default function reducer(state = initialState, { type, payload }) {
 
 		case NEED_BACKUP:
 			return { ...state, eventsBackUp: payload };
+
+		case USERS_BACKUP:
+			return { ...state, usersBackUp: payload}
 
 		case GET_NAME_EVENTS:
 			return { ...state, eventName: payload };

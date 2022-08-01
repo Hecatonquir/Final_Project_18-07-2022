@@ -29,13 +29,13 @@ function AdminPanel() {
 
 	let usersBD = useSelector((state) => state.allUsers);
 	let events = useSelector((state) => state.allEvents);
-	
+	let arrayUsers = useSelector(state => state.usersBackUp)
 	const backUperE= useSelector(state => state.eventsBackUp)
 
 	let dispatch = useDispatch();
 	let navigate = useNavigate();
 	const [admin, setAdmin] = useState(false);
-	let [arrayUsers, setArrUsers] = useState(usersBD)
+	
 
 	let [userADM, setUser] = useState({
 		username: '',
@@ -47,7 +47,7 @@ function AdminPanel() {
 
 	function handleChange(e) {
 		setUser({ ...userADM, [e.target.name]: e.target.value })
-		return e.target.name === "username" ? dispatch({type: GET_USERS, payload: e.target.value === "" ? arrayUsers: arrayUsers.filter(el => {
+		return e.target.name === "username" ? dispatch({type: GET_USERS, payload: !e.target.value? arrayUsers: arrayUsers.filter(el => {
 			if(el.Email.toLowerCase().includes(e.target.value.toLowerCase())) {
 				return el
 			}})
