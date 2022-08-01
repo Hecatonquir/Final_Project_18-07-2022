@@ -6,13 +6,17 @@ import { Box, Button, Flex, Select, Stack } from '@chakra-ui/react';
 import swal from 'sweetalert';
 import Search from './Search';
 
-function ButtonFilter() {
+function ButtonFilter({setSearch}) {
 
 
 	let [controlFilter, setReference] = useState({
 		city: '',
 		category: ''
 });
+
+
+
+
 
 useEffect( () => {
 	newFilter()
@@ -65,6 +69,7 @@ useEffect( () => {
 	let handleSelect = (e) => {
 		return filterItems(e.target.value);
 	};
+	
 
 	return (
 		<>
@@ -114,8 +119,10 @@ useEffect( () => {
 										city: '',
 										category: ''
 									})),
+									setSearch(""),
 									dispatch({ type: GET_EVENTS, payload: backUp }),
 									dispatch({ type: SHOW_EVENTS_USER, payload: backUp.slice(0, 15) })
+									
 								);
 							}}
 							bg='#f4a69a'>

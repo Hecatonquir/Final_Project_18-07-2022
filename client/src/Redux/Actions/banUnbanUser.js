@@ -15,6 +15,17 @@ export const banUnbanUser = async (veredict, email, dispatch) => {
 			{ withCredentials: true }
 		);
 		dispatch(getUsers());
+
+		swal({
+			title: 'Updated',
+			text: 'User status has been Updated...',
+			icon: 'success',
+			timer: 1500,
+			buttons: false,
+		});
+
+
+
 	} catch (error) {
 		swal({
 			title: 'Error',

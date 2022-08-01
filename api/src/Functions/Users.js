@@ -122,12 +122,11 @@ const getUserById = async (req, res) => {
 			where: {
 				ID,
 			},
-			include: [
+			include: 
 				{
 					model: Supports,
 				},
-				{ model: Carts },
-			],
+			
 			attributes: { exclude: ['Password'] },
 		});
 		res.send(userBox);

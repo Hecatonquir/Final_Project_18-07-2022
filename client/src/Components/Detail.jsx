@@ -1,5 +1,5 @@
 import { React, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDetail } from '../Redux/Actions/getDetails';
 import Loader from './Loader.jsx';
@@ -14,13 +14,17 @@ import fav from '../Media/favorito.png';
 import fav2 from '../Media/favorito2.png';
 import DetailCarousel from './DetailCarousel';
 import swal from 'sweetalert';
+import { decodeToken } from 'react-jwt';
 
 export default function Detail() {
 	const { id } = useParams();
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	var event = useSelector((state) => state.eventDetail);
 	const Allfavourites = useSelector((state) => state.favourites);
 	var exitFav = Allfavourites.find((e) => e.ID === id);
+	let token= document.cookie.split(";").filter(el => el.includes("access-token")).toString().split("=")[1]
+	let tokenDecoded = decodeToken(token)
 
 	useEffect(() => {
 		dispatch(getDetail(id));
@@ -28,12 +32,16 @@ export default function Detail() {
 	}, [dispatch, id]);
 
 	function handleClickFav(id) {
-		if (!exitFav) {
-			dispatch(addToFavourites(id));
-			swal('Added to favorite', { icon: 'success' });
+		if(token) {
+			if (!exitFav) {
+				dispatch(addToFavourites(id));
+				swal('Added to favorite', { icon: 'success' });
+			} else {
+				dispatch(removeFromFavourites(id));
+				swal('Removed from favorites', { icon: 'warning' });
+			}
 		} else {
-			dispatch(removeFromFavourites(id));
-			swal('Removed from favorites', { icon: 'warning' });
+			navigate('/login')
 		}
 	}
 
@@ -63,14 +71,14 @@ export default function Detail() {
                   </Flex>
                 </div> */}
 									<div className={styles.rightcolumn}>
-										<Box marginTop={3} textAlign='start'>
-											<Stack spacing={3}>
+										<Box marginTop={3} textAlign='start' >
+											<Stack spacing={3} >
 												<Heading as='h1'>{event[0].Name}</Heading>
 												<Text>City: {event[0].City}</Text>
 												<Text>Location: {event[0].Location}</Text>
 												<Text>Category: {event[0].Category}</Text>
 												<Text>Date: {event[0].Date}</Text>
-												<Text>Price: ${event[0].Price === 0 ? ' Free' : event[0].Price}</Text>
+												<Text>Price: {event[0].Price === 0 ? ' Free' : '$'+event[0].Price}</Text>
 												<Text>
 													Tickets Available:{' '}
 													{event[0].Quantity === 0

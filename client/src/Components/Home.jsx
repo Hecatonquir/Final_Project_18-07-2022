@@ -1,4 +1,4 @@
-import { React, useEffect } from 'react';
+import { React, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import getEvents from '../Redux/Actions/getEvents.js';
 import ButtonFilter from './ButtonFilter.jsx';
@@ -6,7 +6,7 @@ import EventCard from './EventCard.jsx';
 import NavBar from './NavBar.jsx';
 import Search from './Search.jsx';
 import EventCarousel from './Carousel.jsx';
-// import Loader from './Loader.jsx';
+// import Loader from './Loader.jsx' ;
 // import CalendarEvents from './Calendar.jsx';
 import styles from '../Styles/Home.module.css';
 import Footer from './Footer.jsx';
@@ -32,8 +32,8 @@ export default function Home() {
 	const stateUser = useSelector((state) => state.loginState);
 	const backup = useSelector((state) => state.eventsBackUp);
 	const carrouselEvents = backup.filter((ev) => ev.Carrousel);
+	let [search, setSearch] = useState("")
 
-	console.log(document.cookie.split('='));
 
 	if (!stateUser && user) {
 		dispatch(registerGmail(user, logout));
@@ -58,8 +58,7 @@ export default function Home() {
 			<Box  padding="0" position="fixed" zIndex="100" width="100%">
 			<NavBar />
 			</Box>
-				<Box paddingTop="6.5rem">
-				
+				<Box paddingTop="6.5rem">				
 				<EventCarousel carrouselEvents={carrouselEvents} />
 				
 			</Box>
@@ -71,15 +70,19 @@ export default function Home() {
 				)}
 			</Box>
 			<Box width="70rem" alignContent="center" alignItems="center" marginLeft="30rem">
-			
 				<ButtonFilter  />
-				{/* <Search /> */}
-				<div className={styles.search}>
+				{/* <Search /> */}		
+			<Box width="70rem" alignContent="center" alignItems="center" marginLeft="30rem">
+				<ButtonFilter setSearch={setSearch} />
+        <div className={styles.search}>
 				{/* <CalendarEvents /> */}
 				</div>
 			</Box>
-			
-			
+			<div className={styles.search}>
+				<Search 
+				search = {search}
+				setSearch ={setSearch}/>
+			</div>
 			<Center>
 				<Box marginTop={10} marginBottom={10}>
 					<SimpleGrid columns={2} spacing={10}>
