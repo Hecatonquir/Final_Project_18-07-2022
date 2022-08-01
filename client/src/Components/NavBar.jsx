@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useState,useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from '../Styles/NavBar.module.css';
@@ -28,7 +28,7 @@ function NavBar() {
 	const active = useSelector((state) => state.loginState);
 	let count = cart ? cart.length : null;
 
-	
+	let [search, setSearch] = useState("")
 
 	
 
@@ -142,9 +142,7 @@ function NavBar() {
 							</Link>
 						</Box>
 					)}
-					<Box>
-						<Search />
-					</Box>
+					
 					<Box>
 						<Link to={token? '/cart' : '/login'}>
 							<Image src={imgcarrito} alt='img carrito' width='3rem' marginRight='1rem' />

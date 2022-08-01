@@ -16,12 +16,14 @@ import { eachWeekOfInterval } from 'date-fns';
 import { Box, Heading, Image, Text, Button } from "@chakra-ui/react";
 
 function AdminPanel() {
+
 	let token = document.cookie
 		.split(';')[0]
 	let token1 = 
 		token
 		.split('=')[1]
 	let tokenDecoded = decodeToken(token1);
+	console.log(tokenDecoded)
 
 	let usersBD = useSelector((state) => state.allUsers);
 	let events = useSelector((state) => state.allEvents);
@@ -35,6 +37,7 @@ function AdminPanel() {
 	});
 
 	let [actRoles, setAct] = useState(false);
+
 
 	function handleChange(e) {
 		setUser({ ...userADM, [e.target.name]: e.target.value });
@@ -121,7 +124,7 @@ function AdminPanel() {
 												className={styles.button4}
 												hidden={actRoles ? false : true}
 												name='User'
-												onClick={(e) => changeRole(e.target.name, el.Email, dispatch)}>
+												onClick={(e) => changeRole(e.target.name, el.Email, dispatch,tokenDecoded.id)}>
 												User
 											</button>
 											<button

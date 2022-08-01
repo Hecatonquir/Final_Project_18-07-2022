@@ -1,4 +1,4 @@
-import { React, useEffect } from 'react';
+import { React, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import getEvents from '../Redux/Actions/getEvents.js';
 import ButtonFilter from './ButtonFilter.jsx';
@@ -32,8 +32,8 @@ export default function Home() {
 	const stateUser = useSelector((state) => state.loginState);
 	const backup = useSelector((state) => state.eventsBackUp);
 	const carrouselEvents = backup.filter((ev) => ev.Carrousel);
+	let [search, setSearch] = useState("")
 
-	console.log(document.cookie.split('='));
 
 	if (!stateUser && user) {
 		dispatch(registerGmail(user, logout));
@@ -69,11 +69,14 @@ export default function Home() {
 				)}
 			</Box>
 			<Box>
-				<ButtonFilter />
+				<ButtonFilter
+				setSearch={setSearch} />
 				{/* <CalendarEvents /> */}
 			</Box>
 			<div className={styles.search}>
-				<Search />
+				<Search 
+				search = {search}
+				setSearch ={setSearch}/>
 			</div>
 			<Center>
 				<Box marginTop={10} marginBottom={10}>
