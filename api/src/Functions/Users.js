@@ -44,7 +44,8 @@ const validatePartner = (req, res, next) => {
 };
 
 const validateAdmin = (req, res, next) => {
-	const accessToken = req.cookies['access-token'];
+	const accessToken = req.body.token;
+	
 	if (!accessToken) return res.status(400).send('User is not authenticated');
 	try {
 		const validToken = jwt.verify(accessToken, process.env.PRIVATEKEY);
@@ -115,6 +116,7 @@ const getUserByName = async (req, res) => {
 
 const getUserById = async (req, res) => {
 	let ID = req.params.id;
+	console.log(ID)
 	try {
 		const userBox = await Users.findOne({
 			where: {
@@ -243,11 +245,14 @@ const registerUser = async (req, res) => {
 };
 
 const registerUserGmail = async (req, res) => {
-	const { Username } = req.body;
+	const { Email } = req.body;
+	console.log(Email)
 	try {
+		if(Email) {
+			
 		let foundOrCreate = await Users.findAll({
 			where: {
-				Username,
+				Email,
 			},
 		});
 		console.log(foundOrCreate);
@@ -255,6 +260,7 @@ const registerUserGmail = async (req, res) => {
 			bcrypt.hash(process.env.DefaultPassword, 10).then(async (hash) => {
 				req.body.Password = hash;
 				req.body.Role = 'User';
+				req.body.Username = Email
 				let gmailUser = await Users.create(req.body);
 				const token = jwt.sign(
 					{
@@ -269,12 +275,8 @@ const registerUserGmail = async (req, res) => {
 						expiresIn: 300,
 					}
 				);
-				console.log(token);
-				res.cookie('access-token', token, {
-					maxAge: 60 * 60 * 1000,
-					httpOnly: false,
-				});
-				res.send('Created');
+				
+			return	res.json(token);
 			});
 		} else {
 			const tokenRegistered = jwt.sign(
@@ -287,18 +289,16 @@ const registerUserGmail = async (req, res) => {
 				},
 				process.env.PRIVATEKEY,
 				{
-					expiresIn: 300,
+					expiresIn: 9999,
 				}
 			);
-			console.log(tokenRegistered);
-			res.cookie('access-token', tokenRegistered, {
-				maxAge: 60 * 60 * 1000,
-				httpOnly: false,
-			});
-			res.send('Loged In!');
+			
+			res.json(tokenRegistered);
 		}
+	}
+	else{res.status(400).send("no name provided")}
 	} catch (error) {
-		res.status(400).send(error);
+		return res.status(400).send(error);
 	}
 };
 
@@ -335,14 +335,9 @@ const loginRequest = async (req, res) => {
 						}
 					);
 
-					res.cookie('access-token', token, {
-						maxAge: 60 * 60 * 1000,
-						httpOnly: false,
-						sameSite: null
-					});
-					console.log('🐲🐲🐲 / file: Users.js / line 340 / res.cookie', res.cookie);
+					
 
-					return res.send(user_);
+					return res.json(token);
 				} else {
 					return res.status(400).send('');
 				}
@@ -367,7 +362,7 @@ const loginRequestAP = async (req, res) => {
 			}
 			bcrypt.compare(password, user_[0].Password, (error, response) => {
 				if (response) {
-					console.log(user_[0].ID);
+					
 					const id = user_[0].ID;
 					const token = jwt.sign(
 						{ id: id, role: user_[0].Role, name: user_[0].Name, email: user_[0].Email },
@@ -376,13 +371,8 @@ const loginRequestAP = async (req, res) => {
 							expiresIn: 9999,
 						}
 					);
-					console.log(token);
-					res.cookie('access-token', token, {
-						maxAge: 60 * 60 * 1000,
-						httpOnly: false,
-					});
-
-					return res.send('Logged In!');
+					
+					return res.json(token);
 				} else {
 					return res.status(400).send('No');
 				}
@@ -443,11 +433,8 @@ const updateCart = async (req, res) => {
 		// 	);
 		// }
 		// res.send('Event added to User Cart');
-		console.log(console.log(req.body));
 		let user = await Users.findByPk(IdUser);
-
-		console.log(user);
-		user.Cart = [...user.Cart, ...req.body];
+		user.Cart = req.body;
 		user.save();
 		res.send('Event added to User Cart');
 	} catch (error) {

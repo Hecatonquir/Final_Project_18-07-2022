@@ -13,38 +13,45 @@ import Footer from './Footer.jsx';
 import { decodeToken, isExpired } from 'react-jwt';
 import { useAuth0 } from '@auth0/auth0-react';
 import registerGmail from '../Redux/Actions/registerGmail.js';
-import { UPDATE_STATE_TRUE } from '../Redux/ActionTypes/actiontypes.js';
+import { LOAD_CART, UPDATE_STATE_TRUE } from '../Redux/ActionTypes/actiontypes.js';
 
 import { Box, SimpleGrid, Center, Text, Flex } from '@chakra-ui/react';
 import BackToTopButton from './BackToTopButton.jsx';
+// eslint-disable-next-line no-unused-vars
+import { updateCart } from '../Redux/Actions/updateCart.js';
+import axios from 'axios';
 
 export default function Home() {
-	const { /* isAuthenticated, */ user } = useAuth0();
-	let token = document.cookie
-		.split(';')
-		.filter((el) => el.includes('access-token'))
-		.toString()
-		.split('=')[1];
-	let tokenDecoded = decodeToken(token);
+
+	const { user, logout } = useAuth0();
+	let token = document.cookie.split(';')[0];
+	let token1 = token.split('=')[1];
+	let tokenDecoded = decodeToken(token1);
 	const dispatch = useDispatch();
 	const events = useSelector((state) => state.showToUser);
 	const stateUser = useSelector((state) => state.loginState);
 	const backup = useSelector((state) => state.eventsBackUp);
 	const carrouselEvents = backup.filter((ev) => ev.Carrousel);
 
-	console.log('🐲🐲🐲 / file: Home.jsx / line 29 / tokenDecoded:', tokenDecoded);
+	console.log(document.cookie.split('='));
 
-	if (!token) {
-		dispatch(registerGmail(user));
+	if (!stateUser && user) {
+		dispatch(registerGmail(user, logout));
 	}
 	useEffect(() => {
 		if (!stateUser && token) {
 			dispatch({ type: UPDATE_STATE_TRUE });
 		}
+		if (token1) {
+			axios
+				.put('/user/getUserById/' + tokenDecoded.id)
+				.then((r) => dispatch({ type: LOAD_CART, payload: r.data.Cart }));
+		}
+
 		dispatch(getEvents());
-		return () => {}; /* Esto está vacío. Está para algo en el futuro? */
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [stateUser]);
+
+		return () => {};
+	}, []);
 
 	return (
 		<Box bgGradient='linear(to-r, #1c2333, #371a1e)' minHeight='100vh' >
@@ -124,6 +131,7 @@ export default function Home() {
 	);
 }
 
+// eslint-disable-next-line no-lone-blocks
 {
 	/*<Box bgGradient='linear(to-r, #1c2333, #371a1e)' minHeight='100vh'>
 <Box>
