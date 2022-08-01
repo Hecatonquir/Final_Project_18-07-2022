@@ -36,7 +36,7 @@ function Profile() {
               <Text marginBottom={2}>{tokenDecoded.email}</Text>
           </Flex>
           </Box>
-          <Box color='white'  width='75%' padding={4} minHeight='100vh'>
+          <Box width='75%' padding={4} minHeight='100vh'>
          <Flex justifyContent='right' minHeight='85vh'>
           <Tabs/>
          </Flex>

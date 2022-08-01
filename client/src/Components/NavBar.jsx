@@ -113,7 +113,6 @@ function NavBar() {
 					) : (
 						<Box></Box>
 					)}
-
 					{token && (
 						<Button
 							bg='#f4a69a'
@@ -126,7 +125,6 @@ function NavBar() {
 							<Text>Log Out</Text>
 						</Button>
 					)}
-
 					{/* {token && tokenDecoded.role === 'Partner' && active && (
 							<Link to='/createEvent'>
 								<button className={styles.Button}>Create an Event</button>
@@ -148,7 +146,6 @@ function NavBar() {
 						</Link>
 					</Box>
 				)}
-
 				<Box>
 					<Link to={token ? '/cart' : '/login'}>
 						<Image src={imgcarrito} alt='img carrito' width='3rem' marginRight='1rem' />
