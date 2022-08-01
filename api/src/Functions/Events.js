@@ -104,6 +104,17 @@ const getReported = async (req, res) => {
 	}
 };
 
+const updateQuantity = async (req, res) => {
+	const { Name, newStock } = req.body
+	console.log(req.body)
+	try {
+		let box = await Events.update( { Quantity: 10 } , { where: {Name: Name} })
+		return res.send('Stock updated')
+	}catch(error) {
+		return res.status(400).send('Something went wrong')
+	}
+};
+
 module.exports = {
 	getAllEvents,
 	deleteEvent,
@@ -113,4 +124,5 @@ module.exports = {
 	getEventById,
 	reportEvent,
 	getReported,
+	updateQuantity
 };
