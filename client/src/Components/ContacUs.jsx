@@ -36,11 +36,11 @@ export default function ContactUs() {
 		});
 		
 	} 
-
+	const reMedio = /^(([^<>()\[\]\.,;:\s@\”]+(\.[^<>()\[\]\.,;:\s@\”]+)*)|(\”.+\”))@(([^<>()[\]\.,;:\s@\”]+\.)+[^<>()[\]\.,;:\s@\”]{2,})$/
 	function handleSubmit(e) {
 		e.preventDefault();
 		
-		if (note.reason.length > 0 && note.problemType.length > 0 && note.emailCustomer.length > 0) {
+		if (note.reason.length > 0 && note.problemType.length > 0 && note.emailCustomer.length > 0 && reMedio.test(note.emailCustomer)) {
 			console.log(note)
 			postSupports(note);
 			// alert("Note was created successfully")
@@ -109,10 +109,10 @@ export default function ContactUs() {
 							
 							<MDBModalFooter>
 							<div> 
-								   <label>Your Email:</label>
+								   <label for= "">Your Email:</label>
 										<input 
 										className={styles.mail}
-										type="text" 
+										type="email" 
 										name='emailCustomer'
 										value={note.emailCustomer}
 										onChange={handleChange}/>										
