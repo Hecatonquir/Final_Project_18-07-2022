@@ -103,9 +103,9 @@ function NavBar() {
 						/>
 					</Heading>
 				</Box>
-				<Box>
+				<Box justifyContent="space-around">
 					{!token ? (
-						<Box>
+						<Box marginLeft="5rem">
 							<Link to='/login'>
 								<Button bg='#f4a69a'>Login/Sign Up</Button>
 							</Link>
@@ -116,6 +116,8 @@ function NavBar() {
 
 					{token && (
 						<Button
+						    marginLeft="24rem"
+						    marginRight="2rem"
 							bg='#f4a69a'
 							className={styles.Button}
 							color='white'
@@ -140,7 +142,7 @@ function NavBar() {
 					)}
 				</Box>
 				{token && active && (
-					<Box>
+					<Box marginLeft="18rem">
 						<Link to='/profile'>
 							<Button bg='#f4a69a'>
 								<Text>Profile</Text>

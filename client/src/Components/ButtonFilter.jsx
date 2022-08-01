@@ -69,14 +69,14 @@ function ButtonFilter({ setSearch, search }) {
 	return (
 		<>
 			<Stack spacing={10} marginTop={6} marginBottom={6}>
-				<Flex justifyContent='space-around' width='100%'>
+				<Flex justifyContent='space-around' width='80%' marginLeft="12rem">
 					<div className={styles.search}>
-						<Search search={search} setSearch={setSearch} />
+						<Search search={search} setSearch={setSearch} width="50%"/>
 					</div>
 					<Select
 						variant='flushed'
 						marginLeft='5rem'
-						width='30%'
+						width='20%'
 						onChange={(e) => handleSelect(e)}
 						color='gray'
 						id='city'>
@@ -94,7 +94,7 @@ function ButtonFilter({ setSearch, search }) {
 						variant='flushed'
 						marginLeft='5rem'
 						marginRight='5rem'
-						width='30%'
+						width='20%'
 						onChange={(e) => handleSelect(e)}
 						color='gray'
 						id='cat'>
