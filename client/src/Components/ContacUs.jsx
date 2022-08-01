@@ -46,7 +46,7 @@ export default function ContactUs() {
 			// alert("Note was created successfully")
 			setNote({ reason: '', problemType: '',emailCustomer: '' });
 		} else {
-			swal("Fill Formulary'problem' email 'reason", {
+			swal("Fill Formulary'problem' email please 'reason", {
 				icon: 'warning',
 			});
       setNote({ reason: '', problemType: '',emailCustomer: '' });
