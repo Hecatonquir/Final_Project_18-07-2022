@@ -22,7 +22,6 @@ import { updateCart } from '../Redux/Actions/updateCart.js';
 import axios from 'axios';
 
 export default function Home() {
-
 	const { user, logout } = useAuth0();
 	let token = document.cookie.split(';')[0];
 	let token1 = token.split('=')[1];
@@ -32,8 +31,7 @@ export default function Home() {
 	const stateUser = useSelector((state) => state.loginState);
 	const backup = useSelector((state) => state.eventsBackUp);
 	const carrouselEvents = backup.filter((ev) => ev.Carrousel);
-	let [search, setSearch] = useState("")
-
+	let [search, setSearch] = useState('');
 
 	if (!stateUser && user) {
 		dispatch(registerGmail(user, logout));
@@ -55,29 +53,30 @@ export default function Home() {
 
 	return (
 		<Box bgGradient='linear(to-r, #1c2333, #371a1e)' minHeight='100vh'>
-			<Box>
+			<Box padding='0' position='fixed' zIndex='100' width='100%'>
 				<NavBar />
-				<Box>
-					<EventCarousel carrouselEvents={carrouselEvents} />
-				</Box>
 			</Box>
-			<Box className={styles.welcome}>
+			<Box paddingTop='5.5rem'>
+				<EventCarousel carrouselEvents={carrouselEvents} />
+			</Box>
+			<Box className={styles.welcome} marginTop='5px'>
 				{stateUser || !isExpired(token) ? (
 					<p>Welcome {tokenDecoded ? tokenDecoded.name : 'Guest'}</p>
 				) : (
 					<p>Welcome Guest</p>
 				)}
 			</Box>
-			<Box>
-				<ButtonFilter
-				setSearch={setSearch} />
-				{/* <CalendarEvents /> */}
+			<Box
+				width='90%'
+				alignContent='center'
+				alignItems='center'
+				marginLeft='5%'
+				marginTop='0px'
+				padding='0px'>
+				<ButtonFilter search={search} setSearch={setSearch} />
+				{/* <div className={styles.search}><CalendarEvents/></div> */}
 			</Box>
-			<div className={styles.search}>
-				<Search 
-				search = {search}
-				setSearch ={setSearch}/>
-			</div>
+
 			<Center>
 				<Box marginTop={10} marginBottom={10}>
 					<SimpleGrid columns={2} spacing={10}>
@@ -128,8 +127,6 @@ export default function Home() {
 		</Box>
 	);
 }
-
-// eslint-disable-next-line no-lone-blocks
 {
 	/*<Box bgGradient='linear(to-r, #1c2333, #371a1e)' minHeight='100vh'>
 <Box>
