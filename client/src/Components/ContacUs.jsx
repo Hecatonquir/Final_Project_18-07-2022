@@ -112,7 +112,7 @@ export default function ContactUs() {
 								   <label>Your Email:</label>
 										<input 
 										className={styles.mail}
-										type="text" 
+										type="email" 
 										name='emailCustomer'
 										value={note.emailCustomer}
 										onChange={handleChange}/>										

@@ -115,7 +115,6 @@ function NavBar() {
 							<Button
 								bg='#f4a69a'
 								className={styles.Button}
-								color='white'
 								onClick={() => { dispatch({type: CLEAR_CART}); return logOut(dispatch)}}>
 								<Text>Log Out</Text>
 							</Button>

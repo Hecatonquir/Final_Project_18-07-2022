@@ -50,7 +50,7 @@ export default function EventCard({
 			<div className={styles.cards}>
 				<div className={styles.leftcolumn}>
 					<Link to={`/details/id/${id}`}>
-						<Image src={image} alt='img eventCard' width='20rem' height='20rem' />
+						<Image src={image} alt='img eventCard' width='20rem' height='20rem'/>
 					</Link>
 				</div>
 				<div className={styles.rightcolumn}>
