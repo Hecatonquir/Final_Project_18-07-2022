@@ -45,8 +45,21 @@
     box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.2);
     margin: 1.5rem;
     overflow: hidden;
-    max-width: 40rem;
-    max-height: 70rem;
+    width: 35rem;
+    height: 30rem;
+    overflow-y: scroll;
+}
+
+.cards::-webkit-scrollbar {
+    width: 5px;
+}
+.cards::-webkit-scrollbar-track {
+    background-color: #ffffff08;
+    border-radius: 10px;
+}
+.cards::-webkit-scrollbar-thumb {
+    /* background-color: #11171a; */
+    border-radius: 10px;
 }
 
 .leftcolumn {
