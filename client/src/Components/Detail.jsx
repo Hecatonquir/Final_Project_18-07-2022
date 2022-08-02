@@ -107,7 +107,7 @@ export default function Detail() {
                             ? event[0].Restrictions.join(" - ")
                             : "Unrestricted Event"}
                         </Text>
-                        <Text>Detail: {event[0].Detail}</Text>
+                        <Text width='90%'>Detail: {event[0].Detail}</Text>
                       </Stack>
                       <div className={styles.containerButton}>
                         <Button bg="white">
