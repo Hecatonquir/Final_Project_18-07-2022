@@ -44,7 +44,7 @@ export default function Cart() {
 		dispatch(clearCart());
 		dispatch(updateCart(tokenDecoded.id));
 	}
-
+	
 	async function handleToken(token) {
 		console.log('Entered to handleToken')
 		const response = await axios.post('/checkout', { token, totalAmount });
@@ -74,9 +74,9 @@ export default function Cart() {
 		  	/////////////////////////////////////////////////////////////////////////////////////////////
 
 			// Actualizacion de Stock de tickets en la base de datos (Quantity)
-			cart.map((it) => { dispatch(updateQuantity(it.ID, it.Quantity - it.PurchasedItem)) 
-							   console.log(`dispatch ${it.Name}`)})
-
+			const stockToUpdate = Promise.all(cart.map( (it) => (updateQuantity({ ID: it.ID, newStock: it.Quantity - it.PurchasedItem})))) 
+			console.log(stockToUpdate)
+			
 			toast.success('Your purchase was successful! Check your E-mail for more information');
       /* dispatch(removeQuantityFromEvent(X)) <---------- ACA Se despacha al back para restar numeros al valor de Quantity de cada evento. (hacer 1 para cada evento)  */
 			dispatch(clearCart());
