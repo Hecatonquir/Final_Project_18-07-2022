@@ -19,7 +19,7 @@ export default function SearchEvent({search, setSearch}){
     const [name, setName] = useState("");
 
 
-    console.log(search)
+   
     function handleInputChange(e){
      
         setName(e.target.value)
@@ -40,20 +40,9 @@ export default function SearchEvent({search, setSearch}){
 
     }
     
-    // return (
-    //     <div className={styles.search}>
-    //         <input
-    //         type='text'
-    //         placeholder="Search Event..."
-    //         onChange={(e) => handleInputChange(e)}
-    //         className={styles.input}/>
-    //     </div>
-    // )
-
-
     return (
         <>
-            <Editable   value={search} id="searchBar" placeholder='Search Event...' bg='white' borderRadius={10} width='10em' textAlign='center'>
+            <Editable   value={search} id="searchBar" placeholder='Search Event...' fontSize='1em'borderRadius='5px' bg='#EEEEEE' height='2.5em' width='30em' textAlign='center'>
             <EditablePreview />
             <EditableInput  onChange={(e) => handleInputChange(e)} />
             </Editable>
