@@ -14,21 +14,29 @@ import { changeRole } from '../Redux/Actions/updateRole';
 import { banUnbanUser } from '../Redux/Actions/banUnbanUser';
 import { eachWeekOfInterval } from 'date-fns';
 import { Box, Heading, Image, Text, Button } from "@chakra-ui/react";
+import { GET_EVENTS, GET_USERS } from '../Redux/ActionTypes/actiontypes';
 
 function AdminPanel() {
+
 	let token = document.cookie
 		.split(';')[0]
 	let token1 = 
 		token
 		.split('=')[1]
 	let tokenDecoded = decodeToken(token1);
+	
+
 
 	let usersBD = useSelector((state) => state.allUsers);
 	let events = useSelector((state) => state.allEvents);
+	let arrayUsers = useSelector(state => state.usersBackUp)
+	const backUperE= useSelector(state => state.eventsBackUp)
 
 	let dispatch = useDispatch();
 	let navigate = useNavigate();
 	const [admin, setAdmin] = useState(false);
+	
+
 	let [userADM, setUser] = useState({
 		username: '',
 		posts: '',
@@ -36,8 +44,20 @@ function AdminPanel() {
 
 	let [actRoles, setAct] = useState(false);
 
+
 	function handleChange(e) {
-		setUser({ ...userADM, [e.target.name]: e.target.value });
+		setUser({ ...userADM, [e.target.name]: e.target.value })
+		return e.target.name === "username" ? dispatch({type: GET_USERS, payload: !e.target.value? arrayUsers: arrayUsers.filter(el => {
+			if(el.Email.toLowerCase().includes(e.target.value.toLowerCase())) {
+				return el
+			}})
+			.slice(0,6)})
+			: dispatch({type: GET_EVENTS, payload: e.target.value === "" ? backUperE: backUperE.slice().filter(el => {
+				if(el.Name.toLowerCase().includes(e.target.value.toLowerCase())) {
+				
+					return el
+				}})
+				.slice(0,6)})
 	}
 
 	useEffect(() => {
@@ -76,14 +96,7 @@ function AdminPanel() {
 					<div>
 						{usersBD.length &&
 							admin &&
-							usersBD
-								.filter((el) =>
-									el.Name.toLowerCase().includes(userADM.username.toLowerCase()) &&
-									userADM.username !== ''
-										? el
-										: null
-								)
-								.slice(0, 3)
+							usersBD.slice(0,6)
 								.map((el, i) => (
 									<div key={i}>
 										<div className={styles.containerButton}>
@@ -121,7 +134,7 @@ function AdminPanel() {
 												className={styles.button4}
 												hidden={actRoles ? false : true}
 												name='User'
-												onClick={(e) => changeRole(e.target.name, el.Email, dispatch)}>
+												onClick={(e) => changeRole(e.target.name, el.Email, dispatch,tokenDecoded.id)}>
 												User
 											</button>
 											<button
@@ -165,13 +178,8 @@ function AdminPanel() {
 						{events.length &&
 							admin &&
 							events
-								.filter((el) =>
-									el.Name.toLowerCase().includes(userADM.posts.toLowerCase()) &&
-									userADM.posts !== ''
-										? el
-										: null
-								)
-								.slice(0, 3)
+								
+								.slice(0, 6)
 								.map((el, i) => (
 									<div key={i} >
 										<div className={styles.containerButton}>

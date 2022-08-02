@@ -13,7 +13,8 @@ export default function EventCarousel(obj) {
 			}}>
 			{carrouselEvents
 				? carrouselEvents.length
-					? carrouselEvents.map((ev) => {
+					? carrouselEvents.filter(el => !el.isErased)
+					.map((ev) => {
 							return (
 								<Carousel.Item key={ev.ID} interval={2000}>
 									<Link to={`/details/id/${ev.ID}`}>

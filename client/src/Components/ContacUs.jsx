@@ -36,17 +36,17 @@ export default function ContactUs() {
 		});
 		
 	} 
-
+	const reMedio = /^(([^<>()\[\]\.,;:\s@\”]+(\.[^<>()\[\]\.,;:\s@\”]+)*)|(\”.+\”))@(([^<>()[\]\.,;:\s@\”]+\.)+[^<>()[\]\.,;:\s@\”]{2,})$/
 	function handleSubmit(e) {
 		e.preventDefault();
 		
-		if (note.reason.length > 0 && note.problemType.length > 0 && note.emailCustomer.length > 0) {
+		if (note.reason.length > 0 && note.problemType.length > 0 && note.emailCustomer.length > 0 && reMedio.test(note.emailCustomer)) {
 			console.log(note)
 			postSupports(note);
 			// alert("Note was created successfully")
 			setNote({ reason: '', problemType: '',emailCustomer: '' });
 		} else {
-			swal("Fill Formulary'problem' email 'reason", {
+			swal("Fill Formulary'problem' email please 'reason", {
 				icon: 'warning',
 			});
       setNote({ reason: '', problemType: '',emailCustomer: '' });
@@ -60,9 +60,9 @@ export default function ContactUs() {
             <button className={styles.Button}>Back</button>
             </Link>
             </nav> */}
-			<a className={styles.white} onClick={toggleShow}>
+			<h4 onClick={toggleShow}>
 				ContacUs
-			</a>
+			</h4>
 			<MDBModal show={basicModal} setShow={setBasicModal} tabIndex='1'>
 				<MDBContainer>
 					<MDBModalDialog>
@@ -72,8 +72,8 @@ export default function ContactUs() {
 
 								<h4 className={styles.title}>Contact Us</h4>
 								<form className={styles.form} /* onSubmit={handleSubmit} */>
-									<div class='form-group'>
-										<label for='exampleFormControlTextarea1'>Tell Us your problem</label>
+									<div className='form-group'>
+										<label htmlFor='exampleFormControlTextarea1'>Tell Us your problem</label>
 
 										<select
 											className={styles.select}
@@ -108,11 +108,12 @@ export default function ContactUs() {
 							</MDBModalBody>
 							
 							<MDBModalFooter>
+							
 							<div> 
-								   <label>Your Email:</label>
+								   <label htmlFor="Name">Your Email:</label>
 										<input 
 										className={styles.mail}
-										type="text" 
+										type="email" 
 										name='emailCustomer'
 										value={note.emailCustomer}
 										onChange={handleChange}/>										

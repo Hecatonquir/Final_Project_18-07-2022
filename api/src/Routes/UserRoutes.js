@@ -36,11 +36,11 @@ routes.post('/verify', validateToken, (req, res) => {
 
 routes.post('/registerG', registerUserGmail);
 
-routes.put('/changeRole', validateAdmin, roleChange);
-routes.put('/banUnban', validateAdmin, banUser);
+routes.put('/changeRole',roleChange);
+routes.put('/banUnban',banUser);
 
 routes.put('/updateCart/:IdUser', updateCart);
 
-routes.delete('/delete', validateAdmin, deleteUser); // ------------------Working
+routes.delete('/delete',deleteUser); // ------------------Working
 
 module.exports = routes;

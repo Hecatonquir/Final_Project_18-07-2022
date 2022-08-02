@@ -122,12 +122,11 @@ const getUserById = async (req, res) => {
 			where: {
 				ID,
 			},
-			include: [
+			include: 
 				{
 					model: Supports,
 				},
-				{ model: Carts },
-			],
+			
 			attributes: { exclude: ['Password'] },
 		});
 		res.send(userBox);
@@ -350,6 +349,7 @@ const loginRequest = async (req, res) => {
 
 const loginRequestAP = async (req, res) => {
 	const { username, password } = req.body;
+	console.log(password)
 	try {
 		const user_ = await Users.findAll({
 			where: {

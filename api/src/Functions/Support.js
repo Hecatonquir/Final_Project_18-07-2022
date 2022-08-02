@@ -31,7 +31,7 @@ const addSupportTicket = async (req, res) => {
 			
 		let test = await Users.findAll({where:{Role: "Admin"},include: Supports})
 
-		console.log(test)
+		console.log(test[0].supports)
 		return res.send(added);
 	} catch (error) {
 		console.log(error)

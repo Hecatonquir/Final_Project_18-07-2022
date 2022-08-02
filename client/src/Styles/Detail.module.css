@@ -45,8 +45,21 @@
     box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.2);
     margin: 1.5rem;
     overflow: hidden;
-    max-width: 40rem;
-    max-height: 70rem;
+    width: 35rem;
+    height: 30rem;
+    overflow-y: scroll;
+}
+
+.cards::-webkit-scrollbar {
+    width: 5px;
+}
+.cards::-webkit-scrollbar-track {
+    background-color: #ffffff08;
+    border-radius: 10px;
+}
+.cards::-webkit-scrollbar-thumb {
+    /* background-color: #11171a; */
+    border-radius: 10px;
 }
 
 .leftcolumn {
@@ -78,14 +91,22 @@
     cursor: pointer;
     color: white;
     font-weight: bolder;
-    background-color: #229ddb;
+    background-color: #FD7014;
     font-size: 12px;
     padding: 1px 10px 1px 10px;
     border: none;
     margin-top: 20px;
     margin-bottom: 20px;
     border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
 
+.Button2:hover{
+    color: black;
+    background-color: #EEEEEE;
 }
 
 .img1 {
