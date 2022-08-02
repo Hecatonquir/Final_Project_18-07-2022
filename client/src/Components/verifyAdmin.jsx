@@ -7,7 +7,8 @@ import { useDispatch } from 'react-redux';
 import styles from '../Styles/verifyAdmin.module.css';
 import Cookies from 'universal-cookie';
 import swal from 'sweetalert';
-import Nav from './Nav';
+import img from '../Media/admin1.jpeg'
+
 
 function Prepanel() {
 	const cookies = new Cookies();
@@ -82,6 +83,7 @@ function Prepanel() {
 							</div>
 						</form>
 					</div>
+					<img src={img} alt='not imgadmin' />
 				</div>
 			}
 		</>

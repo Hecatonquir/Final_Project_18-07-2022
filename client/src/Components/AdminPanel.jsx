@@ -79,7 +79,7 @@ function AdminPanel() {
 			</div>
 
 			<div className={styles.container}>
-				<div className={styles.rightcolumn}>
+				<div className={styles.leftcolumn}>
 					<h4 className={styles.subtitle}>All Users</h4>
 					<div className={styles.containerinput}>
 						{admin && (
@@ -160,7 +160,7 @@ function AdminPanel() {
 					
 				</div>
 
-				<div className={styles.leftcolumn}>
+				<div className={styles.rightcolumn}>
 					<h4 className={styles.subtitle}>All Events</h4>
 					<div className={styles.containerinput}>
 						{admin && (
