@@ -76,6 +76,7 @@ function AdminPanel() {
 			<div className={styles.subTotal}>
 			<div>
 				{admin && <h1 className={styles.title}>Welcome {tokenDecoded && tokenDecoded.name}</h1>}
+				<Link to ="/tickets"><button>Tickets</button></Link> 
 			</div>
 
 			<div className={styles.container}>
