@@ -9,16 +9,16 @@
 }
 ::-webkit-scrollbar-track {
   border-radius: 10px;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: #393E46;
 }
 ::-webkit-scrollbar-thumb {
-  background-color: #0000ff78;
-  background-image:-webkit-linear-gradient(45deg,rgba(255,255,255,.3) 20%,transparent 20%,transparent 40%,rgba(255, 255, 255, 0.3) 40%,rgba(255,255,255,.3) 60%,transparent 60%,transparent 80%,rgba(255, 255, 255, 0.3) 80%);
+  background-color: #FD7014;
+  background-image:-webkit-linear-gradient(45deg,#ffffff4d 20%,transparent 20%,transparent 40%,#ffffff4d 40%,#ffffff4d 60%,transparent 60%,transparent 80%,#ffffff4d 80%);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #00800077;
+  background-color: #fd7114cf;
 }
 
 

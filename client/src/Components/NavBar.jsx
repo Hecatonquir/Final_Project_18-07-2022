@@ -26,7 +26,7 @@ function NavBar({ stateUser }) {
 	let count = cart ? cart.length : null;
 
 	return (
-		<Box marginBottom={4} padding={1} bgGradient='linear(to-b, blue.700, green.500)'>
+		<Box marginBottom={4} padding={1} bg='#222831'>
 			<Flex
 				alignItems='center'
 				width='100%'
@@ -58,7 +58,7 @@ function NavBar({ stateUser }) {
 					{!token ? (
 						<Box marginLeft='5rem'>
 							<Link to='/login'>
-								<Button bg='#f4a69a'>Login/Sign Up</Button>
+								<Button bg='#FD7014' color='white' _hover={{bg:'#EEEEEE', color:'black'}}>Login/Sign Up</Button>
 							</Link>
 						</Box>
 					) : (
@@ -68,7 +68,7 @@ function NavBar({ stateUser }) {
 						<Button
 							marginLeft='24rem'
 							marginRight='2rem'
-							bg='#f4a69a'
+							bg='#FD7014' _hover={{bg:'#EEEEEE', color:'black'}}
 							className={styles.Button}
 							color='white'
 							onClick={() => {
@@ -86,14 +86,14 @@ function NavBar({ stateUser }) {
 
 					{token && tokenDecoded && tokenDecoded.role === 'Partner' && active && (
 						<Link to='/createEvent'>
-							<Button bg='#f4a69a'>Create an Event</Button>
+							<Button bg='#FD7014' color='white' _hover={{bg:'#EEEEEE', color:'black'}}>Create an Event</Button>
 						</Link>
 					)}
 				</Box>
 				{token && active && (
 					<Box marginLeft='18rem'>
 						<Link to='/profile'>
-							<Button bg='#f4a69a'>
+							<Button bg='#FD7014' color='white' _hover={{bg:'#EEEEEE', color:'black'}}>
 								<Text>Profile</Text>
 							</Button>
 						</Link>

@@ -8,7 +8,7 @@ import NavBar from './NavBar.jsx';
 import EventCarousel from './Carousel.jsx';
 // import Loader from './Loader.jsx' ;
 // import CalendarEvents from './Calendar.jsx ';
-import styles from '../Styles/Home.module.css';
+// import style from'../Styles/Home.module.css';
 import Footer from './Footer.jsx';
 import { decodeToken, isExpired } from 'react-jwt';
 import { useAuth0 } from '@auth0/auth0-react';
@@ -18,7 +18,7 @@ import { LOAD_CART, UPDATE_STATE_TRUE } from '../Redux/ActionTypes/actiontypes.j
 import { Box, SimpleGrid, Center, Text, Flex } from '@chakra-ui/react';
 import BackToTopButton from './BackToTopButton.jsx';
 // eslint-disable-next-line no-unused-vars
-import { updateCart } from '../Redux/Actions/updateCart.js';
+// import { updateCart } from '../Redux/Actions/updateCart.js';
 import axios from 'axios';
 
 export default function Home() {
@@ -52,7 +52,7 @@ export default function Home() {
 	}, []);
 
 	return (
-		<Box bgGradient='linear(to-r, #1c2333, #371a1e)' minHeight='100vh'>
+		<Box bgGradient='linear(to-r, #222831, #393E46)' minHeight='100vh'>
 			<Box padding='0' position='fixed' zIndex='100' width='100%'>
 				<NavBar stateUser={stateUser} />
 			</Box>
@@ -80,19 +80,26 @@ export default function Home() {
 								.map((event) => (
 									<Box
 										key={event.ID}
-										bg='#b1b7b76a'
-										border='1px solid #88cfd938'
+										// bg='#b1b7b76a'
+										// border='1px solid #88cfd938'
 										p={2}
-										boxShadow={
-											event.InitialQtty !== 0 && event.Quantity === 0
-												? '5px 5px 10px #ff568c, -5px -5px 10px #ff568c'
-												: event.Price === 0
-												? '5px 5px 10px #56ffb0, -5px -5px 10px #56ffb0'
-												: '10px 10px 20px #2a2929, -10px -10px 20px #494848'
-										}
-										borderRadius='20px'
+										// boxShadow={
+										// 	event.InitialQtty !== 0 && event.Quantity === 0
+										// 		? '5px 5px 10px #ff568c, -5px -5px 10px #ff568c'
+										// 		: event.Price === 0
+										// 		? '5px 5px 10px #56ffb0, -5px -5px 10px #56ffb0'
+										// 		: '10px 10px 20px #2a2929, -10px -10px 20px #494848'
+										// }
+										// borderRadius='20px'
 										textAlign='center'>
 										<EventCard
+										// className={
+										// 	event.InitialQtty !== 0 && event.Quantity === 0
+										// 		? 'soldOut'
+										// 		: event.Price === 0
+										// 		? 'free'
+										// 		: 'shadow'
+										// }
 											key={event.ID}
 											id={event.ID}
 											name={event.Name}
@@ -103,12 +110,13 @@ export default function Home() {
 											quantity={event.Quantity}
 											city={event.City}
 											location={event.Location}
+											initialQtty = {event.InitialQtty}
 										/>
 									</Box>
 								))
 						) : (
 							<Flex justifyContent='center' width='100vw'>
-								<Box fontSize='4em' fontFamily='cursive' color='#D69E2E' textAlign='center'>
+								<Box fontSize='4em' fontFamily='cursive' color='#FD7014' textAlign='center'>
 									<Text>No Events Found</Text>
 								</Box>
 							</Flex>
@@ -121,68 +129,68 @@ export default function Home() {
 		</Box>
 	);
 }
-{
-	/*<Box bgGradient='linear(to-r, #1c2333, #371a1e)' minHeight='100vh'>
-<Box>
-	<NavBar />
-</Box>
-<Box>
-	<EventCarousel />
-</Box>
+// {
+// 	/*<Box bgGradient='linear(to-r, #1c2333, #371a1e)' minHeight='100vh'>
+// <Box>
+// 	<NavBar />
+// </Box>
+// <Box>
+// 	<EventCarousel />
+// </Box>
 
-<Box className={styles.welcome}>
-	{stateUser || !isExpired(token) ? (
-		<p>Welcome {tokenDecoded ? tokenDecoded.name : 'Guest'}</p>
-	) : (
-		<p>Welcome Guest</p>
-	)}
-</Box>
-<Box>
-	<ButtonFilter />
-	 <CalendarEvents /> 
-</Box>
+// <Box className={styles.welcome}>
+// 	{stateUser || !isExpired(token) ? (
+// 		<p>Welcome {tokenDecoded ? tokenDecoded.name : 'Guest'}</p>
+// 	) : (
+// 		<p>Welcome Guest</p>
+// 	)}
+// </Box>
+// <Box>
+// 	<ButtonFilter />
+// 	 <CalendarEvents /> 
+// </Box>
 
- <Center>
-	<Box marginTop={10} marginBottom={10}>
-		<SimpleGrid columns={2} spacing={10}>
-			{events.length ? (
-				events.map((event) => (
-					<Box
-						key={event.ID}
-						bg='#b1b7b76a'
-						border='1px solid #88cfd938'
-						p={6}
-						boxShadow={
-							event.Price !== 0
-								? '10px 10px 20px #2a2929, -10px -10px 20px #494848'
-								: '5px 5px 10px #56ffb06e, -5px -5px 10px #56ffb06e'
-						}
-						borderRadius='20px'
-						textAlign='center'>
-						<EventCard
-							key={event.ID}
-							id={event.ID}
-							name={event.Name}
-							image={event.Image[0]}
-							date={event.Date}
-							category={event.Category}
-							price={event.Price === 0 ? ' Free' : event.Price}
-							quantity={event.Quantity}
-							city={event.City}
-							location={event.Location}
-						/>
-					</Box>
-				))
-			) : (
-				<Flex justifyContent='center'>
-					<Box fontSize='4em' fontFamily='cursive' color='#D69E2E'>
-						<Text>No Events Found</Text>
-					</Box>
-				</Flex>
-			)}
-		</SimpleGrid>
-	</Box>
-</Center>
-<Footer />
-</Box>; */
-}
+//  <Center>
+// 	<Box marginTop={10} marginBottom={10}>
+// 		<SimpleGrid columns={2} spacing={10}>
+// 			{events.length ? (
+// 				events.map((event) => (
+// 					<Box
+// 						key={event.ID}
+// 						bg='#b1b7b76a'
+// 						border='1px solid #88cfd938'
+// 						p={6}
+// 						boxShadow={
+// 							event.Price !== 0
+// 								? '10px 10px 20px #2a2929, -10px -10px 20px #494848'
+// 								: '5px 5px 10px #56ffb06e, -5px -5px 10px #56ffb06e'
+// 						}
+// 						borderRadius='20px'
+// 						textAlign='center'>
+// 						<EventCard
+// 							key={event.ID}
+// 							id={event.ID}
+// 							name={event.Name}
+// 							image={event.Image[0]}
+// 							date={event.Date}
+// 							category={event.Category}
+// 							price={event.Price === 0 ? ' Free' : event.Price}
+// 							quantity={event.Quantity}
+// 							city={event.City}
+// 							location={event.Location}
+// 						/>
+// 					</Box>
+// 				))
+// 			) : (
+// 				<Flex justifyContent='center'>
+// 					<Box fontSize='4em' fontFamily='cursive' color='#D69E2E'>
+// 						<Text>No Events Found</Text>
+// 					</Box>
+// 				</Flex>
+// 			)}
+// 		</SimpleGrid>
+// 	</Box>
+// </Center>
+// <Footer />
+// </Box>; */
+// }

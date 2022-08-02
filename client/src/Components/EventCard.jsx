@@ -22,6 +22,7 @@ export default function EventCard({
 	location,
 	date,
 	category,
+	initialQtty,
 }) {
 	const dispatch = useDispatch();
 	const Allfavourites = useSelector((state) => state.favourites);
@@ -55,15 +56,15 @@ export default function EventCard({
 				</div>
 				<div className={styles.rightcolumn}>
 					<Link to={`/details/id/${id}`}>
-						<Heading as='h5' fontSize='1.5em' marginTop={4}>
+						<Heading as='h5' fontSize='1.5em' marginTop={4} _hover={{color:'#FD7014'}}>
 							{name}
 						</Heading>
 					</Link>
-					<Text marginTop={2}>Date: {date} </Text>
+					<Text marginTop={2}> {date} </Text>
 					<Text marginTop={2}>Price: ${price}</Text>
-					<Text marginTop={2}>Category: {category}</Text>
+					{/* <Text marginTop={2}>Category: {category}</Text> */}
 					<Text marginTop={2}>City: {city}</Text>
-					<Text marginTop={2}>Place: {location}</Text>
+					{/* <Text marginTop={2}>Place: {location}</Text> */}
 					<div className={styles.containerButton}>
 						<Button className={styles.ButtonFav} backgroundColor='white'>
 							{exitFav ? (
