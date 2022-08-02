@@ -7,13 +7,19 @@ async function getSupportTickets(req, res, next) {
 
 const getSupportById = async (req, res) => {
 	const ID = req.params;
+	console.log(ID)
+	console.log(req.body)
 	try {
-		const boxSupport = await Supports.findAll({
-			where: ID,
-		});
+		const boxSupport = await Supports.update({
+			done: req.body.data.isDone},
+			{where: {
+				supportID: ID.id}},
+		);
+		
 		res.send(boxSupport);
 	} catch (error) {
-		res.status(400).send(error.stack);
+		console.log(error)
+		res.status(400).send(error);
 	}
 };
 

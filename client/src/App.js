@@ -14,6 +14,7 @@ import PageNotFound from './Components/Page404';
 import AdminPanel from './Components/AdminPanel';
 import FormPartner from './Components/FormPartner';
 import Userdetails from './Components/userDetails';
+import UserTickets from './Components/TicketsFromUsers';
 
 function App() {
 	return (
@@ -32,6 +33,7 @@ function App() {
 				<Route path='/welcomeA' element={<AdminPanel />} />
 				<Route path='/reqPartner' element={<FormPartner />} />
 				<Route path='user/:id' element={<Userdetails/>}/>
+				<Route path='/tickets' element={<UserTickets/>}/>
 			</Routes>
 		</div>
 	);
