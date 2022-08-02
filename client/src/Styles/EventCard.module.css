@@ -7,7 +7,7 @@
     overflow: hidden;
     width: 40rem;
     height: 20rem;
-    color: #1C517A;
+    color: #222831;
 }
 
 .img {
@@ -45,7 +45,7 @@
     cursor: pointer;
     color: white;
     font-weight: bolder;
-    background-color: #229ddb;
+    background-color: #FD7014;
     border-radius: 70px;
     font-size: 12px;
     padding: 1px 20px 1px 20px;
@@ -83,4 +83,10 @@
     border-radius: 50%;
     background-color: white;
     margin-right: 100px;
+}
+
+.soldOut{
+    border: 1px solid red;
+    background-color: aquamarine;
+    width: 20em;
 }

@@ -125,7 +125,9 @@ function ButtonFilter({ setSearch, search }) {
 									dispatch({ type: SHOW_EVENTS_USER, payload: backUp.slice(0, 15) })
 								);
 							}}
-							bg='#FD7014'>
+							bg='#FD7014' 
+							color='white' 
+							_hover={{bg:'#EEEEEE', color:'black'}}>
 							Clear Filters
 						</Button>
 					</Box>
