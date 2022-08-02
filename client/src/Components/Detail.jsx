@@ -46,9 +46,9 @@ export default function Detail() {
 	}
 
 	return (
-		<Box bgGradient='linear(to-r, #1c2333, #371a1e)'>
+		<Box bgGradient='#222831'>
 			{event[0] ? (
-				<Box>
+				<Box bg='#EEEEEE'>
 					<Nav />
 					<Flex justifyContent='center' alignItems='center' height='100vh'>
 						<Box
