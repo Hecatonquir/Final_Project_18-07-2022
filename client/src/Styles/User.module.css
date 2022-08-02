@@ -1,12 +1,12 @@
-.Total {
+/* .Total {
     background-color: #1C8DA3;
     width: 100vw;
     height: 100vh;
     position: absolute;
     
-}
+} */
 
-.nav {
+/* .nav {
     background-color: #1C517A;
     color: white;
     display: flex;
@@ -14,9 +14,9 @@
     align-items: center;
     font-size: 12px;
     padding: 10px;
-}
+} */
 
-.Button {
+/* .Button {
     background-color: #229ddb;
     border: 2px solid white;
     border-radius: 70px;
@@ -25,13 +25,13 @@
     text-align: center;
     font-size: 12px;
     font-weight: bolder;
-    -webkit-transition-duration: 0.4s; /* Safari */
+    -webkit-transition-duration: 0.4s; 
     transition-duration: 0.4s;
     cursor: pointer;
     text-decoration: none;
-}
+} */
 
-.container {
+/* .container {
     width: 500px;
     height: 400px;
     margin: auto;
@@ -42,15 +42,15 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-}
+} */
 
-.title {
+/* .title {
     color: #1C517A;
     margin-top: 10px;
     margin-bottom: 10px;
-}
+} */
 
-.Button2 {
+/* .Button2 {
     cursor: pointer;
     color: white;
     font-weight: bolder;
@@ -61,27 +61,27 @@
     border: none;
     margin-top: 10px;
     margin-bottom: 20px;
-}
+} */
 
-.title2 {
+/* .title2 {
     font-size: 12px;
     margin-right: 10px;
     padding-bottom: 2px;
-}
+} */
 
-.title3 {
+/* .title3 {
     font-size: 14px;
-}
+} */
 
-.register {
+/* .register {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     color: #0e93d5;
     align-items: center;
-}
+} */
 
-.Button3 {
+/* .Button3 {
     cursor: pointer;
     color:  #0e93d5;
     font-weight: bolder;
@@ -92,16 +92,16 @@
     padding: 10px 30px 10px 30px;
     margin-top: 10px;
     margin-bottom: 20px;
-}
+} */
 
 .icon {
     width: 20px;
     margin-right: 5px;
 }
 
-.text {
+/* .text {
     font-size: 50px;
     text-align: center;
     color: white;
     margin-top: 150px
-}
+} */
