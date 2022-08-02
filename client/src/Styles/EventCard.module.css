@@ -23,8 +23,28 @@
 }
 
 .leftcolumn {
-    max-width: 20rem;
-    height: 20rem;
+    /* max-width: 20rem;
+    height: 20rem; */
+    position: relative;
+}
+
+.triangle {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 0;
+    height: 0;
+    border-right: 100px solid transparent;
+}
+
+.text {
+    width: 5em;
+    color: white;
+    position: relative;
+    top: -80px;
+    left: -10px;
+    font-weight: bold;
+    transform: rotate(-45deg);
 }
 
 .rightcolumn {
@@ -83,10 +103,4 @@
     border-radius: 50%;
     background-color: white;
     margin-right: 100px;
-}
-
-.soldOut{
-    border: 1px solid red;
-    background-color: aquamarine;
-    width: 20em;
 }
