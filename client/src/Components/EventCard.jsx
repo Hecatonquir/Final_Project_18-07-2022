@@ -60,7 +60,17 @@ export default function EventCard({
 							{name}
 						</Heading>
 					</Link>
-					<Text marginTop={2}> {date} </Text>
+					<Text marginTop={2}>Date: {date} </Text>
+					{/* get() { // MODIFICAR EL FORMATO DE LA FECHA, NO MODIFICAR EN LA DB PORQUE SE ROMPE, MODIFICAR EN FRONT
+					return this.getDataValue('Date').toLocaleString('en-GB', {
+						weekday: 'long',
+						day: 'numeric',
+						month: 'long',
+						year: 'numeric',
+						hour: 'numeric',
+						minute: 'numeric',
+					});
+				}, */}
 					<Text marginTop={2}>Price: ${price}</Text>
 					{/* <Text marginTop={2}>Category: {category}</Text> */}
 					<Text marginTop={2}>City: {city}</Text>
@@ -90,3 +100,4 @@ export default function EventCard({
 		</Box>
 	);
 }
+

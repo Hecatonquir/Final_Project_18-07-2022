@@ -1,4 +1,5 @@
 const { Op } = require('sequelize');
+const { map } = require('../app.js');
 const { Events, Users, sequelize } = require('../db.js');
 
 const getAllEvents = async (req, res, next) => {
@@ -105,6 +106,24 @@ const getReported = async (req, res) => {
 	}
 };
 
+const updateQuantity = async (req, res) => {
+	const { ID, newStock } = req.body
+	try {
+		await Events.update( {
+			Quantity: newStock,
+		},
+		{
+			where: {
+				ID: ID,
+			},
+		})
+		return res.send('Stock updated')
+	}catch(error) {
+		console.log(error.stack)
+		return res.status(400).send('Something went wrong')
+	}
+};
+
 module.exports = {
 	getAllEvents,
 	deleteEvent,
@@ -114,4 +133,5 @@ module.exports = {
 	getEventById,
 	reportEvent,
 	getReported,
+	updateQuantity
 };

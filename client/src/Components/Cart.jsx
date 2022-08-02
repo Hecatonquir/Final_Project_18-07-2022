@@ -8,6 +8,7 @@ import Nav from './Nav';
 import { Box, Button, /* Center, */ Heading, Text, Image } from '@chakra-ui/react';
 import { decodeToken } from 'react-jwt';
 import { updateCart } from '../Redux/Actions/updateCart';
+import { updateQuantity } from '../Redux/Actions/updateQuantity';
 import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
@@ -39,16 +40,16 @@ export default function Cart() {
 		totalAmount = totalAmount + cart[i].Price * cart[i].PurchasedItem;
 	}
 
-	function hundleClick() {
+	function hundleClick() {  // Clear cart button
 		dispatch(clearCart());
 		dispatch(updateCart(tokenDecoded.id));
 	}
-
+	
 	async function handleToken(token) {
 		console.log('Entered to handleToken')
 		const response = await axios.post('/checkout', { token, totalAmount });
 		const payback = response.data  // payback -> ARRAY ['success', token, charge, qr]
-		console.log(payback[3])
+		console.log(payback[3]) // QR code
 		
 		if (payback[0] === 'success'){
 			const itemsName = cart.map((it) => it.Name).join(' - ')
@@ -71,6 +72,11 @@ export default function Cart() {
 			/* emailjs.send( SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY )
 			.then((result) => { console.log(result.text); } , (error) => { console.log(error.text); }); */
 		  	/////////////////////////////////////////////////////////////////////////////////////////////
+
+			// Actualizacion de Stock de tickets en la base de datos (Quantity)
+			const stockToUpdate = Promise.all(cart.map( (it) => (updateQuantity({ ID: it.ID, newStock: it.Quantity - it.PurchasedItem})))) 
+			console.log(stockToUpdate)
+			
 			toast.success('Your purchase was successful! Check your E-mail for more information');
       /* dispatch(removeQuantityFromEvent(X)) <---------- ACA Se despacha al back para restar numeros al valor de Quantity de cada evento. (hacer 1 para cada evento)  */
 			dispatch(clearCart());
