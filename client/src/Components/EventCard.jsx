@@ -32,6 +32,9 @@ export default function EventCard({
 	let tokenDecoded = decodeToken(token);
 	const navigate = useNavigate();
 
+	//PRUEBA
+	const events = useSelector((state) => state.showToUser);
+
 	function handleClickFav() {
 		if (token1) {
 			if (!exitFav) {
@@ -53,6 +56,33 @@ export default function EventCard({
 					<Link to={`/details/id/${id}`}>
 						<Image src={image} alt='img eventCard' width='20rem' height='20rem'/>
 					</Link>
+
+
+				{/*PRUEBA*/}
+					{/* {events.filter((el) => el.isErased !== true).map((e) => (
+						<Box key={e.ID} className={styles.triangle} borderTop={
+							e.Quantity === 0
+								? '100px solid #ee0808'
+								: '100px solid #22b9dbfe'
+						}>
+							{console.log(e.Quantity === 0
+								? '0'
+								: 'num')}
+							<div className={styles.text}>{
+								e.Quantity === 0
+								? 'Sold Out'
+								: 'None'
+						}</div>
+						</Box>
+						))
+					} */}
+				{/*FIN DE PRUEBA*/}
+
+
+
+
+
+
 				</div>
 				<div className={styles.rightcolumn}>
 					<Link to={`/details/id/${id}`}>
@@ -60,7 +90,7 @@ export default function EventCard({
 							{name}
 						</Heading>
 					</Link>
-					<Text marginTop={2}>Date: {date} </Text>
+					<Text marginTop={2}> {date} </Text>
 					{/* get() { // MODIFICAR EL FORMATO DE LA FECHA, NO MODIFICAR EN LA DB PORQUE SE ROMPE, MODIFICAR EN FRONT
 					return this.getDataValue('Date').toLocaleString('en-GB', {
 						weekday: 'long',

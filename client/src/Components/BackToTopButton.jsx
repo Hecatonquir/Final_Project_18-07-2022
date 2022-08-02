@@ -26,7 +26,7 @@ function BackToTopButton() {
     <>
      {backToTopButton && (
         <Button width='50px' height='50px' fontSize='50px' position='fixed' bottom='50px' right='50px' bg='#FD7014' _hover={{bg:'#EEEEEE'}} onClick={scrollUp}>
-           <Image src={upArrows} alt="Arrows"/>
+           <Image src={upArrows} alt="Arrows" width={6}/>
         </Button>
     )}
     </>
