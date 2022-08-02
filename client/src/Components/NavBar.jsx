@@ -10,8 +10,8 @@ import logOut from '../Redux/Actions/logOut';
 import Search from './Search.jsx';
 import { Box, Button, Flex, Heading, Image, Text } from '@chakra-ui/react';
 import { CLEAR_CART, UPDATE_STATE_TRUE } from '../Redux/ActionTypes/actiontypes';
-
-function NavBar() {
+import styles2 from '../Styles/Home.module.css';
+function NavBar({ stateUser }) {
 	let { isAuthenticated, logout, user } = useAuth0();
 	let token = document.cookie.split(';')[0];
 	let token1 = token.split('=')[1];
@@ -24,62 +24,6 @@ function NavBar() {
 	const events = useSelector((state) => state.showToUser);
 	const active = useSelector((state) => state.loginState);
 	let count = cart ? cart.length : null;
-
-	//  return (
-	//     <Box marginBottom={6} padding={2} bgGradient='linear(to-b, #a28748, #6c5727)'>
-	//       <Flex justifyContent="space-around" alignItems="center">
-	//         <Box>
-	//           <Heading as="h4" color='white'>Events Henry</Heading>
-	//         </Box>
-	//         <Search />
-	//         <Box>
-	//           <Flex alignItems="center" width="35em" justifyContent="space-between">
-	//             <Box>
-	//               {!token || !active ? (
-	//                 <Button bg='#1a78b1' onClick={() => loginWithRedirect()}>
-	//                   <span>Log In/Sign Up</span>
-	//                 </Button>
-	//               ) : (
-	//                 <Button bg='#1a78b1' onClick={() => logout()}>
-	//                   <span>Log Out</span>
-	//                 </Button>
-	//               )}
-	//               {token &&tokenDecoded.role !== "Guest" && tokenDecoded.role !== "User" && active && (
-	//                 <Link to="/createEvent">
-	//                   <Button marginLeft={4} bg='#1a78b1'>Create an Event</Button>
-	//                 </Link>
-	//               )}
-	//             </Box>
-
-	//             {isAuthenticated ? (
-	//               <Box>
-	//                 <Link to="/profile">
-	//                   <Button bg='#1a78b1'>
-	//                     <span>Profile</span>
-	//                   </Button>
-	//                 </Link>
-	//               </Box>
-	//             ) : (
-	//               <Box></Box>
-	//             )}
-	//             <Box>
-	//               <Link to="/contact">
-	//                 <Button bg='#1a78b1'>
-	//                   <span>Contact Us</span>
-	//                 </Button>
-	//               </Link>
-	//             </Box>
-	//             <Box>
-	//               <Link to="/cart">
-	//                 <Image src={imgcarrito} alt="img carrito" width={10} />
-	//                 <span className={styles.count}>{count}</span>
-	//               </Link>
-	//             </Box>
-	//           </Flex>
-	//         </Box>
-	//       </Flex>
-	//     </Box>
-	//   )
 
 	return (
 		<Box marginBottom={4} padding={1} bgGradient='linear(to-b, blue.700, green.500)'>
@@ -103,9 +47,16 @@ function NavBar() {
 						/>
 					</Heading>
 				</Box>
-				<Box justifyContent="space-around">
+				<Box className={styles2.welcome} marginTop='5px'>
+					{stateUser || !isExpired(token) ? (
+						<p>Welcome {tokenDecoded ? tokenDecoded.name : 'Guest'}</p>
+					) : (
+						<p>Welcome Guest</p>
+					)}
+				</Box>
+				<Box justifyContent='space-around'>
 					{!token ? (
-						<Box marginLeft="5rem">
+						<Box marginLeft='5rem'>
 							<Link to='/login'>
 								<Button bg='#f4a69a'>Login/Sign Up</Button>
 							</Link>
@@ -115,8 +66,8 @@ function NavBar() {
 					)}
 					{token && (
 						<Button
-						    marginLeft="24rem"
-						    marginRight="2rem"
+							marginLeft='24rem'
+							marginRight='2rem'
 							bg='#f4a69a'
 							className={styles.Button}
 							color='white'
@@ -140,7 +91,7 @@ function NavBar() {
 					)}
 				</Box>
 				{token && active && (
-					<Box marginLeft="18rem">
+					<Box marginLeft='18rem'>
 						<Link to='/profile'>
 							<Button bg='#f4a69a'>
 								<Text>Profile</Text>
@@ -160,3 +111,59 @@ function NavBar() {
 }
 
 export default NavBar;
+
+//  return (
+//     <Box marginBottom={6} padding={2} bgGradient='linear(to-b, #a28748, #6c5727)'>
+//       <Flex justifyContent="space-around" alignItems="center">
+//         <Box>
+//           <Heading as="h4" color='white'>Events Henry</Heading>
+//         </Box>
+//         <Search />
+//         <Box>
+//           <Flex alignItems="center" width="35em" justifyContent="space-between">
+//             <Box>
+//               {!token || !active ? (
+//                 <Button bg='#1a78b1' onClick={() => loginWithRedirect()}>
+//                   <span>Log In/Sign Up</span>
+//                 </Button>
+//               ) : (
+//                 <Button bg='#1a78b1' onClick={() => logout()}>
+//                   <span>Log Out</span>
+//                 </Button>
+//               )}
+//               {token &&tokenDecoded.role !== "Guest" && tokenDecoded.role !== "User" && active && (
+//                 <Link to="/createEvent">
+//                   <Button marginLeft={4} bg='#1a78b1'>Create an Event</Button>
+//                 </Link>
+//               )}
+//             </Box>
+
+//             {isAuthenticated ? (
+//               <Box>
+//                 <Link to="/profile">
+//                   <Button bg='#1a78b1'>
+//                     <span>Profile</span>
+//                   </Button>
+//                 </Link>
+//               </Box>
+//             ) : (
+//               <Box></Box>
+//             )}
+//             <Box>
+//               <Link to="/contact">
+//                 <Button bg='#1a78b1'>
+//                   <span>Contact Us</span>
+//                 </Button>
+//               </Link>
+//             </Box>
+//             <Box>
+//               <Link to="/cart">
+//                 <Image src={imgcarrito} alt="img carrito" width={10} />
+//                 <span className={styles.count}>{count}</span>
+//               </Link>
+//             </Box>
+//           </Flex>
+//         </Box>
+//       </Flex>
+//     </Box>
+//   )

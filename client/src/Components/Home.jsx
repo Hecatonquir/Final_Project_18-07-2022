@@ -4,7 +4,7 @@ import getEvents from '../Redux/Actions/getEvents.js';
 import ButtonFilter from './ButtonFilter.jsx';
 import EventCard from './EventCard.jsx';
 import NavBar from './NavBar.jsx';
-import Search from './Search.jsx';
+/* import Search from './Search.jsx'; */
 import EventCarousel from './Carousel.jsx';
 // import Loader from './Loader.jsx' ;
 // import CalendarEvents from './Calendar.jsx ';
@@ -54,18 +54,12 @@ export default function Home() {
 	return (
 		<Box bgGradient='linear(to-r, #1c2333, #371a1e)' minHeight='100vh'>
 			<Box padding='0' position='fixed' zIndex='100' width='100%'>
-				<NavBar />
+				<NavBar stateUser={stateUser} />
 			</Box>
 			<Box paddingTop='5.6rem'>
 				<EventCarousel carrouselEvents={carrouselEvents} />
 			</Box>
-			<Box className={styles.welcome} marginTop='5px'>
-				{stateUser || !isExpired(token) ? (
-					<p>Welcome {tokenDecoded ? tokenDecoded.name : 'Guest'}</p>
-				) : (
-					<p>Welcome Guest</p>
-				)}
-			</Box>
+
 			<Box
 				width='90%'
 				alignContent='center'
