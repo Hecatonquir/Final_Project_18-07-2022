@@ -60,9 +60,9 @@ export default function ContactUs() {
             <button className={styles.Button}>Back</button>
             </Link>
             </nav> */}
-			<a className={styles.white} onClick={toggleShow}>
+			<h4 onClick={toggleShow}>
 				ContacUs
-			</a>
+			</h4>
 			<MDBModal show={basicModal} setShow={setBasicModal} tabIndex='1'>
 				<MDBContainer>
 					<MDBModalDialog>
@@ -72,8 +72,8 @@ export default function ContactUs() {
 
 								<h4 className={styles.title}>Contact Us</h4>
 								<form className={styles.form} /* onSubmit={handleSubmit} */>
-									<div class='form-group'>
-										<label for='exampleFormControlTextarea1'>Tell Us your problem</label>
+									<div className='form-group'>
+										<label htmlFor='exampleFormControlTextarea1'>Tell Us your problem</label>
 
 										<select
 											className={styles.select}
@@ -108,8 +108,9 @@ export default function ContactUs() {
 							</MDBModalBody>
 							
 							<MDBModalFooter>
+							
 							<div> 
-								   <label for= "">Your Email:</label>
+								   <label htmlFor="Name">Your Email:</label>
 										<input 
 										className={styles.mail}
 										type="email" 
