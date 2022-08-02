@@ -349,6 +349,7 @@ const loginRequest = async (req, res) => {
 
 const loginRequestAP = async (req, res) => {
 	const { username, password } = req.body;
+	console.log(password)
 	try {
 		const user_ = await Users.findAll({
 			where: {

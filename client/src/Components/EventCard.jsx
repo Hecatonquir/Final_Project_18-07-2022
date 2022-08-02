@@ -22,6 +22,7 @@ export default function EventCard({
 	location,
 	date,
 	category,
+	initialQtty,
 }) {
 	const dispatch = useDispatch();
 	const Allfavourites = useSelector((state) => state.favourites);
@@ -50,20 +51,30 @@ export default function EventCard({
 			<div className={styles.cards}>
 				<div className={styles.leftcolumn}>
 					<Link to={`/details/id/${id}`}>
-						<Image src={image} alt='img eventCard' width='20rem' height='20rem' />
+						<Image src={image} alt='img eventCard' width='20rem' height='20rem'/>
 					</Link>
 				</div>
 				<div className={styles.rightcolumn}>
 					<Link to={`/details/id/${id}`}>
-						<Heading as='h5' fontSize='1.5em' marginTop={4}>
+						<Heading as='h5' fontSize='1.5em' marginTop={4} _hover={{color:'#FD7014'}}>
 							{name}
 						</Heading>
 					</Link>
 					<Text marginTop={2}>Date: {date} </Text>
+					{/* get() { // MODIFICAR EL FORMATO DE LA FECHA, NO MODIFICAR EN LA DB PORQUE SE ROMPE, MODIFICAR EN FRONT
+					return this.getDataValue('Date').toLocaleString('en-GB', {
+						weekday: 'long',
+						day: 'numeric',
+						month: 'long',
+						year: 'numeric',
+						hour: 'numeric',
+						minute: 'numeric',
+					});
+				}, */}
 					<Text marginTop={2}>Price: ${price}</Text>
-					<Text marginTop={2}>Category: {category}</Text>
+					{/* <Text marginTop={2}>Category: {category}</Text> */}
 					<Text marginTop={2}>City: {city}</Text>
-					<Text marginTop={2}>Place: {location}</Text>
+					{/* <Text marginTop={2}>Place: {location}</Text> */}
 					<div className={styles.containerButton}>
 						<Button className={styles.ButtonFav} backgroundColor='white'>
 							{exitFav ? (
@@ -89,3 +100,4 @@ export default function EventCard({
 		</Box>
 	);
 }
+

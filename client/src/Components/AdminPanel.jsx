@@ -29,13 +29,13 @@ function AdminPanel() {
 
 	let usersBD = useSelector((state) => state.allUsers);
 	let events = useSelector((state) => state.allEvents);
-	
+	let arrayUsers = useSelector(state => state.usersBackUp)
 	const backUperE= useSelector(state => state.eventsBackUp)
 
 	let dispatch = useDispatch();
 	let navigate = useNavigate();
 	const [admin, setAdmin] = useState(false);
-	let [arrayUsers, setArrUsers] = useState(usersBD)
+	
 
 	let [userADM, setUser] = useState({
 		username: '',
@@ -47,7 +47,7 @@ function AdminPanel() {
 
 	function handleChange(e) {
 		setUser({ ...userADM, [e.target.name]: e.target.value })
-		return e.target.name === "username" ? dispatch({type: GET_USERS, payload: e.target.value === "" ? arrayUsers: arrayUsers.filter(el => {
+		return e.target.name === "username" ? dispatch({type: GET_USERS, payload: !e.target.value? arrayUsers: arrayUsers.filter(el => {
 			if(el.Email.toLowerCase().includes(e.target.value.toLowerCase())) {
 				return el
 			}})
@@ -79,7 +79,7 @@ function AdminPanel() {
 			</div>
 
 			<div className={styles.container}>
-				<div className={styles.rightcolumn}>
+				<div className={styles.leftcolumn}>
 					<h4 className={styles.subtitle}>All Users</h4>
 					<div className={styles.containerinput}>
 						{admin && (
@@ -160,7 +160,7 @@ function AdminPanel() {
 					
 				</div>
 
-				<div className={styles.leftcolumn}>
+				<div className={styles.rightcolumn}>
 					<h4 className={styles.subtitle}>All Events</h4>
 					<div className={styles.containerinput}>
 						{admin && (

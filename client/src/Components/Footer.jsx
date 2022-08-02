@@ -7,7 +7,7 @@ function Footer() {
   
 
   return (
-    <Box color='white' bgGradient='linear(to-t, blue.600, green.600)'>
+    <Box color='white' bg='#222831'>
       <Flex>
         <Box width='50%' textAlign='center'>
           <Heading as="h5" fontSize={20}>MAIN-STAGE</Heading>
@@ -20,14 +20,23 @@ function Footer() {
         <Heading as="h5" fontSize={20}>LINKS</Heading>
           <Flex flexDirection='column'>
           <Link
+            color='white'
+            _hover={{color:'#FD7014'}}
             href="https://github.com/Hecatonquir/Final_Project_18-07-2022 "
             isExternal>
             GitHub
           </Link>
-          <Link  isExternal>
+          <Link 
+            isExternal
+            color='white'
+            _hover={{color:'#FD7014'}}>
             <ContactUs/>
           </Link>
-          <Link href="/aboutUs" isExternal>
+          <Link 
+            href="/aboutUs" 
+            isExternal
+            color='white'
+            _hover={{color:'#FD7014'}}>
             About Us
           </Link>
           </Flex>

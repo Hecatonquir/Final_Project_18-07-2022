@@ -5,21 +5,21 @@ body {
 
 
 .Total {
-    background-color: #8A564F;
+    background: #393E46;
     width: 100vw;
     height: 100vh;
     position: absolute;
+    display: flex;
     
 }
 
 .container {
-    background-color: #065975;
+    background-color: #222831;
     width: 400px;
     height: 350px;
     margin: auto;
     margin-top: 100px;
     border: 2px solid white;
-    border-radius: 10px;
     position: relative;
 }
 
@@ -57,7 +57,11 @@ body {
     padding: 0.2rem;
     border-radius: 5px;
     margin-top: 2.5rem;
-    background-color: #94CDD0;
-    color: rgb(55, 68, 108);
+    background-color: #FD7014;
+    color: white;
     font-weight: bolder;
+}
+
+img {
+    width: 40%;
 }

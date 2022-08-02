@@ -60,7 +60,7 @@ export default function ContactUs() {
             <button className={styles.Button}>Back</button>
             </Link>
             </nav> */}
-			<h4 className={styles.white} onClick={toggleShow}>
+			<h4 onClick={toggleShow}>
 				ContacUs
 			</h4>
 			<MDBModal show={basicModal} setShow={setBasicModal} tabIndex='1'>
