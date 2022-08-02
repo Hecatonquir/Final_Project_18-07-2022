@@ -73,7 +73,7 @@ export default function ContactUs() {
 								<h4 className={styles.title}>Contact Us</h4>
 								<form className={styles.form} /* onSubmit={handleSubmit} */>
 									<div className='form-group'>
-										<label for='exampleFormControlTextarea1'>Tell Us your problem</label>
+										<label htmlFor='exampleFormControlTextarea1'>Tell Us your problem</label>
 
 										<select
 											className={styles.select}
@@ -110,7 +110,7 @@ export default function ContactUs() {
 							<MDBModalFooter>
 							
 							<div> 
-								   <label for="Name">Your Email:</label>
+								   <label htmlFor="Name">Your Email:</label>
 										<input 
 										className={styles.mail}
 										type="email" 

@@ -69,14 +69,14 @@ function ButtonFilter({ setSearch, search }) {
 	return (
 		<>
 			<Stack spacing={10} marginTop={6} marginBottom={6}>
-				<Flex justifyContent='space-around' width='80%' marginLeft="12rem">
-					<div className={styles.search}>
-						<Search search={search} setSearch={setSearch} width="50%"/>
+				<Flex  width='100%' marginLeft="5rem">
+					<div >
+						<Search search={search} setSearch={setSearch} />
 					</div>
 					<Select
-						variant='flushed'
-						marginLeft='5rem'
-						width='20%'
+					    bg="#EEEEEE"
+						variant='outline'
+						width='25%'
 						onChange={(e) => handleSelect(e)}
 						color='gray'
 						id='city'>
@@ -91,10 +91,9 @@ function ButtonFilter({ setSearch, search }) {
 					</Select>
 
 					<Select
-						variant='flushed'
-						marginLeft='5rem'
-						marginRight='5rem'
-						width='20%'
+					    bg="#EEEEEE"
+						variant='outline'
+						width='25%'
 						onChange={(e) => handleSelect(e)}
 						color='gray'
 						id='cat'>
@@ -126,7 +125,7 @@ function ButtonFilter({ setSearch, search }) {
 									dispatch({ type: SHOW_EVENTS_USER, payload: backUp.slice(0, 15) })
 								);
 							}}
-							bg='#f4a69a'>
+							bg='#FD7014'>
 							Clear Filters
 						</Button>
 					</Box>
