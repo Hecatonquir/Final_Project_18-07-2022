@@ -84,7 +84,7 @@ export default function Home() {
 			<Center>
 				<Box marginTop={10} marginBottom={10}>
 					<SimpleGrid columns={2} spacing={10}>
-						{orderedEvents.length ? (
+						{orderedEvents.filter((el) => el.isErased !== true).length ? (
 							orderedEvents
 								.filter((el) => el.isErased !== true)
 								.map((event) => (
