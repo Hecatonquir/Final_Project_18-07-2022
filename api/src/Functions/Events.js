@@ -124,6 +124,45 @@ const updateQuantity = async (req, res) => {
 	}
 };
 
+
+const updateEvent = async (req,res) => {
+	let {id} = req.params
+	let {data} = req.body
+	console.log(req.body, id)
+	try {
+
+		if(req.body.data.Name) {
+
+			let found = await Events.findOne({
+				where: 
+					data
+				
+			})
+
+			if(found) {
+				return res.status(400).send("This event name already Exist")
+			}
+
+		}
+		let updated = await Events.update(
+			
+				data
+			,
+			{
+				where: {
+					ID: id,
+				},
+			}
+		);
+		console.log(updated);
+		return res.send('Event Updated');
+	} catch (error) {
+		return res.status(400).send('Error');
+	}
+	
+
+};
+
 module.exports = {
 	getAllEvents,
 	deleteEvent,
@@ -133,5 +172,6 @@ module.exports = {
 	getEventById,
 	reportEvent,
 	getReported,
-	updateQuantity
+	updateQuantity,
+	updateEvent
 };

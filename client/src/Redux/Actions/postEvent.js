@@ -6,6 +6,6 @@ export async function postEvent(event) {
 		await axios.post(`/event`, event);
 		swal('Post Created!', ' ', 'success');
 	} catch (error) {
-		alert(error.response.data);
+		swal(error.response.data);
 	}
 }
