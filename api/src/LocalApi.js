@@ -12,7 +12,7 @@ const eventsApi = [
 		Category: 'Concierto',
 		City: 'CABA',
 		RedFlags: 1,
-		Date: '2021-05-22T12:30',
+		Date: '2021-10-22T12:30',
 		Detail: 'Este es el detalle de este evento!',
 		Carrousel:
 			'https://static6.ticketek.com.ar/cms_static/sites/default/files/images/show-header/this960.png',
