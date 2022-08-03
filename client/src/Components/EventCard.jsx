@@ -87,10 +87,16 @@ export default function EventCard({
 						: price !== 0 && 1uantity === 0
 						? 'All entrances were Sold Out!'
 						: 1uantity} */}
-					{price > 0 && quantity < 1 && (
+					{price > 0 && quantity < 1 ? (
 						<Box className={styles.triangle} borderTop='100px solid #ee0808'>
 							<div className={styles.text}>SOLD OUT</div>
 						</Box>
+					) : price === 0 && quantity === 0 ? (
+						<Box className={styles.triangle} borderTop='100px solid #99cc99'>
+							<div className={styles.text}>FREE!</div>
+						</Box>
+					) : (
+						''
 					)}
 					{/*FIN DE PRUEBA*/}
 				</div>

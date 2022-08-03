@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { decodeToken } from 'react-jwt';
 import axios from 'axios';
 import { updateCart } from '../Redux/Actions/updateCart';
+import { Button } from '@chakra-ui/react';
 
 function AddToCartButton({ id, quantity, price }) {
 	let token = document.cookie.split(';')[0];
@@ -28,7 +29,7 @@ function AddToCartButton({ id, quantity, price }) {
 	return (
 		<div>
 			{price === 0 && quantity === 0 ? (
-				<h6
+				<Button
 					style={{
 						width: '100px',
 						backgroundColor: 'green',
@@ -40,9 +41,10 @@ function AddToCartButton({ id, quantity, price }) {
 						display: 'flex',
 						alignItems: 'center',
 						justifyContent: 'center',
-					}}>
+					}}
+					disabled={true}>
 					FREE!
-				</h6>
+				</Button>
 			) : price !== 0 && quantity !== 0 ? (
 				<button
 					className={styles.Button2}
@@ -53,7 +55,7 @@ function AddToCartButton({ id, quantity, price }) {
 					Add To <img src={carticon} alt='not imgcart' className={styles.carticon} />
 				</button>
 			) : (
-				<button
+				<Button
 					style={{
 						width: '100px',
 						backgroundColor: '#ee0808',
@@ -65,9 +67,10 @@ function AddToCartButton({ id, quantity, price }) {
 						display: 'flex',
 						alignItems: 'center',
 						justifyContent: 'center',
-					}}>
+					}}
+					disabled={true}>
 					SOLD OUT
-				</button>
+				</Button>
 			)}
 		</div>
 	);

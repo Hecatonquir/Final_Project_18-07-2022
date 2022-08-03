@@ -29,7 +29,6 @@ export default function Home() {
 	const events = useSelector((state) => state.showToUser);
 	const stateUser = useSelector((state) => state.loginState);
 	const backup = useSelector((state) => state.eventsBackUp);
-	const carrouselEvents = backup.filter((ev) => ev.Carrousel);
 	let [search, setSearch] = useState('');
 
 	let today = new Date().toISOString().slice(0, 16);
@@ -39,10 +38,10 @@ export default function Home() {
 	orderedEvents.forEach((ev, i) => {
 		let evDate = ev.Date.toLocaleString().slice(0, 16);
 		if (evDate < today) {
-			let oldEvent = orderedEvents.splice(i, 1);
-			orderedEvents.push(oldEvent[0]);
+			orderedEvents.splice(i, 1);
 		}
 	});
+	const carrouselEvents = orderedEvents.filter((ev) => ev.Carrousel);
 
 	if (!stateUser && user) {
 		dispatch(registerGmail(user, logout));
@@ -110,7 +109,6 @@ export default function Home() {
 											quantity={event.Quantity}
 											city={event.City}
 											location={event.Location}
-											
 										/>
 									</Box>
 								))
