@@ -72,7 +72,7 @@ function Register() {
        setErrors(validate({...input, [e.target.name] : e.target.value}))
     }
 
-    //console.log(form.current)
+    console.log(form.current)
 
     const submitButton = function (e){
         e.preventDefault();

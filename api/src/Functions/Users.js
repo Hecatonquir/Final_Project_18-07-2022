@@ -45,7 +45,7 @@ const validatePartner = (req, res, next) => {
 
 const validateAdmin = (req, res, next) => {
 	const accessToken = req.body.token;
-	
+
 	if (!accessToken) return res.status(400).send('User is not authenticated');
 	try {
 		const validToken = jwt.verify(accessToken, process.env.PRIVATEKEY);
@@ -116,17 +116,16 @@ const getUserByName = async (req, res) => {
 
 const getUserById = async (req, res) => {
 	let ID = req.params.id;
-	console.log(ID)
+	console.log(ID);
 	try {
 		const userBox = await Users.findOne({
 			where: {
 				ID,
 			},
-			include: 
-				{
-					model: Supports,
-				},
-			
+			include: {
+				model: Supports,
+			},
+
 			attributes: { exclude: ['Password'] },
 		});
 		res.send(userBox);
@@ -245,57 +244,57 @@ const registerUser = async (req, res) => {
 
 const registerUserGmail = async (req, res) => {
 	const { Email } = req.body;
-	console.log(Email)
+	console.log(Email);
 	try {
-		if(Email) {
-			
-		let foundOrCreate = await Users.findAll({
-			where: {
-				Email,
-			},
-		});
-		console.log(foundOrCreate);
-		if (!foundOrCreate[0]) {
-			bcrypt.hash(process.env.DefaultPassword, 10).then(async (hash) => {
-				req.body.Password = hash;
-				req.body.Role = 'User';
-				req.body.Username = Email
-				let gmailUser = await Users.create(req.body);
-				const token = jwt.sign(
+		if (Email) {
+			let foundOrCreate = await Users.findAll({
+				where: {
+					Email,
+				},
+			});
+			console.log(foundOrCreate);
+			if (!foundOrCreate[0]) {
+				bcrypt.hash(process.env.DefaultPassword, 10).then(async (hash) => {
+					req.body.Password = hash;
+					req.body.Role = 'User';
+					req.body.Username = Email;
+					let gmailUser = await Users.create(req.body);
+					const token = jwt.sign(
+						{
+							id: gmailUser.ID,
+							role: gmailUser.Role,
+							name: gmailUser.Name,
+							email: gmailUser.Email,
+							picture: gmailUser.Image,
+						},
+						process.env.PRIVATEKEY,
+						{
+							expiresIn: 300,
+						}
+					);
+
+					return res.json(token);
+				});
+			} else {
+				const tokenRegistered = jwt.sign(
 					{
-						id: gmailUser.ID,
-						role: gmailUser.Role,
-						name: gmailUser.Name,
-						email: gmailUser.Email,
-						picture: gmailUser.Image,
+						id: foundOrCreate[0].ID,
+						role: foundOrCreate[0].Role,
+						name: foundOrCreate[0].Name,
+						email: foundOrCreate[0].Email,
+						picture: foundOrCreate[0].Image,
 					},
 					process.env.PRIVATEKEY,
 					{
-						expiresIn: 300,
+						expiresIn: 9999,
 					}
 				);
-				
-			return	res.json(token);
-			});
+
+				res.json(tokenRegistered);
+			}
 		} else {
-			const tokenRegistered = jwt.sign(
-				{
-					id: foundOrCreate[0].ID,
-					role: foundOrCreate[0].Role,
-					name: foundOrCreate[0].Name,
-					email: foundOrCreate[0].Email,
-					picture: foundOrCreate[0].Image,
-				},
-				process.env.PRIVATEKEY,
-				{
-					expiresIn: 9999,
-				}
-			);
-			
-			res.json(tokenRegistered);
+			res.status(400).send('no name provided');
 		}
-	}
-	else{res.status(400).send("no name provided")}
 	} catch (error) {
 		return res.status(400).send(error);
 	}
@@ -334,8 +333,6 @@ const loginRequest = async (req, res) => {
 						}
 					);
 
-					
-
 					return res.json(token);
 				} else {
 					return res.status(400).send('');
@@ -349,7 +346,7 @@ const loginRequest = async (req, res) => {
 
 const loginRequestAP = async (req, res) => {
 	const { username, password } = req.body;
-	console.log(password)
+	console.log(password);
 	try {
 		const user_ = await Users.findAll({
 			where: {
@@ -362,7 +359,6 @@ const loginRequestAP = async (req, res) => {
 			}
 			bcrypt.compare(password, user_[0].Password, (error, response) => {
 				if (response) {
-					
 					const id = user_[0].ID;
 					const token = jwt.sign(
 						{ id: id, role: user_[0].Role, name: user_[0].Name, email: user_[0].Email },
@@ -371,7 +367,7 @@ const loginRequestAP = async (req, res) => {
 							expiresIn: 9999,
 						}
 					);
-					
+
 					return res.json(token);
 				} else {
 					return res.status(400).send('No');
@@ -444,10 +440,18 @@ const updateCart = async (req, res) => {
 
 const updateHistory = async (req, res) => {
 	const { userID } = req.params;
-
+	const eventos = req.body;
+	console.log('🐲🐲🐲 / file: Users.js / line 449 / eventos', eventos);
 	try {
 		let user = await Users.findByPk(userID);
-		user.shoppingHistory = req.body;
+		let oldhistory = user.shoppingHistory;
+		console.log('🐲🐲🐲 / file: Users.js / line 447 / oldhistory', oldhistory);
+		let newHistory = oldhistory.slice();
+		eventos.forEach((ev) => {
+			newHistory.push(ev);
+		});
+		console.log('🐲🐲🐲 / file: Users.js / line 449 / newHistory', newHistory);
+		user.shoppingHistory = newHistory;
 		user.save();
 		res.send('Shopping history updated');
 	} catch (error) {
@@ -475,42 +479,30 @@ const banUser = async (req, res) => {
 	}
 };
 
-const updateUser = async (req,res) => {
-	let {id} = req.params
-	let {data} = req.body
-	console.log(req.body, id)
+const updateUser = async (req, res) => {
+	let { id } = req.params;
+	let { data } = req.body;
+	console.log(req.body, id);
 	try {
-
-		if(req.body.data.Email || req.body.data.Username) {
-
+		if (req.body.data.Email || req.body.data.Username) {
 			let found = await Users.findOne({
-				where: 
-					data
-				
-			})
+				where: data,
+			});
 
-			if(found) {
-				return res.status(400).send("Username or Email already Exist")
+			if (found) {
+				return res.status(400).send('Username or Email already Exist');
 			}
-
 		}
-		let updated = await Users.update(
-			
-				data
-			,
-			{
-				where: {
-					ID: id,
-				},
-			}
-		);
+		let updated = await Users.update(data, {
+			where: {
+				ID: id,
+			},
+		});
 		console.log(updated);
 		return res.send('User Updated');
 	} catch (error) {
 		return res.status(400).send('Error');
 	}
-	
-
 };
 
 module.exports = {

@@ -16,7 +16,7 @@ function NavBar({ stateUser }) {
 	let token = document.cookie.split(';')[0];
 	let token1 = token.split('=')[1];
 
-	//console.log(document.cookie);
+	console.log(document.cookie);
 	let tokenDecoded = decodeToken(token1);
 	let dispatch = useDispatch();
 	const logoutState = useSelector((state) => state.allEvents);
@@ -58,7 +58,9 @@ function NavBar({ stateUser }) {
 					{!token ? (
 						<Box marginLeft='5rem'>
 							<Link to='/login'>
-								<Button bg='#FD7014' color='white' _hover={{bg:'#EEEEEE', color:'black'}}>Login/Sign Up</Button>
+								<Button bg='#FD7014' color='white' _hover={{ bg: '#EEEEEE', color: 'black' }}>
+									Login/Sign Up
+								</Button>
 							</Link>
 						</Box>
 					) : (
@@ -68,7 +70,8 @@ function NavBar({ stateUser }) {
 						<Button
 							marginLeft='24rem'
 							marginRight='2rem'
-							bg='#FD7014' _hover={{bg:'#EEEEEE', color:'black'}}
+							bg='#FD7014'
+							_hover={{ bg: '#EEEEEE', color: 'black' }}
 							className={styles.Button}
 							color='white'
 							onClick={() => {
@@ -86,14 +89,16 @@ function NavBar({ stateUser }) {
 
 					{token && tokenDecoded && tokenDecoded.role === 'Partner' && active && (
 						<Link to='/createEvent'>
-							<Button bg='#FD7014' color='white' _hover={{bg:'#EEEEEE', color:'black'}}>Create an Event</Button>
+							<Button bg='#FD7014' color='white' _hover={{ bg: '#EEEEEE', color: 'black' }}>
+								Create an Event
+							</Button>
 						</Link>
 					)}
 				</Box>
 				{token && active && (
 					<Box marginLeft='18rem'>
 						<Link to='/profile'>
-							<Button bg='#FD7014' color='white' _hover={{bg:'#EEEEEE', color:'black'}}>
+							<Button bg='#FD7014' color='white' _hover={{ bg: '#EEEEEE', color: 'black' }}>
 								<Text>Profile</Text>
 							</Button>
 						</Link>
