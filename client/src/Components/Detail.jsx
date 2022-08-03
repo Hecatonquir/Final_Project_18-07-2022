@@ -16,6 +16,8 @@ import DetailCarousel from "./DetailCarousel";
 import swal from "sweetalert";
 import { decodeToken } from "react-jwt";
 import { updateEvent } from "../Redux/Actions/updateEvent";
+import MapDetails from "./MapDetails";
+
 export default function Detail() {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -94,13 +96,14 @@ export default function Detail() {
     }
   }
 
-
+const coord = [-12.0485979, -77.0313197]
 
 	return (
 		<Box bgGradient='#222831'>
 			{event[0] ? (
 				<Box bg='#EEEEEE'>
 					<Nav />
+          
 					<Flex justifyContent='center' alignItems='center' height='100vh'>
 						<Box
 							maxW='100%'
@@ -233,9 +236,16 @@ export default function Detail() {
                     </Box>
                   </div>
                 </div>
+
+                <Flex justifyContent='center' flexDirection='column'>
+                    <Text fontSize='1.5em' textAlign='center' >Location on map</Text>
+                    <MapDetails data={coord}/>
+              </Flex>
+
               </Flex>
             </Box>
           </Flex>
+        
         </Box>
       ) : (
         <Box>
