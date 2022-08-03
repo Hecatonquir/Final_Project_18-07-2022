@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { CLEAR_USER_DETAILS } from "../Redux/ActionTypes/actiontypes";
 import { getUserDetails } from "../Redux/Actions/getUserDetails";
 import { Placeholder } from "react-bootstrap";
-import { Box, Button, Text, Heading, Flex, Image } from "@chakra-ui/react";
+import { Box, Button, Text, Heading, Flex, Image, Input } from "@chakra-ui/react";
 import styles from '../Styles/UserDetails.module.css'
 import ticketDone from "../Redux/Actions/markTicketAsDone";
 import updateUser from "../Redux/Actions/updateUser";
@@ -63,32 +63,50 @@ return (
     <div className={styles.containerTotal}>
       
         {user && <div> 
-          <Box bgGradient='linear(to-b, blue.700, green.500)'>
-          <Link to="/welcomeA">
-          <Button margin={2} bg='#bfd6e5'>Back</Button>
+          <Box bg='#222831'>
+            <Link to="/welcomeA">
+            <Button margin={2} bg='#FD7014' color='white'>Back</Button>
           </Link>
           </Box>
-          <Flex justifyContent='center' flexDirection='row' bg='#393E46'>
+          <Flex  flexDirection='row' bg='#393E46'>
           <Box color='white'  width='25%' padding={4} minHeight='100vh'>
-            <Flex justifyContent='center' alignItems='center' flexDirection='column'>
-              <Heading as='h4' marginBottom={2}>User Details</Heading>
-                <Image src={`${user.Image}`} alt="No Img" width='150' height='200'></Image>
-                <Text margin={2}>Name: {user.Name}</Text>
-                <button name="Name" onClick={(e) => handleClick(e)}>Update </button>
-                <input name="name" hidden={userSpecs.Name? false: true} value={input.name}type="text" onChange={(e) => handleChange(e)}></input>
-                <button hidden={userSpecs.Name? false: true} onClick={() => updateUser({Name: input.name}, user.ID, dispatch)}>Change</button>
-                <Text margin={2}>Username: {user.Username}</Text>
-                <button name="Username" onClick={(e) => handleClick(e)}>Update</button>
-                <input  name="username" hidden={userSpecs.Username? false: true} value={input.username} type="text" onChange={(e) => handleChange(e)}></input>
-                <button hidden={userSpecs.Username? false: true} onClick={() => updateUser({Username: input.username}, user.ID, dispatch)}>Change</button>
-                <Text margin={2}>Email: {user.Email}</Text>
-                <button name="Email" onClick={(e) => handleClick(e)}>Update</button>
-                <input name="email"hidden={userSpecs.Email? false: true} value={input.email}type="email" onChange={(e) => handleChange(e)}></input>
-                <button hidden={userSpecs.Email? false: true} onClick={() => updateUser({Email: input.email}, user.ID, dispatch)}>Change</button>
-                <Text margin={2}>Location: {user.Location}</Text>
-                <button name="Location" onClick={(e) => handleClick(e)}>Update</button>
-                <input name="location" value={input.location} hidden={userSpecs.Location? false: true} type="text" onChange={(e) => handleChange(e)}></input>
-                <button hidden={userSpecs.Location? false: true} onClick={() => updateUser({Location: input.location}, user.ID, dispatch)}>Change</button>
+            <Flex flexDirection='column'>
+                <Flex alignItems='center' flexDirection='column'>
+                    <Heading as='h4' marginBottom={2}>User Details</Heading>
+                    <Image src={`${user.Image}`} alt="No Img" width='150' height='200'></Image>
+                </Flex>
+                <Flex flexDirection='row' mt={6} justifyContent='space-between'>
+                    <Text margin={2}>Name: {user.Name}</Text>
+                    <Button bg='#FD7014' size='sm' mr={12} name="Name" onClick={(e) => handleClick(e)}>Update </Button>
+                </Flex>
+                <Flex flexDirection='row' mb={2} alignItems='center'>
+                  <Input size='sm' width='15rem' name="name" hidden={userSpecs.Name? false: true} value={input.name}type="text" onChange={(e) => handleChange(e)}></Input>
+                  <Button color='black' size='sm' borderLeftRadius='none' hidden={userSpecs.Name? false: true} onClick={() => updateUser({Name: input.name}, user.ID, dispatch)}>Change</Button>
+                </Flex>
+                <Flex flexDirection='row' justifyContent='space-between'>
+                    <Text margin={2}>Username: {user.Username}</Text>
+                    <Button bg='#FD7014' size='sm' mr={12} name="Username" onClick={(e) => handleClick(e)}>Update</Button>
+                </Flex>
+                <Flex flexDirection='row' mb={2} alignItems='center'>
+                    <Input size='sm' width='15rem' name="username" hidden={userSpecs.Username? false: true} value={input.username} type="text" onChange={(e) => handleChange(e)}></Input>
+                    <Button color='black' size='sm' borderLeftRadius='none' hidden={userSpecs.Username? false: true} onClick={() => updateUser({Username: input.username}, user.ID, dispatch)}>Change</Button>
+                </Flex>
+                <Flex flexDirection='row' justifyContent='space-between'>
+                    <Text margin={2}>Email: {user.Email}</Text>
+                    <Button bg='#FD7014' size='sm' mr={12} name="Email" onClick={(e) => handleClick(e)}>Update</Button>
+                </Flex>
+                <Flex flexDirection='row' mb={2} alignItems='center'>
+                    <Input size='sm' width='15rem' name="email" hidden={userSpecs.Email? false: true} value={input.email} type="email" onChange={(e) => handleChange(e)}></Input>
+                    <Button color='black' size='sm' borderLeftRadius='none' hidden={userSpecs.Email? false: true} onClick={() => updateUser({Email: input.email}, user.ID, dispatch)}>Change</Button>
+                </Flex>
+                <Flex flexDirection='row' justifyContent='space-between'>
+                    <Text margin={2}>Location: {user.Location}</Text>
+                    <Button bg='#FD7014' size='sm' mr={12} name="Location" onClick={(e) => handleClick(e)}>Update</Button>
+                </Flex>
+                <Flex flexDirection='row' mb={2} alignItems='center'>
+                    <Input size='sm' width='15rem' name="location" value={input.location} hidden={userSpecs.Location? false: true} type="text" onChange={(e) => handleChange(e)}></Input>
+                    <Button color='black' size='sm' borderLeftRadius='none' hidden={userSpecs.Location? false: true} onClick={() => updateUser({Location: input.location}, user.ID, dispatch)}>Change</Button>
+                </Flex>
                 <Text margin={2}>Role: {user.Role}</Text>
                 <Text margin={2}>Is Online: {user.LoggedIn ? "Yes": "No"}</Text>
                 <Text margin={2}>Is Ban: {user.isBan ? "Yes" : "No"}</Text>
