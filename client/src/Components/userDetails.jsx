@@ -6,12 +6,43 @@ import { getUserDetails } from "../Redux/Actions/getUserDetails";
 import { Placeholder } from "react-bootstrap";
 import { Box, Button, Text, Heading, Flex, Image } from "@chakra-ui/react";
 import styles from '../Styles/UserDetails.module.css'
-
+import ticketDone from "../Redux/Actions/markTicketAsDone";
+import updateUser from "../Redux/Actions/updateUser";
 export default function Userdetails() {
 let ID = useParams()
 let dispatch = useDispatch()
 let user = useSelector(state => state.userDetails)
 const [toggleState, setToggleState] = useState(1);
+let [userSpecs, setSpecs] = useState({
+  Name: false,
+  Username: false,
+  Email: false,
+  Location: false
+
+})
+
+
+let [input, setInput] = useState({
+
+  name:"",
+  username: "",
+  email: "",
+  location: ""
+
+
+})
+
+function handleClick(e) {
+
+  setSpecs({...userSpecs, [e.target.name]: userSpecs[e.target.name]? false: true})
+
+}
+
+
+function handleChange(e) {
+
+  setInput({...input, [e.target.name]: e.target.value})
+}
 
 
 useEffect(() => {
@@ -43,9 +74,21 @@ return (
               <Heading as='h4' marginBottom={2}>User Details</Heading>
                 <Image src={`${user.Image}`} alt="No Img" width='150' height='200'></Image>
                 <Text margin={2}>Name: {user.Name}</Text>
+                <button name="Name" onClick={(e) => handleClick(e)}>Update </button>
+                <input name="name" hidden={userSpecs.Name? false: true} value={input.name}type="text" onChange={(e) => handleChange(e)}></input>
+                <button hidden={userSpecs.Name? false: true} onClick={() => updateUser({Name: input.name}, user.ID, dispatch)}>Change</button>
                 <Text margin={2}>Username: {user.Username}</Text>
+                <button name="Username" onClick={(e) => handleClick(e)}>Update</button>
+                <input  name="username" hidden={userSpecs.Username? false: true} value={input.username} type="text" onChange={(e) => handleChange(e)}></input>
+                <button hidden={userSpecs.Username? false: true} onClick={() => updateUser({Username: input.username}, user.ID, dispatch)}>Change</button>
                 <Text margin={2}>Email: {user.Email}</Text>
+                <button name="Email" onClick={(e) => handleClick(e)}>Update</button>
+                <input name="email"hidden={userSpecs.Email? false: true} value={input.email}type="email" onChange={(e) => handleChange(e)}></input>
+                <button hidden={userSpecs.Email? false: true} onClick={() => updateUser({Email: input.email}, user.ID, dispatch)}>Change</button>
                 <Text margin={2}>Location: {user.Location}</Text>
+                <button name="Location" onClick={(e) => handleClick(e)}>Update</button>
+                <input name="location" value={input.location} hidden={userSpecs.Location? false: true} type="text" onChange={(e) => handleChange(e)}></input>
+                <button hidden={userSpecs.Location? false: true} onClick={() => updateUser({Location: input.location}, user.ID, dispatch)}>Change</button>
                 <Text margin={2}>Role: {user.Role}</Text>
                 <Text margin={2}>Is Online: {user.LoggedIn ? "Yes": "No"}</Text>
                 <Text margin={2}>Is Ban: {user.isBan ? "Yes" : "No"}</Text>
@@ -111,7 +154,7 @@ return (
                               <h1>{el.done? "Yes": "No"}</h1>
                             </div>
 
-                            <button>Mark as Done</button>
+                            <button onClick={() => ticketDone(dispatch,el.supportID, el.done? false: true)}>{el.done? "Mark as Pending":"Mark as Done"}</button>
                             </div>
                            ))}
 
