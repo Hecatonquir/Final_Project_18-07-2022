@@ -2,10 +2,13 @@ import React, {useState, useRef } from 'react';  // useRef: for send form mail
 import {useDispatch} from 'react-redux'
 import {Link, useNavigate} from 'react-router-dom'
 import userRegister from '../Redux/Actions/postRegister';
+import { Widget} from '@uploadcare/react-widget';
+
 import swal from 'sweetalert'
 import styles from '../Styles/Register.module.css'
 import emailjs from '@emailjs/browser';
 import {
+    FormLabel,
     Box,
     Heading,
     Input,
@@ -98,7 +101,7 @@ function Register() {
         }     
 
     return (
-        <Box bgGradient="linear(to-r, #1c2333, #371a1e)" minHeight="100vh">
+        <Box bg="#393E46" minHeight="100vh">
             <Nav/>
 
             <form ref={form}>
@@ -176,20 +179,34 @@ function Register() {
                         />
                         {errors.Location && <Text color='red' fontSize='.7em'>{errors.Location}</Text>}
                         </Box>
-                  
+                     
 
-                        <Box marginBottom={6}>
-                        <Input 
-                        type="text" 
-                        name="Image" 
-                        onChange={handleChange} 
-                        placeholder="Image Url" 
-                        value={input.Image}
-                        _placeholder={{ opacity: 0.4, color: "inherit" }}
-                        color='white'
-                        variant="flushed"
-                        />
+                        <Box marginBottom={6}  >
+                        <FormLabel color='white'>Image</FormLabel>
+                      
+                        <Widget 
+                              
+                               
+                                placeholder="Image" 
+								publicKey='4a7fa09f2188af9b76a3'
+								type='hidden'
+                                role="uploadcare-uploader"
+								value={input.Image}
+								id='Image'
+								name='Image'
+								variant='flushed'
+								data-tabs='file url facebook gdrive gphotos'
+								required
+								onChange={(e) => {
+									setInput({
+										...input,
+										Image: e.originalUrl,
+									}); 
+								}}
+							/>
+                           
                         </Box>
+                        
                    
                     
                     <input type="submit" className={styles.Button2} onClick={submitButton} value='Register'/>

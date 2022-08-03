@@ -1,13 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Box, Button } from "@chakra-ui/react";
+import { background, Box, Button } from "@chakra-ui/react";
 
 function Nav() {
   return (
     <>
-      <Box bgGradient='linear(to-b, blue.700, green.500)'>
+      <Box bg='#222831'>
         <Link to="/">
-        <Button margin={2} bg='#bfd6e5'>
+        <Button margin={2} bg='#FD7014' color='#EEEEEE'
+        _hover={{bg:'#EEEEEE', color:'black'}}>
+         
             Back
           </Button>
         </Link>

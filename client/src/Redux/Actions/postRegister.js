@@ -8,6 +8,6 @@ export default async function userRegister(payload) {
 			icon: 'success',
 		});
 	} catch (error) {
-		alert(error.response.data);
+		swal(error.response.data);
 	}
 }
