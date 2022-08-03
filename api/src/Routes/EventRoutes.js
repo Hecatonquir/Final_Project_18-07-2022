@@ -24,6 +24,7 @@ routes.post('/report/:ID', F.reportEvent)
 
 routes.put('/', F.modifyEvent);
 routes.put('/updateQuantity', F.updateQuantity)
+routes.put("/update/:id", F.updateEvent)
 
 routes.put('/delete', F.deleteEvent);
 
