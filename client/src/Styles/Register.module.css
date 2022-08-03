@@ -55,15 +55,19 @@
 
 .Button2 {
     cursor: pointer;
-    color: white;
+    color: #EEEEEE;
     font-weight: bolder;
-    background-color: rgb(22, 51, 110);
+    background-color: #FD7014;
     border-radius: 70px;
     font-size: 12px;
     padding: 10px 30px 10px 30px;
     border: none;
     margin-top: 10px;
     margin-bottom: 20px;
+}
+.Button2:hover{
+    color: #EEEEEE; 
+    background-color:"black"
 }
 
 .Button3 {
