@@ -22,7 +22,7 @@ export default function EventCard({
 	location,
 	date,
 	category,
-	initialQtty,
+	
 }) {
 	const dispatch = useDispatch();
 	const Allfavourites = useSelector((state) => state.favourites);
@@ -34,7 +34,6 @@ export default function EventCard({
 
 	//PRUEBA
 	// const events = useSelector((state) => state.showToUser);
-	
 
 	function handleClickFav() {
 		if (token1) {
@@ -50,17 +49,24 @@ export default function EventCard({
 		}
 	}
 
+	const dateModificada = new Date(date).toLocaleString('en-GB', {
+						weekday: 'long',
+						day: 'numeric',
+						month: 'long',
+						year: 'numeric',
+						hour: 'numeric',
+						minute: 'numeric',
+					});
 	return (
 		<Box>
 			<div className={styles.cards}>
 				<div className={styles.leftcolumn}>
 					<Link to={`/details/id/${id}`}>
-						<Image src={image} alt='img eventCard' width='20rem' height='20rem'/>
+						<Image src={image} alt='img eventCard' width='20rem' height='20rem' />
 					</Link>
 
+					{/*PRUEBA*/}
 
-				{/*PRUEBA*/}
-				
 					{/* {events.filter((el) => el.isErased !== true).map((e) => (
 						
 						<Box key={e.ID} className={styles.triangle} borderTop={
@@ -77,28 +83,30 @@ export default function EventCard({
 						</Box>
 						))
 					} */}
-				{
-				quantity < 1 &&
-				<Box className={styles.triangle} borderTop='100px solid #ee0808'>
-				<div className={styles.text}>SOLD OUT</div>
-				</Box>
-				
-				}
-				{/*FIN DE PRUEBA*/}
-
-
-
-
-
-
+					{/* {price === 0
+						? "This event does't require tickets"
+						: price !== 0 && 1uantity === 0
+						? 'All entrances were Sold Out!'
+						: 1uantity} */}
+					{price > 0 && quantity < 1 && (
+						<Box className={styles.triangle} borderTop='100px solid #ee0808'>
+							<div className={styles.text}>SOLD OUT</div>
+						</Box>
+					)}
+					{/*FIN DE PRUEBA*/}
 				</div>
 				<div className={styles.rightcolumn}>
 					<Link to={`/details/id/${id}`}>
-						<Heading as='h5' fontSize='1.5em' marginTop={4} _hover={{color:'#FD7014'}}>
+						<Heading as='h5' fontSize='1.5em' marginTop={4} _hover={{ color: '#FD7014' }}>
 							{name}
 						</Heading>
 					</Link>
-					<Text marginTop={2}> {date} </Text>
+					<Text marginTop={2}> 🗓️{dateModificada} </Text>
+					{console.log('🐲🐲🐲 / file: EventCard.jsx / line 98 / typeof date: \n', typeof date)}
+					{console.log(
+						'🐲🐲🐲 / file: EventCard.jsx / line 99 / date:\n',
+						date.toLocaleString('en-GB', {})
+					)}
 					{/* get() { // MODIFICAR EL FORMATO DE LA FECHA, NO MODIFICAR EN LA DB PORQUE SE ROMPE, MODIFICAR EN FRONT
 					return this.getDataValue('Date').toLocaleString('en-GB', {
 						weekday: 'long',
@@ -109,9 +117,9 @@ export default function EventCard({
 						minute: 'numeric',
 					});
 				}, */}
-					<Text marginTop={2}>Price: ${price}</Text>
+					<Text marginTop={2}>🎟️ ${price === 0 ? ' Free!' : price}</Text>
 					{/* <Text marginTop={2}>Category: {category}</Text> */}
-					<Text marginTop={2}>City: {city}</Text>
+					<Text marginTop={2}> 📍{city}</Text>
 					{/* <Text marginTop={2}>Place: {location}</Text> */}
 					<div className={styles.containerButton}>
 						<Button className={styles.ButtonFav} backgroundColor='white'>
@@ -131,11 +139,15 @@ export default function EventCard({
 								/>
 							)}
 						</Button>
-						<AddToCartButton id={id} className={styles.Button2} />
+						<AddToCartButton
+							id={id}
+							className={styles.Button2}
+							quantity={quantity}
+							price={price}
+						/>
 					</div>
 				</div>
 			</div>
 		</Box>
 	);
 }
-

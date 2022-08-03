@@ -107,60 +107,49 @@ const getReported = async (req, res) => {
 };
 
 const updateQuantity = async (req, res) => {
-	const { ID, newStock } = req.body
+	const { ID, newStock } = req.body;
 	try {
-		await Events.update( {
-			Quantity: newStock,
-		},
-		{
-			where: {
-				ID: ID,
+		await Events.update(
+			{
+				Quantity: newStock,
 			},
-		})
-		return res.send('Stock updated')
-	}catch(error) {
-		console.log(error.stack)
-		return res.status(400).send('Something went wrong')
-	}
-};
-
-
-const updateEvent = async (req,res) => {
-	let {id} = req.params
-	let {data} = req.body
-	console.log(req.body, id)
-	try {
-
-		if(req.body.data.Name) {
-
-			let found = await Events.findOne({
-				where: 
-					data
-				
-			})
-
-			if(found) {
-				return res.status(400).send("This event name already Exist")
-			}
-
-		}
-		let updated = await Events.update(
-			
-				data
-			,
 			{
 				where: {
-					ID: id,
+					ID: ID,
 				},
 			}
 		);
+		return res.send('Stock updated');
+	} catch (error) {
+		console.log(error.stack);
+		return res.status(400).send('Something went wrong');
+	}
+};
+
+const updateEvent = async (req, res) => {
+	let { id } = req.params;
+	let { data } = req.body;
+	console.log(req.body, id);
+	try {
+		if (req.body.data.Name) {
+			let found = await Events.findOne({
+				where: data,
+			});
+
+			if (found) {
+				return res.status(400).send('This event name already Exist');
+			}
+		}
+		let updated = await Events.update(data, {
+			where: {
+				ID: id,
+			},
+		});
 		console.log(updated);
 		return res.send('Event Updated');
 	} catch (error) {
 		return res.status(400).send('Error');
 	}
-	
-
 };
 
 module.exports = {
@@ -173,5 +162,5 @@ module.exports = {
 	reportEvent,
 	getReported,
 	updateQuantity,
-	updateEvent
+	updateEvent,
 };
