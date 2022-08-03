@@ -20,6 +20,7 @@ import {
 	Flex,
 	InputGroup,
 	InputLeftAddon,
+	useMediaQuery,
 } from '@chakra-ui/react';
 
 import { decodeToken } from 'react-jwt';
@@ -109,7 +110,6 @@ function AddEvent() {
 				Carrousel: input.carrousel,
 				Price: Number(input.Price),
 				Quantity: Number(input.Quantity),
-
 				Rating: Number(input.Rating),
 				Category: input.Category,
 				Restrictions: input.Restrictions.length ? input.Restrictions.split('/') : [],
@@ -157,8 +157,11 @@ function AddEvent() {
 		}
 	});
 
+	//Responsive
+	const [smallScreen] = useMediaQuery('(min-width: 430px)');
+
 	return (
-		<Box bgGradient='linear(to-r, #1c2333, #371a1e)' minHeight='100vh'>
+		<Box bg='#EEEEEE' minHeight='100vh'>
 			<Nav />
 			<Flex marginTop='5vh' justifyContent='center'>
 				<Box
@@ -168,32 +171,48 @@ function AddEvent() {
 					p={2}
 					boxShadow=' 5px 5px 10px #2c2b2b, -10px -10px 20px #5c5a5a;'
 					borderRadius='20px'>
-					<Heading as='h1' color='white' textAlign='center' margin={4}>
+					<Heading
+						as='h1'
+						color='#222831'
+						textAlign='center'
+						margin={4}
+						fontSize={!smallScreen ? '1.5em' : '2em'}>
 						Add Event
 					</Heading>
-					<form style={{ width: '40em' }}>
+					<form className={styles.form}>
 						<FormControl marginBottom={4}>
-							<FormLabel color='white'>*Event name</FormLabel>
+							<FormLabel color='#222831' fontSize={!smallScreen ? '.8em' : '1em'}>
+								<span style={{ color: 'red' }}>*</span>Event name
+							</FormLabel>
 							<Input
+								fontSize={!smallScreen ? '.8em' : '1em'}
 								type='text'
 								value={input.Name}
 								id='Name'
 								name='Name'
 								placeholder='(Max 25 characters)'
-								_placeholder={{ color: '#202531' }}
+								_placeholder={{ color: '#393e46b6' }}
 								required
 								variant='flushed'
 								onChange={(e) => handleChange(e)}
 							/>
-							{input.Name !== '' && errors.Name && <Text color='red'>{errors.Name}</Text>}
+							{input.Name !== '' && errors.Name && (
+								<Text color='red' fontSize={!smallScreen ? '.8em' : '1em'}>
+									{errors.Name}
+								</Text>
+							)}
 						</FormControl>
 
 						<FormControl marginBottom={4}>
-							<FormLabel color='white'>*City</FormLabel>
+							<FormLabel color='#222831' fontSize={!smallScreen ? '.8em' : '1em'}>
+								<span style={{ color: 'red' }}>*</span>City
+							</FormLabel>
 							<Select
+								fontSize={!smallScreen ? '.8em' : '1em'}
 								value={input.City}
 								name='City'
 								variant='flushed'
+								color='#393e46b6'
 								onChange={(e) => handleChange(e)}>
 								<option value='' hidden>
 									(Select City)
@@ -206,58 +225,81 @@ function AddEvent() {
 									);
 								})}
 							</Select>
-							{input.City !== '' && errors.City && <Text color='red'>{errors.City}</Text>}
-						</FormControl>
-
-						<FormControl marginBottom={4}>
-							<FormLabel color='white'>*Exact Location</FormLabel>
-							<Input
-								type='text'
-								value={input.Location}
-								name='Location'
-								placeholder='(Max 25 characters)'
-								_placeholder={{ color: '#202531' }}
-								variant='flushed'
-								onChange={(e) => handleChange(e)}
-							/>
-							{input.Location !== '' && errors.Location && (
-								<Text color='red'>{errors.Location}</Text>
+							{input.City !== '' && errors.City && (
+								<Text color='red' fontSize={!smallScreen ? '.8em' : '1em'}>
+									{errors.City}
+								</Text>
 							)}
 						</FormControl>
 
 						<FormControl marginBottom={4}>
-							<FormLabel color='white'>*Detail</FormLabel>
+							<FormLabel color='#222831' fontSize={!smallScreen ? '.8em' : '1em'}>
+								<span style={{ color: 'red' }}>*</span>Exact Location
+							</FormLabel>
+							<Input
+								fontSize={!smallScreen ? '.8em' : '1em'}
+								type='text'
+								value={input.Location}
+								name='Location'
+								placeholder='(Max 25 characters)'
+								_placeholder={{ color: '#393e46b6' }}
+								variant='flushed'
+								onChange={(e) => handleChange(e)}
+							/>
+							{input.Location !== '' && errors.Location && (
+								<Text color='red' fontSize={!smallScreen ? '.8em' : '1em'}>
+									{errors.Location}
+								</Text>
+							)}
+						</FormControl>
+
+						<FormControl marginBottom={4}>
+							<FormLabel color='#222831' fontSize={!smallScreen ? '.8em' : '1em'}>
+								<span style={{ color: 'red' }}>*</span>Detail
+							</FormLabel>
 							<Textarea
+								fontSize={!smallScreen ? '.8em' : '1em'}
 								type='text'
 								value={input.Detail}
 								name='Detail'
 								placeholder='(Insert Detail)'
-								_placeholder={{ color: '#202531' }}
-								className={styles.input}
+								_placeholder={{ color: '#393e46b6' }}
 								onChange={(e) => handleChange(e)}
 							/>
 						</FormControl>
 
 						<FormControl marginBottom={4}>
-							<FormLabel color='white'>*Date</FormLabel>
+							<FormLabel color='#222831' fontSize={!smallScreen ? '.8em' : '1em'}>
+								<span style={{ color: 'red' }}>*</span>Date
+							</FormLabel>
 							<Input
+								fontSize={!smallScreen ? '.8em' : '1em'}
 								type='datetime-local'
 								min={today}
 								value={input.date}
 								name='date'
+								color='#393e46b6'
 								placeholder='day / month / year'
 								variant='flushed'
 								onChange={(e) => handleChange(e)}
 							/>{' '}
-							{input.date !== '' && errors.date && <Text color='red'>{errors.date}</Text>}
+							{input.date !== '' && errors.date && (
+								<Text color='red' fontSize={!smallScreen ? '.8em' : '1em'}>
+									{errors.date}
+								</Text>
+							)}
 						</FormControl>
 
 						<FormControl marginBottom={4}>
-							<FormLabel color='white'>*Category</FormLabel>
+							<FormLabel color='#222831' fontSize={!smallScreen ? '.8em' : '1em'}>
+								<span style={{ color: 'red' }}>*</span>Category
+							</FormLabel>
 							<Select
+								fontSize={!smallScreen ? '.8em' : '1em'}
 								value={input.Category}
 								name='Category'
 								variant='flushed'
+								color='#393e46b6'
 								onChange={(e) => handleChange(e)}>
 								<option value='' hidden>
 									(Select Category)
@@ -271,12 +313,16 @@ function AddEvent() {
 								})}
 							</Select>
 							{input.Category !== '' && errors.Category && (
-								<Text color='red'>{errors.Category}</Text>
+								<Text color='red' fontSize={!smallScreen ? '.8em' : '1em'}>
+									{errors.Category}
+								</Text>
 							)}
 						</FormControl>
 
 						<FormControl marginBottom={4}>
-							<FormLabel color='white'>*Image 1</FormLabel>
+							<FormLabel color='#222831' fontSize={!smallScreen ? '.8em' : '1em'}>
+								<span style={{ color: 'red' }}>*</span>Image 1
+							</FormLabel>
 							<Widget
 								publicKey='4a7fa09f2188af9b76a3'
 								type='file'
@@ -303,7 +349,9 @@ function AddEvent() {
 						</FormControl>
 
 						<FormControl marginBottom={4}>
-							<FormLabel color='white'>Image 2</FormLabel>
+							<FormLabel color='#222831' fontSize={!smallScreen ? '.8em' : '1em'}>
+								Image 2
+							</FormLabel>
 							<Widget
 								publicKey='4a7fa09f2188af9b76a3'
 								type='text'
@@ -321,7 +369,9 @@ function AddEvent() {
 						</FormControl>
 
 						<FormControl marginBottom={4}>
-							<FormLabel color='white'>Image 3</FormLabel>
+							<FormLabel color='#222831' fontSize={!smallScreen ? '.8em' : '1em'}>
+								Image 3
+							</FormLabel>
 							<Widget
 								publicKey='4a7fa09f2188af9b76a3'
 								type='text'
@@ -339,7 +389,9 @@ function AddEvent() {
 						</FormControl>
 
 						<FormControl marginBottom={4}>
-							<FormLabel color='white'>Image 4</FormLabel>
+							<FormLabel color='#222831' fontSize={!smallScreen ? '.8em' : '1em'}>
+								Image 4
+							</FormLabel>
 							<Widget
 								publicKey='4a7fa09f2188af9b76a3'
 								value={input.img4}
@@ -355,7 +407,9 @@ function AddEvent() {
 							{errors.img4 && <Text color='red'>{errors.img4}</Text>}
 						</FormControl>
 						<FormControl marginBottom={4}>
-							<FormLabel color='white'>Carrousel image (increased cost)</FormLabel>
+							<FormLabel color='#222831' fontSize={!smallScreen ? '.8em' : '1em'}>
+								Carrousel image (increased cost)
+							</FormLabel>
 							<Widget
 								publicKey='4a7fa09f2188af9b76a3'
 								value={input.carrousel}
@@ -372,72 +426,102 @@ function AddEvent() {
 						</FormControl>
 
 						<FormControl marginBottom={4}>
-							<FormLabel color='white'>Quantity</FormLabel>
+							<FormLabel color='#222831' fontSize={!smallScreen ? '.8em' : '1em'}>
+								Quantity
+							</FormLabel>
 							<Input
+								fontSize={!smallScreen ? '.8em' : '1em'}
 								type='number'
 								value={input.Quantity}
 								name='Quantity'
 								min='0'
 								placeholder='(Insert Number) Represents the number of Tickets you can sell'
-								_placeholder={{ color: '#202531' }}
+								_placeholder={{ color: '#393e46b6' }}
 								variant='flushed'
 								onChange={(e) => handleChange(e)}
 							/>
-							{errors.Quantity && <Text color='red'>{errors.Quantity}</Text>}
+							{errors.Quantity && (
+								<Text color='red' fontSize={!smallScreen ? '.8em' : '1em'}>
+									{errors.Quantity}
+								</Text>
+							)}
 						</FormControl>
 
 						<FormControl marginBottom={4}>
-							<FormLabel color='white'>Price</FormLabel>
+							<FormLabel color='#222831' fontSize={!smallScreen ? '.8em' : '1em'}>
+								Price
+							</FormLabel>
 							<Input
+								fontSize={!smallScreen ? '.8em' : '1em'}
 								type='number'
 								value={input.Price}
 								id='Price'
 								name='Price'
 								min='0'
 								placeholder='$ (Insert Number)'
-								_placeholder={{ color: '#202531' }}
+								_placeholder={{ color: '#393e46b6' }}
 								required
 								variant='flushed'
 								onChange={(e) => handleChange(e)}
 							/>
-							{errors.Price && <Text color='red'>{errors.Price}</Text>}
+							{errors.Price && (
+								<Text color='red' fontSize={!smallScreen ? '.8em' : '1em'}>
+									{errors.Price}
+								</Text>
+							)}
 						</FormControl>
 
 						<FormControl marginBottom={4}>
-							<FormLabel color='white'>Age Restriction</FormLabel>
+							<FormLabel color='#222831' fontSize={!smallScreen ? '.8em' : '1em'}>
+								Age Restriction
+							</FormLabel>
 							<InputGroup>
 								<InputLeftAddon children='+' />
 								<Input
+									fontSize={!smallScreen ? '.8em' : '1em'}
 									type='number'
 									value={input.AgeRestriction}
 									name='AgeRestriction'
 									placeholder='(Insert Number)'
-									_placeholder={{ color: '#202531' }}
+									_placeholder={{ color: '#393e46b6' }}
 									variant='flushed'
 									marginLeft={1}
 									onChange={(e) => handleChange(e)}
 								/>
 							</InputGroup>
-							{errors.AgeRestriction && <Text color='red'>{errors.AgeRestriction}</Text>}
+							{errors.AgeRestriction && (
+								<Text color='red' fontSize={!smallScreen ? '.8em' : '1em'}>
+									{errors.AgeRestriction}
+								</Text>
+							)}
 						</FormControl>
+
 						<FormControl marginBottom={4}>
-							<FormLabel color='white'>Restrictions</FormLabel>
+							<FormLabel color='#222831' fontSize={!smallScreen ? '.8em' : '1em'}>
+								Restrictions
+							</FormLabel>
 							<Textarea
+								fontSize={!smallScreen ? '.8em' : '1em'}
 								type='text'
 								value={input.Restrictions}
 								name='Restrictions'
 								placeholder='(Separate each restriction using "/") '
-								_placeholder={{ color: '#202531' }}
+								_placeholder={{ color: '#393e46b6' }}
 								onChange={(e) => handleChange(e)}
 							/>
 						</FormControl>
-						<br />
+
 						<Box marginBottom={4}>
-							<Text color='red'>*Required fields</Text>
+							<Text color='red' fontSize={!smallScreen ? '.8em' : '1em'}>
+								*Required fields
+							</Text>
 						</Box>
+
 						<Box textAlign='center' marginBottom={4}>
 							<Button
-								bg='#f4a69a'
+								bg='#FD7014'
+								color='#EEEEEE'
+								_hover={{ bg: '#EEEEEE', color: 'black' }}
 								onClick={(e) => handleSubmit(e)}
 								disabled={
 									Object.keys(errors).length ? (errors.check === 'approved' ? false : true) : true
