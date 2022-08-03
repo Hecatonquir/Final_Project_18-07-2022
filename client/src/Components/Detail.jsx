@@ -94,26 +94,30 @@ export default function Detail() {
     }
   }
 
-  return (
-    <Box bgGradient="linear(to-r, #1c2333, #371a1e)">
-      {event.length ? (
-        <Box>
-          <Nav />
-          <Flex justifyContent="center" alignItems="center" height="100vh">
-            <Box
-              maxW="100%"
-              bg="#b1b7b76a"
-              border="1px solid #88cfd938"
-              p={2}
-              boxShadow=" 5px 5px 10px #2c2b2b, -10px -10px 20px #5c5a5a;"
-              borderRadius="20px"
-            >
-              <Flex alignItems="center">
-                <Box marginLeft={4}>
-                  <DetailCarousel />
-                </Box>
-                <div className={styles.cards}>
-                  {/* <div className={styles.leftcolumn}>
+
+
+	return (
+		<Box bgGradient='#222831'>
+			{event[0] ? (
+				<Box bg='#EEEEEE'>
+					<Nav />
+					<Flex justifyContent='center' alignItems='center' height='100vh'>
+						<Box
+							maxW='100%'
+							bg='#b1b7b76a'
+							border='1px solid #88cfd938'
+							p={2}
+							boxShadow=' 5px 5px 10px #2c2b2b, -10px -10px 20px #5c5a5a;'
+							borderRadius='20px'>
+							<Flex alignItems='center'>
+								<Box marginLeft={4}>
+									<DetailCarousel />
+								</Box>
+								<div className={styles.cards}>
+									{/* <div className={styles.leftcolumn}>
+
+ 
+
                   <Flex alignItems="center">
                     <Box marginRight={4}>
                       <DetailCarousel />

@@ -1,52 +1,47 @@
-body {
+/* body {
     margin: 0;
     padding: 0;
     
-}
+} */
 
-.container{
+/* .container{
     background-color: white;
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-}
+} */
 
-.navbar{
-    
+/* .navbar{
     position:fixed;
     top:0;
     width:100%;
     z-index: 1;
-}
+} */
 
-
-
-.totalcards {
+/* .totalcards {
     display: grid;
     grid-template-columns: auto auto;
     justify-content: center;
     column-gap: 1rem;
     row-gap: 1rem;
     margin-top: 10px;
-}
+} */
 
-
-.carousel {
+/* .carousel {
     width: 95%;
    margin-left: auto;
    margin-right: auto;
-}
+} */
 
-/* .items {
-    /* background-color: #CAD1D0; */
-    
+ /* .items {
+    background-color: #CAD1D0;
+} */
 
- 
-
-.filter {
+/* .filter {
     margin-top: 15px;
-}
-.welcome{
+} */
+
+/* .welcome{
     display: flex;
     justify-content: center;
     color: rgb(243, 188, 8);
@@ -54,17 +49,32 @@ body {
     font-size: 1.8rem;
     font-family:Arial, Helvetica, sans-serif;
    
-}
+} */
 
-.search{
+/* .search{
     display: flex;
     justify-content: center;
     font-size: 1.5rem;
-}
-.notEvent{
+} */
+
+/* .notEvent{
     font-size:5rem;
     color:azure;
     text-shadow: 3px 3px 3px red;
-}
+} */
+
+/* .soldOut{
+    background-color: #ee1048;
+    width: 20px;
+} */
+
+/* .free{
+    background-color: #1bee10;
+    width: 20px;
+} */
+
+/* .shadow{
+    background-color: #eedb10;
+} */
 
 
