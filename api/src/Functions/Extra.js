@@ -65,10 +65,10 @@ const stripeFunction = async (req, res) => {
 		);
 		console.log('Charge:', { charge });
 		status = 'success';
-		const text = 'this is a test message'
-		const qr = await qrcode.toString(text)
+		const text = 'this is a test message';
+		const qr = await qrcode.toString(text);
 		console.log(qr.slice(0, 500))
-		const info = ['success', token, charge, qr]
+		const info = ['success', token, charge, qr];
 
 		res.send(info);
 	} catch (error) {
