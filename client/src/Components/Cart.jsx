@@ -9,12 +9,14 @@ import { Box, Button, /* Center, */ Heading, Text, Image } from '@chakra-ui/reac
 import { decodeToken } from 'react-jwt';
 import { updateCart } from '../Redux/Actions/updateCart';
 import { updateQuantity } from '../Redux/Actions/updateQuantity';
+import { updateHistory } from '../Redux/Actions/updateHistory';
 import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import emailjs from '@emailjs/browser';
 import { LOAD_CART } from '../Redux/ActionTypes/actiontypes';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function Cart() {
 	let token = document.cookie.split(';')[0];
@@ -50,6 +52,7 @@ export default function Cart() {
 		const response = await axios.post('/checkout', { token, totalAmount });
 		const payback = response.data  // payback -> ARRAY ['success', token, charge, qr]
 		console.log(payback[3]) // QR code
+		console.log(payback)
 		
 		if (payback[0] === 'success'){
 			const itemsName = cart.map((it) => it.Name).join(' - ')
@@ -74,11 +77,23 @@ export default function Cart() {
 		  	/////////////////////////////////////////////////////////////////////////////////////////////
 
 			// Actualizacion de Stock de tickets en la base de datos (Quantity)
-			const stockToUpdate = Promise.all(cart.map( (it) => (updateQuantity({ ID: it.ID, newStock: it.Quantity - it.PurchasedItem})))) 
+			const stockToUpdate = Promise.all(cart.map( (it) => (updateQuantity({ ID: it.ID, 
+																				  newStock: it.Quantity - it.PurchasedItem})))) 
 			console.log(stockToUpdate)
 			
+			// Actualizacion de Shopping History del user
+			let today = new Date().toISOString().slice(0, 16);
+			const preCartHistory = cart.map( (it) => ({ eventID: it.ID,
+														Name: it.Name, 
+														Quantity: it.PurchasedItem,
+														datePaid: today,
+														ticketID: uuidv4(),
+														Image: it.Image,
+														}))
+			updateHistory(tokenDecoded.id, preCartHistory)
+
+
 			toast.success('Your purchase was successful! Check your E-mail for more information');
-      /* dispatch(removeQuantityFromEvent(X)) <---------- ACA Se despacha al back para restar numeros al valor de Quantity de cada evento. (hacer 1 para cada evento)  */
 			dispatch(clearCart());
 			dispatch(updateCart(tokenDecoded.id));
 			setshowBuyButton('done');

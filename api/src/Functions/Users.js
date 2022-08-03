@@ -442,6 +442,19 @@ const updateCart = async (req, res) => {
 	}
 };
 
+const updateHistory = async (req, res) => {
+	const { userID } = req.params;
+
+	try {
+		let user = await Users.findByPk(userID);
+		user.shoppingHistory = req.body;
+		user.save();
+		res.send('Shopping history updated');
+	} catch (error) {
+		res.status(400).send(error.stack);
+	}
+};
+
 const banUser = async (req, res) => {
 	console.log(req.body.data);
 	try {
@@ -476,6 +489,7 @@ module.exports = {
 	registerUserGmail,
 	loginRequestAP,
 	updateCart,
+	updateHistory,
 	roleChange,
 	banUser,
 };

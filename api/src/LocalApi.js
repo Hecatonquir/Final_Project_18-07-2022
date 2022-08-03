@@ -187,7 +187,7 @@ const userApi = [
 		Location: 'Capital',
 		Role: 'Guest',
 		Favourites: ['aca tendría que tener relación con la tabla de eventos'],
-		shoppingHistory: ['aca se guarda el historial de compras'],
+		/* shoppingHistory: [], */
 		CreatedEvents: ['aca tendría que tener relación con la tabla de eventos'],
 		RedFlags: 1,
 		LoggedIn: false,
@@ -206,7 +206,7 @@ const userApi = [
 		Location: 'Capital',
 		Role: 'User',
 		Favourites: ['aca tendría que tener relación con la tabla de eventos'],
-		shoppingHistory: ['aca se guarda el historial de compras'],
+		/* shoppingHistory: [], */
 		CreatedEvents: ['aca tendría que tener relación con la tabla de eventos'],
 		RedFlags: 2,
 		LoggedIn: false,
@@ -225,7 +225,7 @@ const userApi = [
 		Location: 'Capital',
 		Role: 'Partner',
 		Favourites: ['aca tendría que tener relación con la tabla de eventos'],
-		shoppingHistory: ['aca se guarda el historial de compras'],
+		/* shoppingHistory: [], */
 		CreatedEvents: ['aca tendría que tener relación con la tabla de eventos'],
 		RedFlags: 3,
 		LoggedIn: false,
@@ -244,7 +244,7 @@ const userApi = [
 		Location: 'Capital',
 		Role: 'Admin',
 		Favourites: ['aca tendría que tener relación con la tabla de eventos'],
-		shoppingHistory: ['aca se guarda el historial de compras'],
+		/* shoppingHistory: [], */
 		CreatedEvents: ['aca tendría que tener relación con la tabla de eventos'],
 		RedFlags: 4,
 		LoggedIn: false,
@@ -262,7 +262,7 @@ const userApi = [
 		Location: 'Capital',
 		Role: 'Guest',
 		Favourites: ['aca tendría que tener relación con la tabla de eventos'],
-		shoppingHistory: ['aca se guarda el historial de compras'],
+		/* shoppingHistory: [], */
 		CreatedEvents: ['aca tendría que tener relación con la tabla de eventos'],
 		RedFlags: 5,
 		LoggedIn: false,

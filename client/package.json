@@ -40,6 +40,7 @@
     "sweetalert": "^2.1.2",
     "thunk": "^0.0.1",
     "uploadcare-widget": "^3.17.2",
+    "uuid": "^8.3.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
