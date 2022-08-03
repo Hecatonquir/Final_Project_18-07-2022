@@ -161,7 +161,7 @@ export default function Detail() {
                           Price:{" "}
                           {event[0].Price === 0
                             ? " Free"
-                            : "$" + event[0].Price}
+                            : " $ " + event[0].Price}
                             
                         </Text>
                         <button name="Price" hidden={tokenDecoded && tokenDecoded.role=== "Admin" && active ? false: true} onClick={(e) => handleClick(e)}>Update</button>
