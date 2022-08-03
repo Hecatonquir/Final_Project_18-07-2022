@@ -29,7 +29,7 @@ export default function Detail() {
   let token = document.cookie.split(';')[0];
 	let token1 = token.split('=')[1];
 	let tokenDecoded = decodeToken(token1);
-
+  console.log(event)
 
   let [userSpecs, setSpecs] = useState({
     Name: false,
@@ -96,7 +96,6 @@ export default function Detail() {
     }
   }
 
-const coord = [-12.0485979, -77.0313197]
 
 	return (
 		<Box bgGradient='#222831'>
@@ -239,7 +238,7 @@ const coord = [-12.0485979, -77.0313197]
 
                 <Flex justifyContent='center' flexDirection='column'>
                     <Text fontSize='1.5em' textAlign='center' >Location on map</Text>
-                    <MapDetails data={coord}/>
+                    <MapDetails data={event[0].Coords} location={event[0].Location}/>
               </Flex>
 
               </Flex>

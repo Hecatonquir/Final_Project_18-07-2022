@@ -14,6 +14,7 @@ const eventsApi = [
 		RedFlags: 1,
 		Date: '2021-10-22T12:30',
 		Detail: 'Este es el detalle de este evento!',
+		Coords: [-34.6033873, -58.3788666],
 		Carrousel:
 			'https://static6.ticketek.com.ar/cms_static/sites/default/files/images/show-header/this960.png',
 	},
@@ -34,6 +35,7 @@ const eventsApi = [
 		RedFlags: 1,
 		Date: '2023-05-22T12:30',
 		Detail: 'Este es el detalle de este evento!',
+		Coords: [-34.6033873, -58.3788666],
 		Carrousel:
 			'https://teatro-granrex.com.ar/wp-content/files_mf/cache/th_c055d477418f3f7668860a05610bcd1f_1656359190920.jpg',
 	},
@@ -43,7 +45,7 @@ const eventsApi = [
 		Image: [
 			'https://elcomercio.pe/resizer/o66i_NMuB1L76oB4XZ0OMrLBRpY=/1200x900/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/M6UWF5P7DFAT7EXYIM7VR2UHXU.jpg',
 		],
-		Location: 'averiguo y te digo',
+		Location: 'Luna Park',
 		Price: 150,
 		Quantity: 15,
 		InitialQtty: 15,
@@ -54,6 +56,7 @@ const eventsApi = [
 		RedFlags: 1,
 		Date: '2023-05-22T12:30',
 		Detail: 'Este es el detalle de este evento!',
+		Coords: [-34.6021563, -58.3684163],
 		Carrousel: 'https://www.ninshi.net/kardargentina2022/img/banner.jpg',
 	},
 	{
@@ -62,7 +65,7 @@ const eventsApi = [
 			'https://oceanbeat.es/wp-content/uploads/2018/09/closing-parties-ibiza-2018.jpg',
 			'https://www.sxsw.com/wp-content/uploads/2019/06/SXSW-Party-photo-by-aaron-rogosin.png',
 		],
-		Location: 'The Bond',
+		Location: 'Club Araoz',
 		Price: 9999,
 		Quantity: 15,
 		InitialQtty: 15,
@@ -73,6 +76,7 @@ const eventsApi = [
 		RedFlags: 1,
 		Date: '2023-05-22T12:30',
 		Detail: 'Este es el detalle de este evento!',
+		Coords: [-31.0335389, -71.1419676],
 	},
 	{
 		Name: 'Carnaval de Rober',
@@ -80,7 +84,7 @@ const eventsApi = [
 			'https://cnnespanol.cnn.com/wp-content/uploads/2022/04/220421095620-carnaval-de-rio-de-janeiro-full-169.jpg?quality=100&strip=info',
 			'https://www.la-vie-en-francais.com/wp-content/uploads/2020/02/Soprano_nous_apprend_le_francais_pour_le_Carnaval_avec_Clown_%C2%A9nicecarnaval.com_.jpg',
 		],
-		Location: 'Av. 4 de Julio',
+		Location: 'Plaza Italia',
 		Price: 0,
 		Quantity: 0,
 		InitialQtty: 0,
@@ -91,6 +95,7 @@ const eventsApi = [
 		RedFlags: 1,
 		Date: '2023-05-21T13:30',
 		Detail: 'Este es el detalle de este evento!',
+		Coords: [-34.9106801, -57.9595473],
 	},
 	{
 		Name: 'Cine de Cesar',
@@ -98,7 +103,7 @@ const eventsApi = [
 			'https://www.cineytele.com/wp-content/uploads/2021/04/comoedia_lyon_europa_cinemas_awards.jpeg',
 			'https://mag-cinema.com/image/catalog/News/2020/mammut1.jpg',
 		],
-		Location: 'Hoyts Abasto',
+		Location: 'Club Regatas Chascomus',
 		Price: 250,
 		Quantity: 25,
 		InitialQtty: 25,
@@ -109,6 +114,7 @@ const eventsApi = [
 		RedFlags: 1,
 		Date: '2023-05-20T14:30',
 		Detail: 'Este es el detalle de este evento!',
+		Coords: [-35.5813414, -58.0169276],
 	},
 	{
 		Name: 'Musical de Eliseo',
@@ -116,7 +122,7 @@ const eventsApi = [
 			'https://static.anuevayork.com/wp-content/uploads/2018/07/19091658/Los-mejores-musicales-de-Broadway-Moulin-Rouge.jpg',
 			'https://static.anuevayork.com/wp-content/uploads/2016/08/26113033/Mejores-musicales-de-Broadway-Aladdin.jpg',
 		],
-		Location: 'Amnesia',
+		Location: 'Club Federal Rosario',
 		Price: 300,
 		Quantity: 30,
 		InitialQtty: 30,
@@ -127,6 +133,7 @@ const eventsApi = [
 		RedFlags: 1,
 		Date: '2023-05-19T13:30',
 		Detail: 'Este es el detalle de este evento!',
+		Coords: [-32.9552775, -60.6899365],
 	},
 	{
 		Name: 'Concierto de Sol',
@@ -145,6 +152,7 @@ const eventsApi = [
 		RedFlags: 1,
 		Date: '2023-05-15T19:30',
 		Detail: 'Este es el detalle de este evento!',
+		Coords: [-12.0485979, -77.0313197],
 	},
 	{
 		Name: 'Obra de Eric',
@@ -163,6 +171,7 @@ const eventsApi = [
 		RedFlags: 1,
 		Date: '2023-05-10T20:00',
 		Detail: 'Este es el detalle de este evento!',
+		Coords: [-12.0485979, -77.0313197],
 	},
 	{
 		Name: 'Circo de Jhonatan',
@@ -181,6 +190,7 @@ const eventsApi = [
 		RedFlags: 1,
 		Date: '2023-06-05T21:00',
 		Detail: 'Este es el detalle de este evento!',
+		Coords: [-12.0485979, -77.0313197],
 	},
 	{
 		Name: 'Evento SOLD OUT (Quantity=0)',
@@ -196,6 +206,7 @@ const eventsApi = [
 		RedFlags: 1,
 		Date: '2023-04-10T20:00',
 		Detail: 'Este es el detalle de este evento!',
+		Coords: [-12.0485979, -77.0313197],
 	},
 	{
 		Name: 'Evento Gratis (Price y Quantity=0)',
@@ -203,7 +214,7 @@ const eventsApi = [
 			'https://i0.wp.com/vancouversbestplaces.com/wp-content/uploads/2017/07/Free-August-Events.jpg?fit=640%2C400&ssl=1',
 			'https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F129702845%2F525194686153%2F1%2Foriginal.20210320-163751?w=512&auto=format%2Ccompress&q=75&sharp=10&rect=110%2C0%2C630%2C315&s=21c32522a53a8335673860be7e0a8190',
 		],
-		Location: 'Teatro de Judas',
+		Location: 'Teatro Municipal Salta',
 		Price: 0,
 		Quantity: 0,
 		InitialQtty: 0,
@@ -214,6 +225,7 @@ const eventsApi = [
 		RedFlags: 1,
 		Date: '2023-04-11T20:00',
 		Detail: 'Este es el detalle de este evento!',
+		Coords: [-24.7886503, -65.4453926],
 	},
 ];
 const userApi = [
