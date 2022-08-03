@@ -84,7 +84,7 @@ function NavBar({ stateUser }) {
 							</Link>
 						)} */}
 
-					{token && tokenDecoded && tokenDecoded.role === 'Partner' && active && (
+					{token && tokenDecoded && (tokenDecoded.role === 'Partner' || tokenDecoded.role === "Admin") && active && (
 						<Link to='/createEvent'>
 							<Button bg='#FD7014' color='white' _hover={{bg:'#EEEEEE', color:'black'}}>Create an Event</Button>
 						</Link>
