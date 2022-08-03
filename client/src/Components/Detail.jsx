@@ -161,7 +161,7 @@ export default function Detail() {
                           Price:{" "}
                           {event[0].Price === 0
                             ? " Free"
-                            : "$" + event[0].Price}
+                            : " $ " + event[0].Price}
                             
                         </Text>
                         <button name="Price" hidden={tokenDecoded && tokenDecoded.role=== "Admin" && active ? false: true} onClick={(e) => handleClick(e)}>Update</button>
@@ -171,9 +171,10 @@ export default function Detail() {
                 setInput({...input, [e.target.name]: ""})}}>Change</button>
                         <Text>
                           Tickets Available:{" "}
-                          {event[0].Quantity === 0
+                          {event[0].Price === 0 && event[0].Quantity=== 0
                             ? "This event does't require tickets"
-                            : event[0].Quantity}
+                            : event[0].Price !== 0 && event[0].Quantity === 0? "All entrances were Sold Out!":
+                            event[0].Quantity}                            
                         </Text>
                         <button name="Quantity" hidden={tokenDecoded && tokenDecoded.role=== "Admin" && active ? false: true} onClick={(e) => handleClick(e)}>Update</button>
                         <input name="Quantity" value={input.Quantity} hidden={userSpecs.Quantity? false: true} type="text" onChange={(e) => handleChange(e)}></input>
