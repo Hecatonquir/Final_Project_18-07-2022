@@ -16,6 +16,8 @@ import DetailCarousel from "./DetailCarousel";
 import swal from "sweetalert";
 import { decodeToken } from "react-jwt";
 import { updateEvent } from "../Redux/Actions/updateEvent";
+import MapDetails from "./MapDetails";
+
 export default function Detail() {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -27,7 +29,7 @@ export default function Detail() {
   let token = document.cookie.split(';')[0];
 	let token1 = token.split('=')[1];
 	let tokenDecoded = decodeToken(token1);
-
+  console.log(event)
 
   let [userSpecs, setSpecs] = useState({
     Name: false,
@@ -95,12 +97,12 @@ export default function Detail() {
   }
 
 
-
 	return (
 		<Box bgGradient='#222831'>
 			{event[0] ? (
 				<Box bg='#EEEEEE'>
 					<Nav />
+          
 					<Flex justifyContent='center' alignItems='center' height='100vh'>
 						<Box
 							maxW='100%'
@@ -233,9 +235,16 @@ export default function Detail() {
                     </Box>
                   </div>
                 </div>
+
+                <Flex justifyContent='center' flexDirection='column'>
+                    <Text fontSize='1.5em' textAlign='center' >Location on map</Text>
+                    <MapDetails data={event[0].Coords} location={event[0].Location}/>
+              </Flex>
+
               </Flex>
             </Box>
           </Flex>
+        
         </Box>
       ) : (
         <Box>

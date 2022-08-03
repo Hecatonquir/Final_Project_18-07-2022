@@ -74,7 +74,7 @@ module.exports = (sequelize) => {
 				defaultValue: false,
 			},
 			Coords: {
-				type: DataTypes.ARRAY(DataTypes.NUMBER)
+				type: DataTypes.ARRAY(DataTypes.DOUBLE)
 			}
 		},
 		{ timestamps: false }
