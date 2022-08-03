@@ -33,7 +33,8 @@ export default function EventCard({
 	const navigate = useNavigate();
 
 	//PRUEBA
-	const events = useSelector((state) => state.showToUser);
+	// const events = useSelector((state) => state.showToUser);
+	
 
 	function handleClickFav() {
 		if (token1) {
@@ -59,23 +60,30 @@ export default function EventCard({
 
 
 				{/*PRUEBA*/}
+				
 					{/* {events.filter((el) => el.isErased !== true).map((e) => (
+						
 						<Box key={e.ID} className={styles.triangle} borderTop={
 							e.Quantity === 0
 								? '100px solid #ee0808'
 								: '100px solid #22b9dbfe'
 						}>
-							{console.log(e.Quantity === 0
-								? '0'
-								: 'num')}
 							<div className={styles.text}>{
 								e.Quantity === 0
 								? 'Sold Out'
 								: 'None'
-						}</div>
+								}
+							</div>
 						</Box>
 						))
 					} */}
+				{
+				quantity < 1 &&
+				<Box className={styles.triangle} borderTop='100px solid #ee0808'>
+				<div className={styles.text}>SOLD OUT</div>
+				</Box>
+				
+				}
 				{/*FIN DE PRUEBA*/}
 
 
