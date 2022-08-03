@@ -48,7 +48,8 @@ module.exports = (sequelize) => {
 				type: DataTypes.ARRAY(DataTypes.STRING),
 			},
 			shoppingHistory: {
-				type: DataTypes.ARRAY(DataTypes.STRING),
+				type: DataTypes.ARRAY(DataTypes.JSON),
+				defaultValue: [],
 			},
 			CreatedEvents: {
 				type: DataTypes.ARRAY(DataTypes.STRING),
