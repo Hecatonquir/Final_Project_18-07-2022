@@ -1,6 +1,6 @@
 import { React, useEffect, /* useEffect ,*/ useState } from 'react';
 /* import { useDispatch } from 'react-redux'; */
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { postEvent } from '../Redux/Actions/postEvent';
 import styles from '../Styles/AddEvent.module.css';
 import validate from './Validations';
@@ -24,19 +24,17 @@ import {
 
 import { decodeToken } from 'react-jwt';
 
-
 function AddEvent() {
 	/* 	const dispatch = useDispatch();
 	const history = useNavigate(); */
-	let navigate = useNavigate()
+	let navigate = useNavigate();
 	const [errors, setErrors] = useState({});
 	const Cities = [
 		'Buenos Aires',
-		'Buenos Aires Capital',
 		'Catamarca',
 		'Chaco',
 		'Chubut',
-		'Cordoba',
+		'Córdoba',
 		'Corrientes',
 		'Entre Rios',
 		'Formosa',
@@ -111,7 +109,7 @@ function AddEvent() {
 				Carrousel: input.carrousel,
 				Price: Number(input.Price),
 				Quantity: Number(input.Quantity),
-				InitialQtty: Number(input.Quantity),
+				
 				Rating: Number(input.Rating),
 				Category: input.Category,
 				Restrictions: input.Restrictions.length ? input.Restrictions.split('/') : [],
@@ -144,25 +142,20 @@ function AddEvent() {
 		}
 	}
 
-	let token = document.cookie
-	.split(';')[0]
-let token1 = 
-	token
-	.split('=')[1]
-let tokenDecoded = decodeToken(token1);
+	let token = document.cookie.split(';')[0];
+	let token1 = token.split('=')[1];
+	let tokenDecoded = decodeToken(token1);
 
-console.log(tokenDecoded)
+	console.log(tokenDecoded);
 
-useEffect( () => {
- if(tokenDecoded && tokenDecoded.role === "User") {
-	navigate("/")
-}
-if(!tokenDecoded) {
-	navigate("/")
-}})
-
-
-
+	useEffect(() => {
+		if (tokenDecoded && tokenDecoded.role === 'User') {
+			navigate('/');
+		}
+		if (!tokenDecoded) {
+			navigate('/');
+		}
+	});
 
 	return (
 		<Box bgGradient='linear(to-r, #1c2333, #371a1e)' minHeight='100vh'>
@@ -379,6 +372,21 @@ if(!tokenDecoded) {
 						</FormControl>
 
 						<FormControl marginBottom={4}>
+							<FormLabel color='white'>Quantity</FormLabel>
+							<Input
+								type='number'
+								value={input.Quantity}
+								name='Quantity'
+								min='0'
+								placeholder='(Insert Number) Represents the number of Tickets you can sell'
+								_placeholder={{ color: '#202531' }}
+								variant='flushed'
+								onChange={(e) => handleChange(e)}
+							/>
+							{errors.Quantity && <Text color='red'>{errors.Quantity}</Text>}
+						</FormControl>
+
+						<FormControl marginBottom={4}>
 							<FormLabel color='white'>Price</FormLabel>
 							<Input
 								type='number'
@@ -395,20 +403,6 @@ if(!tokenDecoded) {
 							{errors.Price && <Text color='red'>{errors.Price}</Text>}
 						</FormControl>
 
-						<FormControl marginBottom={4}>
-							<FormLabel color='white'>Quantity</FormLabel>
-							<Input
-								type='number'
-								value={input.Quantity}
-								name='Quantity'
-								min='0'
-								placeholder='(Insert Number)'
-								_placeholder={{ color: '#202531' }}
-								variant='flushed'
-								onChange={(e) => handleChange(e)}
-							/>
-							{errors.Quantity && <Text color='red'>{errors.Quantity}</Text>}
-						</FormControl>
 						<FormControl marginBottom={4}>
 							<FormLabel color='white'>Age Restriction</FormLabel>
 							<InputGroup>

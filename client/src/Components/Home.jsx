@@ -43,7 +43,6 @@ export default function Home() {
 			orderedEvents.push(oldEvent[0]);
 		}
 	});
-	console.log('🐲🐲🐲 / file: Home.jsx / line 46 / orderedEvents', orderedEvents);
 
 	if (!stateUser && user) {
 		dispatch(registerGmail(user, logout));
@@ -85,15 +84,15 @@ export default function Home() {
 			<Center>
 				<Box marginTop={10} marginBottom={10}>
 					<SimpleGrid columns={2} spacing={10}>
-						{events.length ? (
-							events
+						{orderedEvents.length ? (
+							orderedEvents
 								.filter((el) => el.isErased !== true)
 								.map((event) => (
 									<Box
 										key={event.ID}
 										p={2}
 										// boxShadow={
-										// 	event.InitialQtty !== 0 && event.Quantity === 0
+										// 	event.Price !== 0 && event.Quantity === 0
 										// 		? '5px 5px 10px #ff568c, -5px -5px 10px #ff568c'
 										// 		: event.Price === 0
 										// 		? '5px 5px 10px #56ffb0, -5px -5px 10px #56ffb0'
@@ -107,10 +106,11 @@ export default function Home() {
 											image={event.Image[0]}
 											date={event.Date}
 											category={event.Category}
-											price={event.Price === 0 ? ' Free!' : event.Price}
+											price={event.Price}
 											quantity={event.Quantity}
 											city={event.City}
 											location={event.Location}
+											
 										/>
 									</Box>
 								))
