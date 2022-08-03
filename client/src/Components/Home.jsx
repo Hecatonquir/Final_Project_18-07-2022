@@ -1,25 +1,24 @@
+/* eslint-disable no-unused-vars */
 import { React, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import getEvents from '../Redux/Actions/getEvents.js';
 import ButtonFilter from './ButtonFilter.jsx';
 import EventCard from './EventCard.jsx';
 import NavBar from './NavBar.jsx';
-/* import Search from './Search.jsx'; */
 import EventCarousel from './Carousel.jsx';
-// import Loader from './Loader.jsx' ;
-// import CalendarEvents from './Calendar.jsx ';
-import styles from '../Styles/Home.module.css';
-import Footer from './Footer.jsx';
-import { decodeToken, isExpired } from 'react-jwt';
 import { useAuth0 } from '@auth0/auth0-react';
 import registerGmail from '../Redux/Actions/registerGmail.js';
 import { LOAD_CART, UPDATE_STATE_TRUE } from '../Redux/ActionTypes/actiontypes.js';
-
+import Footer from './Footer.jsx';
+import { decodeToken, isExpired } from 'react-jwt';
 import { Box, SimpleGrid, Center, Text, Flex, StylesProvider } from '@chakra-ui/react';
 import BackToTopButton from './BackToTopButton.jsx';
-// eslint-disable-next-line no-unused-vars
-// import { updateCart } from '../Redux/Actions/updateCart.js';
 import axios from 'axios';
+import Loader from './Loader.jsx';
+import styles from '../Styles/Home.module.css';
+import Search from './Search.jsx';
+import { updateCart } from '../Redux/Actions/updateCart.js';
+//import CalendarEvents from './Calendar.jsx ';
 
 export default function Home() {
 	const { user, logout } = useAuth0();
@@ -33,6 +32,19 @@ export default function Home() {
 	const carrouselEvents = backup.filter((ev) => ev.Carrousel);
 	let [search, setSearch] = useState('');
 
+	let today = new Date().toISOString().slice(0, 16);
+
+	let orderedEvents = events.slice(); // Esto me sirve para crear una copia en memoria DISTINTA del array events
+
+	orderedEvents.forEach((ev, i) => {
+		let evDate = ev.Date.toLocaleString().slice(0, 16);
+		if (evDate < today) {
+			let oldEvent = orderedEvents.splice(i, 1);
+			orderedEvents.push(oldEvent[0]);
+		}
+	});
+	console.log('🐲🐲🐲 / file: Home.jsx / line 46 / orderedEvents', orderedEvents);
+
 	if (!stateUser && user) {
 		dispatch(registerGmail(user, logout));
 	}
@@ -45,10 +57,9 @@ export default function Home() {
 				.put('/user/getUserById/' + tokenDecoded.id)
 				.then((r) => dispatch({ type: LOAD_CART, payload: r.data.Cart }));
 		}
-
 		dispatch(getEvents());
-
-		return () => {};
+		/* return () => {}; */
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (
@@ -136,7 +147,7 @@ export default function Home() {
 // </Box>
 // <Box>
 // 	<ButtonFilter />
-// 	 <CalendarEvents /> 
+// 	 <CalendarEvents />
 // </Box>
 
 //  <Center>
@@ -183,6 +194,3 @@ export default function Home() {
 // <Footer />
 // </Box>; */
 // }
-
-
-

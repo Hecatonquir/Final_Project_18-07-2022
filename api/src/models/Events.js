@@ -59,6 +59,7 @@ module.exports = (sequelize) => {
 			},
 			Date: {
 				type: DataTypes.DATE,
+				allowNull: false,
 			},
 			Detail: {
 				type: DataTypes.TEXT,
