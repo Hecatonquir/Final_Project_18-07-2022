@@ -4,7 +4,7 @@ const eventsApi = [
 		Name: 'This is Michael',
 		Image: ['https://d31tcnbxvxtafg.cloudfront.net/images/events/9Hno3i91GoiH.jpg'],
 		Location: 'Teatro Gran Rex',
-		Price: 0,
+		Price: 100,
 		Quantity: 15,
 		InitialQtty: 15,
 		Restrictions: ['No se aceptan mascotas', 'No se acepta comida'],
@@ -63,7 +63,7 @@ const eventsApi = [
 			'https://www.sxsw.com/wp-content/uploads/2019/06/SXSW-Party-photo-by-aaron-rogosin.png',
 		],
 		Location: 'The Bond',
-		Price: 0,
+		Price: 9999,
 		Quantity: 15,
 		InitialQtty: 15,
 		Restrictions: ['No se aceptan mascotas', 'No se acepta comida'],
@@ -226,7 +226,7 @@ const userApi = [
 		Image:
 			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5Xow0BlUAfuXQPmpx1w8jdAZs_QOZin3CcMM6284qfkyc3NZ7DE1n5TOE8uNWVu8E3T8&usqp=CAU',
 		Location: 'Capital',
-		Role: 'Guest',
+		Role: 'user',
 		Favourites: ['aca tendría que tener relación con la tabla de eventos'],
 		/* shoppingHistory: [], */
 		CreatedEvents: ['aca tendría que tener relación con la tabla de eventos'],

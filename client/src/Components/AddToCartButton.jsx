@@ -53,7 +53,7 @@ function AddToCartButton({ id, quantity, price }) {
 					Add To <img src={carticon} alt='not imgcart' className={styles.carticon} />
 				</button>
 			) : (
-				<h6
+				<button
 					style={{
 						width: '100px',
 						backgroundColor: '#ee0808',
@@ -67,7 +67,7 @@ function AddToCartButton({ id, quantity, price }) {
 						justifyContent: 'center',
 					}}>
 					SOLD OUT
-				</h6>
+				</button>
 			)}
 		</div>
 	);

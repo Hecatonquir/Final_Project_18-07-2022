@@ -22,7 +22,6 @@ export default function EventCard({
 	location,
 	date,
 	category,
-	
 }) {
 	const dispatch = useDispatch();
 	const Allfavourites = useSelector((state) => state.favourites);
@@ -50,13 +49,13 @@ export default function EventCard({
 	}
 
 	const dateModificada = new Date(date).toLocaleString('en-GB', {
-						weekday: 'long',
-						day: 'numeric',
-						month: 'long',
-						year: 'numeric',
-						hour: 'numeric',
-						minute: 'numeric',
-					});
+		weekday: 'long',
+		day: 'numeric',
+		month: 'long',
+		year: 'numeric',
+		hour: 'numeric',
+		minute: 'numeric',
+	});
 	return (
 		<Box>
 			<div className={styles.cards}>
@@ -102,11 +101,6 @@ export default function EventCard({
 						</Heading>
 					</Link>
 					<Text marginTop={2}> 🗓️{dateModificada} </Text>
-					{console.log('🐲🐲🐲 / file: EventCard.jsx / line 98 / typeof date: \n', typeof date)}
-					{console.log(
-						'🐲🐲🐲 / file: EventCard.jsx / line 99 / date:\n',
-						date.toLocaleString('en-GB', {})
-					)}
 					{/* get() { // MODIFICAR EL FORMATO DE LA FECHA, NO MODIFICAR EN LA DB PORQUE SE ROMPE, MODIFICAR EN FRONT
 					return this.getDataValue('Date').toLocaleString('en-GB', {
 						weekday: 'long',

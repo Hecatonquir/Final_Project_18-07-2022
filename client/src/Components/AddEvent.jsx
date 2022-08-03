@@ -109,7 +109,7 @@ function AddEvent() {
 				Carrousel: input.carrousel,
 				Price: Number(input.Price),
 				Quantity: Number(input.Quantity),
-				
+
 				Rating: Number(input.Rating),
 				Category: input.Category,
 				Restrictions: input.Restrictions.length ? input.Restrictions.split('/') : [],
