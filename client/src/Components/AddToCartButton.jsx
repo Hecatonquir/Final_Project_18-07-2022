@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addCart } from '../Redux/Actions/addToCart';
 import styles from '../Styles/Detail.module.css';
-import carticon from '../Media/carri.png';
+import carticon from '../Media/carri2.png';
 import swal from 'sweetalert';
 import { useNavigate } from 'react-router-dom';
 import { decodeToken } from 'react-jwt';

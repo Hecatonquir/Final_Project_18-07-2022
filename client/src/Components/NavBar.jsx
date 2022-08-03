@@ -40,7 +40,7 @@ function NavBar({ stateUser }) {
 						<Image
 							src={imglogo}
 							alt='img logo'
-							width='6.5rem'
+							width='6rem'
 							height='4rem'
 							marginLeft='1rem'
 							marginTop='0rem'

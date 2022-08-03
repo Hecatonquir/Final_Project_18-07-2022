@@ -1,4 +1,4 @@
-import { React, useEffect } from "react";
+import { React, useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetail } from "../Redux/Actions/getDetails";
@@ -15,23 +15,68 @@ import fav2 from "../Media/favorito2.png";
 import DetailCarousel from "./DetailCarousel";
 import swal from "sweetalert";
 import { decodeToken } from "react-jwt";
-
+import { updateEvent } from "../Redux/Actions/updateEvent";
 export default function Detail() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const active = useSelector((state) => state.loginState);
   var event = useSelector((state) => state.eventDetail);
   const Allfavourites = useSelector((state) => state.favourites);
   var exitFav = Allfavourites.find((e) => e.ID === id);
-  let token = document.cookie
-    .split(";")
-    .filter((el) => el.includes("access-token"))
-    .toString()
-    .split("=")[1];
-  let tokenDecoded = decodeToken(token);
+  let token = document.cookie.split(';')[0];
+	let token1 = token.split('=')[1];
+	let tokenDecoded = decodeToken(token1);
+
+
+  let [userSpecs, setSpecs] = useState({
+    Name: false,
+    City: false,
+    Email: false,
+    Location: false,
+    Price: false,
+    Quantity: false,
+    Restrictions: false,
+    AgeRestriction: false,
+    Detail: false
+  
+  })
+
+  let [input, setInput] = useState({
+
+    Name:"",
+    Date: "",
+    City: "",
+    Location: "",
+    Price: "",
+    Quantity: 0,
+    Restrictions: "",
+    AgeRestriction: "",
+    Detail: ""
+  
+  
+  })
+
+  function handleChange(e) {
+
+    setInput({...input, [e.target.name]: e.target.value})
+  }
+
+  function handleClick(e) {
+
+    setSpecs({...userSpecs, [e.target.name]: userSpecs[e.target.name]? false: true})
+  
+  }
+  
+  
+
+
+
+
 
   useEffect(() => {
     dispatch(getDetail(id));
+    
     return () => dispatch(clearDetail());
   }, [dispatch, id]);
 
@@ -48,6 +93,7 @@ export default function Detail() {
       navigate("/login");
     }
   }
+
 
 
 	return (
@@ -82,35 +128,86 @@ export default function Detail() {
                     <Box marginTop={3} textAlign="start">
                       <Stack spacing={3}>
                         <Heading as="h1">{event[0].Name}</Heading>
+                        <button name="Name"hidden={tokenDecoded && tokenDecoded.role=== "Admin" && active ? false: true} onClick={(e) => handleClick(e)}>Update</button>
+                        <input name="Name" value={input.Name} hidden={userSpecs.Name? false: true} type="text" onChange={(e) => handleChange(e)}></input>
+                <button name="Name"hidden={userSpecs.Name? false: true} onClick={(e) => {updateEvent({Name: input.Name}, id, dispatch)
+              handleClick(e)
+              setInput({...input, [e.target.name]: ""})}}>Change</button>
                         <Text>City: {event[0].City}</Text>
+                        <button name="City" hidden={tokenDecoded && tokenDecoded.role=== "Admin" && active ? false: true} onClick={(e) => handleClick(e)}>Update</button>
+                        <input name="City" value={input.City} hidden={userSpecs.City? false: true} type="text" onChange={(e) => handleChange(e)}></input>
+                <button name="City"hidden={userSpecs.City? false: true} onClick={(e) => {updateEvent({City: input.City}, id, dispatch)
+                handleClick(e)
+                setInput({...input, [e.target.name]: ""})}}>Change</button>
                         <Text>Location: {event[0].Location}</Text>
+                        <button name="Location" hidden={tokenDecoded && tokenDecoded.role=== "Admin" && active ? false: true} onClick={(e) => handleClick(e)}>Update</button>
+                        <input name="Location" value={input.Location} hidden={userSpecs.Location? false: true} type="text" onChange={(e) => handleChange(e)}></input>
+                <button name="Location"hidden={userSpecs.Location? false: true} onClick={(e) => {updateEvent({Location: input.Location}, id, dispatch)
+                handleClick(e)
+                setInput({...input, [e.target.name]: ""})}}>Change</button>
                         <Text>Category: {event[0].Category}</Text>
+                        <button name="Category"hidden={tokenDecoded && tokenDecoded.role=== "Admin" && active ? false: true} onClick={(e) => handleClick(e)}>Update</button>
+                        <input name="Category" value={input.Category} hidden={userSpecs.Location? false: true} type="text" onChange={(e) => handleChange(e)}></input>
+                <button name="Category"hidden={userSpecs.Category? false: true} onClick={(e) => {updateEvent({Category: input.Category}, id, dispatch)
+                handleClick(e)
+                setInput({...input, [e.target.name]: ""})}}>Change</button>
                         <Text>Date: {event[0].Date}</Text>
+                        <button name="Date" hidden={tokenDecoded && tokenDecoded.role=== "Admin" && active ? false: true} onClick={(e) => handleClick(e)}>Update</button>
+                        <input name="Date" value={input.Date} hidden={userSpecs.Location? false: true} type="text" onChange={(e) => handleChange(e)}></input>
+                <button name="Date"hidden={userSpecs.Date? false: true} onClick={(e) => {updateEvent({Date: input.Date}, id, dispatch)
+                handleClick(e)
+                setInput({...input, [e.target.name]: ""})}}>Change</button>
                         <Text>
                           Price:{" "}
                           {event[0].Price === 0
                             ? " Free"
                             : "$" + event[0].Price}
+                            
                         </Text>
+                        <button name="Price" hidden={tokenDecoded && tokenDecoded.role=== "Admin" && active ? false: true} onClick={(e) => handleClick(e)}>Update</button>
+                        <input name="Price" value={input.Price} hidden={userSpecs.Price? false: true} type="text" onChange={(e) => handleChange(e)}></input>
+                <button name="Price"hidden={userSpecs.Price? false: true} onClick={(e) => {updateEvent({Price: input.Price},id,dispatch)
+                handleClick(e)
+                setInput({...input, [e.target.name]: ""})}}>Change</button>
                         <Text>
                           Tickets Available:{" "}
                           {event[0].Quantity === 0
                             ? "This event does't require tickets"
                             : event[0].Quantity}
                         </Text>
+                        <button name="Quantity" hidden={tokenDecoded && tokenDecoded.role=== "Admin" && active ? false: true} onClick={(e) => handleClick(e)}>Update</button>
+                        <input name="Quantity" value={input.Quantity} hidden={userSpecs.Quantity? false: true} type="text" onChange={(e) => handleChange(e)}></input>
+                <button name="Quantity"hidden={userSpecs.Quantity? false: true} onClick={(e) => {updateEvent({Quantity: input.Quantity}, id, dispatch)
+                handleClick(e)
+                setInput({...input, [e.target.name]: ""})}}>Change</button>
                         <Text>
                           AgeRestriction:{" "}
                           {event[0].AgeRestriction === 0
                             ? " Suitable for all ages"
                             : event[0].AgeRestriction}
                         </Text>
+                        <button name="AgeRestriction" hidden={tokenDecoded && tokenDecoded.role=== "Admin" && active ? false: true} onClick={(e) => handleClick(e)}>Update</button>
+                        <input type="number" name="AgeRestriction" value={input.AgeRestriction} hidden={userSpecs.AgeRestriction? false: true} onChange={(e) => handleChange(e)}></input>
+                <button name="AgeRestriction" hidden={userSpecs.AgeRestriction? false: true} onClick={(e) => {updateEvent({AgeRestriction: input.AgeRestriction}, id, dispatch)
+                handleClick(e)
+                setInput({...input, [e.target.name]: ""})}}>Change</button>
                         <Text>
                           Restrictions:{" "}
                           {event[0].Restrictions.length
                             ? event[0].Restrictions.join(" - ")
                             : "Unrestricted Event"}
                         </Text>
+                        <button name="Restrictions" hidden={tokenDecoded && tokenDecoded.role=== "Admin" && active ? false: true} onClick={(e) => handleClick(e)}>Update</button>
+                        <input name="Restrictions" value={input.Restrictions} hidden={userSpecs.Restrictions? false: true} type="text" onChange={(e) => handleChange(e)}></input>
+                <button name="Restrictions" hidden={userSpecs.Restrictions? false: true} onClick={(e) => {updateEvent({Restrictions: input.Restrictions}, id, dispatch)
+                handleClick(e)
+                setInput({...input, [e.target.name]: ""})}}>Change</button>
                         <Text width='90%'>Detail: {event[0].Detail}</Text>
+                        <button name="Detail" hidden={tokenDecoded && tokenDecoded.role=== "Admin" && active ? false: true} onClick={(e) => handleClick(e)}>Update</button>
+                        <input name="Detail" value={input.Detail} hidden={userSpecs.Detail? false: true} type="text" onChange={(e) => handleChange(e)}></input>
+                <button name="Detail"hidden={userSpecs.Detail? false: true} onClick={(e) =>{ updateEvent({Detail: input.Detail}, id, dispatch) 
+                handleClick(e)
+                setInput({...input, [e.target.name]: ""})}}>Change</button>
                       </Stack>
                       <div className={styles.containerButton}>
                         <Button bg="white">

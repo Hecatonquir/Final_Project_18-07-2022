@@ -8,14 +8,14 @@ import NavBar from './NavBar.jsx';
 import EventCarousel from './Carousel.jsx';
 // import Loader from './Loader.jsx' ;
 // import CalendarEvents from './Calendar.jsx ';
-// import style from'../Styles/Home.module.css';
+import styles from '../Styles/Home.module.css';
 import Footer from './Footer.jsx';
 import { decodeToken, isExpired } from 'react-jwt';
 import { useAuth0 } from '@auth0/auth0-react';
 import registerGmail from '../Redux/Actions/registerGmail.js';
 import { LOAD_CART, UPDATE_STATE_TRUE } from '../Redux/ActionTypes/actiontypes.js';
 
-import { Box, SimpleGrid, Center, Text, Flex } from '@chakra-ui/react';
+import { Box, SimpleGrid, Center, Text, Flex, StylesProvider } from '@chakra-ui/react';
 import BackToTopButton from './BackToTopButton.jsx';
 // eslint-disable-next-line no-unused-vars
 // import { updateCart } from '../Redux/Actions/updateCart.js';
@@ -80,8 +80,6 @@ export default function Home() {
 								.map((event) => (
 									<Box
 										key={event.ID}
-										// bg='#b1b7b76a'
-										// border='1px solid #88cfd938'
 										p={2}
 										// boxShadow={
 										// 	event.InitialQtty !== 0 && event.Quantity === 0
@@ -90,16 +88,8 @@ export default function Home() {
 										// 		? '5px 5px 10px #56ffb0, -5px -5px 10px #56ffb0'
 										// 		: '10px 10px 20px #2a2929, -10px -10px 20px #494848'
 										// }
-										// borderRadius='20px'
 										textAlign='center'>
 										<EventCard
-										// className={
-										// 	event.InitialQtty !== 0 && event.Quantity === 0
-										// 		? 'soldOut'
-										// 		: event.Price === 0
-										// 		? 'free'
-										// 		: 'shadow'
-										// }
 											key={event.ID}
 											id={event.ID}
 											name={event.Name}
@@ -110,7 +100,6 @@ export default function Home() {
 											quantity={event.Quantity}
 											city={event.City}
 											location={event.Location}
-											initialQtty = {event.InitialQtty}
 										/>
 									</Box>
 								))
@@ -194,3 +183,6 @@ export default function Home() {
 // <Footer />
 // </Box>; */
 // }
+
+
+

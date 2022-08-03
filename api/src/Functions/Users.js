@@ -475,6 +475,44 @@ const banUser = async (req, res) => {
 	}
 };
 
+const updateUser = async (req,res) => {
+	let {id} = req.params
+	let {data} = req.body
+	console.log(req.body, id)
+	try {
+
+		if(req.body.data.Email || req.body.data.Username) {
+
+			let found = await Users.findOne({
+				where: 
+					data
+				
+			})
+
+			if(found) {
+				return res.status(400).send("Username or Email already Exist")
+			}
+
+		}
+		let updated = await Users.update(
+			
+				data
+			,
+			{
+				where: {
+					ID: id,
+				},
+			}
+		);
+		console.log(updated);
+		return res.send('User Updated');
+	} catch (error) {
+		return res.status(400).send('Error');
+	}
+	
+
+};
+
 module.exports = {
 	getAllUsers,
 	getUserByName,
@@ -492,4 +530,5 @@ module.exports = {
 	updateHistory,
 	roleChange,
 	banUser,
+	updateUser,
 };

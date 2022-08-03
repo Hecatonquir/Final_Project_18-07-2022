@@ -17,7 +17,8 @@ const {
 	roleChange,
 	banUser,
 	updateCart,
-	updateHistory
+	updateHistory,
+    updateUser
 } = require('../Functions/Users.js');
 
 routes.get('/all', getAllUsers); // --------------------Working
@@ -39,6 +40,7 @@ routes.post('/registerG', registerUserGmail);
 
 routes.put('/changeRole',roleChange);
 routes.put('/banUnban',banUser);
+routes.put('/update/:id', updateUser)
 
 routes.put('/updateCart/:IdUser', updateCart);
 routes.put('/updateHistory/:userID', updateHistory);

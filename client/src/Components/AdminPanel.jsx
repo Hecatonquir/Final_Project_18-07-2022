@@ -191,12 +191,12 @@ function AdminPanel() {
 												}}>
 												{el.isErased ? "Restore Event": "Ban/Erase Event"}
 											</button>
-											<button className={styles.button2} onClick={() => {}}>Update Event</button>
+											
 										</div>
-										<Text>
+										<Link to={`/details/id/${el.ID}`}><Text>
 											Name: {el.Name} || Price: {el.Price} || City: {el.City} || Quantity:{' '}
 											{el.Quantity} || Partner:{' '}
-										</Text>{' '}
+										</Text>{' '}</Link>
 									</div>
 								))}
 					</div>

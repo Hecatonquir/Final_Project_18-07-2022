@@ -21,24 +21,24 @@ function Profile() {
   
 
   return (
-    <Box bgGradient='linear(to-r, #1c2333, #371a1e)' minHeight='100vh'>
+    <Box bg='#393E46' minHeight='100vh'>
       {token && token ? (
         <>
          <Nav />
         <Flex justifyContent='center' flexDirection='row'>
-         <Box color='white'  width='25%' padding={4} minHeight='100vh'>
+         <Box color='#EEEEEE'   width='25%' padding={4} minHeight='100vh'>
           <Flex justifyContent='center' alignItems='center' flexDirection='column'>
           <Heading as='h4' marginBottom={2}>Profile</Heading>
-              <Image src={`${tokenDecoded.picture}` || user.picture} alt="No img" marginBottom={4} width="250" height="300" ></Image>
+              <Image src={`${tokenDecoded.picture}` || user.picture} alt="No img" marginBottom={4} width="250" height="300" borderRadius='15px'></Image>
               <Heading as='h3' marginBottom={2}>{`${tokenDecoded.name[0].toUpperCase()}${tokenDecoded.name.slice(1)}` || user.name}</Heading>
               <Heading as='h3' marginBottom={2}>{tokenDecoded.city ? tokenDecoded.city : null}</Heading>
               <Heading as='h3' marginBottom={2} fontSize='2xl'>Rol: {tokenDecoded.role || "User"}</Heading>
               <Text marginBottom={2}>{tokenDecoded.email}</Text>
           </Flex>
           </Box>
-          <Box width='75%' padding={4} minHeight='100vh'>
-         <Flex justifyContent='right' minHeight='85vh'>
-          <Tabs/>
+          <Box width='75%' padding={4} minHeight='100vh' >
+         <Flex justifyContent='right' minHeight='85vh' bg='#FD7014'>
+          <Tabs />
          </Flex>
          </Box>
          </Flex>

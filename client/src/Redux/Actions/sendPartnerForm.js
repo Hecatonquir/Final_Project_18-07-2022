@@ -6,6 +6,6 @@ export async function sendPartnerForm(formPartner) {
 		await axios.post(`/support/createTicket`, formPartner, { withCredentials: true });
 		swal('Post Created!', ' ', 'success');
 	} catch (error) {
-		alert(error.response.data);
+		swal(error.response.data);
 	}
 }
