@@ -90,11 +90,11 @@ export default function Home() {
         <ButtonFilter search={search} setSearch={setSearch} />
         {/* <div className={styles.search}><CalendarEvents/></div> */}
       </Box>
-
+      
       <Center>
         <Box marginTop={10} marginBottom={10}>
           <SimpleGrid columns={2} spacing={10}>
-            {orderedEvents.length ? (
+            {orderedEvents.filter((el) => el.isErased !== true).length ? (
               orderedEvents
                 .filter((el) => el.isErased !== true)
                 .map((event) => (

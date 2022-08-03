@@ -73,6 +73,9 @@ module.exports = (sequelize) => {
 				type: DataTypes.BOOLEAN,
 				defaultValue: false,
 			},
+			Coords: {
+				type: DataTypes.ARRAY(DataTypes.NUMBER)
+			}
 		},
 		{ timestamps: false }
 	);
