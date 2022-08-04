@@ -76,7 +76,7 @@ export default function Home() {
 					<SimpleGrid columns={2} spacing={10}>
 						{events.length ? (
 							events
-								.filter((el) => el.isErased !== true)
+								.filter((el) => !el.isErased && el.isLive)
 								.map((event) => (
 									<Box
 										key={event.ID}

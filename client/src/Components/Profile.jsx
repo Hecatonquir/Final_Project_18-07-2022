@@ -29,7 +29,7 @@ function Profile() {
          <Box color='#EEEEEE'   width='25%' padding={4} minHeight='100vh'>
           <Flex justifyContent='center' alignItems='center' flexDirection='column'>
           <Heading as='h4' marginBottom={2}>Profile</Heading>
-              <Image src={`${tokenDecoded.picture}` || user.picture} alt="No img" marginBottom={4} width="250" height="300" borderRadius='15px'></Image>
+              <Image src={`${tokenDecoded.picture && tokenDecoded.picture}`}  alt="No img" marginBottom={4} width="250" height="300" borderRadius='15px'></Image>
               <Heading as='h3' marginBottom={2}>{`${tokenDecoded.name[0].toUpperCase()}${tokenDecoded.name.slice(1)}` || user.name}</Heading>
               <Heading as='h3' marginBottom={2}>{tokenDecoded.city ? tokenDecoded.city : null}</Heading>
               <Heading as='h3' marginBottom={2} fontSize='2xl'>Rol: {tokenDecoded.role || "User"}</Heading>

@@ -15,6 +15,7 @@ const eventsApi = [
 		Detail: 'Este es el detalle de este evento!',
 		Carrousel:
 			'https://static6.ticketek.com.ar/cms_static/sites/default/files/images/show-header/this960.png',
+			isLive: true
 	},
 	{
 		ID: '79c0602a-3bff-4006-afc0-9552b6d90881',
@@ -35,6 +36,7 @@ const eventsApi = [
 		Detail: 'Este es el detalle de este evento!',
 		Carrousel:
 			'https://teatro-granrex.com.ar/wp-content/files_mf/cache/th_c055d477418f3f7668860a05610bcd1f_1656359190920.jpg',
+			isLive: true
 	},
 	{
 		ID: 'cc9bc0fa-8c14-4263-968b-80c806ef2976',
@@ -53,6 +55,7 @@ const eventsApi = [
 		Date: '2023-05-22T12:30',
 		Detail: 'Este es el detalle de este evento!',
 		Carrousel: 'https://www.ninshi.net/kardargentina2022/img/banner.jpg',
+		isLive: true
 	},
 	{
 		Name: 'Fiesta de Maxi',
@@ -70,6 +73,7 @@ const eventsApi = [
 		RedFlags: 1,
 		Date: '2023-05-22T12:30',
 		Detail: 'Este es el detalle de este evento!',
+		isLive: true
 	},
 	{
 		Name: 'Carnaval de Rober',
@@ -88,6 +92,7 @@ const eventsApi = [
 		RedFlags: 1,
 		Date: '2023-05-21T13:30',
 		Detail: 'Este es el detalle de este evento!',
+		isLive: true
 	},
 	{
 		Name: 'Cine de Cesar',
@@ -105,6 +110,7 @@ const eventsApi = [
 		RedFlags: 1,
 		Date: '2023-05-20T14:30',
 		Detail: 'Este es el detalle de este evento!',
+		isLive: true
 	},
 	{
 		Name: 'Musical de Eliseo',
@@ -122,6 +128,7 @@ const eventsApi = [
 		RedFlags: 1,
 		Date: '2023-05-19T13:30',
 		Detail: 'Este es el detalle de este evento!',
+		isLive: true
 	},
 	{
 		Name: 'Concierto de Sol',
@@ -139,6 +146,7 @@ const eventsApi = [
 		RedFlags: 1,
 		Date: '2023-05-15T19:30',
 		Detail: 'Este es el detalle de este evento!',
+		isLive: true
 	},
 	{
 		Name: 'Obra de Eric',
@@ -156,6 +164,7 @@ const eventsApi = [
 		RedFlags: 1,
 		Date: '2023-05-10T20:00',
 		Detail: 'Este es el detalle de este evento!',
+		isLive: true
 	},
 	{
 		Name: 'Circo de Jhonatan',
@@ -173,6 +182,7 @@ const eventsApi = [
 		RedFlags: 1,
 		Date: '2023-06-05T21:00',
 		Detail: 'Este es el detalle de este evento!',
+		isLive: true
 	},
 ];
 const userApi = [

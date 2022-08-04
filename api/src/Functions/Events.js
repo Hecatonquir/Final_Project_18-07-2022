@@ -5,6 +5,10 @@ const { Events, Users, sequelize } = require('../db.js');
 const getAllEvents = async (req, res, next) => {
 	res.send(
 		await Events.findAll({
+			include: {
+				model: Users
+			},
+			
 			order: [['Date', 'ASC']],
 			attributes: {
 				/* include: [
@@ -34,8 +38,15 @@ const deleteEvent = async (req, res) => {
 
 const createEvent = async (req, res) => {
 	try {
-		const created = await Events.create(req.body);
-		/* created.addUsers( {where: {ID: req.body.ID}} ) */ /////PENDING////
+		console.log(req.body)
+		const created = await Events.create(req.body.event);
+		const userToAdd = await Users.findOne({
+			where: {Email: req.body.Email}
+		})
+		if(!userToAdd) {
+			return res.status(400).send("This partner doesnt exist")
+		}
+		created.addUsers(userToAdd)
 		res.send(created);
 	} catch (error) {
 		res.status(400).send(error.stack);
@@ -70,10 +81,14 @@ const getEventById = async (req, res) => {
 	try {
 		const found = await Events.findAll({
 			where: ID,
+			include: {
+				model: Users
+			},
 			attributes: {
 				include: [
 					[sequelize.fn('TO_CHAR', sequelize.col('Date'), 'Day DD-Mon-YYYY HH12:MIPM'), 'Date'],
 				],
+				
 			},
 		});
 		res.send(found);

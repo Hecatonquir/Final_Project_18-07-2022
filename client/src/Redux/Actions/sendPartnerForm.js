@@ -4,7 +4,7 @@ import swal from "sweetalert";
 export async function sendPartnerForm(formPartner){
     
         try {
-             await axios.post(`http://localhost:3001/support/`, formPartner, {withCredentials: true});
+             await axios.post(`/support/`, formPartner, {withCredentials: true});
             swal({title: "Submitted!", text: "Thanks for your request, an Admin will review your submit and will reply very soon!", icon:"success"})
         }
         
