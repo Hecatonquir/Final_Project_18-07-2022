@@ -26,7 +26,7 @@ function NavBar({ stateUser }) {
 	let count = cart ? cart.length : 0;
 
 	return (
-		<Box marginBottom={4} padding={1} bg='#222831'>
+		<Box marginBottom={4} padding={1} bgGradient="linear(to-r, #222831, #393E46)">
 			<Flex
 				alignItems='center'
 				width='100%'
@@ -50,11 +50,11 @@ function NavBar({ stateUser }) {
 
 				<Box className={styles2.welcome} marginTop='5px'>
 					{stateUser || !isExpired(token) ? (
-						<Text color='#FD7014' marginLeft='2em' textAlign='center'>
+						<Text color='#FD7014' marginLeft='2em' textAlign='center' fontWeight='bold' fontSize='1.5em'>
 							Welcome {tokenDecoded ? tokenDecoded.name : 'Guest'}
 						</Text>
 					) : (
-						<Text color='#FD7014'>Welcome Guest</Text>
+						<Text color='#FD7014' fontWeight='bold' fontSize='1.5em' textAlign='center'>Welcome Guest</Text>
 					)}
 				</Box>
 

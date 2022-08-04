@@ -1,4 +1,4 @@
-.nav {
+/* .nav {
     background-color:#1C517A;
     color: white;
     display: flex;
@@ -7,7 +7,7 @@
     font-size: 12px;
     padding: 10px;
     
-}
+} */
 
 .Button {
     background-color: #229ddb;
@@ -27,17 +27,17 @@
     margin-right: 10px;
 }
 
-.divimg {
+/* .divimg {
     display: flex;
     justify-content: center;
-}
+} */
 
-.img {
+/* .img {
     min-height: 90%;
     min-width: 1024px;
     width: 70%;
-}
+} */
 
-.container {
+/* .container {
     background-color: rgb(247, 247, 243);
-}
+} */

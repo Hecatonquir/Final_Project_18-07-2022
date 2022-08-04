@@ -5,7 +5,7 @@ import { Box, Button } from "@chakra-ui/react";
 function Nav() {
   return (
     <>
-      <Box bg="#222831">
+      <Box bgGradient="linear(to-r, #222831, #393E46)">
         <Link to="/">
           <Button
             margin={2}
