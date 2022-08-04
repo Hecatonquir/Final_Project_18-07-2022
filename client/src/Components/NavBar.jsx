@@ -23,7 +23,7 @@ function NavBar({ stateUser }) {
 	const cart = useSelector((state) => state.cart);
 	const events = useSelector((state) => state.showToUser);
 	const active = useSelector((state) => state.loginState);
-	let count = cart ? cart.length : null;
+	let count = cart ? cart.length : 0;
 
 	return (
 		<Box marginBottom={4} padding={1} bg='#222831'>
@@ -47,20 +47,25 @@ function NavBar({ stateUser }) {
 						/>
 					</Heading>
 				</Box>
+
 				<Box className={styles2.welcome} marginTop='5px'>
 					{stateUser || !isExpired(token) ? (
-						<p>Welcome {tokenDecoded ? tokenDecoded.name : 'Guest'}</p>
+						<Text color='#FD7014' marginLeft='2em' textAlign='center'>
+							Welcome {tokenDecoded ? tokenDecoded.name : 'Guest'}
+						</Text>
 					) : (
-						<p>Welcome Guest</p>
+						<Text color='#FD7014'>Welcome Guest</Text>
 					)}
 				</Box>
+
 				<Box justifyContent='space-around'>
 					{!token ? (
 						<Box marginLeft='5rem'>
 							<Link to='/login'>
-								<Button bg='#FD7014' color='white' _hover={{bg:'#EEEEEE', color:'black'}}>Login/Sign Up</Button>
+								<Button bg='#FD7014' color='white' _hover={{ bg: '#EEEEEE', color: 'black' }}>
+									Login/Sign Up
+								</Button>
 							</Link>
-						
 						</Box>
 					) : (
 						<Box></Box>
@@ -69,7 +74,8 @@ function NavBar({ stateUser }) {
 						<Button
 							marginLeft='24rem'
 							marginRight='2rem'
-							bg='#FD7014' _hover={{bg:'#EEEEEE', color:'black'}}
+							bg='#FD7014'
+							_hover={{ bg: '#EEEEEE', color: 'black' }}
 							className={styles.Button}
 							color='white'
 							onClick={() => {
@@ -84,57 +90,41 @@ function NavBar({ stateUser }) {
 								<button className={styles.Button}>Create an Event</button>
 							</Link>
 						)} */}
-
 				</Box>
-        <Flex width="40%" justifyContent='space-evenly'>
-          <Box>
-            {token &&
-              tokenDecoded &&
-              (tokenDecoded.role === "Partner" || tokenDecoded.role === "Admin") &&
-              active && (
-                  <Link to="/createEvent">
-                    <Button
-                      bg="#FD7014"
-                      color="white"
-                      _hover={{ bg: "#EEEEEE", color: "black" }}
-                    >
-                      Create an Event
-                    </Button>
-                  </Link>
-              )}
-          </Box>
+				<Flex width='40%' justifyContent='space-evenly'>
+					<Box>
+						{token &&
+							tokenDecoded &&
+							(tokenDecoded.role === 'Partner' || tokenDecoded.role === 'Admin') &&
+							active && (
+								<Link to='/createEvent'>
+									<Button bg='#FD7014' color='white' _hover={{ bg: '#EEEEEE', color: 'black' }}>
+										Create an Event
+									</Button>
+								</Link>
+							)}
+					</Box>
 
-		  <Box>
-		  {token && active && (
-                <Link to="/profile">
-                  <Button
-                    bg="#FD7014"
-                    color="white"
-                    _hover={{ bg: "#EEEEEE", color: "black" }}
-                  >
-                    <Text>Profile</Text>
-                  </Button>
-                </Link>
-            )}
-		  </Box>
-        </Flex>
+					<Box>
+						{token && active && (
+							<Link to='/profile'>
+								<Button bg='#FD7014' color='white' _hover={{ bg: '#EEEEEE', color: 'black' }}>
+									<Text>Profile</Text>
+								</Button>
+							</Link>
+						)}
+					</Box>
+				</Flex>
 
-        <Box>
-          <Link to={token ? "/cart" : "/login"}>
-            <Image
-              src={imgcarrito}
-              alt="img carrito"
-              width="3rem"
-              marginRight="1rem"
-            />
-            <span className={styles.count}>{count}</span>
-          </Link>
-        </Box>
-      </Flex>
-    </Box>
-  );
-
-
+				<Box>
+					<Link to={token ? '/cart' : '/login'}>
+						<Image src={imgcarrito} alt='img carrito' width='3rem' marginRight='1rem' />
+						<span className={styles.count}>{count}</span>
+					</Link>
+				</Box>
+			</Flex>
+		</Box>
+	);
 }
 
 export default NavBar;

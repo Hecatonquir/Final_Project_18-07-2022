@@ -505,6 +505,22 @@ const updateUser = async (req, res) => {
 	}
 };
 
+const addToFavourite = async (req, res) => {
+	const { IdUser, eventID } = req.params;
+
+	try {
+		let event = await Events.findByPk(eventID);
+		console.log('🐲🐲🐲 / file: Users.js / line 514 / event', event);
+		Users.update(
+			{ Favourites: sequelize.fn('array_append', sequelize.col('Favourites'), event) },
+			{ where: { ID: IdUser } }
+		);
+		res.send('Event added to User Favourite');
+	} catch (error) {
+		res.status(400).send(error.stack);
+	}
+};
+
 module.exports = {
 	getAllUsers,
 	getUserByName,
@@ -523,4 +539,5 @@ module.exports = {
 	roleChange,
 	banUser,
 	updateUser,
+	addToFavourite,
 };
