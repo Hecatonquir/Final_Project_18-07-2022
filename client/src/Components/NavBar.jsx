@@ -85,30 +85,56 @@ function NavBar({ stateUser }) {
 							</Link>
 						)} */}
 
-					{token && tokenDecoded && (tokenDecoded.role === 'Partner' || tokenDecoded.role === "Admin") && active && (
-						<Link to='/createEvent'>
-							<Button bg='#FD7014' color='white' _hover={{bg:'#EEEEEE', color:'black'}}>Create an Event</Button>
-						</Link>
-					)}
 				</Box>
-				{token && active && (
-					<Box marginLeft='18rem'>
-						<Link to='/profile'>
-							<Button bg='#FD7014' color='white' _hover={{bg:'#EEEEEE', color:'black'}}>
-								<Text>Profile</Text>
-							</Button>
-						</Link>
-					</Box>
-				)}
-				<Box>
-					<Link to={token ? '/cart' : '/login'}>
-						<Image src={imgcarrito} alt='img carrito' width='3rem' marginRight='1rem' />
-						<span className={styles.count}>{count}</span>
-					</Link>
-				</Box>
-			</Flex>
-		</Box>
-	);
+        <Flex width="40%" justifyContent='space-evenly'>
+          <Box>
+            {token &&
+              tokenDecoded &&
+              (tokenDecoded.role === "Partner" || tokenDecoded.role === "Admin") &&
+              active && (
+                  <Link to="/createEvent">
+                    <Button
+                      bg="#FD7014"
+                      color="white"
+                      _hover={{ bg: "#EEEEEE", color: "black" }}
+                    >
+                      Create an Event
+                    </Button>
+                  </Link>
+              )}
+          </Box>
+
+		  <Box>
+		  {token && active && (
+                <Link to="/profile">
+                  <Button
+                    bg="#FD7014"
+                    color="white"
+                    _hover={{ bg: "#EEEEEE", color: "black" }}
+                  >
+                    <Text>Profile</Text>
+                  </Button>
+                </Link>
+            )}
+		  </Box>
+        </Flex>
+
+        <Box>
+          <Link to={token ? "/cart" : "/login"}>
+            <Image
+              src={imgcarrito}
+              alt="img carrito"
+              width="3rem"
+              marginRight="1rem"
+            />
+            <span className={styles.count}>{count}</span>
+          </Link>
+        </Box>
+      </Flex>
+    </Box>
+  );
+
+
 }
 
 export default NavBar;
