@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { decodeToken } from 'react-jwt';
 import axios from 'axios';
 import { updateCart } from '../Redux/Actions/updateCart';
-import { Button } from '@chakra-ui/react';
+import { Box, Button } from '@chakra-ui/react';
 
 function AddToCartButton({ id, quantity, price }) {
 	let token = document.cookie.split(';')[0];
@@ -29,7 +29,7 @@ function AddToCartButton({ id, quantity, price }) {
 		}
 	}
 	return (
-		<div>
+		<>
 			{price === 0 && quantity === 0 ? (
 				<Button
 					style={{
@@ -69,7 +69,7 @@ function AddToCartButton({ id, quantity, price }) {
 					SOLD OUT
 				</Button>
 			)}
-		</div>
+		</>
 	);
 }
 

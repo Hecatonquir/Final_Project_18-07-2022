@@ -17,6 +17,7 @@ const eventsApi = [
 		Coords: [-34.6033873, -58.3788666],
 		Carrousel:
 			'https://static6.ticketek.com.ar/cms_static/sites/default/files/images/show-header/this960.png',
+			isLive: true
 	},
 	{
 		ID: '79c0602a-3bff-4006-afc0-9552b6d90881',
@@ -38,6 +39,7 @@ const eventsApi = [
 		Coords: [-34.6033873, -58.3788666],
 		Carrousel:
 			'https://teatro-granrex.com.ar/wp-content/files_mf/cache/th_c055d477418f3f7668860a05610bcd1f_1656359190920.jpg',
+			isLive: true
 	},
 	{
 		ID: 'cc9bc0fa-8c14-4263-968b-80c806ef2976',
@@ -58,6 +60,7 @@ const eventsApi = [
 		Detail: 'Este es el detalle de este evento!',
 		Coords: [-34.6021563, -58.3684163],
 		Carrousel: 'https://www.ninshi.net/kardargentina2022/img/banner.jpg',
+		isLive: true
 	},
 	{
 		Name: 'Fiesta de Maxi',
@@ -76,6 +79,7 @@ const eventsApi = [
 		RedFlags: 1,
 		Date: '2023-05-22T12:30',
 		Detail: 'Este es el detalle de este evento!',
+		isLive: true,
 		Coords: [-31.0335389, -71.1419676],
 	},
 	{
@@ -95,6 +99,7 @@ const eventsApi = [
 		RedFlags: 1,
 		Date: '2023-05-21T13:30',
 		Detail: 'Este es el detalle de este evento!',
+		isLive: true,
 		Coords: [-34.9106801, -57.9595473],
 	},
 	{
@@ -114,6 +119,7 @@ const eventsApi = [
 		RedFlags: 1,
 		Date: '2023-05-20T14:30',
 		Detail: 'Este es el detalle de este evento!',
+		isLive: true,
 		Coords: [-35.5813414, -58.0169276],
 	},
 	{
@@ -133,6 +139,7 @@ const eventsApi = [
 		RedFlags: 1,
 		Date: '2023-05-19T13:30',
 		Detail: 'Este es el detalle de este evento!',
+		isLive: true,
 		Coords: [-32.9552775, -60.6899365],
 	},
 	{
@@ -152,6 +159,7 @@ const eventsApi = [
 		RedFlags: 1,
 		Date: '2023-05-15T19:30',
 		Detail: 'Este es el detalle de este evento!',
+		isLive: true,
 		Coords: [-12.0485979, -77.0313197],
 	},
 	{
@@ -171,6 +179,7 @@ const eventsApi = [
 		RedFlags: 1,
 		Date: '2023-05-10T20:00',
 		Detail: 'Este es el detalle de este evento!',
+		isLive: true,
 		Coords: [-12.0485979, -77.0313197],
 	},
 	{
@@ -190,6 +199,7 @@ const eventsApi = [
 		RedFlags: 1,
 		Date: '2023-06-05T21:00',
 		Detail: 'Este es el detalle de este evento!',
+		isLive: true,
 		Coords: [-12.0485979, -77.0313197],
 	},
 	{
@@ -207,6 +217,7 @@ const eventsApi = [
 		Date: '2023-04-10T20:00',
 		Detail: 'Este es el detalle de este evento!',
 		Coords: [-12.0485979, -77.0313197],
+    isLive: true
 	},
 	{
 		Name: 'Evento Gratis (Price y Quantity=0)',

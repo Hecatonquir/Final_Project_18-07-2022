@@ -19,6 +19,11 @@ module.exports = (sequelize) => {
 				allowNull: false
 			},
 
+			reply:{
+				type: DataTypes.STRING,
+				defaultValue: ""
+			},
+
 			emailCustomer: {
 				type: DataTypes.STRING,
 				allowNull: false

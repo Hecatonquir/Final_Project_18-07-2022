@@ -16,7 +16,7 @@ function NavBar({ stateUser }) {
 	let token = document.cookie.split(';')[0];
 	let token1 = token.split('=')[1];
 
-	console.log(document.cookie);
+	//console.log(document.cookie);
 	let tokenDecoded = decodeToken(token1);
 	let dispatch = useDispatch();
 	const logoutState = useSelector((state) => state.allEvents);
@@ -58,7 +58,7 @@ function NavBar({ stateUser }) {
 					)}
 				</Box>
 
-				<Box>
+				<Box justifyContent='space-around'>
 					{!token ? (
 						<Box marginLeft='5rem'>
 							<Link to='/login'>
@@ -91,16 +91,18 @@ function NavBar({ stateUser }) {
 							</Link>
 						)} */}
 				</Box>
-
 				<Flex width='40%' justifyContent='space-evenly'>
 					<Box>
-						{token && tokenDecoded && tokenDecoded.role === 'Partner' && active && (
-							<Link to='/createEvent'>
-								<Button bg='#FD7014' color='white' _hover={{ bg: '#EEEEEE', color: 'black' }}>
-									Create an Event
-								</Button>
-							</Link>
-						)}
+						{token &&
+							tokenDecoded &&
+							(tokenDecoded.role === 'Partner' || tokenDecoded.role === 'Admin') &&
+							active && (
+								<Link to='/createEvent'>
+									<Button bg='#FD7014' color='white' _hover={{ bg: '#EEEEEE', color: 'black' }}>
+										Create an Event
+									</Button>
+								</Link>
+							)}
 					</Box>
 
 					<Box>
@@ -126,3 +128,59 @@ function NavBar({ stateUser }) {
 }
 
 export default NavBar;
+
+//  return (
+//     <Box marginBottom={6} padding={2} bgGradient='linear(to-b, #a28748, #6c5727)'>
+//       <Flex justifyContent="space-around" alignItems="center">
+//         <Box>
+//           <Heading as="h4" color='white'>Events Henry</Heading>
+//         </Box>
+//         <Search />
+//         <Box>
+//           <Flex alignItems="center" width="35em" justifyContent="space-between">
+//             <Box>
+//               {!token || !active ? (
+//                 <Button bg='#1a78b1' onClick={() => loginWithRedirect()}>
+//                   <span>Log In/Sign Up</span>
+//                 </Button>
+//               ) : (
+//                 <Button bg='#1a78b1' onClick={() => logout()}>
+//                   <span>Log Out</span>
+//                 </Button>
+//               )}
+//               {token &&tokenDecoded.role !== "Guest" && tokenDecoded.role !== "User" && active && (
+//                 <Link to="/createEvent">
+//                   <Button marginLeft={4} bg='#1a78b1'>Create an Event</Button>
+//                 </Link>
+//               )}
+//             </Box>
+
+//             {isAuthenticated ? (
+//               <Box>
+//                 <Link to="/profile">
+//                   <Button bg='#1a78b1'>
+//                     <span>Profile</span>
+//                   </Button>
+//                 </Link>
+//               </Box>
+//             ) : (
+//               <Box></Box>
+//             )}
+//             <Box>
+//               <Link to="/contact">
+//                 <Button bg='#1a78b1'>
+//                   <span>Contact Us</span>
+//                 </Button>
+//               </Link>
+//             </Box>
+//             <Box>
+//               <Link to="/cart">
+//                 <Image src={imgcarrito} alt="img carrito" width={10} />
+//                 <span className={styles.count}>{count}</span>
+//               </Link>
+//             </Box>
+//           </Flex>
+//         </Box>
+//       </Flex>
+//     </Box>
+//   )

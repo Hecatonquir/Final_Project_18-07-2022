@@ -26,6 +26,13 @@ import {
 import { decodeToken } from 'react-jwt';
 
 function AddEvent() {
+	let token = document.cookie
+	.split(';')[0]
+let token1 = 
+	token
+	.split('=')[1]
+let tokenDecoded = decodeToken(token1);
+	
 	/* 	const dispatch = useDispatch();
 	const history = useNavigate(); */
 	let navigate = useNavigate();
@@ -119,7 +126,7 @@ function AddEvent() {
 				Hour: input.Hour,
 				Detail: input.Detail,
 				AgeRestriction: Number(input.AgeRestriction),
-			});
+			},tokenDecoded.email);
 			setInput({
 				Name: '',
 				img1: '',
@@ -142,20 +149,17 @@ function AddEvent() {
 		}
 	}
 
-	let token = document.cookie.split(';')[0];
-	let token1 = token.split('=')[1];
-	let tokenDecoded = decodeToken(token1);
 
-	console.log(tokenDecoded);
 
-	useEffect(() => {
-		if (tokenDecoded && tokenDecoded.role === 'User') {
-			navigate('/');
-		}
-		if (!tokenDecoded) {
-			navigate('/');
-		}
-	});
+useEffect( () => {
+ if(tokenDecoded && tokenDecoded.role === "User") {
+	navigate("/")
+}
+if(!tokenDecoded) {
+	navigate("/")
+}})
+
+	
 
 	//Responsive
 	const [smallScreen] = useMediaQuery('(min-width: 430px)');
