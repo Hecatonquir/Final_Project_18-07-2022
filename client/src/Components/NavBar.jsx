@@ -178,10 +178,7 @@ function NavBar({ stateUser }) {
       </Flex>
     </Box>
   );
-<<<<<<< HEAD
->>>>>>> Development
-=======
->>>>>>> 8378e66aa9bfe41ba9a452a5939b5402cbe6cade
+
 }
 
 export default NavBar;
