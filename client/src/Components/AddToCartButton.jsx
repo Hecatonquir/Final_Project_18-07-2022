@@ -49,7 +49,7 @@ function AddToCartButton({ id, quantity, price }) {
 					FREE!
 				</Button>
 			) : price !== 0 && quantity !== 0 ? (
-				<button className={styles.Button2} onClick={() => handleClick()}>
+				<button className={styles.ButtonAdd2} onClick={() => handleClick()}>
 					Add To <img src={carticon} alt='not imgcart' className={styles.carticon} />
 				</button>
 			) : (

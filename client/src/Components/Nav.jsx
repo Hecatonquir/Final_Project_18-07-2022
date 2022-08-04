@@ -6,8 +6,10 @@ import mst from "../Media/mst.png"
 function Nav() {
   return (
     <>
+
     <Flex alignItems='colums' alignContent="center" >
-      <Box bg="#222831">
+     
+      <Box bgGradient="linear(to-r, #222831, #393E46)">
         <Link to="/">
           <Button
             margin={2}
