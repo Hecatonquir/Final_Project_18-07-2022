@@ -217,6 +217,7 @@ const eventsApi = [
 		Date: '2023-04-10T20:00',
 		Detail: 'Este es el detalle de este evento!',
 		Coords: [-12.0485979, -77.0313197],
+    isLive: true
 	},
 	{
 		Name: 'Evento Gratis (Price y Quantity=0)',

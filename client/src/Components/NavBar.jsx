@@ -102,6 +102,7 @@ function NavBar({ stateUser }) {
         </Box>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 					{token && tokenDecoded && (tokenDecoded.role === 'Partner' || tokenDecoded.role === "Admin") && active && (
 						<Link to='/createEvent'>
 							<Button bg='#FD7014' color='white' _hover={{bg:'#EEEEEE', color:'black'}}>Create an Event</Button>
@@ -127,11 +128,14 @@ function NavBar({ stateUser }) {
 		</Box>
 	);
 =======
+=======
+
+>>>>>>> 8378e66aa9bfe41ba9a452a5939b5402cbe6cade
         <Flex width="40%" justifyContent='space-evenly'>
           <Box>
             {token &&
               tokenDecoded &&
-              tokenDecoded.role === "Partner" &&
+              (tokenDecoded.role === "Partner" || tokenDecoded.role === "Admin") &&
               active && (
                   <Link to="/createEvent">
                     <Button
@@ -174,7 +178,10 @@ function NavBar({ stateUser }) {
       </Flex>
     </Box>
   );
+<<<<<<< HEAD
 >>>>>>> Development
+=======
+>>>>>>> 8378e66aa9bfe41ba9a452a5939b5402cbe6cade
 }
 
 export default NavBar;

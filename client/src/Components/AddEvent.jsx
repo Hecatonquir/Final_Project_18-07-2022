@@ -151,7 +151,6 @@ let tokenDecoded = decodeToken(token1);
 
 
 
-
 useEffect( () => {
  if(tokenDecoded && tokenDecoded.role === "User") {
 	navigate("/")
@@ -160,16 +159,7 @@ if(!tokenDecoded) {
 	navigate("/")
 }})
 
-	console.log(tokenDecoded);
-
-	useEffect(() => {
-		if (tokenDecoded && tokenDecoded.role === 'User') {
-			navigate('/');
-		}
-		if (!tokenDecoded) {
-			navigate('/');
-		}
-	});
+	
 
 	//Responsive
 	const [smallScreen] = useMediaQuery('(min-width: 430px)');
