@@ -1,5 +1,7 @@
-
 .leaflet-container {
-  width: 38rem;
-  height: 10rem;
+	width: 45vw;
+	height: 40vh;
+  border-radius: 5px;
+  border-color: black;
+  border-width: 1px;
 }
