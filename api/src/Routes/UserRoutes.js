@@ -44,6 +44,7 @@ routes.put('/update/:id', updateUser)
 
 routes.put('/updateCart/:IdUser', updateCart);
 routes.put('/updateHistory/:userID', updateHistory);
+routes.put('/addToFavourite/:userID/:eventID', addToFavourite);
 
 routes.delete('/delete',deleteUser); // ------------------Working
 

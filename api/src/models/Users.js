@@ -45,7 +45,7 @@ module.exports = (sequelize) => {
 				defaultValue: 'Guest',
 			},
 			Favourites: {
-				type: DataTypes.ARRAY(DataTypes.STRING),
+				type: DataTypes.ARRAY(DataTypes.JSON),
 			},
 			shoppingHistory: {
 				type: DataTypes.ARRAY(DataTypes.JSON),
