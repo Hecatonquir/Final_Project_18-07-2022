@@ -43,6 +43,7 @@ function AddToCartButton({ id, quantity, price }) {
 						display: 'flex',
 						alignItems: 'center',
 						justifyContent: 'center',
+						margin:'3%'
 					}}
 					disabled={true}>
 					FREE!
@@ -64,6 +65,7 @@ function AddToCartButton({ id, quantity, price }) {
 						display: 'flex',
 						alignItems: 'center',
 						justifyContent: 'center',
+						margin:'3%'
 					}}
 					disabled={true}>
 					SOLD OUT
