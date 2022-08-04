@@ -59,6 +59,7 @@ module.exports = (sequelize) => {
 			},
 			Date: {
 				type: DataTypes.DATE,
+				allowNull: false,
 			},
 			Detail: {
 				type: DataTypes.TEXT,
@@ -78,6 +79,9 @@ module.exports = (sequelize) => {
 				defaultValue: false,
 			},
 			
+			Coords: {
+				type: DataTypes.ARRAY(DataTypes.DOUBLE)
+			}
 		},
 		{ timestamps: false }
 	);

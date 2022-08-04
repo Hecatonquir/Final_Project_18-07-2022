@@ -17,12 +17,13 @@ const {
 	roleChange,
 	banUser,
 	updateCart,
+	updateHistory,
     updateUser
 } = require('../Functions/Users.js');
 
 routes.get('/all', getAllUsers); // --------------------Working
 routes.get('/name/:Name', getUserByName); // -----------Working
-routes.put('/getUserById/:id', getUserById); //---------Working
+routes.put('/getUserById/:id', getUserById); //---------Working   // al final queda con PUT ? si sale algun error, cambiar aqui.
 routes.get('/partner/:ID', getPartnerCreatedEvents); // Working
 routes.post('/admin', validateAdmin, (req, res) => {
 	res.send('welcome');
@@ -42,6 +43,7 @@ routes.put('/banUnban',banUser);
 routes.put('/update/:id', updateUser)
 
 routes.put('/updateCart/:IdUser', updateCart);
+routes.put('/updateHistory/:userID', updateHistory);
 
 routes.delete('/delete',deleteUser); // ------------------Working
 
