@@ -66,9 +66,13 @@ export default function validate(input) {
 
 	if (Price < 0 || Price.length > 10) {
 		errors.Price = 'Insert a positive numbers with less than 11 Digits.';
+	} else if (Price > 0 && Quantity <= 0) {
+		errors.Quantity = 'When Price > 0, you must also insert a Quantity > 0';
 	}
 	if (Quantity < 0 || Quantity.length > 10) {
 		errors.Quantity = 'Insert a positive numbers with less than 11 Digits.';
+	} else if (Quantity > 0 && Price <= 0) {
+		errors.Price = 'When Quantity > 0, you must also insert a Price > 0';
 	}
 	if (AgeRestriction < 0 || AgeRestriction >= 100) {
 		errors.AgeRestriction = 'Only insert positive numbers or less than 100.';
