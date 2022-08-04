@@ -104,6 +104,28 @@
     -o-border-radius: 5px;
 }
 
+.ButtonAdd2 {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+    cursor: pointer;
+    color: white;
+    font-weight: bolder;
+    background-color: #FD7014;
+    font-size: 12px;
+    padding: 1px 10px 1px 10px;
+    border: none;
+    /* margin-top: 20px; */
+    /* margin-bottom: px; */
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
 .Button2:hover{
     color: black;
     background-color: #EEEEEE;
@@ -157,4 +179,5 @@
     align-items: center;
     justify-content: space-between;
     margin-right: 10px;
+    width: 50%;
 }
