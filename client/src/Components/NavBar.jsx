@@ -58,7 +58,7 @@ function NavBar({ stateUser }) {
               Welcome {tokenDecoded ? tokenDecoded.name : "Guest"}
             </Text>
           ) : (
-            <Text color="#FD7014">Welcome Guest</Text>
+            <Text color="#FD7014" fontWeight='bold' fontSize='1.2em'>Welcome Guest</Text>
           )}
         </Box>
 
