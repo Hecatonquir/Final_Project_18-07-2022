@@ -66,8 +66,8 @@
     margin-bottom: 20px;
 }
 .Button2:hover{
-    color: #EEEEEE; 
-    background-color:"black"
+    color: black;
+    background-color:#EEEEEE; 
 }
 
 .Button3 {

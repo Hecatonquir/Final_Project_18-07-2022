@@ -98,7 +98,7 @@ export default function Detail() {
 						<Box
 							width='95vw'
 							height='90vh'
-							bg='green'
+							bg=''
 							border='1px solid #88cfd938'
 							p={4}
 							boxShadow=' 5px 5px 10px #2c2b2b, -10px -10px 20px #5c5a5a;'
@@ -106,12 +106,12 @@ export default function Detail() {
 							justifyContent='center'
 							alignItems='center'>
 							<Flex alignItems='center' justifyContent='center'>
-								<Box margin={1} bg='red' width='45vw' height='85vh'>
+								<Box margin={1} bg='' width='45vw' height='85vh'>
 									<DetailCarousel />
 								</Box>
 								<Flex
 									margin={1}
-									bg='yellow'
+									bg=''
 									width='45vw'
 									height='85vh'
 									flexDirection='column'
@@ -590,7 +590,7 @@ export default function Detail() {
 									</div>
 									<Flex justifyContent='center' flexDirection='column'>
 										<Text fontSize='1.5em' textAlign='center'>
-											Location on map
+											
 										</Text>
 										<MapDetails data={event[0].Coords} location={event[0].Location} />
 									</Flex>

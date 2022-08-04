@@ -43,10 +43,10 @@
     display: flex;
     border-radius: 1rem;
     box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.2);
-    margin: 1.5rem;
+    /* margin: 1.5rem; */
     overflow: hidden;
     width: 35rem;
-    height: 30rem;
+    height: 35rem;
     overflow-y: scroll;
 }
 
