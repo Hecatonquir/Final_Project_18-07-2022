@@ -11,7 +11,7 @@ import swal from 'sweetalert';
 import { Box, Heading, Image, Text, Button, Flex } from '@chakra-ui/react';
 import AddToCartButton from './AddToCartButton';
 import { decodeToken } from 'react-jwt';
-import { addToFavourite } from '../Redux/Actions/addToFavourite';
+import updateFavourite from '../Redux/Actions/addToFavourite';
 
 export default function EventCard({
 	id,
