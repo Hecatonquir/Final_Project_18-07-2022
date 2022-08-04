@@ -8,7 +8,7 @@ import styles from '../Styles/verifyAdmin.module.css';
 import Cookies from 'universal-cookie';
 import swal from 'sweetalert';
 import img from '../Media/admin1.jpeg'
-
+import {Input, Button } from "@chakra-ui/react";
 
 function Prepanel() {
 	const cookies = new Cookies();
@@ -58,28 +58,34 @@ function Prepanel() {
 							<h2>Control Panel</h2>
 							<div>
 								<p>Username</p>
-								<input
+								<Input
 									placeholder='Enter your username'
 									name='username'
+									bg='white'
 									type='text'
+									ml='2em'
+									width='20em'
 									value={user.username}
 									onChange={(e) => {
 										handleChange(e);
-									}}></input>
+									}}></Input>
 							</div>
 							<div>
 								<p>Password</p>
-								<input
+								<Input
 									placeholder='Enter your password'
 									name='password'
+									bg='white'
+									ml='2em'
+									width='20em'
 									type='password'
 									value={user.password}
 									onChange={(e) => {
 										handleChange(e);
-									}}></input>
+									}}></Input>
 							</div>
 							<div>
-								<button onClick={(e) => handleSubmit(e, user)}>Log In</button>
+								<Button mt='1em' ml='2em' width='20em' bg='#FD7014' color='white' onClick={(e) => handleSubmit(e, user)}>Log In</Button>
 							</div>
 						</form>
 					</div>
