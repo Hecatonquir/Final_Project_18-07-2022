@@ -12,8 +12,8 @@ export default function EventCarousel() {
 
   const styles = {
     prueba: {
-      width: '30rem',
-      height: '30rem'
+      width: '38.5rem',
+      height: '35rem'
     }
   }
 
