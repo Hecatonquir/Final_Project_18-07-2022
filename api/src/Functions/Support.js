@@ -23,6 +23,25 @@ const getSupportById = async (req, res) => {
 	}
 };
 
+const replyTicketByID = async (req, res) => {
+	const {id} = req.params;
+	
+	console.log(req.body)
+	try {
+		const boxSupport = await Supports.update({
+			reply: req.body.data},
+			{where: {
+				supportID: id}},
+		);
+		
+		res.send(boxSupport);
+	} catch (error) {
+		console.log(error)
+		res.status(400).send(error);
+	}
+};
+
+
 const addSupportTicket = async (req, res) => {
 	try {
 		const userToTicket = await Users.findAll()
@@ -61,4 +80,5 @@ module.exports = {
 	/* getSupportByName2, */ getSupportById,
 	addSupportTicket,
 	deleteSupportTicket,
+	replyTicketByID
 };
