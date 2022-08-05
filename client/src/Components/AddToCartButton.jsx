@@ -42,12 +42,13 @@ function AddToCartButton({ id, quantity, price }) {
 						display: 'flex',
 						alignItems: 'center',
 						justifyContent: 'center',
+						margin:'3%'
 					}}
 					disabled={true}>
 					FREE!
 				</Button>
 			) : price !== 0 && quantity !== 0 ? (
-				<button className={styles.Button2} onClick={() => handleClick()}>
+				<button className={styles.ButtonAdd2} onClick={() => handleClick()}>
 					Add To <img src={carticon} alt='not imgcart' className={styles.carticon} />
 				</button>
 			) : (
@@ -63,6 +64,7 @@ function AddToCartButton({ id, quantity, price }) {
 						display: 'flex',
 						alignItems: 'center',
 						justifyContent: 'center',
+						margin:'3%'
 					}}
 					disabled={true}>
 					SOLD OUT

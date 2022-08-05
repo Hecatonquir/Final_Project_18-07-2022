@@ -7,6 +7,7 @@ const {
 	loginRequestAP,
 	getUserByName,
 	getUserById,
+	getUserByID2,
 	deleteUser,
 	getPartnerCreatedEvents,
 	loginRequest,
@@ -25,6 +26,7 @@ const {
 routes.get('/all', getAllUsers); // --------------------Working
 routes.get('/name/:Name', getUserByName); // -----------Working
 routes.put('/getUserById/:id', getUserById); //---------Working   // al final queda con PUT ? si sale algun error, cambiar aqui.
+routes.get('/getUserByID2/:id', getUserByID2);
 routes.get('/partner/:ID', getPartnerCreatedEvents); // Working
 routes.post('/admin', validateAdmin, (req, res) => {
 	res.send('welcome');

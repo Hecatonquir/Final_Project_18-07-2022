@@ -21,7 +21,9 @@ import {
 	USER_DETAILS,
 	CLEAR_USER_DETAILS,
 	USERS_BACKUP,
+	GET_USER_BY_ID2,
 } from '../ActionTypes/actiontypes';
+
 const initialState = {
 	allEvents: [],
 	eventsBackUp: [],
@@ -35,6 +37,7 @@ const initialState = {
 	cart: [],
 	favourites: [],
 	userDetails: {},
+	userInfo: {},
 };
 
 export default function reducer(state = initialState, { type, payload }) {
@@ -131,6 +134,9 @@ export default function reducer(state = initialState, { type, payload }) {
 
 		case CLEAR_USER_DETAILS:
 			return { ...state, userDetails: [] };
+
+		case GET_USER_BY_ID2:
+			return { ...state, userInfo: payload };
 
 		default:
 			return state;

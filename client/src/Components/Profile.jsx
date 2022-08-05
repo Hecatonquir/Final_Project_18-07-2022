@@ -14,7 +14,6 @@ function Profile() {
 	let token1 = token.split('=')[1];
 
 	let tokenDecoded = decodeToken(token1);
-  console.log("🐲🐲🐲 / file: Profile.jsx / line 17 / tokenDecoded", tokenDecoded);
 
 	return (
 		<Box bg='#393E46' minHeight='100vh'>

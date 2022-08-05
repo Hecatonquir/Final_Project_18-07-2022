@@ -5,8 +5,8 @@ import { removeFromFavourites } from '../Redux/Actions/removeFromFav';
 import styles from '../Styles/Favourites.module.css';
 
 export default function Favourites() {
-	const dispatch = useDispatch();
-	const fav = useSelector((state) => state.favourites);
+    const dispatch = useDispatch()
+    const fav = useSelector((state) => state.favourites) 
 
 	function handleDeleteFav(index) {
 		console.log(index);
