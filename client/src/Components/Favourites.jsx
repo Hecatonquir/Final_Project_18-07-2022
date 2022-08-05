@@ -7,7 +7,7 @@ import styles from '../Styles/Favourites.module.css'
 
 export default function Favourites() {
     const dispatch = useDispatch()
-    const fav = useSelector((state) => state.favourites)
+    const fav = useSelector((state) => state.favourites) 
 
 
     function handleDeleteFav(index) {
