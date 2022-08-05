@@ -41,9 +41,8 @@ export default function Home() {
   const stateUser = useSelector((state) => state.loginState);
   const backup = useSelector((state) => state.eventsBackUp);
   let [search, setSearch] = useState("");
-
   let today = new Date().toISOString().slice(0, 16);
-
+  const favourites = useSelector((state) => state.favourites);
   let orderedEvents = events.slice(); // Esto me sirve para crear una copia en memoria DISTINTA del array events
 
   orderedEvents.forEach((ev, i) => {
