@@ -20,22 +20,6 @@
 	padding: 10px;
 }
 
-/* .Button {
-    background-color: #229ddb;
-    border: 2px solid white;
-    border-radius: 70px;
-    color: white;
-    padding: 10px 30px 10px 30px;
-    text-align: center;
-    font-size: 12px;
-    font-weight: bolder;
-    -webkit-transition-duration: 0.4s; Safari
-    transition-duration: 0.4s;
-    cursor: pointer;
-    text-decoration: none;
-    text-transform: uppercase;
-} */
-
 .cards {
 	background-color: white;
 	display: flex;
@@ -50,10 +34,12 @@
 .cards::-webkit-scrollbar {
 	width: 10px;
 }
+
 .cards::-webkit-scrollbar-track {
 	background-color: #ffffff08;
 	border-radius: 10px;
 }
+
 .cards::-webkit-scrollbar-thumb {
 	/* background-color: #11171a; */
 	border-radius: 10px;
@@ -176,3 +162,49 @@
 	margin: 10px;
 	width: 50%;
 }
+
+.ButtonAdd3{
+	width: 100px;
+	font-weight: bolder;
+	font-size: 12px;
+	color: white;
+	height: 3em;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-ms-border-radius: 5px;
+	-o-border-radius: 5px;
+}
+
+
+
+@media screen and (max-width: 1024px) {
+	.ButtonAdd2 {
+		font-size: 15px;
+		padding: 1px 20px;
+		width: 120px;
+	}
+
+	.carticon {
+		width: 40px;
+		margin-left: 10px;
+		margin-right: -10px;
+	}
+  }
+
+@media screen and (max-width: 768px) {
+	.ButtonAdd2 {
+		font-size: 13px;
+		padding: 1px 20px;
+		width: 90px;
+	}
+
+	.carticon {
+		width: 35px;
+		margin-left: 10px;
+		margin-right: -10px;
+	}
+  }

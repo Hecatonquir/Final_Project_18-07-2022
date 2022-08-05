@@ -28,23 +28,13 @@ function AddToCartButton({ id, quantity, price }) {
 			navigate('/login');
 		}
 	}
+
 	return (
 		<>
 			{price === 0 && quantity === 0 ? (
 				<Button
-					style={{
-						width: '100px',
-						backgroundColor: 'green',
-						borderRadius: '5px',
-						fontWeight: 'bolder',
-						fontSize: '12px',
-						color: 'white',
-						height: '2.3rem',
-						display: 'flex',
-						alignItems: 'center',
-						justifyContent: 'center',
-						margin:'3%'
-					}}
+					bg={'green'}
+					className={styles.ButtonAdd3}
 					disabled={true}>
 					FREE!
 				</Button>
@@ -54,19 +44,8 @@ function AddToCartButton({ id, quantity, price }) {
 				</button>
 			) : (
 				<Button
-					style={{
-						width: '100px',
-						backgroundColor: '#ee0808',
-						borderRadius: '5px',
-						fontWeight: 'bolder',
-						fontSize: '12px',
-						color: 'white',
-						height: '2.3rem',
-						display: 'flex',
-						alignItems: 'center',
-						justifyContent: 'center',
-						margin:'3%'
-					}}
+					bg={'#ee0808'}
+					className={styles.ButtonAdd3}
 					disabled={true}>
 					SOLD OUT
 				</Button>

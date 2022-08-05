@@ -31,8 +31,8 @@ return (
                  <Link to={`/details/id/${el.ID}`}>
                 <Text>{el.problemType}:</Text>
                 <Text mt={3} color={el.isLive? 'green' : 'red'}>{el.Name}</Text>
-                <Text mt={3}>Partner: {el.users[0].Username}</Text>
-                <Text mt={3}>Mail: {el.users[0].Email}</Text>
+                <Text mt={3}>Partner: {el.users[0] && el.users[0].Username}</Text>
+                <Text mt={3}>Mail: {el.users[0] && el.users[0].Email}</Text>
                 </Link>  
                 <Button bg='#FD7014' color='white' size='sm' mt={5} onClick={() => updateEvent({isLive: true},el.ID, dispatch)}>Approve</Button>
             </Box>

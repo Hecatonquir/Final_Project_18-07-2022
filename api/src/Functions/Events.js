@@ -155,6 +155,24 @@ const updateEvent = async (req, res) => {
 				return res.status(400).send('This event name already Exist');
 			}
 		}
+
+		
+		if(req.body.data.Quantity) {
+			
+			let eventRef = await Events.findOne({where: {ID: id}})
+			console.log(eventRef.Quantity)
+			let totalQuantity = await Events.update({
+				Quantity: eventRef.Quantity - data.Quantity,InitialQtty: eventRef.InitialQtty - data.Quantity}, {
+
+				where: {
+					ID: id,
+				},
+		});
+			console.log(totalQuantity);
+			return res.send('Event Updated');
+
+		}
+
 		let updated = await Events.update(data, {
 			where: {
 				ID: id,

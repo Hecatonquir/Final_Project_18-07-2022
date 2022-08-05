@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { GET_EVENTS, SHOW_EVENTS_USER } from '../Redux/ActionTypes/actiontypes';
 import styles from '../Styles/ButtonFilter.module.css';
-import { Box, Button, Flex, Select, Stack } from '@chakra-ui/react';
+import { Box, Button, Flex, Select, Stack, useMediaQuery } from '@chakra-ui/react';
 import swal from 'sweetalert';
 import Search from './Search';
 
@@ -66,10 +66,14 @@ function ButtonFilter({ setSearch, search }) {
 		return filterItems(e.target.value);
 	};
 
+	//Responsive
+    const [mediumScreen] = useMediaQuery("(min-width: 1265px)");
+    // w={!mediumScreen ? "60%" : "45%"}
+
 	return (
 		<>
 			<Stack spacing={10} marginTop={6} marginBottom={6}>
-				<Flex  width='100%' marginLeft="5rem">
+				<Flex  width='100%' marginLeft="1rem">
 					<div >
 						<Search search={search} setSearch={setSearch} />
 					</div>
