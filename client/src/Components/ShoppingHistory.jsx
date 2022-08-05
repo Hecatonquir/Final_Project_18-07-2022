@@ -27,7 +27,7 @@ export default function ShoppingHistory() {
     
     return (
         <div className={styles.container}>
-            {cartHistory.length ? cartHistory.map( (it) => ( <div key={it.eventID} className={styles.cards}>
+            {cartHistory.length !== 0 ? cartHistory.map( (it) => ( <div key={it.eventID} className={styles.cards}>
                                                                 <Link to={`/details/id/${it.eventID}`}>
                                                                     <div className={styles.leftcolumn}>
                                                                         <img src={it.Image[0]} alt='not img' />
