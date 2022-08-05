@@ -41,10 +41,20 @@ export default function Home() {
   const stateUser = useSelector((state) => state.loginState);
   const backup = useSelector((state) => state.eventsBackUp);
   let [search, setSearch] = useState("");
+  let [userLoc, setLoc] = useState([])
+
+  navigator.geolocation.getCurrentPosition(p=>{
+    setLoc([p.coords.latitude, p.coords.longitude])
+  })
+
 
   let today = new Date().toISOString().slice(0, 16);
 
   let orderedEvents = events.slice(); // Esto me sirve para crear una copia en memoria DISTINTA del array events
+
+  orderedEvents = orderedEvents.map(e=>{
+    return {...e, distancia: Math.sqrt( ((e.Coords[0]-userLoc[0])**2)+(e.Coords[1]-userLoc[1])**2 )}
+  }).sort((a,b)=>a.distancia-b.distancia)
 
   orderedEvents.forEach((ev, i) => {
     let evDate = ev.Date.toLocaleString().slice(0, 16);
