@@ -92,6 +92,7 @@ function NavBar({ stateUser }) {
               tokenDecoded &&
               (tokenDecoded.role === "Partner" || tokenDecoded.role === "Admin") &&
               active && (
+				<div>
                   <Link to="/createEvent">
                     <Button
                       bg="#FD7014"
@@ -101,6 +102,19 @@ function NavBar({ stateUser }) {
                       Create an Event
                     </Button>
                   </Link>
+				  <Link to={tokenDecoded.role === "Admin" ? "/welcomeA": `/welcomeP/${tokenDecoded.id}` }>
+                    <Button
+                      bg="#FD7014"
+                      color="white"
+                      _hover={{ bg: "#EEEEEE", color: "black" }}
+                    >
+                      Control Panel
+                    </Button>
+                  </Link>
+
+
+				  </div>
+				  
               )}
           </Box>
 

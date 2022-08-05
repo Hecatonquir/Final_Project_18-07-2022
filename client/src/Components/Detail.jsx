@@ -334,7 +334,7 @@ export default function Detail() {
                           }
                           onClick={(e) => handleClick(e)}
                         >
-                          Update
+                          Decrease Quantity
                         </button>
                         <input
                           name="Quantity"
