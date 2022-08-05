@@ -12,8 +12,8 @@ function Footer() {
         <Box width='50%' textAlign='center'>
           <Heading as="h5" fontSize={20}>MAIN-STAGE</Heading>
           <Text>
-            Diseñado y construido con todo el amor del mundo por el equipo de
-            MAIN-STAGE con la ayuda de nuestros colaboradores. Version: 1.0
+            designed and built with all the love in the world by the
+            MAIN-STAGE team with the help of our collaborators. Version: 1.0
           </Text>
         </Box>
         <Box width='50%' textAlign='center'>

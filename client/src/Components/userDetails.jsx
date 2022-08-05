@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { CLEAR_USER_DETAILS } from "../Redux/ActionTypes/actiontypes";
 import { getUserDetails } from "../Redux/Actions/getUserDetails";
 import { Placeholder } from "react-bootstrap";
-import { Box, Button, Text, Heading, Flex, Image, Input } from "@chakra-ui/react";
+import { Box, Button, Text, Heading, Flex, Image, Input, SimpleGrid } from "@chakra-ui/react";
 import styles from '../Styles/UserDetails.module.css'
 import ticketDone from "../Redux/Actions/markTicketAsDone";
 import updateUser from "../Redux/Actions/updateUser";
@@ -154,28 +154,19 @@ return (
                     </div>
 
                     <div className={toggleState === 2 ? `${styles.content}  ${styles.activecontent}` : styles.content}>
-                            
+                          <SimpleGrid columns={2} spacing={5}>
                             {user.supports && user.supports.map(el => (
-                            <div>
-                            <div>
-                              <label>Problem Type:</label>
-                              <h1>{el.problemType}</h1>
-                            </div>
-
-                            <div>
-                              <label>Details</label>
-                              <h1>{el.reason}</h1>
-                            </div>
-
-                            <div>
-                              <label>Solved:</label>
-                              <h1>{el.done? "Yes": "No"}</h1>
-                            </div>
-
-                            <button onClick={() => ticketDone(dispatch,el.supportID, el.done? false: true)}>{el.done? "Mark as Pending":"Mark as Done"}</button>
-                            </div>
+                              <Flex bg='#ACAFB0 ' w='28rem' minH='14rem' borderRadius='10px' ml='2em'padding={3} flexDirection='column' >
+                                  <Flex flexDirection='column'>
+                                    <Text mt='1em'>Problem Type: {el.problemType}</Text>
+                                    <Text mt='1em'>Details</Text>
+                                    <Text mt='1em'>{el.reason}</Text>
+                                    <Text mt='1em'>Solved: {el.done? "Yes": "No"}</Text>
+                                  <Button bg='#FD7014' color='white' size='sm' mt={1} w='10em' p='0.5em' onClick={() => ticketDone(dispatch,el.supportID, el.done? false: true)}>{el.done? "Mark as Pending":"Mark as Done"}</Button>
+                                  </Flex>
+                            </Flex>
                            ))}
-
+                          </SimpleGrid>
                     </div>
                 </div>
             </div>

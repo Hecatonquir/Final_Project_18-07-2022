@@ -8,7 +8,7 @@ import { clearDetail } from "../Redux/Actions/clearDetail";
 import AddToCartButton from "./AddToCartButton";
 import { addToFavourites } from "../Redux/Actions/addToFav";
 import { removeFromFavourites } from "../Redux/Actions/removeFromFav";
-import { Box, Button, Flex, Heading, Stack, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, Stack, Text, Input } from "@chakra-ui/react";
 import Nav from "./Nav.jsx";
 import fav from "../Media/favorito.png";
 import fav2 from "../Media/favorito2.png";
@@ -318,7 +318,7 @@ export default function Detail() {
                         <Text>
                           Tickets Available:{" "}
                           {event[0].Price === 0 && event[0].Quantity === 0
-                            ? "This event does't require tickets"
+                            ? "This event doesn't require tickets"
                             : event[0].Price !== 0 && event[0].Quantity === 0
                             ? "All entrances were Sold Out!"
                             : event[0].Quantity}

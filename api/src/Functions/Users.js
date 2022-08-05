@@ -135,6 +135,16 @@ const getUserById = async (req, res) => {
 	}
 };
 
+const getUserByID2 = async (req, res) => {
+	const userID = req.params.id;
+	try {
+		let user = await Users.findByPk(userID);
+		res.send(user);
+	} catch (error) {
+		res.status(400).send(error.stack);
+	}
+};
+
 const registerUser = async (req, res) => {
 	const { Name, Username, Password, Email } = req.body; // revisar location e image para mailing
 
@@ -505,10 +515,27 @@ const updateUser = async (req, res) => {
 	}
 };
 
+const addToFavourite = async (req, res) => {
+	const { IdUser, eventID } = req.params;
+
+	try {
+		let event = await Events.findByPk(eventID);
+		console.log('🐲🐲🐲 / file: Users.js / line 514 / event', event);
+		Users.update(
+			{ Favourites: sequelize.fn('array_append', sequelize.col('Favourites'), event) },
+			{ where: { ID: IdUser } }
+		);
+		res.send('Event added to User Favourite');
+	} catch (error) {
+		res.status(400).send(error.stack);
+	}
+};
+
 module.exports = {
 	getAllUsers,
 	getUserByName,
 	getUserById,
+	getUserByID2,
 	deleteUser,
 	getPartnerCreatedEvents,
 	loginRequest,
@@ -523,4 +550,5 @@ module.exports = {
 	roleChange,
 	banUser,
 	updateUser,
+	addToFavourite,
 };

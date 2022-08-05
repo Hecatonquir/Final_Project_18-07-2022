@@ -18,7 +18,6 @@ function Profile() {
 
    
 	let tokenDecoded = decodeToken(token1);
-  
 
   return (
     <Box bg='#393E46' minHeight='100vh'>
