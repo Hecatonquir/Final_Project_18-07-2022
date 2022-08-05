@@ -34,7 +34,7 @@ function AddToCartButton({ id, quantity, price }) {
 				<Button
 					style={{
 						width: '100px',
-						backgroundColor: 'green',
+						backgroundColor: '#08D9D6',
 						borderRadius: '5px',
 						fontWeight: 'bolder',
 						fontSize: '12px',

@@ -15,7 +15,7 @@ export default function EventCarousel() {
     prueba: {
       width: "45vw",
       height: "85vh",
-      borderRadius: "5px",
+      borderRadius: '1rem',
     },
   };
 
