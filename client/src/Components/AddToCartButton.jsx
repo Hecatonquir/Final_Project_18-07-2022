@@ -21,7 +21,6 @@ function AddToCartButton({ id, quantity, price }) {
 		if (token) {
 			dispatch(addCart(id));
 			dispatch(updateCart(tokenDecoded.id));
-			
 
 			swal('added product', ' ', 'success');
 		} else {
@@ -34,7 +33,7 @@ function AddToCartButton({ id, quantity, price }) {
 				<Button
 					style={{
 						width: '100px',
-						backgroundColor: 'green',
+						backgroundColor: '#08D9D6',
 						borderRadius: '5px',
 						fontWeight: 'bolder',
 						fontSize: '12px',

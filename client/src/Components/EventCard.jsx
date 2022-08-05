@@ -11,7 +11,7 @@ import swal from 'sweetalert';
 import { Box, Heading, Image, Text, Button, Flex } from '@chakra-ui/react';
 import AddToCartButton from './AddToCartButton';
 import { decodeToken } from 'react-jwt';
-import updateFavourite from '../Redux/Actions/addToFavourite';
+import updateFavourite from '../Redux/Actions/updateFavourite';
 
 export default function EventCard({
 	id,
@@ -36,12 +36,12 @@ export default function EventCard({
 		if (token1) {
 			if (!exitFav) {
 				dispatch(addToFavourites(id));
-				dispatch(updateFavourite(tokenDecoded.id));
 				swal('Added to favorite', { icon: 'success' });
 			} else {
 				dispatch(removeFromFavourites(id));
 				swal('Removed from favorites', { icon: 'warning' });
 			}
+			dispatch(updateFavourite(tokenDecoded.id));
 		} else {
 			navigate('/login');
 		}
@@ -69,7 +69,7 @@ export default function EventCard({
 							<div className={styles.text}>SOLD OUT</div>
 						</Box>
 					) : price === 0 && quantity === 0 ? (
-						<Box className={styles.triangle} borderTop='100px solid #99cc99'>
+						<Box className={styles.triangle} borderTop='100px solid #08D9D6	'>
 							<div className={styles.text}>FREE!</div>
 						</Box>
 					) : (

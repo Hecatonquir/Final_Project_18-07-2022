@@ -19,7 +19,7 @@ const {
 	updateCart,
 	updateHistory,
 	updateUser,
-	addToFavourite,
+	updateFavourite,
 } = require('../Functions/Users.js');
 
 routes.get('/all', getAllUsers); // --------------------Working
@@ -45,7 +45,7 @@ routes.put('/update/:id', updateUser);
 
 routes.put('/updateCart/:IdUser', updateCart);
 routes.put('/updateHistory/:userID', updateHistory);
-//routes.put('/addToFavourite/:userID/:eventID', addToFavourite);
+routes.put('/updateFavourite/:userID', updateFavourite);
 
 routes.delete('/delete', deleteUser); // ------------------Working
 

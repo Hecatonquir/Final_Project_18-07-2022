@@ -125,7 +125,7 @@ export default function Detail() {
 														<Heading as='h1'>{event[0].Name}</Heading>
 														<Button
 															width='5rem'
-															bg='#FD7014'
+															bg='#F87474'
 															color='white'
 															size='sm'
 															name='Name'
@@ -140,7 +140,7 @@ export default function Detail() {
 													</Flex>
 													<Flex flexDirection='row' justifyContent='space-between'>
 														<Input
-															borderColor='#FD7014'
+															borderColor='#F87474'
 															size='sm'
 															name='Name'
 															value={input.Name}
@@ -167,7 +167,7 @@ export default function Detail() {
 														<Text>City: {event[0].City}</Text>
 														<Button
 															width='5rem'
-															bg='#FD7014'
+															bg='#F87474'
 															color='white'
 															size='sm'
 															name='City'
@@ -182,7 +182,7 @@ export default function Detail() {
 													</Flex>
 													<Flex flexDirection='row' justifyContent='space-between'>
 														<Input
-															borderColor='#FD7014'
+															borderColor='#F87474'
 															size='sm'
 															name='City'
 															value={input.City}
@@ -209,7 +209,7 @@ export default function Detail() {
 														<Text>Location: {event[0].Location}</Text>
 														<Button
 															width='5rem'
-															bg='#FD7014'
+															bg='#F87474'
 															color='white'
 															size='sm'
 															name='Location'
@@ -224,7 +224,7 @@ export default function Detail() {
 													</Flex>
 													<Flex flexDirection='row' justifyContent='space-between'>
 														<Input
-															borderColor='#FD7014'
+															borderColor='#F87474'
 															size='sm'
 															name='Location'
 															value={input.Location}
@@ -251,7 +251,7 @@ export default function Detail() {
 														<Text>Category: {event[0].Category}</Text>
 														<Button
 															width='5rem'
-															bg='#FD7014'
+															bg='#F87474'
 															color='white'
 															size='sm'
 															name='Category'
@@ -266,7 +266,7 @@ export default function Detail() {
 													</Flex>
 													<Flex flexDirection='row' justifyContent='space-between'>
 														<Input
-															borderColor='#FD7014'
+															borderColor='#F87474'
 															size='sm'
 															name='Category'
 															value={input.Category}
@@ -293,7 +293,7 @@ export default function Detail() {
 														<Text>Date: {event[0].Date}</Text>
 														<Button
 															width='5rem'
-															bg='#FD7014'
+															bg='#F87474'
 															color='white'
 															size='sm'
 															name='Date'
@@ -308,7 +308,7 @@ export default function Detail() {
 													</Flex>
 													<Flex flexDirection='row' justifyContent='space-between'>
 														<Input
-															borderColor='#FD7014'
+															borderColor='#F87474'
 															size='sm'
 															name='Date'
 															value={input.Date}
@@ -337,7 +337,7 @@ export default function Detail() {
 														</Text>
 														<Button
 															width='5rem'
-															bg='#FD7014'
+															bg='#F87474'
 															color='white'
 															size='sm'
 															name='Price'
@@ -352,7 +352,7 @@ export default function Detail() {
 													</Flex>
 													<Flex flexDirection='row' justifyContent='space-between'>
 														<Input
-															borderColor='#FD7014'
+															borderColor='#F87474'
 															size='sm'
 															name='Price'
 															value={input.Price}
@@ -386,7 +386,7 @@ export default function Detail() {
 														</Text>
 														<Button
 															width='5rem'
-															bg='#FD7014'
+															bg='#F87474'
 															color='white'
 															size='sm'
 															name='Quantity'
@@ -401,7 +401,7 @@ export default function Detail() {
 													</Flex>
 													<Flex flexDirection='row' justifyContent='space-between'>
 														<Input
-															borderColor='#FD7014'
+															borderColor='#F87474'
 															size='sm'
 															name='Quantity'
 															value={input.Quantity}
@@ -433,7 +433,7 @@ export default function Detail() {
 														</Text>
 														<Button
 															width='5rem'
-															bg='#FD7014'
+															bg='#F87474'
 															color='white'
 															size='sm'
 															name='AgeRestriction'
@@ -448,7 +448,7 @@ export default function Detail() {
 													</Flex>
 													<Flex flexDirection='row' justifyContent='space-between'>
 														<Input
-															borderColor='#FD7014'
+															borderColor='#F87474'
 															size='sm'
 															type='number'
 															name='AgeRestriction'
@@ -484,7 +484,7 @@ export default function Detail() {
 														</Text>
 														<Button
 															width='5rem'
-															bg='#FD7014'
+															bg='#F87474'
 															color='white'
 															size='sm'
 															name='Restrictions'
@@ -499,7 +499,7 @@ export default function Detail() {
 													</Flex>
 													<Flex flexDirection='row' justifyContent='space-between'>
 														<Input
-															borderColor='#FD7014'
+															borderColor='#F87474'
 															size='sm'
 															name='Restrictions'
 															value={input.Restrictions}
@@ -526,7 +526,7 @@ export default function Detail() {
 														<Text width='90%'>Detail: {event[0].Detail}</Text>
 														<Button
 															width='5rem'
-															bg='#FD7014'
+															bg='#F87474'
 															color='white'
 															size='sm'
 															name='Detail'
@@ -541,7 +541,7 @@ export default function Detail() {
 													</Flex>
 													<Flex flexDirection='row' justifyContent='space-between'>
 														<Input
-															borderColor='#FD7014'
+															borderColor='#F87474'
 															size='sm'
 															name='Detail'
 															value={input.Detail}
