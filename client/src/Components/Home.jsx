@@ -96,7 +96,7 @@ export default function Home() {
           <SimpleGrid columns={2} spacing={10}>
             {orderedEvents.filter((el) => el.isErased !== true).length ? (
               orderedEvents
-                .filter((el) => el.isErased !== true)
+                .filter((el) => !el.isErased && el.isLive )
                 .map((event) => (
                   <Box key={event.ID} p={2} textAlign="center">
                     <EventCard

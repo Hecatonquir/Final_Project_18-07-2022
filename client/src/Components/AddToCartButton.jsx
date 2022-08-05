@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { decodeToken } from 'react-jwt';
 import axios from 'axios';
 import { updateCart } from '../Redux/Actions/updateCart';
-import { Button } from '@chakra-ui/react';
+import { Box, Button } from '@chakra-ui/react';
 
 function AddToCartButton({ id, quantity, price }) {
 	let token = document.cookie.split(';')[0];
@@ -21,13 +21,15 @@ function AddToCartButton({ id, quantity, price }) {
 		if (token) {
 			dispatch(addCart(id));
 			dispatch(updateCart(tokenDecoded.id));
+			
+
 			swal('added product', ' ', 'success');
 		} else {
 			navigate('/login');
 		}
 	}
 	return (
-		<div>
+		<>
 			{price === 0 && quantity === 0 ? (
 				<Button
 					style={{
@@ -41,17 +43,13 @@ function AddToCartButton({ id, quantity, price }) {
 						display: 'flex',
 						alignItems: 'center',
 						justifyContent: 'center',
+						margin:'3%'
 					}}
 					disabled={true}>
 					FREE!
 				</Button>
 			) : price !== 0 && quantity !== 0 ? (
-				<button
-					className={styles.Button2}
-					onClick={() =>
-						handleClick()
-					} /* disabled={quantity === 0 ? true : false } Esto funciona pero no le avisa al usuario por qué no le agrega el evento al card. Habría que agregar la misma condición a classname y cambiarle el estilo*/
-				>
+				<button className={styles.ButtonAdd2} onClick={() => handleClick()}>
 					Add To <img src={carticon} alt='not imgcart' className={styles.carticon} />
 				</button>
 			) : (
@@ -67,12 +65,13 @@ function AddToCartButton({ id, quantity, price }) {
 						display: 'flex',
 						alignItems: 'center',
 						justifyContent: 'center',
+						margin:'3%'
 					}}
 					disabled={true}>
 					SOLD OUT
 				</Button>
 			)}
-		</div>
+		</>
 	);
 }
 
