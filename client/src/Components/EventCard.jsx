@@ -11,7 +11,7 @@ import swal from 'sweetalert';
 import { Box, Heading, Image, Text, Button, Flex } from '@chakra-ui/react';
 import AddToCartButton from './AddToCartButton';
 import { decodeToken } from 'react-jwt';
-import updateFavourite from '../Redux/Actions/addToFavourite';
+import updateFavourite from '../Redux/Actions/updateFavourite';
 
 export default function EventCard({
 	id,
@@ -36,12 +36,12 @@ export default function EventCard({
 		if (token1) {
 			if (!exitFav) {
 				dispatch(addToFavourites(id));
-
 				swal('Added to favorite', { icon: 'success' });
 			} else {
 				dispatch(removeFromFavourites(id));
 				swal('Removed from favorites', { icon: 'warning' });
 			}
+			console.log('hola');
 			dispatch(updateFavourite(tokenDecoded.id));
 		} else {
 			navigate('/login');

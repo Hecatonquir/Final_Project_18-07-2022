@@ -45,7 +45,6 @@ export default function Home() {
   let today = new Date().toISOString().slice(0, 16);
 
   let orderedEvents = events.slice(); // Esto me sirve para crear una copia en memoria DISTINTA del array events
-  console.log("🐲🐲🐲 / file: Home.jsx / line 48 / orderedEvents", orderedEvents);
 
   orderedEvents.forEach((ev, i) => {
     let evDate = ev.Date.toLocaleString().slice(0, 16);
