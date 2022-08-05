@@ -5,6 +5,8 @@ import styles from '../Styles/NavBar.module.css';
 import { useAuth0 } from '@auth0/auth0-react';
 import imgcarrito from '../Media/carri.png';
 import imglogo from '../Media/logo2.png';
+import ms from "../Media/ms.gif"
+import mst from "../Media/mst.png"
 import { isExpired, decodeToken } from 'react-jwt';
 import logOut from '../Redux/Actions/logOut';
 import Search from './Search.jsx';
@@ -36,16 +38,34 @@ function NavBar({ stateUser }) {
 				top='0px'
 				zIndex='10'>
 				<Box>
-					<Heading as='h4' color='white'>
-						<Image
-							src={imglogo}
+				<Heading display="flex" justifyContent="center">
+      					<Image  
+              
+							src={ms}
 							alt='img logo'
-							width='6rem'
-							height='4rem'
-							marginLeft='1rem'
-							marginTop='0rem'
+							width='3vw'
+							height='3vh'
+							marginLeft='0%'
+							marginTop='5%'
 						/>
-					</Heading>
+       				 <Image 
+        				 src={mst}
+         					alt='img logo'
+         					width="10vw"
+        					 height="10vh"
+        				 /* marginLeft="35%" */
+       				 /*  marginTop="1%" */
+        			/>  
+					<Image
+        			src={ms}
+       				 alt='img logo'
+        			width='3vw'
+       				 height='3vh'
+        			marginLeft='2%'
+       			 	marginTop='5%'
+     			 />
+						
+			</Heading>
 				</Box>
 
 				<Box className={styles2.welcome} marginTop='5px'>
