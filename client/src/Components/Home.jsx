@@ -21,6 +21,7 @@ import {
   Text,
   Flex,
   StylesProvider,
+  useMediaQuery,
 } from "@chakra-ui/react";
 import BackToTopButton from "./BackToTopButton.jsx";
 import axios from "axios";
@@ -70,11 +71,16 @@ export default function Home() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+    //Responsive
+    const [mediumScreen] = useMediaQuery("(min-width: 1249px)");
+    // w={!mediumScreen ? "60%" : "45%"}
+
   return (
     <Box bgGradient="linear(to-r, #222831, #393E46)" minHeight="100vh">
       <Box padding="0" position="fixed" zIndex="100" width="100%">
         <NavBar stateUser={stateUser} />
       </Box>
+      
       <Box paddingTop="5.6rem">
         <EventCarousel carrouselEvents={carrouselEvents} />
       </Box>

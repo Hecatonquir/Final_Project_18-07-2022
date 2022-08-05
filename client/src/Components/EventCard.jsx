@@ -8,7 +8,7 @@ import styles from '../Styles/EventCard.module.css';
 import fav from '../Media/favorito.png';
 import fav2 from '../Media/favorito2.png';
 import swal from 'sweetalert';
-import { Box, Heading, Image, Text, Button, Flex } from '@chakra-ui/react';
+import { Box, Heading, Image, Text, Button, Flex, useMediaQuery } from '@chakra-ui/react';
 import AddToCartButton from './AddToCartButton';
 import { decodeToken } from 'react-jwt';
 import updateFavourite from '../Redux/Actions/addToFavourite';
@@ -61,7 +61,7 @@ export default function EventCard({
 			<div className={styles.cards}>
 				<div className={styles.leftcolumn}>
 					<Link to={`/details/id/${id}`}>
-						<Image src={image} alt='img eventCard' width='20rem' height='20rem' />
+						<Image src={image} alt='img eventCard' className={styles.img}/>
 					</Link>
 
 					{price > 0 && quantity < 1 ? (
@@ -79,14 +79,15 @@ export default function EventCard({
 
 				<div className={styles.rightcolumn}>
 					<Link to={`/details/id/${id}`}>
-						<Heading as='h5' fontSize='1.5em' marginTop={4} _hover={{ color: '#FD7014' }}>
+						<Heading as='h5' className={styles.title} marginTop={4} _hover={{ color: '#FD7014' }}>
 							{name}
 						</Heading>
 					</Link>
-					<Text marginTop={2}> 🗓️{dateModificada} </Text>
-					<Text marginTop={2}>🎟️ ${price === 0 ? ' Free!' : price}</Text>
-					<Text marginTop={2}> 📍{city}</Text>
-					<Flex alignItems='center' marginBottom={2}>
+					<Text className={styles.data}> 🗓️{dateModificada} </Text>
+					<Text className={styles.datas}>🎟️ ${price === 0 ? ' Free!' : price}</Text>
+					<Text className={styles.datas}> 📍{city}</Text>
+
+					<Flex alignItems='center' className={styles.flex}>
 						<Button className={styles.ButtonFav} bg='white'>
 							{exitFav ? (
 								<img
