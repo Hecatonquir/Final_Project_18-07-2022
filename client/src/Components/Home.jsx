@@ -55,6 +55,11 @@ export default function Home() {
 		}
 	});
 	const carrouselEvents = orderedEvents.filter((ev) => ev.Carrousel);
+	let [userLoc, setLoc] = useState([]);
+
+	navigator.geolocation.getCurrentPosition((p) => {
+		setLoc([p.coords.latitude, p.coords.longitude]);
+	});
 
 	if (!stateUser && user) {
 		dispatch(registerGmail(user, logout));
@@ -75,11 +80,26 @@ export default function Home() {
 	}, []);
 	if (user2.Favourites) {
 		dispatch(updateGlobalFav(user2.Favourites ? user2.Favourites : []));
-		
 	}
 	//Responsive
 	const [mediumScreen] = useMediaQuery('(min-width: 1249px)');
 	// w={!mediumScreen ? "60%" : "45%"}
+
+	orderedEvents = orderedEvents
+		.map((e) => {
+			return {
+				...e,
+				distancia: Math.sqrt((e.Coords[0] - userLoc[0]) ** 2 + (e.Coords[1] - userLoc[1]) ** 2),
+			};
+		})
+		.sort((a, b) => a.distancia - b.distancia);
+
+	orderedEvents.forEach((ev, i) => {
+		let evDate = ev.Date.toLocaleString().slice(0, 16);
+		if (evDate < today) {
+			orderedEvents.splice(i, 1);
+		}
+	});
 
 	return (
 		<Box bgGradient='linear(to-r, #222831, #393E46)' minHeight='100vh'>
