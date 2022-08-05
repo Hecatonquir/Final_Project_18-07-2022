@@ -7,9 +7,9 @@ function Nav() {
   return (
     <>
 
-    <Flex alignItems='colums' alignContent="center" >
+    <Flex alignItems='colums' alignContent="center"bg ="#222831" >
      
-      <Box bgGradient="linear(to-r, #222831, #393E46)">
+      <Box  zIndex='10'>
         <Link to="/">
           <Button
             margin={2}
