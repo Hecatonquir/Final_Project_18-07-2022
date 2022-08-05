@@ -122,9 +122,9 @@ const getUserById = async (req, res) => {
 			where: {
 				ID,
 			},
-			include: {
-				model: Supports,
-			},
+			include: [{ model: Supports}, {model: Events}
+				
+			],
 
 			attributes: { exclude: ['Password'] },
 		});

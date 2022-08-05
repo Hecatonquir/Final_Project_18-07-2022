@@ -117,6 +117,7 @@ let tokenDecoded = decodeToken(token1);
 				Carrousel: input.carrousel,
 				Price: Number(input.Price),
 				Quantity: Number(input.Quantity),
+				InitialQtty: Number(input.Quantity),
 				Rating: Number(input.Rating),
 				Category: input.Category,
 				Restrictions: input.Restrictions.length ? input.Restrictions.split('/') : [],
