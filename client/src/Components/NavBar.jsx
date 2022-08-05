@@ -8,7 +8,7 @@ import imglogo from '../Media/logo2.png';
 import { isExpired, decodeToken } from 'react-jwt';
 import logOut from '../Redux/Actions/logOut';
 import Search from './Search.jsx';
-import { Box, Button, Flex, Heading, Image, Text } from '@chakra-ui/react';
+import { Box, Button, Flex, Heading, Image, Text, useMediaQuery } from '@chakra-ui/react';
 import { CLEAR_CART, UPDATE_STATE_TRUE } from '../Redux/ActionTypes/actiontypes';
 import styles2 from '../Styles/Home.module.css';
 function NavBar({ stateUser }) {
@@ -25,6 +25,10 @@ function NavBar({ stateUser }) {
 	const active = useSelector((state) => state.loginState);
 	let count = cart ? cart.length : 0;
 
+	   //Responsive
+	   const [mediumScreen] = useMediaQuery("(min-width: 1249px)");
+	   // w={!mediumScreen ? "60%" : "45%"}
+
 	return (
 		<Box marginBottom={4} padding={1} bgGradient="linear(to-r, #222831, #393E46)">
 			<Flex
@@ -35,6 +39,7 @@ function NavBar({ stateUser }) {
 				position='sticky'
 				top='0px'
 				zIndex='10'>
+					
 				<Box>
 					<Heading as='h4' color='white'>
 						<Image
@@ -129,58 +134,4 @@ function NavBar({ stateUser }) {
 
 export default NavBar;
 
-//  return (
-//     <Box marginBottom={6} padding={2} bgGradient='linear(to-b, #a28748, #6c5727)'>
-//       <Flex justifyContent="space-around" alignItems="center">
-//         <Box>
-//           <Heading as="h4" color='white'>Events Henry</Heading>
-//         </Box>
-//         <Search />
-//         <Box>
-//           <Flex alignItems="center" width="35em" justifyContent="space-between">
-//             <Box>
-//               {!token || !active ? (
-//                 <Button bg='#1a78b1' onClick={() => loginWithRedirect()}>
-//                   <span>Log In/Sign Up</span>
-//                 </Button>
-//               ) : (
-//                 <Button bg='#1a78b1' onClick={() => logout()}>
-//                   <span>Log Out</span>
-//                 </Button>
-//               )}
-//               {token &&tokenDecoded.role !== "Guest" && tokenDecoded.role !== "User" && active && (
-//                 <Link to="/createEvent">
-//                   <Button marginLeft={4} bg='#1a78b1'>Create an Event</Button>
-//                 </Link>
-//               )}
-//             </Box>
 
-//             {isAuthenticated ? (
-//               <Box>
-//                 <Link to="/profile">
-//                   <Button bg='#1a78b1'>
-//                     <span>Profile</span>
-//                   </Button>
-//                 </Link>
-//               </Box>
-//             ) : (
-//               <Box></Box>
-//             )}
-//             <Box>
-//               <Link to="/contact">
-//                 <Button bg='#1a78b1'>
-//                   <span>Contact Us</span>
-//                 </Button>
-//               </Link>
-//             </Box>
-//             <Box>
-//               <Link to="/cart">
-//                 <Image src={imgcarrito} alt="img carrito" width={10} />
-//                 <span className={styles.count}>{count}</span>
-//               </Link>
-//             </Box>
-//           </Flex>
-//         </Box>
-//       </Flex>
-//     </Box>
-//   )

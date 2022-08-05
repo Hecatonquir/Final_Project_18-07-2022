@@ -525,7 +525,7 @@ const updateFavourite = async (req, res) => {
 	} catch (error) {
 		res.status(400).send(error.stack);
 	}
-
+};
 module.exports = {
 	getAllUsers,
 	getUserByName,
@@ -545,5 +545,5 @@ module.exports = {
 	roleChange,
 	banUser,
 	updateUser,
-	addToFavourite,
+	updateFavourite,
 };

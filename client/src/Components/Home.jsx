@@ -21,6 +21,7 @@ import {
   Text,
   Flex,
   StylesProvider,
+  useMediaQuery,
 } from "@chakra-ui/react";
 import BackToTopButton from "./BackToTopButton.jsx";
 import axios from "axios";
@@ -44,6 +45,7 @@ export default function Home() {
   let today = new Date().toISOString().slice(0, 16);
 
   let orderedEvents = events.slice(); // Esto me sirve para crear una copia en memoria DISTINTA del array events
+  console.log("🐲🐲🐲 / file: Home.jsx / line 48 / orderedEvents", orderedEvents);
 
   orderedEvents.forEach((ev, i) => {
     let evDate = ev.Date.toLocaleString().slice(0, 16);
@@ -70,11 +72,16 @@ export default function Home() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+    //Responsive
+    const [mediumScreen] = useMediaQuery("(min-width: 1249px)");
+    // w={!mediumScreen ? "60%" : "45%"}
+
   return (
     <Box bgGradient="linear(to-r, #222831, #393E46)" minHeight="100vh">
       <Box padding="0" position="fixed" zIndex="100" width="100%">
         <NavBar stateUser={stateUser} />
       </Box>
+      
       <Box paddingTop="5.6rem">
         <EventCarousel carrouselEvents={carrouselEvents} />
       </Box>

@@ -20,7 +20,7 @@ const {
 	updateCart,
 	updateHistory,
 	updateUser,
-	addToFavourite,
+	updateFavourite,
 } = require('../Functions/Users.js');
 
 routes.get('/all', getAllUsers); // --------------------Working
