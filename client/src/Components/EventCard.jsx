@@ -11,7 +11,7 @@ import swal from 'sweetalert';
 import { Box, Heading, Image, Text, Button, Flex } from '@chakra-ui/react';
 import AddToCartButton from './AddToCartButton';
 import { decodeToken } from 'react-jwt';
-import updateFavourite from '../Redux/Actions/addToFavourite';
+import updateFavourite from '../Redux/Actions/updateFavourite';
 
 export default function EventCard({
 	id,
@@ -26,7 +26,10 @@ export default function EventCard({
 }) {
 	const dispatch = useDispatch();
 	const Allfavourites = useSelector((state) => state.favourites);
-	var exitFav = Allfavourites.find((e) => e.ID === id);
+	
+	console.log('🐲🐲🐲 / file: EventCard.jsx / line 29 / Allfavourites', Allfavourites);
+	var exitFav = Allfavourites?.find((e) => e.ID === id);
+
 	let token = document.cookie.split(';')[0];
 	let token1 = token.split('=')[1];
 	let tokenDecoded = decodeToken(token);
@@ -36,7 +39,6 @@ export default function EventCard({
 		if (token1) {
 			if (!exitFav) {
 				dispatch(addToFavourites(id));
-
 				swal('Added to favorite', { icon: 'success' });
 			} else {
 				dispatch(removeFromFavourites(id));
