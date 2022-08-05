@@ -7,8 +7,8 @@ import updateFavourite from '../Redux/Actions/updateFavourite';
 
 export default function Favourites() {
 	const dispatch = useDispatch();
+	const fav = useSelector((state) => state.favourites);
 	let user = useSelector((state) => state.userInfo);
-	let fav = user ? user.Favourites : [];
 	console.log('🐲🐲🐲 / file: Favourites.jsx / line 13 / fav', fav);
 
 	function handleDeleteFav(index) {
@@ -16,7 +16,6 @@ export default function Favourites() {
 		dispatch(removeFromFavourites(index));
 		dispatch(updateFavourite(user.ID));
 	}
-
 
 	return (
 		<div className={styles.container}>

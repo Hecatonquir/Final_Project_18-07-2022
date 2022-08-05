@@ -28,7 +28,7 @@ export default function ShoppingHistory() {
 
 	return (
 		<div className={styles.container}>
-			{cartHistory?.length? (
+			{cartHistory?.length ? (
 				cartHistory.map((it) => (
 					<div key={it.eventID} className={styles.cards}>
 						<Link to={`/details/id/${it.eventID}`}>

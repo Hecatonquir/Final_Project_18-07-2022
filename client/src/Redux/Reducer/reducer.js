@@ -76,6 +76,8 @@ export default function reducer(state = initialState, { type, payload }) {
 		case 'UPDATE_DB_FAVOURITE':
 			axios.put('/user/updateFavourite/' + payload, state.favourites);
 			return state;
+		case 'UPDATE_GLOBAL_FAVOURITE':
+			return { ...state, favourites: payload };
 
 		case ADD_ITEM_CART:
 			const newItem = state.allEvents.find((event) => event.ID === payload);
@@ -127,7 +129,6 @@ export default function reducer(state = initialState, { type, payload }) {
 
 		case REMOVE_FROM_FAVOURITES:
 			const filterFav = state.favourites.filter((item) => item.ID !== payload);
-			console.log('🐲🐲🐲 / file: reducer.js / line 130 / state.favourites\n', state.favourites);
 			return { ...state, favourites: filterFav };
 
 		case USER_DETAILS:
