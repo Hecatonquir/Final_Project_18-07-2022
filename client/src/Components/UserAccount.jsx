@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from "../Styles/UserAccount.module.css";
 import Favourites from "./Favourites";
+import ShoppingHistory from './ShoppingHistory';
 import img1 from '../Media/construccion.png'
 
 export default function Tabs() {
@@ -37,7 +38,8 @@ export default function Tabs() {
           </div>
 
           <div className={toggleState === 2 ? `${styles.content}  ${styles.activecontent}` : styles.content}>
-            <img className={styles.img} src={img1} alt='not imgconstruccion' />
+            {/* <img className={styles.img} src={img1} alt='not imgconstruccion' /> */}
+            <ShoppingHistory/>
           </div>
 
           {/* <div className={toggleState === 3 ? `${styles.content}  ${styles.activecontent}` : styles.content}>

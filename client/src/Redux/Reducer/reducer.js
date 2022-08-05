@@ -20,8 +20,10 @@ import {
 	LOAD_CART,
     USER_DETAILS,
     CLEAR_USER_DETAILS,
-	USERS_BACKUP
-} from '../ActionTypes/actiontypes';
+	USERS_BACKUP,
+	GET_USER_BY_ID2 } from '../ActionTypes/actiontypes';
+
+
 const initialState = {
 	allEvents: [],
 	eventsBackUp: [],
@@ -35,6 +37,7 @@ const initialState = {
 	cart: [],
 	favourites: [],
     userDetails: {},
+	userInfo: {}
 };
 
   
@@ -124,12 +127,16 @@ export default function reducer(state = initialState, { type, payload }) {
 			const filterFav = state.favourites.filter((item) => item.ID !== payload);
 			return { ...state, favourites: filterFav }
 
-            case USER_DETAILS:
-                return {...state, userDetails: payload}
+        case USER_DETAILS:
+            return {...state, userDetails: payload}
 
 
-            case CLEAR_USER_DETAILS:
-                return {...state, userDetails: []};
+        case CLEAR_USER_DETAILS:
+            return {...state, userDetails: []};
+
+		case GET_USER_BY_ID2:
+			return { ...state,
+					  userInfo: payload }
 
 		default:
 			return state;

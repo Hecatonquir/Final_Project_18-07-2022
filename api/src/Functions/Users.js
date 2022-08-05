@@ -135,6 +135,16 @@ const getUserById = async (req, res) => {
 	}
 };
 
+const getUserByID2 = async (req, res) => {
+	const userID = req.params.id;
+	try {
+		let user = await Users.findByPk(userID);
+		res.send(user);
+	} catch (error) {
+		res.status(400).send(error.stack);
+	}
+};
+
 const registerUser = async (req, res) => {
 	const { Name, Username, Password, Email } = req.body; // revisar location e image para mailing
 
@@ -509,6 +519,7 @@ module.exports = {
 	getAllUsers,
 	getUserByName,
 	getUserById,
+	getUserByID2,
 	deleteUser,
 	getPartnerCreatedEvents,
 	loginRequest,
