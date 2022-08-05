@@ -1,21 +1,26 @@
-import { React } from 'react';
+import { React, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeFromFavourites } from '../Redux/Actions/removeFromFav';
 import styles from '../Styles/Favourites.module.css';
+import updateFavourite from '../Redux/Actions/updateFavourite';
 
 export default function Favourites() {
-    const dispatch = useDispatch()
-    const fav = useSelector((state) => state.favourites) 
+	const dispatch = useDispatch();
+	let user = useSelector((state) => state.userInfo);
+	let fav = user ? user.Favourites : [];
+	console.log('🐲🐲🐲 / file: Favourites.jsx / line 13 / fav', fav);
 
 	function handleDeleteFav(index) {
 		console.log(index);
 		dispatch(removeFromFavourites(index));
+		dispatch(updateFavourite(user.ID));
 	}
+
 
 	return (
 		<div className={styles.container}>
-			{fav.length ? (
+			{fav?.length ? (
 				fav.map((item) => (
 					<div key={item.ID} className={styles.cards}>
 						<Link to={`/details/id/${item.ID}`}>

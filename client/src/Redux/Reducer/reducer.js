@@ -127,6 +127,7 @@ export default function reducer(state = initialState, { type, payload }) {
 
 		case REMOVE_FROM_FAVOURITES:
 			const filterFav = state.favourites.filter((item) => item.ID !== payload);
+			console.log('🐲🐲🐲 / file: reducer.js / line 130 / state.favourites\n', state.favourites);
 			return { ...state, favourites: filterFav };
 
 		case USER_DETAILS:

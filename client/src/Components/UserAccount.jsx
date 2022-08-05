@@ -29,8 +29,7 @@ export default function Tabs() {
               onClick={() => toggleTab(3)}>
               Tab 3
             </button> */}
-        </div>
-        
+        </div>        
 
         <div className={styles.contenttabs}>
           <div className={toggleState === 1 ? `${styles.content}  ${styles.activecontent}` : styles.content}>
