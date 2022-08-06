@@ -32,6 +32,7 @@ function LogIn() {
   const [input, setInput] = useState({
     username: "",
     password: "",
+    token:"",
   });
 
   const handleChange = function (e) {
@@ -43,7 +44,8 @@ function LogIn() {
 
   const submitButton = function (e) {
     e.preventDefault();
-    logInUser(input, navigate, dispatch, setCookie);
+    if(input.token && input.username && input.password){
+    logInUser(input, navigate, dispatch, setCookie);}
   };
 
   if (token) {
@@ -93,6 +95,17 @@ function LogIn() {
                   onChange={handleChange}
                   placeholder="Password"
                   value={input.password}
+                  _placeholder={{ opacity: 0.4, color: "inherit" }}
+                  color="white"
+                  variant="flushed"
+                  marginBottom={6}
+                />
+                <Input
+                  type="password"
+                  name="token"
+                  onChange={handleChange}
+                  placeholder="2FA"
+                  value={input.token}
                   _placeholder={{ opacity: 0.4, color: "inherit" }}
                   color="white"
                   variant="flushed"
