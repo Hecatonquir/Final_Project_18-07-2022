@@ -122,9 +122,7 @@ const getUserById = async (req, res) => {
 			where: {
 				ID,
 			},
-			include: [{ model: Supports}, {model: Events}
-				
-			],
+			include: [{ model: Supports }, { model: Events }],
 
 			attributes: { exclude: ['Password'] },
 		});
@@ -515,17 +513,13 @@ const updateUser = async (req, res) => {
 	}
 };
 
-const addToFavourite = async (req, res) => {
-	const { IdUser, eventID } = req.params;
-
+const updateFavourite = async (req, res) => {
+	const { userID } = req.params;
 	try {
-		let event = await Events.findByPk(eventID);
-		console.log('🐲🐲🐲 / file: Users.js / line 514 / event', event);
-		Users.update(
-			{ Favourites: sequelize.fn('array_append', sequelize.col('Favourites'), event) },
-			{ where: { ID: IdUser } }
-		);
-		res.send('Event added to User Favourite');
+		let user = await Users.findByPk(userID);
+		user.Favourites = req.body;
+		user.save();
+		res.send('Event added to User Cart');
 	} catch (error) {
 		res.status(400).send(error.stack);
 	}
@@ -550,5 +544,5 @@ module.exports = {
 	roleChange,
 	banUser,
 	updateUser,
-	addToFavourite,
+	updateFavourite,
 };
