@@ -51,11 +51,11 @@ module.exports = (sequelize) => {
 				defaultValue: 'Guest',
 			},
 			Favourites: {
-				type: DataTypes.ARRAY(DataTypes.JSON),
+				type: DataTypes.ARRAY(DataTypes.STRING),
 				defaultValue: [],
 			},
 			shoppingHistory: {
-				type: DataTypes.ARRAY(DataTypes.JSON),
+				type: DataTypes.ARRAY(DataTypes.STRING),
 				defaultValue: [],
 			},
 			CreatedEvents: {
@@ -70,7 +70,7 @@ module.exports = (sequelize) => {
 				defaultValue: false,
 			},
 			Cart: {
-				type: DataTypes.ARRAY(DataTypes.JSON),
+				type: DataTypes.ARRAY(DataTypes.STRING),
 				defaultValue: [],
 			},
 			isSupport: {
