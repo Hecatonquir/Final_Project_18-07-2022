@@ -35,8 +35,6 @@ let [actReply, setReply] = useState({})
 let [input, setInput] = useState("")
 return (
     <Box>
-        <Flex justifyContent='center' mt={1}>
-        </Flex>
         <Flex justifyContent='center'>
         <SimpleGrid columns={3} spacing={4}>
 
@@ -52,7 +50,7 @@ return (
                 </Flex>
                 
                 <Input id={i} hidden={actReply[el.supportID]? false: true} value={input.i} bg='white' size='sm' mt='0.5em' p='0.5em' onChange={((e) => setInput(e.target.value) )}></Input>
-                <Button id={i} bg='#35A15E' color='white' w='10em' size='md' p='0.5em' hidden={actReply? false: true} onClick={() => ticketReply(input, el.supportID)}>Send</Button>
+                <Button id={i} bg='#35A15E' color='white' w='10em' size='sm' mt='0.5em' p='0.5em' hidden={actReply? false: true} onClick={() => ticketReply(input, el.supportID)}>Send</Button>
             </Flex>  
             ))}
         </SimpleGrid>

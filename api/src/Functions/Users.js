@@ -268,10 +268,13 @@ const registerUserGmail = async (req, res) => {
 			});
 			console.log(foundOrCreate);
 			if (!foundOrCreate[0]) {
+
+				let temp_secret = speakEasy.generateSecret()
 				bcrypt.hash(process.env.DefaultPassword, 10).then(async (hash) => {
 					req.body.Password = hash;
 					req.body.Role = 'User';
 					req.body.Username = Email;
+					req.body.Token = temp_secret.base32
 					let gmailUser = await Users.create(req.body);
 					const token = jwt.sign(
 						{
@@ -367,7 +370,7 @@ const loginRequest = async (req, res) => {
 };
 
 const loginRequestAP = async (req, res) => {
-	const { username, password } = req.body;
+	const { username, password, token } = req.body;
 	console.log(password);
 	try {
 		const user_ = await Users.findAll({
@@ -379,6 +382,15 @@ const loginRequestAP = async (req, res) => {
 			if (user_[0].Role === 'User') {
 				return res.status(400).send('Not Allowed');
 			}
+
+			const {Token:secret} = user_[0]
+			console.log(secret)
+			let verified = speakEasy.totp({secret, encoded:"base32", token})
+			console.log(verified)
+			if(!verified) {
+				return res.status(400).send("Invalid Token")
+			}
+
 			bcrypt.compare(password, user_[0].Password, (error, response) => {
 				if (response) {
 					const id = user_[0].ID;
