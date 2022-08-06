@@ -3,6 +3,7 @@ const { Op } = require('sequelize');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { Events, Users, Supports, Carts, sequelize } = require('../db.js');
+const speakEasy = require('speakeasy')
 //const nodemailer = require('nodemailer') // nodemailer y google api en caso de poder implementarlas
 //const { google } = require('googleapis')
 
@@ -122,7 +123,9 @@ const getUserById = async (req, res) => {
 			where: {
 				ID,
 			},
-			include: [{ model: Supports }, { model: Events }],
+			include: [{ model: Supports}, {model: Events}
+				
+			],
 
 			attributes: { exclude: ['Password'] },
 		});
@@ -235,11 +238,14 @@ const registerUser = async (req, res) => {
 			});
 			console.log(foundOrCreate);
 			if (!foundOrCreate[0]) {
+				let temp_secret = speakEasy.generateSecret()
+			
 				bcrypt.hash(Password, 10).then((hash) => {
 					req.body.Password = hash;
 					req.body.Role = 'User';
+					req.body.Token = temp_secret.base32
 					Users.create(req.body);
-					return res.send('Created Succesfully');
+					return res.send(`Created Succesfully, YOUR 2FA TOKEN IS: ${temp_secret.base32}, Please Keep it Safe!`);
 				});
 			} else {
 				return res.status(400).send('User already exist');
@@ -309,8 +315,8 @@ const registerUserGmail = async (req, res) => {
 };
 
 const loginRequest = async (req, res) => {
-	const { username, password } = req.body;
-	console.log(username);
+	const { username, password, token } = req.body;
+	console.log(token);
 	try {
 		const user_ = await Users.findAll({
 			where: {
@@ -323,6 +329,15 @@ const loginRequest = async (req, res) => {
 		if (user_[0]) {
 			if (user_[0].Role === 'Admin') {
 				return res.status(400).send('Invalid User/Password');
+			}
+
+
+			const {Token:secret} = user_[0]
+			console.log(secret)
+			let verified = speakEasy.totp({secret, encoded:"base32", token})
+			console.log(verified)
+			if(!verified) {
+				return res.status(400).send("Invalid Token")
 			}
 
 			bcrypt.compare(password, user_[0].Password, (error, response) => {
@@ -343,7 +358,7 @@ const loginRequest = async (req, res) => {
 
 					return res.json(token);
 				} else {
-					return res.status(400).send('');
+					return res.status(400).send('Username or Password Invalid');
 				}
 			});
 		}
@@ -513,13 +528,17 @@ const updateUser = async (req, res) => {
 	}
 };
 
-const updateFavourite = async (req, res) => {
-	const { userID } = req.params;
+const addToFavourite = async (req, res) => {
+	const { IdUser, eventID } = req.params;
+
 	try {
-		let user = await Users.findByPk(userID);
-		user.Favourites = req.body;
-		user.save();
-		res.send('Event added to User Cart');
+		let event = await Events.findByPk(eventID);
+		console.log('🐲🐲🐲 / file: Users.js / line 514 / event', event);
+		Users.update(
+			{ Favourites: sequelize.fn('array_append', sequelize.col('Favourites'), event) },
+			{ where: { ID: IdUser } }
+		);
+		res.send('Event added to User Favourite');
 	} catch (error) {
 		res.status(400).send(error.stack);
 	}
@@ -544,5 +563,5 @@ module.exports = {
 	roleChange,
 	banUser,
 	updateUser,
-	updateFavourite,
+	addToFavourite,
 };

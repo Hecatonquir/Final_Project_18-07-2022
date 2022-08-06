@@ -3,8 +3,9 @@ import swal from 'sweetalert';
 
 export default async function userRegister(payload) {
 	try {
-		await axios.post(`/user/register`, payload);
-		swal('User Registered Succesfully', {
+		let coco = await axios.post(`/user/register`, payload);
+		console.log(coco)
+		swal(`${coco.data}`,{
 			icon: 'success',
 		});
 	} catch (error) {
