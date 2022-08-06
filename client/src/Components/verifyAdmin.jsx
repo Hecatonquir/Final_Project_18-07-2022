@@ -46,6 +46,10 @@ function Prepanel() {
 		if (tokenDecoded && tokenDecoded.role !== 'Admin') {
 			swal({ title: 'Not Allowed', icon: 'error' });
 			navigate('/');
+
+		}
+		else if(tokenDecoded && tokenDecoded.role === "Admin" ) {
+			navigate("/welcomeA")
 		}
 	}, []);
 
