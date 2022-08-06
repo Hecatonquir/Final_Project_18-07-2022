@@ -17,6 +17,7 @@ import { Box, Text, Button, Flex, Input } from "@chakra-ui/react";
 import {Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableContainer} from '@chakra-ui/react'
 import { GET_EVENTS, GET_USERS } from '../Redux/ActionTypes/actiontypes';
 import TicketsUsers from './TicketsFromUsers'
+import validateAdminDB from '../Redux/Actions/validateAdminDB';
 import EventRequest from './EventRequest'
 
 function AdminPanel() {
@@ -27,6 +28,7 @@ function AdminPanel() {
 		token
 		.split('=')[1]
 	let tokenDecoded = decodeToken(token1);
+
 	
 
 
@@ -38,6 +40,12 @@ function AdminPanel() {
 
 	let dispatch = useDispatch();
 	let navigate = useNavigate();
+
+
+	// if(tokenDecoded) {
+	// 	validateAdminDB(tokenDecoded.id, navigate)
+	// }
+
 	const [admin, setAdmin] = useState(false);
 	
 
@@ -65,9 +73,9 @@ function AdminPanel() {
 	}
 
 	useEffect(() => {
-		axios.post('/user/admin', {token: token1})
+		axios.post('/user/admin/validate', {data: {token: token1}})
 			.then((response) => setAdmin(true))
-			.then((response) => dispatch(getUsers()))
+			.then((response) => dispatch(getUsers(token1)))
 			.then((response) => dispatch(getEvents()))
 			.catch((error) => navigate('/'));
 
@@ -177,7 +185,7 @@ function AdminPanel() {
 												m='0.5em'
 												className={styles.button1}
 												onClick={() => {
-													deleteUserDB(el.Email, dispatch);
+													deleteUserDB(el.Email, dispatch, token1);
 													setUser({ username: '', posts: '' });
 												}}>
 												Delete User
@@ -201,7 +209,7 @@ function AdminPanel() {
 												className={styles.button4}
 												hidden={actRoles ? false : true}
 												name='Admin'
-												onClick={(e) => changeRole(e.target.name, el.Email, dispatch)}>
+												onClick={(e) => changeRole(e.target.name, el.Email, dispatch, token1)}>
 												Admin
 											</Button>
 											<Button
@@ -211,7 +219,7 @@ function AdminPanel() {
 												className={styles.button4}
 												hidden={actRoles ? false : true}
 												name='Partner'
-												onClick={(e) => changeRole(e.target.name, el.Email, dispatch)}>
+												onClick={(e) => changeRole(e.target.name, el.Email, dispatch,token1)}>
 												Partner
 											</Button>
 											<Button
@@ -221,7 +229,7 @@ function AdminPanel() {
 												className={styles.button4}
 												hidden={actRoles ? false : true}
 												name='User'
-												onClick={(e) => changeRole(e.target.name, el.Email, dispatch,tokenDecoded.id)}>
+												onClick={(e) => changeRole(e.target.name, el.Email, dispatch,token1)}>
 												User
 											</Button>
 											<Button
@@ -231,7 +239,7 @@ function AdminPanel() {
 												m='0.5em'
 												className={styles.button5}
 												onClick={() => {
-													banUnbanUser(el.isBan ? false : true, el.Email, dispatch);
+													banUnbanUser(el.isBan ? false : true, el.Email, dispatch, token1);
 												}}>
 												{el.isBan ? 'Unban User' : 'Ban User'}
 											</Button>

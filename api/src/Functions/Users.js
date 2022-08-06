@@ -25,7 +25,7 @@ const validateToken = (req, res, next) => {
 };
 
 const validatePartner = (req, res, next) => {
-	const accessToken = req.cookies['access-token'];
+	const accessToken = req.body.data.token
 	if (!accessToken) return res.status(400).send('User is not authenticated');
 	try {
 		const validToken = jwt.verify(accessToken, process.env.PRIVATEKEY);
@@ -45,16 +45,20 @@ const validatePartner = (req, res, next) => {
 };
 
 const validateAdmin = (req, res, next) => {
-	const accessToken = req.body.token;
+	
+	
+	try {
+
+		const accessToken = req.body.data ? req.body.data.token : req.body.token
+	
 
 	if (!accessToken) return res.status(400).send('User is not authenticated');
-	try {
 		const validToken = jwt.verify(accessToken, process.env.PRIVATEKEY);
-		console.log('validToken');
+		console.log(validToken);
 		if (validToken) {
 			if (validToken.role == 'Admin') {
 				req.authenticated = true;
-				next();
+				return next();
 			} else {
 				return res.status(400).send("You can't access here");
 			}
@@ -92,7 +96,11 @@ const getAllUsers = async (req, res, next) => {
 			include: {
 				model: Supports,
 			},
-		})
+			attributes: {
+				exclude: ["Password", "Token"]
+			}
+			
+		}, )
 	);
 };
 
@@ -108,6 +116,10 @@ const getUserByName = async (req, res) => {
 			include: {
 				model: Supports,
 			},
+
+			attributes: {
+				exclude: ["Password", "Token"]
+			}
 		});
 		res.send(usersBox);
 	} catch (error) {
@@ -125,7 +137,7 @@ const getUserById = async (req, res) => {
 			},
 			include: [{ model: Supports }, { model: Events }],
 
-			attributes: { exclude: ['Password'] },
+			attributes: { exclude: ['Password', "Token"] },
 		});
 		res.send(userBox);
 	} catch (error) {
@@ -417,7 +429,7 @@ const loginRequestAP = async (req, res) => {
 
 const deleteUser = async (req, res) => {
 	try {
-		console.log('hola');
+		console.log(req.body.email);
 		const targetUser = await Users.findOne({
 			where: {
 				Email: req.body.email,

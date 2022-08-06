@@ -245,6 +245,7 @@ const userApi = [
 		Name: 'Maxi',
 		Username: 'maxi',
 		Password: '$2b$10$4BlMuCSh34F1A6wT/Kh.EOf6CpeBL1H6Rc4x9UJwIXEO8gXozoRBW',
+		Token: "GBZTIWBUIJFSSYKFOFCGCR3IPNDCYMSNOYXUCMTXO5LTS42YKRKA",
 		Email: 'tuemail7@gmail.com',
 		Image:
 			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5Xow0BlUAfuXQPmpx1w8jdAZs_QOZin3CcMM6284qfkyc3NZ7DE1n5TOE8uNWVu8E3T8&usqp=CAU',
@@ -259,12 +260,13 @@ const userApi = [
 		isSupport: false,
 		isBan: false,
 		City: 'Salta',
-		Token: 'GBZTIWBUIJFSSYKFOFCGCR3IPNDCYMSNOYXUCMTXO5LTS42YKRKA',
+
 	},
 	{
 		Name: 'Rober',
 		Username: 'rober',
 		Password: '$2b$10$4BlMuCSh34F1A6wT/Kh.EOf6CpeBL1H6Rc4x9UJwIXEO8gXozoRBW',
+		Token: "GBZTIWBUIJFSSYKFOFCGCR3IPNDCYMSNOYXUCMTXO5LTS42YKRKA",
 		Email: 'tuemail6@gmail.com',
 		Image:
 			'https://upload.wikimedia.org/wikipedia/commons/f/ff/Robert_Pattinson_Premiere_of_The_Lost_City_of_Z_at_Zoo_Palast_Berlinale_2017_02.jpg',
@@ -279,12 +281,13 @@ const userApi = [
 		isSupport: false,
 		isBan: false,
 		City: 'Salta',
-		Token: 'GBZTIWBUIJFSSYKFOFCGCR3IPNDCYMSNOYXUCMTXO5LTS42YKRKA',
+
 	},
 	{
 		Name: 'Cesar',
 		Username: 'cesar',
 		Password: '$2b$10$4BlMuCSh34F1A6wT/Kh.EOf6CpeBL1H6Rc4x9UJwIXEO8gXozoRBW',
+		Token: "GBZTIWBUIJFSSYKFOFCGCR3IPNDCYMSNOYXUCMTXO5LTS42YKRKA",
 		Email: 'tuemail5@gmail.com',
 		Image:
 			'https://mediaslide-europe.storage.googleapis.com/metromodels/pictures/763/629/large-1519386142-ad6df5799ba9ce3aa903de4b3874d544.jpg',
@@ -299,12 +302,13 @@ const userApi = [
 		isSupport: false,
 		isBan: false,
 		City: 'Buenos Aires',
-		Token: 'GBZTIWBUIJFSSYKFOFCGCR3IPNDCYMSNOYXUCMTXO5LTS42YKRKA',
+
 	},
 	{
 		Name: 'Sol',
 		Username: 'admin',
 		Password: '$2b$10$4BlMuCSh34F1A6wT/Kh.EOf6CpeBL1H6Rc4x9UJwIXEO8gXozoRBW',
+		Token: "GBZTIWBUIJFSSYKFOFCGCR3IPNDCYMSNOYXUCMTXO5LTS42YKRKA",
 		Email: 'tuemail4@gmail.com',
 		Image:
 			'https://i.pinimg.com/736x/33/50/30/335030fe4471cec50f022d352f81aeef--valentina-zenere-famous-models.jpg',
@@ -319,12 +323,13 @@ const userApi = [
 		isBan: false,
 		/* Cart: [], */
 		City: 'Buenos Aires',
-		Token: 'GBZTIWBUIJFSSYKFOFCGCR3IPNDCYMSNOYXUCMTXO5LTS42YKRKA',
+
 	},
 	{
 		Name: 'Eliseo',
 		Username: 'eliseo',
 		Password: '$2b$10$4BlMuCSh34F1A6wT/Kh.EOf6CpeBL1H6Rc4x9UJwIXEO8gXozoRBW',
+		
 		Email: 'tuemail3@gmail.com',
 		Image: 'https://i.pinimg.com/736x/91/e9/87/91e987f844df64dd4c77ebc406846502.jpg',
 		Location: 'Capital',
@@ -342,6 +347,9 @@ const userApi = [
 	},
 	{
 		Name: 'Eric',
+		Username: 'eric',
+		Password: '$2b$10$4BlMuCSh34F1A6wT/Kh.EOf6CpeBL1H6Rc4x9UJwIXEO8gXozoRBW',
+		Token: "GBZTIWBUIJFSSYKFOFCGCR3IPNDCYMSNOYXUCMTXO5LTS42YKRKA",
 		LoggedIn: false,
 		Email: 'tuemail2@gmail.com',
 		Image:
@@ -355,7 +363,7 @@ const userApi = [
 		City: 'Buenos Aires',
 		Username: 'eric',
 		Password: '$2b$10$4BlMuCSh34F1A6wT/Kh.EOf6CpeBL1H6Rc4x9UJwIXEO8gXozoRBW',
-		Token: 'GBZTIWBUIJFSSYKFOFCGCR3IPNDCYMSNOYXUCMTXO5LTS42YKRKA',
+
 	},
 	{
 		Name: 'Jhonatan',
