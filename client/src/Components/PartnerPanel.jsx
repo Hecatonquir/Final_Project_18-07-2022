@@ -2,18 +2,34 @@ import React, {useEffect} from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { getUserDetails } from "../Redux/Actions/getUserDetails"
 import { useParams, Link } from "react-router-dom"
-export default function PartnerPanel() {
+import { decodeToken } from 'react-jwt';
+import { useNavigate } from 'react-router-dom';
 
+export default function PartnerPanel() {
+    
+    let navigate = useNavigate();
     let dispatch = useDispatch()
     let user = useSelector(state => state.userDetails)
     let id = useParams()
-
-
+    let token = document.cookie
+	.split(';')[0]
+let token1 = 
+	token
+	.split('=')[1]
+let tokenDecoded = decodeToken(token1);
+console.log(tokenDecoded )
     useEffect(() => {
+        if(tokenDecoded && tokenDecoded.role === "User" ) {
+            navigate("/")
+        } if(!tokenDecoded) {
+            navigate("/")
+        }
         dispatch(getUserDetails(id))
         
     },[])
 
+          
+      
 
 
     return (
