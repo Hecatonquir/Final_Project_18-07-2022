@@ -26,7 +26,7 @@ export default function Cart() {
 	const cart = useSelector((state) => state.cart);
 	var totalAmount = 0;
 	const [showBuyButton, setshowBuyButton] = useState('hide');
-	console.log('🐲🐲🐲 / file: Cart.jsx / line 26 / cart', cart);
+	//console.log('🐲🐲🐲 / file: Cart.jsx / line 26 / cart', cart);
 
 
 	/* if (cart.length) setshowBuyButton('show'); */	

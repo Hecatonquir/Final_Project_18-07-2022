@@ -17,7 +17,7 @@ const eventsApi = [
 		Coords: [-34.6033873, -58.3788666],
 		Carrousel:
 			'https://static6.ticketek.com.ar/cms_static/sites/default/files/images/show-header/this960.png',
-			isLive: true
+		isLive: true,
 	},
 	{
 		ID: '79c0602a-3bff-4006-afc0-9552b6d90881',
@@ -39,7 +39,7 @@ const eventsApi = [
 		Coords: [-34.6033873, -58.3788666],
 		Carrousel:
 			'https://teatro-granrex.com.ar/wp-content/files_mf/cache/th_c055d477418f3f7668860a05610bcd1f_1656359190920.jpg',
-			isLive: true
+		isLive: true,
 	},
 	{
 		ID: 'cc9bc0fa-8c14-4263-968b-80c806ef2976',
@@ -61,7 +61,6 @@ const eventsApi = [
 		Coords: [-34.6021563, -58.3684163],
 		Carrousel: 'https://www.ninshi.net/kardargentina2022/img/banner.jpg',
 		isLive: true,
-		
 	},
 	{
 		Name: 'Fiesta de Maxi',
@@ -181,7 +180,7 @@ const eventsApi = [
 		Date: '2023-05-10T20:00',
 		Detail: 'Este es el detalle de este evento!',
 		isLive: true,
-		Coords: [-24.8043028, -65.4190060],
+		Coords: [-24.8043028, -65.419006],
 	},
 	{
 		Name: 'Circo de Jhonatan',
@@ -218,7 +217,7 @@ const eventsApi = [
 		Date: '2023-04-10T20:00',
 		Detail: 'Este es el detalle de este evento!',
 		isLive: true,
-		Coords: [-24.8043028, -65.4190060],
+		Coords: [-24.8043028, -65.419006],
 	},
 	{
 		Name: 'Tigre Free Tours',
@@ -237,7 +236,7 @@ const eventsApi = [
 		RedFlags: 1,
 		Date: '2023-04-11T20:00',
 		Detail: 'Este es el detalle de este evento!',
-		Coords: [-24.8043028, -65.4190060],
+		Coords: [-24.8043028, -65.419006],
 	},
 ];
 const userApi = [
@@ -252,16 +251,16 @@ const userApi = [
 			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5Xow0BlUAfuXQPmpx1w8jdAZs_QOZin3CcMM6284qfkyc3NZ7DE1n5TOE8uNWVu8E3T8&usqp=CAU',
 		Location: 'Capital',
 		Role: 'user',
-		Favourites: ['aca tendría que tener relación con la tabla de eventos'],
+		//Favourites: [],
 		/* shoppingHistory: [], */
-		CreatedEvents: ['aca tendría que tener relación con la tabla de eventos'],
+		CreatedEvents: [],
 		RedFlags: 1,
 		LoggedIn: false,
 		/* Cart: [], */
 		isSupport: false,
 		isBan: false,
 		City: 'Salta',
-		
+
 	},
 	{
 		Name: 'Rober',
@@ -273,16 +272,15 @@ const userApi = [
 			'https://upload.wikimedia.org/wikipedia/commons/f/ff/Robert_Pattinson_Premiere_of_The_Lost_City_of_Z_at_Zoo_Palast_Berlinale_2017_02.jpg',
 		Location: 'Capital',
 		Role: 'User',
-		Favourites: ['aca tendría que tener relación con la tabla de eventos'],
+		Favourites: [],
 		/* shoppingHistory: [], */
-		CreatedEvents: ['aca tendría que tener relación con la tabla de eventos'],
+		CreatedEvents: [],
 		RedFlags: 2,
 		LoggedIn: false,
 		/* Cart: [], */
 		isSupport: false,
 		isBan: false,
 		City: 'Salta',
-		
 
 	},
 	{
@@ -295,16 +293,16 @@ const userApi = [
 			'https://mediaslide-europe.storage.googleapis.com/metromodels/pictures/763/629/large-1519386142-ad6df5799ba9ce3aa903de4b3874d544.jpg',
 		Location: 'Capital',
 		Role: 'Partner',
-		Favourites: ['aca tendría que tener relación con la tabla de eventos'],
+		Favourites: [],
 		/* shoppingHistory: [], */
-		CreatedEvents: ['aca tendría que tener relación con la tabla de eventos'],
+		CreatedEvents: [],
 		RedFlags: 3,
 		LoggedIn: false,
 		/* Cart: [], */
 		isSupport: false,
 		isBan: false,
 		City: 'Buenos Aires',
-		
+
 	},
 	{
 		Name: 'Sol',
@@ -316,16 +314,16 @@ const userApi = [
 			'https://i.pinimg.com/736x/33/50/30/335030fe4471cec50f022d352f81aeef--valentina-zenere-famous-models.jpg',
 		Location: 'Capital',
 		Role: 'Admin',
-		Favourites: ['aca tendría que tener relación con la tabla de eventos'],
+		Favourites: [],
 		/* shoppingHistory: [], */
-		CreatedEvents: ['aca tendría que tener relación con la tabla de eventos'],
+		CreatedEvents: [],
 		RedFlags: 4,
 		LoggedIn: false,
 		isSupport: false,
 		isBan: false,
 		/* Cart: [], */
 		City: 'Buenos Aires',
-		
+
 	},
 	{
 		Name: 'Eliseo',
@@ -336,16 +334,16 @@ const userApi = [
 		Image: 'https://i.pinimg.com/736x/91/e9/87/91e987f844df64dd4c77ebc406846502.jpg',
 		Location: 'Capital',
 		Role: 'Guest',
-		Favourites: ['aca tendría que tener relación con la tabla de eventos'],
+		Favourites: [],
 		/* shoppingHistory: [], */
-		CreatedEvents: ['aca tendría que tener relación con la tabla de eventos'],
+		CreatedEvents: [],
 		RedFlags: 5,
 		LoggedIn: false,
 		/* Cart: [], */
 		isSupport: false,
 		isBan: false,
 		City: 'Buenos Aires',
-		Token: 'GBZTIWBUIJFSSYKFOFCGCR3IPNDCYMSNOYXUCMTXO5LTS42YKRKA'
+		Token: 'GBZTIWBUIJFSSYKFOFCGCR3IPNDCYMSNOYXUCMTXO5LTS42YKRKA',
 	},
 	{
 		Name: 'Eric',
@@ -357,7 +355,7 @@ const userApi = [
 		Image:
 			'https://i0.wp.com/fashionablymale.net/wp-content/uploads/2021/09/Eric-Brezillon-by-Maurizio-Montani5.jpg?resize=819%2C1024&ssl=1',
 		Role: 'User',
-		Favourites: ['aca tendría que tener relación con la tabla de eventos'],
+		Favourites: [],
 		/* Cart: [], */
 		Location: 'Capital',
 		CreatedEvents: [],
@@ -365,7 +363,7 @@ const userApi = [
 		City: 'Buenos Aires',
 		Username: 'eric',
 		Password: '$2b$10$4BlMuCSh34F1A6wT/Kh.EOf6CpeBL1H6Rc4x9UJwIXEO8gXozoRBW',
-		
+
 	},
 	{
 		Name: 'Jhonatan',
@@ -374,15 +372,15 @@ const userApi = [
 		Image:
 			'https://i.pinimg.com/736x/8a/ef/a8/8aefa8e9c6838d5156161847c8a59e8a--famous-guys-famous-people.jpg',
 		Role: 'Partner',
-		Favourites: ['aca tendría que tener relación con la tabla de eventos'],
+		Favourites: [],
 		/* Cart: [], */
 		Location: 'capital',
-		CreatedEvents: ['aca tendría que tener relación con la tabla de eventos'],
+		CreatedEvents: [],
 		RedFlags: 7,
 		City: 'Lima',
 		Username: 'partner',
 		Password: '$2b$10$4BlMuCSh34F1A6wT/Kh.EOf6CpeBL1H6Rc4x9UJwIXEO8gXozoRBW',
-		Token: 'GBZTIWBUIJFSSYKFOFCGCR3IPNDCYMSNOYXUCMTXO5LTS42YKRKA'
+		Token: 'GBZTIWBUIJFSSYKFOFCGCR3IPNDCYMSNOYXUCMTXO5LTS42YKRKA',
 	},
 ];
 module.exports = { eventsApi, userApi };

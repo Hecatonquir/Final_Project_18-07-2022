@@ -21,7 +21,7 @@ const {
 	updateCart,
 	updateHistory,
 	updateUser,
-	
+	updateFavourite,
 } = require('../Functions/Users.js');
 
 routes.put('/all',validateAdmin, getAllUsers); // --------------------Working
@@ -51,7 +51,7 @@ routes.put('/update/:id', updateUser);
 
 routes.put('/updateCart/:IdUser', updateCart);
 routes.put('/updateHistory/:userID', updateHistory);
-routes.put('/updateFavourite/:userID', );
+routes.put('/updateFavourite/:userID', updateFavourite);
 
 routes.delete('/delete', validateAdmin, deleteUser); // ------------------Working
 
