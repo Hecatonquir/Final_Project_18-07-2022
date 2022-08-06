@@ -11,7 +11,7 @@ import swal from 'sweetalert';
 import { Box, Heading, Image, Text, Button, Flex, useMediaQuery } from '@chakra-ui/react';
 import AddToCartButton from './AddToCartButton';
 import { decodeToken } from 'react-jwt';
-import updateFavourite from '../Redux/Actions/addToFavourite';
+import updateFavourite from '../Redux/Actions/updateFavourite';
 
 export default function EventCard({
 	id,
@@ -42,6 +42,7 @@ export default function EventCard({
 				dispatch(removeFromFavourites(id));
 				swal('Removed from favorites', { icon: 'warning' });
 			}
+			dispatch(updateFavourite(tokenDecoded.id));
 		} else {
 			navigate('/login');
 		}
@@ -61,7 +62,7 @@ export default function EventCard({
 			<div className={styles.cards}>
 				<div className={styles.leftcolumn}>
 					<Link to={`/details/id/${id}`}>
-						<Image src={image} alt='img eventCard' className={styles.img}/>
+						<Image src={image} alt='img eventCard' className={styles.img} />
 					</Link>
 
 					{price > 0 && quantity < 1 ? (
