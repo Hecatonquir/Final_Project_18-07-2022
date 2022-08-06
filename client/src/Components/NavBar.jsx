@@ -71,6 +71,7 @@ function NavBar({ stateUser }) {
      			 />
 						
 			</Heading>
+      
 				</Box>
 
 				<Box className={styles2.welcome} marginTop='5px'>
@@ -131,6 +132,7 @@ function NavBar({ stateUser }) {
 
 			<Link to={tokenDecoded.role === "Admin" ? "/welcomeA": `/welcomeP/${tokenDecoded.id}` }>
 			<Button
+			    marginLeft='1em'
   				bg="#FD7014"
  				 color="white"
   				_hover={{ bg: "#EEEEEE", color: "black" }}
@@ -142,17 +144,26 @@ function NavBar({ stateUser }) {
 							)}
 					</Box>
 
-					<Box>
+					
 						{token && active && (
+							<Box>
 							<Link to='/profile'>
 								<Button bg='#FD7014' color='white' _hover={{ bg: '#EEEEEE', color: 'black' }}>
 									<Text>Profile</Text>
 								</Button>
+									</Link>
+									</Box>
+						)
+					
+					||(<Box >
+							<Link to='/reqPartner'>
+								<Button bg='#FD7014' color='white' _hover={{ bg: '#EEEEEE', color: 'black' }}>
+									Become a Partner
+								</Button>
 							</Link>
-						)}
-					</Box>
+						</Box>)}
 				</Flex>
-
+                    
 				<Box>
 					<Link to={token ? '/cart' : '/login'}>
 						<Image src={imgcarrito} alt='img carrito' width='3rem' marginRight='1rem' />

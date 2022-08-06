@@ -1,15 +1,34 @@
-import React, {useState} from "react"
+import React, {useState, useEffect} from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { Box, Button, Flex, SimpleGrid, Text, Input } from "@chakra-ui/react";
 import ticketDone from "../Redux/Actions/markTicketAsDone"
 import ticketReply from "../Redux/Actions/ticketReply";
+import { useNavigate } from 'react-router-dom';
+import { decodeToken } from 'react-jwt';
 
 export default function UserTickets() {
 
-
+    let navigate = useNavigate();
+    let token = document.cookie
+	.split(';')[0]
+let token1 = 
+	token
+	.split('=')[1]
+let tokenDecoded = decodeToken(token1);
 
 let usersT = useSelector(state => state.usersBackUp)
 let adminTickets = usersT.find(el => el.Role === "Admin")
+
+ 
+useEffect( () => {
+    if(tokenDecoded && tokenDecoded.role === "User") {
+       navigate("/")
+   }
+   if(!tokenDecoded) {
+       navigate("/")
+   }})
+
+
 
 let dispatch = useDispatch()
 let [actReply, setReply] = useState({})

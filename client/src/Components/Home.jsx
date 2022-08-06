@@ -52,9 +52,9 @@ export default function Home() {
 
   let orderedEvents = events.slice(); // Esto me sirve para crear una copia en memoria DISTINTA del array events
 
-  orderedEvents = orderedEvents.map(e=>{
+ /*  orderedEvents = orderedEvents.map(e=>{
     return {...e, distancia: Math.sqrt( ((e.Coords[0]-userLoc[0])**2)+(e.Coords[1]-userLoc[1])**2 )}
-  }).sort((a,b)=>a.distancia-b.distancia)
+  }).sort((a,b)=>a.distancia-b.distancia) */
 
   orderedEvents.forEach((ev, i) => {
     let evDate = ev.Date.toLocaleString().slice(0, 16);

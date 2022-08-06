@@ -1,17 +1,33 @@
-import React from "react"
+import React, {useEffect} from "react"
 import { useSelector, useDispatch } from "react-redux"
 import {Link} from 'react-router-dom'
 import { Box, Button, Heading, Flex, SimpleGrid, Text } from "@chakra-ui/react";
 import ticketDone from "../Redux/Actions/markTicketAsDone"
 import { updateEvent } from "../Redux/Actions/updateEvent";
+import { decodeToken } from 'react-jwt';
+import { useNavigate } from 'react-router-dom';
+
+
 export default function EventRequest() {
-
-
+     
+    let token = document.cookie
+	.split(';')[0]
+let token1 = 
+	token
+	.split('=')[1]
+let tokenDecoded = decodeToken(token1);
+let navigate = useNavigate();
 
 let fullEvents = useSelector(state => state.eventsBackUp)
 let request = fullEvents.filter(el => !el.isLive)
 let dispatch = useDispatch()
-
+useEffect( () => {
+    if(tokenDecoded && tokenDecoded.role === "User") {
+       navigate("/")
+   }
+   if(!tokenDecoded) {
+       navigate("/")
+   }})
 
 return (
     <Box bg='#393E46' minHeight='100vh'>
