@@ -22,6 +22,7 @@ import {
 	CLEAR_USER_DETAILS,
 	USERS_BACKUP,
 	GET_USER_BY_ID2,
+	SET_COORDS,
 } from '../ActionTypes/actiontypes';
 
 const initialState = {
@@ -38,6 +39,7 @@ const initialState = {
 	favourites: [],
 	userDetails: {},
 	userInfo: {},
+	coords: []
 };
 
 export default function reducer(state = initialState, { type, payload }) {
@@ -142,6 +144,9 @@ export default function reducer(state = initialState, { type, payload }) {
 
 		case GET_USER_BY_ID2:
 			return { ...state, userInfo: payload };
+
+		case SET_COORDS:
+			return {...state, coords: payload}
 
 		default:
 			return state;
