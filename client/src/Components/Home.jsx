@@ -84,6 +84,7 @@ export default function Home() {
 				.put('/user/getUserById/' + tokenDecoded.id)
 				.then((r) => dispatch({ type: 'LOAD_FAV', payload: r.data.Favourites }));
 		}
+
 		dispatch(getEvents());
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
@@ -131,7 +132,7 @@ export default function Home() {
 											price={event.Price}
 											quantity={event.Quantity}
 											city={event.City}
-											location={event.Location}											
+											location={event.Location}
 										/>
 									</Box>
 								))
