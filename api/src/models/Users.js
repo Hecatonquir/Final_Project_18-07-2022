@@ -46,6 +46,7 @@ module.exports = (sequelize) => {
 			},
 			Favourites: {
 				type: DataTypes.ARRAY(DataTypes.JSON),
+				defaultValue: [],
 			},
 			shoppingHistory: {
 				type: DataTypes.ARRAY(DataTypes.JSON),
