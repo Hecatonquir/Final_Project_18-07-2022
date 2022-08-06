@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { React, useState, useEffect, useRef, useMemo } from 'react';
+import { React, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import getEvents from '../Redux/Actions/getEvents.js';
 import ButtonFilter from './ButtonFilter.jsx';

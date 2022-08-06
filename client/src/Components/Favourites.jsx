@@ -4,15 +4,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { removeFromFavourites } from '../Redux/Actions/removeFromFav';
 import styles from '../Styles/Favourites.module.css';
 import updateFavourite from '../Redux/Actions/updateFavourite';
-import { getUserByID2 } from '../Redux/Actions/getUserByID2';
+//import { getUserByID2 } from '../Redux/Actions/getUserByID2';
 
 export default function Favourites({ tokenDecoded }) {
 	const dispatch = useDispatch();
 	const fav = useSelector((state) => state.favourites);
 
-	useEffect(() => {
+	/* 	useEffect(() => {
 		dispatch(getUserByID2(tokenDecoded.id));
-	}, []);
+	}, []); */
 
 	function handleDeleteFav(index) {
 		console.log(index);
