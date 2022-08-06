@@ -42,6 +42,7 @@ export default function Home() {
 	let [search, setSearch] = useState('');
 	let [userLoc, setLoc] = useState([]);
 	let user2 = useSelector((state) => state.userInfo);
+	//console.log('🐲🐲🐲 / file: Home.jsx / line 45 / user2', user2);
 	let DbFavourites = user2 ? user2.Favourites : [];
 	console.log('🐲🐲🐲 / file: Home.jsx / line 45 / DbFavourites', DbFavourites);
 	const GlobalFavourites = useSelector((state) => state.favourites);
