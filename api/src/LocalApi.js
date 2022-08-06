@@ -10,7 +10,7 @@ const eventsApi = [
 		Restrictions: ['No se aceptan mascotas', 'No se acepta comida'],
 		AgeRestriction: 25,
 		Category: 'Concierto',
-		City: 'CABA',
+		City: 'Buenos Aires',
 		RedFlags: 1,
 		Date: '2021-10-22T12:30',
 		Detail: 'Este es el detalle de este evento!',
@@ -32,7 +32,7 @@ const eventsApi = [
 		Restrictions: ['No se aceptan mascotas', 'No se acepta comida'],
 		AgeRestriction: 25,
 		Category: 'Concierto',
-		City: 'CABA',
+		City: 'Buenos Aires',
 		RedFlags: 1,
 		Date: '2023-05-22T12:30',
 		Detail: 'Este es el detalle de este evento!',
@@ -54,7 +54,7 @@ const eventsApi = [
 		Restrictions: ['No se aceptan mascotas', 'No se acepta comida'],
 		AgeRestriction: 25,
 		Category: 'Concierto',
-		City: 'CABA',
+		City: 'Buenos Aires',
 		RedFlags: 1,
 		Date: '2023-05-22T12:30',
 		Detail: 'Este es el detalle de este evento!',
@@ -69,19 +69,19 @@ const eventsApi = [
 			'https://oceanbeat.es/wp-content/uploads/2018/09/closing-parties-ibiza-2018.jpg',
 			'https://www.sxsw.com/wp-content/uploads/2019/06/SXSW-Party-photo-by-aaron-rogosin.png',
 		],
-		Location: 'Club Araoz',
+		Location: 'Club Comunicaciones',
 		Price: 9999,
 		Quantity: 15,
 		InitialQtty: 15,
 		Restrictions: ['No se aceptan mascotas', 'No se acepta comida'],
 		AgeRestriction: 25,
 		Category: 'Boliches',
-		City: 'CABA',
+		City: 'Buenos Aires',
 		RedFlags: 1,
 		Date: '2023-05-22T12:30',
 		Detail: 'Este es el detalle de este evento!',
 		isLive: true,
-		Coords: [-31.0335389, -71.1419676],
+		Coords: [-34.5968454, -58.4901361],
 	},
 	{
 		Name: 'Carnaval de Rober',
@@ -149,7 +149,7 @@ const eventsApi = [
 			'https://media.istockphoto.com/photos/rock-band-with-guitarists-and-drummer-performing-at-a-concert-in-a-picture-id1329876201?k=20&m=1329876201&s=612x612&w=0&h=3LGfb76KrboPEi7MNuys3mlFo4QA18UBW448t-76YZs=',
 			'https://thumbs.dreamstime.com/b/siluetas-de-la-gente-en-un-concierto-delante-de-la-escena-en-luz-brillante-rebecca-97241217.jpg',
 		],
-		Location: 'La Bombonera',
+		Location: 'Plaza 25 de Mayo',
 		Price: 350,
 		Quantity: 35,
 		InitialQtty: 35,
@@ -161,7 +161,7 @@ const eventsApi = [
 		Date: '2023-05-15T19:30',
 		Detail: 'Este es el detalle de este evento!',
 		isLive: true,
-		Coords: [-12.0485979, -77.0313197],
+		Coords: [-27.4499224, -58.9861613],
 	},
 	{
 		Name: 'Obra de Eric',
@@ -181,7 +181,7 @@ const eventsApi = [
 		Date: '2023-05-10T20:00',
 		Detail: 'Este es el detalle de este evento!',
 		isLive: true,
-		Coords: [-12.0485979, -77.0313197],
+		Coords: [-24.8043028, -65.4190060],
 	},
 	{
 		Name: 'Circo de Jhonatan',
@@ -189,7 +189,7 @@ const eventsApi = [
 			'https://i.ytimg.com/vi/jW-bkbSWb4A/maxresdefault.jpg',
 			'https://static.dw.com/image/18515607_303.jpg',
 		],
-		Location: 'CriconTástico',
+		Location: 'Plaza Colón',
 		Price: 450,
 		Quantity: 45,
 		InitialQtty: 45,
@@ -201,10 +201,10 @@ const eventsApi = [
 		Date: '2023-06-05T21:00',
 		Detail: 'Este es el detalle de este evento!',
 		isLive: true,
-		Coords: [-12.0485979, -77.0313197],
+		Coords: [-31.4092459, -64.1958003],
 	},
 	{
-		Name: 'Evento SOLD OUT (Quantity=0)',
+		Name: 'Cirque Du Soleil',
 		Image: ['https://santacarolinapromo.com.br/wp-content/uploads/2022/04/premios2.png'],
 		Location: 'Teatro de Judas',
 		Price: 400,
@@ -217,11 +217,11 @@ const eventsApi = [
 		RedFlags: 1,
 		Date: '2023-04-10T20:00',
 		Detail: 'Este es el detalle de este evento!',
-		Coords: [-12.0485979, -77.0313197],
-    isLive: true
+		isLive: true,
+		Coords: [-24.8043028, -65.4190060],
 	},
 	{
-		Name: 'Evento Gratis (Price y Quantity=0)',
+		Name: 'Tigre Free Tours',
 		Image: [
 			'https://i0.wp.com/vancouversbestplaces.com/wp-content/uploads/2017/07/Free-August-Events.jpg?fit=640%2C400&ssl=1',
 			'https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F129702845%2F525194686153%2F1%2Foriginal.20210320-163751?w=512&auto=format%2Ccompress&q=75&sharp=10&rect=110%2C0%2C630%2C315&s=21c32522a53a8335673860be7e0a8190',
@@ -237,7 +237,7 @@ const eventsApi = [
 		RedFlags: 1,
 		Date: '2023-04-11T20:00',
 		Detail: 'Este es el detalle de este evento!',
-		Coords: [-24.7886503, -65.4453926],
+		Coords: [-24.8043028, -65.4190060],
 	},
 ];
 const userApi = [
@@ -260,7 +260,7 @@ const userApi = [
 		isSupport: false,
 		isBan: false,
 		City: 'Salta',
-		Token: GBZTIWBUIJFSSYKFOFCGCR3IPNDCYMSNOYXUCMTXO5LTS42YKRKA
+		Token: 'GBZTIWBUIJFSSYKFOFCGCR3IPNDCYMSNOYXUCMTXO5LTS42YKRKA'
 	},
 	{
 		Name: 'Rober',
@@ -280,7 +280,7 @@ const userApi = [
 		isSupport: false,
 		isBan: false,
 		City: 'Salta',
-		Token: GBZTIWBUIJFSSYKFOFCGCR3IPNDCYMSNOYXUCMTXO5LTS42YKRKA
+		Token: 'GBZTIWBUIJFSSYKFOFCGCR3IPNDCYMSNOYXUCMTXO5LTS42YKRKA'
 
 	},
 	{
@@ -301,7 +301,7 @@ const userApi = [
 		isSupport: false,
 		isBan: false,
 		City: 'Buenos Aires',
-		Token: GBZTIWBUIJFSSYKFOFCGCR3IPNDCYMSNOYXUCMTXO5LTS42YKRKA
+		Token: 'GBZTIWBUIJFSSYKFOFCGCR3IPNDCYMSNOYXUCMTXO5LTS42YKRKA'
 	},
 	{
 		Name: 'Sol',
@@ -321,7 +321,7 @@ const userApi = [
 		isBan: false,
 		/* Cart: [], */
 		City: 'Buenos Aires',
-		Token: GBZTIWBUIJFSSYKFOFCGCR3IPNDCYMSNOYXUCMTXO5LTS42YKRKA
+		Token: 'GBZTIWBUIJFSSYKFOFCGCR3IPNDCYMSNOYXUCMTXO5LTS42YKRKA'
 	},
 	{
 		Name: 'Eliseo',
@@ -340,7 +340,7 @@ const userApi = [
 		isSupport: false,
 		isBan: false,
 		City: 'Buenos Aires',
-		Token: GBZTIWBUIJFSSYKFOFCGCR3IPNDCYMSNOYXUCMTXO5LTS42YKRKA
+		Token: 'GBZTIWBUIJFSSYKFOFCGCR3IPNDCYMSNOYXUCMTXO5LTS42YKRKA'
 	},
 	{
 		Name: 'Eric',
@@ -357,7 +357,7 @@ const userApi = [
 		City: 'Buenos Aires',
 		Username: 'eric',
 		Password: '$2b$10$4BlMuCSh34F1A6wT/Kh.EOf6CpeBL1H6Rc4x9UJwIXEO8gXozoRBW',
-		Token: GBZTIWBUIJFSSYKFOFCGCR3IPNDCYMSNOYXUCMTXO5LTS42YKRKA
+		Token: 'GBZTIWBUIJFSSYKFOFCGCR3IPNDCYMSNOYXUCMTXO5LTS42YKRKA'
 	},
 	{
 		Name: 'Jhonatan',
@@ -374,7 +374,7 @@ const userApi = [
 		City: 'Lima',
 		Username: 'partner',
 		Password: '$2b$10$4BlMuCSh34F1A6wT/Kh.EOf6CpeBL1H6Rc4x9UJwIXEO8gXozoRBW',
-		Token: GBZTIWBUIJFSSYKFOFCGCR3IPNDCYMSNOYXUCMTXO5LTS42YKRKA
+		Token: 'GBZTIWBUIJFSSYKFOFCGCR3IPNDCYMSNOYXUCMTXO5LTS42YKRKA'
 	},
 ];
 module.exports = { eventsApi, userApi };
