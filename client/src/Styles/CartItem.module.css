@@ -44,3 +44,10 @@
 .name {
     width: 150px;
 }
+
+
+@media screen and (max-width: 425px) {
+    .imgdelete {
+        width: 20px;
+    }
+  }
