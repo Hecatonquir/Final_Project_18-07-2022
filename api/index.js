@@ -22,7 +22,7 @@ const { conn } = require('./src/db.js');
 const { uploadDataBase } = require('./src/Functions/Extra');
 
 // Syncing all the models at once.
-conn.sync({ force: false }).then(() => {
+conn.sync({ force: true }).then(() => {
 	server.listen(process.env.PORT || 3001, async () => {
 		await uploadDataBase();
 		console.log(`%s listening at ${process.env.PORT}`);
