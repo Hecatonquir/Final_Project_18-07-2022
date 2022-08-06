@@ -28,7 +28,6 @@ module.exports = (sequelize) => {
 			Token: {
 				type: DataTypes.STRING,
 				allowNull: true,
-
 			},
 			Email: {
 				type: DataTypes.STRING,
@@ -51,15 +50,16 @@ module.exports = (sequelize) => {
 				defaultValue: 'Guest',
 			},
 			Favourites: {
-				type: DataTypes.ARRAY(DataTypes.STRING),
+				type: DataTypes.ARRAY(DataTypes.JSONB),
 				defaultValue: [],
 			},
 			shoppingHistory: {
-				type: DataTypes.ARRAY(DataTypes.STRING),
+				type: DataTypes.ARRAY(DataTypes.JSONB),
 				defaultValue: [],
 			},
 			CreatedEvents: {
-				type: DataTypes.ARRAY(DataTypes.STRING),
+				type: DataTypes.ARRAY(DataTypes.JSONB),
+				defaultValue: [],
 			},
 			RedFlags: {
 				type: DataTypes.INTEGER,
@@ -70,7 +70,7 @@ module.exports = (sequelize) => {
 				defaultValue: false,
 			},
 			Cart: {
-				type: DataTypes.ARRAY(DataTypes.STRING),
+				type: DataTypes.ARRAY(DataTypes.JSON),
 				defaultValue: [],
 			},
 			isSupport: {

@@ -5,8 +5,8 @@ import styles from '../Styles/NavBar.module.css';
 import { useAuth0 } from '@auth0/auth0-react';
 import imgcarrito from '../Media/carri.png';
 import imglogo from '../Media/logo2.png';
-import ms from "../Media/ms.gif"
-import mst from "../Media/mst.png"
+import ms from '../Media/ms.gif';
+import mst from '../Media/mst.png';
 import { isExpired, decodeToken } from 'react-jwt';
 import logOut from '../Redux/Actions/logOut';
 import Search from './Search.jsx';
@@ -27,12 +27,12 @@ function NavBar({ stateUser }) {
 	const active = useSelector((state) => state.loginState);
 	let count = cart ? cart.length : 0;
 
-	   //Responsive
-	   const [mediumScreen] = useMediaQuery("(min-width: 1249px)");
-	   // w={!mediumScreen ? "60%" : "45%"}
+	//Responsive
+	const [mediumScreen] = useMediaQuery('(min-width: 1249px)');
+	// w={!mediumScreen ? "60%" : "45%"}
 
 	return (
-		<Box marginBottom={4} padding={1} bgGradient="linear(to-r, #222831, #393E46)">
+		<Box marginBottom={4} padding={1} bgGradient='linear(to-r, #222831, #393E46)'>
 			<Flex
 				alignItems='center'
 				width='100%'
@@ -41,11 +41,9 @@ function NavBar({ stateUser }) {
 				position='sticky'
 				top='0px'
 				zIndex='10'>
-					
 				<Box>
-				<Heading display="flex" justifyContent="center">
-      					<Image  
-              
+					<Heading display='flex' justifyContent='center'>
+						<Image
 							src={ms}
 							alt='img logo'
 							width='3vw'
@@ -53,34 +51,39 @@ function NavBar({ stateUser }) {
 							marginLeft='0%'
 							marginTop='5%'
 						/>
-       				 <Image 
-        				 src={mst}
-         					alt='img logo'
-         					width="10vw"
-        					 height="10vh"
-        				 /* marginLeft="35%" */
-       				 /*  marginTop="1%" */
-        			/>  
-					<Image
-        			src={ms}
-       				 alt='img logo'
-        			width='3vw'
-       				 height='3vh'
-        			marginLeft='2%'
-       			 	marginTop='5%'
-     			 />
-						
-			</Heading>
-      
+						<Image
+							src={mst}
+							alt='img logo'
+							width='10vw'
+							height='10vh'
+							/* marginLeft="35%" */
+							/*  marginTop="1%" */
+						/>
+						<Image
+							src={ms}
+							alt='img logo'
+							width='3vw'
+							height='3vh'
+							marginLeft='2%'
+							marginTop='5%'
+						/>
+					</Heading>
 				</Box>
 
 				<Box className={styles2.welcome} marginTop='5px'>
 					{stateUser || !isExpired(token) ? (
-						<Text color='#FD7014' marginLeft='2em' textAlign='center' fontWeight='bold' fontSize='1.5em'>
+						<Text
+							color='#FD7014'
+							marginLeft='2em'
+							textAlign='center'
+							fontWeight='bold'
+							fontSize='1.5em'>
 							Welcome {tokenDecoded ? tokenDecoded.name : 'Guest'}
 						</Text>
 					) : (
-						<Text color='#FD7014' fontWeight='bold' fontSize='1.5em' textAlign='center'>Welcome Guest</Text>
+						<Text color='#FD7014' fontWeight='bold' fontSize='1.5em' textAlign='center'>
+							Welcome Guest
+						</Text>
 					)}
 				</Box>
 
@@ -105,6 +108,7 @@ function NavBar({ stateUser }) {
 							className={styles.Button}
 							color='white'
 							onClick={() => {
+								dispatch({ type: 'LOAD_FAV', payload: [] });
 								dispatch({ type: CLEAR_CART });
 								return logOut(dispatch);
 							}}>
@@ -124,46 +128,47 @@ function NavBar({ stateUser }) {
 							(tokenDecoded.role === 'Partner' || tokenDecoded.role === 'Admin') &&
 							active && (
 								<div>
-								<Link to='/createEvent'>
-									<Button bg='#FD7014' color='white' _hover={{ bg: '#EEEEEE', color: 'black' }}>
-										Create an Event
-									</Button>
-								</Link>
+									<Link to='/createEvent'>
+										<Button bg='#FD7014' color='white' _hover={{ bg: '#EEEEEE', color: 'black' }}>
+											Create an Event
+										</Button>
+									</Link>
 
-			<Link to={tokenDecoded.role === "Admin" ? "/welcomeA": `/welcomeP/${tokenDecoded.id}` }>
-			<Button
-			    marginLeft='1em'
-  				bg="#FD7014"
- 				 color="white"
-  				_hover={{ bg: "#EEEEEE", color: "black" }}
->
- 		 Control Panel
-		</Button>
-		</Link>
-			</div>
+									<Link
+										to={
+											tokenDecoded.role === 'Admin' ? '/welcomeA' : `/welcomeP/${tokenDecoded.id}`
+										}>
+										<Button
+											marginLeft='1em'
+											bg='#FD7014'
+											color='white'
+											_hover={{ bg: '#EEEEEE', color: 'black' }}>
+											Control Panel
+										</Button>
+									</Link>
+								</div>
 							)}
 					</Box>
 
-					
-						{token && active && (
-							<Box>
+					{(token && active && (
+						<Box>
 							<Link to='/profile'>
 								<Button bg='#FD7014' color='white' _hover={{ bg: '#EEEEEE', color: 'black' }}>
 									<Text>Profile</Text>
 								</Button>
-									</Link>
-									</Box>
-						)
-					
-					||(<Box >
+							</Link>
+						</Box>
+					)) || (
+						<Box>
 							<Link to='/reqPartner'>
 								<Button bg='#FD7014' color='white' _hover={{ bg: '#EEEEEE', color: 'black' }}>
 									Become a Partner
 								</Button>
 							</Link>
-						</Box>)}
+						</Box>
+					)}
 				</Flex>
-                    
+
 				<Box>
 					<Link to={token ? '/cart' : '/login'}>
 						<Image src={imgcarrito} alt='img carrito' width='3rem' marginRight='1rem' />
@@ -176,5 +181,3 @@ function NavBar({ stateUser }) {
 }
 
 export default NavBar;
-
-

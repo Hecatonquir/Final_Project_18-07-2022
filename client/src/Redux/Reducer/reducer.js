@@ -39,7 +39,7 @@ const initialState = {
 	favourites: [],
 	userDetails: {},
 	userInfo: {},
-	coords: []
+	coords: [],
 };
 
 export default function reducer(state = initialState, { type, payload }) {
@@ -70,6 +70,9 @@ export default function reducer(state = initialState, { type, payload }) {
 
 		case LOAD_CART:
 			return { ...state, cart: payload };
+
+		case 'LOAD_FAV':
+			return { ...state, favourites: payload };
 
 		case UPDATE_DB_CART:
 			axios.put('/user/updateCart/' + payload, state.cart);
@@ -146,7 +149,7 @@ export default function reducer(state = initialState, { type, payload }) {
 			return { ...state, userInfo: payload };
 
 		case SET_COORDS:
-			return {...state, coords: payload}
+			return { ...state, coords: payload };
 
 		default:
 			return state;

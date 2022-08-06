@@ -4,7 +4,7 @@ import Favourites from "./Favourites";
 import ShoppingHistory from './ShoppingHistory';
 import img1 from '../Media/construccion.png'
 
-export default function Tabs() {
+export default function Tabs({tokenDecoded}) {
   const [toggleState, setToggleState] = useState(1);
 
   const toggleTab = (index) => {
@@ -34,7 +34,7 @@ export default function Tabs() {
 
         <div className={styles.contenttabs}>
           <div className={toggleState === 1 ? `${styles.content}  ${styles.activecontent}` : styles.content}>
-            <Favourites/>
+            <Favourites tokenDecoded={tokenDecoded} />
           </div>
 
           <div className={toggleState === 2 ? `${styles.content}  ${styles.activecontent}` : styles.content}>
