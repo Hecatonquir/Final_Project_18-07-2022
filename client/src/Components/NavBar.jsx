@@ -71,7 +71,7 @@ function NavBar({ stateUser }) {
      			 />
 						
 			</Heading>
-			
+      
 				</Box>
 
 				<Box className={styles2.welcome} marginTop='5px'>

@@ -1,4 +1,4 @@
-import { React, useEffect, /* useEffect ,*/ useState } from 'react';
+import { React, useCallback, useEffect, useMemo, useRef, /* useEffect ,*/ useState } from 'react';
 /* import { useDispatch } from 'react-redux'; */
 import { useNavigate } from 'react-router-dom';
 import { postEvent } from '../Redux/Actions/postEvent';
@@ -24,6 +24,57 @@ import {
 } from '@chakra-ui/react';
 
 import { decodeToken } from 'react-jwt';
+import { MapContainer, Marker, Popup, TileLayer, useMapEvents } from 'react-leaflet';
+import { useDispatch, useSelector } from 'react-redux';
+import { SET_COORDS } from '../Redux/ActionTypes/actiontypes';
+
+const center = {
+	lat: -36.5,
+	lng: -64.09,
+  }
+  
+  function DraggableMarker() {
+	const [markerCoords, setMC] = useState({})
+	const dispatch = useDispatch()
+	// const [draggable, setDraggable] = useState(false)
+	const [position, setPosition] = useState(center)
+	const markerRef = useRef(null)
+	useEffect(()=> {dispatch({type: SET_COORDS, payload: markerCoords})},[markerCoords])
+	const eventHandlers = useMemo(
+	  () => ({
+		dragend() {
+		  const marker = markerRef.current
+		  let markerLatLng = marker.getLatLng()
+		  if (marker != null) {
+			setPosition(markerLatLng)
+			console.log(markerLatLng)
+			setMC([markerLatLng.lat, markerLatLng.lng])
+		  }
+		},
+	  }),
+	  [],
+	)
+	// const toggleDraggable = useCallback(() => {
+	//   setDraggable((d) => !d)
+	// }, [])
+  
+	return (
+	  <Marker
+		draggable={true}
+		eventHandlers={eventHandlers}
+		position={position}
+		ref={markerRef}>
+		<Popup minWidth={90}>
+		  <span /*onClick={toggleDraggable}*/>
+			{/* {draggable
+			  ? 'Marker is draggable'
+			  : 'Click here to make marker draggable'} */}
+			  Drag the marker to the event's location
+		  </span>
+		</Popup>
+	  </Marker>
+	)
+  }
 
 function AddEvent() {
 	let token = document.cookie
@@ -37,6 +88,7 @@ let tokenDecoded = decodeToken(token1);
 	const history = useNavigate(); */
 	let navigate = useNavigate();
 	const [errors, setErrors] = useState({});
+	const {coords} = useSelector(s=> s)
 	const Cities = [
 		'Buenos Aires',
 		'Catamarca',
@@ -127,6 +179,7 @@ let tokenDecoded = decodeToken(token1);
 				Hour: input.Hour,
 				Detail: input.Detail,
 				AgeRestriction: Number(input.AgeRestriction),
+				Coords: coords
 			},tokenDecoded.email);
 			setInput({
 				Name: '',
@@ -257,6 +310,14 @@ if(!tokenDecoded) {
 								</Text>
 							)}
 						</FormControl>
+
+						<MapContainer center={center} zoom={3} scrollWheelZoom={false}>
+    						<TileLayer
+    						  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    						  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+    						/>
+    						<DraggableMarker/>
+  						</MapContainer>,
 
 						<FormControl marginBottom={4}>
 							<FormLabel color='#222831' fontSize={!smallScreen ? '.8em' : '1em'}>
