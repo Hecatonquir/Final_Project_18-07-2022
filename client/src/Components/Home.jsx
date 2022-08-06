@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { React, useState, useEffect } from 'react';
+import { React, useState, useEffect, useRef, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import getEvents from '../Redux/Actions/getEvents.js';
 import ButtonFilter from './ButtonFilter.jsx';
@@ -41,14 +41,6 @@ export default function Home() {
 	const backup = useSelector((state) => state.eventsBackUp);
 	let [search, setSearch] = useState('');
 	let [userLoc, setLoc] = useState([]);
-	let user2 = useSelector((state) => state.userInfo);
-	//console.log('🐲🐲🐲 / file: Home.jsx / line 45 / user2', user2);
-	let DbFavourites = user2 ? user2.Favourites : [];
-	console.log('🐲🐲🐲 / file: Home.jsx / line 45 / DbFavourites', DbFavourites);
-	const GlobalFavourites = useSelector((state) => state.favourites);
-	console.log('🐲🐲🐲 / file: Home.jsx / line 48 / GlobalFavourites', GlobalFavourites);
-
-	//if (DbFavourites?.length) dispatch(updateGlobalFav(DbFavourites));
 
 	navigator.geolocation.getCurrentPosition((p) => {
 		setLoc([p.coords.latitude, p.coords.longitude]);
@@ -78,6 +70,7 @@ export default function Home() {
 	if (!stateUser && user) {
 		dispatch(registerGmail(user, logout));
 	}
+
 	useEffect(() => {
 		if (!stateUser && token) {
 			dispatch({ type: UPDATE_STATE_TRUE });
@@ -87,9 +80,11 @@ export default function Home() {
 			axios
 				.put('/user/getUserById/' + tokenDecoded.id)
 				.then((r) => dispatch({ type: LOAD_CART, payload: r.data.Cart }));
+			axios
+				.put('/user/getUserById/' + tokenDecoded.id)
+				.then((r) => dispatch({ type: 'LOAD_FAV', payload: r.data.Favourites }));
 		}
 		dispatch(getEvents());
-		/* return () => {}; */
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
@@ -136,7 +131,7 @@ export default function Home() {
 											price={event.Price}
 											quantity={event.Quantity}
 											city={event.City}
-											location={event.Location}
+											location={event.Location}											
 										/>
 									</Box>
 								))
