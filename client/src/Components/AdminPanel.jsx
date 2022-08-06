@@ -17,11 +17,8 @@ import { Box, Text, Button, Flex, Input } from "@chakra-ui/react";
 import {Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableContainer} from '@chakra-ui/react'
 import { GET_EVENTS, GET_USERS } from '../Redux/ActionTypes/actiontypes';
 import TicketsUsers from './TicketsFromUsers'
-<<<<<<< HEAD
 import validateAdminDB from '../Redux/Actions/validateAdminDB';
-=======
 import EventRequest from './EventRequest'
->>>>>>> Development
 
 function AdminPanel() {
 
