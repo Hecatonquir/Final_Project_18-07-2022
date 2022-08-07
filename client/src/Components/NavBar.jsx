@@ -32,14 +32,15 @@ function NavBar({ stateUser }) {
 	   // w={!mediumScreen ? "60%" : "45%"}
 
 	return (
-		<Box marginBottom={4} padding={1} bgGradient="linear(to-r, #222831, #393E46)">
+		<Box marginBottom={4} /* padding={} */ bgGradient="linear(to-r, #222831, #393E46)">
 			<Flex
+			    height="11vh"
 				alignItems='center'
 				width='100%'
 				justifyContent='space-between'
-				margin='0.5rem'
+				/* margin='0.5rem' */
 				position='sticky'
-				top='0px'
+				marginTop='1px'
 				zIndex='10'>
 					
 				<Box>
@@ -48,26 +49,26 @@ function NavBar({ stateUser }) {
               
 							src={ms}
 							alt='img logo'
-							width='3vw'
-							height='3vh'
-							marginLeft='0%'
-							marginTop='5%'
+							width='4vw'
+							height='8vh'
+							marginLeft='1%'
+							marginTop='10%'
 						/>
        				 <Image 
         				 src={mst}
          					alt='img logo'
          					width="10vw"
-        					 height="10vh"
+        					 height="5%"
         				 /* marginLeft="35%" */
-       				 /*  marginTop="1%" */
+       				  marginTop="5%"
         			/>  
 					<Image
         			src={ms}
        				 alt='img logo'
-        			width='3vw'
-       				 height='3vh'
+        			width='4vw'
+       				 height='8vh'
         			marginLeft='2%'
-       			 	marginTop='5%'
+       			 	marginTop='10%'
      			 />
 						
 			</Heading>
@@ -98,7 +99,7 @@ function NavBar({ stateUser }) {
 					)}
 					{token && (
 						<Button
-							marginLeft='24rem'
+							marginLeft='10rem'
 							marginRight='2rem'
 							bg='#FD7014'
 							_hover={{ bg: '#EEEEEE', color: 'black' }}

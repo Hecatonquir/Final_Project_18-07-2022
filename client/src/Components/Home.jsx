@@ -91,7 +91,7 @@ export default function Home() {
         <NavBar stateUser={stateUser} />
       </Box>
       
-      <Box paddingTop="5.6rem">
+      <Box paddingTop="4.2rem">
         <EventCarousel carrouselEvents={carrouselEvents} />
       </Box>
 
