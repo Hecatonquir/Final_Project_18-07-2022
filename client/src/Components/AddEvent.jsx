@@ -23,10 +23,10 @@ import {
 	useMediaQuery,
 } from '@chakra-ui/react';
 import PlacesAutocomplete, {
-    geocodeByAddress,
-    geocodeByPlaceId,
-    getLatLng,
-  } from 'react-places-autocomplete';
+	geocodeByAddress,
+	geocodeByPlaceId,
+	getLatLng,
+} from 'react-places-autocomplete';
 import { decodeToken } from 'react-jwt';
 // import { MapContainer, Marker, Popup, TileLayer, useMapEvents } from 'react-leaflet';
 // import { useDispatch, useSelector } from 'react-redux';
@@ -36,7 +36,7 @@ import { decodeToken } from 'react-jwt';
 // 	lat: -36.5,
 // 	lng: -64.09,
 //   }
-  
+
 //   function DraggableMarker() {
 // 	const [markerCoords, setMC] = useState({})
 // 	const dispatch = useDispatch()
@@ -61,7 +61,7 @@ import { decodeToken } from 'react-jwt';
 // 	// const toggleDraggable = useCallback(() => {
 // 	//   setDraggable((d) => !d)
 // 	// }, [])
-  
+
 // 	return (
 // 	  <Marker
 // 		draggable={true}
@@ -81,13 +81,10 @@ import { decodeToken } from 'react-jwt';
 //   }
 
 function AddEvent() {
-	let token = document.cookie
-	.split(';')[0]
-let token1 = 
-	token
-	.split('=')[1]
-let tokenDecoded = decodeToken(token1);
-	
+	let token = document.cookie.split(';')[0];
+	let token1 = token.split('=')[1];
+	let tokenDecoded = decodeToken(token1);
+
 	/* 	const dispatch = useDispatch();
 	const history = useNavigate(); */
 	let navigate = useNavigate();
@@ -119,13 +116,23 @@ let tokenDecoded = decodeToken(token1);
 		'Tucuman',
 	];
 	const Categories = [
-		'Boliches',
-		'Recital',
+		'Dance',
+		'Cinema',
+		'Theatre',
 		'Musical',
-		'Teatro',
-		'Festival',
-		'Concierto',
-		'Deportes',
+		'Nightlife',
+		'Museums',
+		'Literary Arts',
+		'Public Art',
+		'Music',
+		'Festivals',
+		'Circus',
+		'Galleries',
+		'Concert',
+		'Sport',
+		'Carnival',
+		'Open Air',
+		'Tours',
 	];
 	let today = new Date().toISOString().slice(0, 16); //------- Example of today 2022-07-24T14:30
 
@@ -147,11 +154,11 @@ let tokenDecoded = decodeToken(token1);
 		Detail: '',
 		Category: '',
 		AgeRestriction: '',
-		Coords: []
+		Coords: [],
 	});
 
 	//Variables para obtener coordenadas
-	const [address, setAddress] = useState('')
+	const [address, setAddress] = useState('');
 
 	function handleChange(e) {
 		setInput({
@@ -164,33 +171,36 @@ let tokenDecoded = decodeToken(token1);
 				[e.target.name]: e.target.value,
 			})
 		);
-		console.log(input)
+		console.log(input);
 	}
 
 	function handleSubmit(e) {
 		e.preventDefault();
-		
+
 		if (errors.check !== 'approved') {
 			swal('Not created', '', 'error');
 		} else {
-			postEvent({
-				Name: input.Name,
-				Image: [input.img1, input.img2, input.img3, input.img4],
-				Carrousel: input.carrousel,
-				Price: Number(input.Price),
-				Quantity: Number(input.Quantity),
-				InitialQtty: Number(input.Quantity),
-				Rating: Number(input.Rating),
-				Category: input.Category,
-				Restrictions: input.Restrictions.length ? input.Restrictions.split('/') : [],
-				City: input.City,
-				Location: input.Location,
-				Date: input.date,
-				Hour: input.Hour,
-				Detail: input.Detail,
-				AgeRestriction: Number(input.AgeRestriction),
-				Coords: input.Coords
-			},tokenDecoded.email);
+			postEvent(
+				{
+					Name: input.Name,
+					Image: [input.img1, input.img2, input.img3, input.img4],
+					Carrousel: input.carrousel,
+					Price: Number(input.Price),
+					Quantity: Number(input.Quantity),
+					InitialQtty: Number(input.Quantity),
+					Rating: Number(input.Rating),
+					Category: input.Category,
+					Restrictions: input.Restrictions.length ? input.Restrictions.split('/') : [],
+					City: input.City,
+					Location: input.Location,
+					Date: input.date,
+					Hour: input.Hour,
+					Detail: input.Detail,
+					AgeRestriction: Number(input.AgeRestriction),
+					Coords: input.Coords,
+				},
+				tokenDecoded.email
+			);
 			setInput({
 				Name: '',
 				img1: '',
@@ -209,38 +219,40 @@ let tokenDecoded = decodeToken(token1);
 				Detail: '',
 				Category: '',
 				AgeRestriction: '',
-				Coords: []
+				Coords: [],
 			});
 		}
 	}
 
-
-
-useEffect( () => {
- if(tokenDecoded && tokenDecoded.role === "User") {
-	navigate("/")
-}
-if(!tokenDecoded) {
-	navigate("/")
-}})
+	useEffect(() => {
+		if (tokenDecoded && tokenDecoded.role === 'User') {
+			navigate('/');
+		}
+		if (!tokenDecoded) {
+			navigate('/');
+		}
+	});
 
 	//Función para seleccionar la locación.
-	const handleSelectCoords = async value => {
-		const results = await geocodeByAddress(value)
-		const coordinates = await getLatLng(results[0])
-		setAddress(value)
+	const handleSelectCoords = async (value) => {
+		const results = await geocodeByAddress(value);
+		const coordinates = await getLatLng(results[0]);
+		setAddress(value);
 		setInput({
 			...input,
-			Coords: [coordinates.lat?coordinates.lat:-34.600441, coordinates.lng?coordinates.lng:-58.383151],
-			Location: value.split(',', 2).toString()
-		})
+			Coords: [
+				coordinates.lat ? coordinates.lat : -34.600441,
+				coordinates.lng ? coordinates.lng : -58.383151,
+			],
+			Location: value.split(',', 2).toString(),
+		});
 		setErrors(
 			validate({
 				...input,
-				Location: value.split(',', 2).toString()
+				Location: value.split(',', 2).toString(),
 			})
 		);
-	}
+	};
 
 	//Responsive
 	const [smallScreen] = useMediaQuery('(min-width: 430px)');
@@ -346,58 +358,50 @@ if(!tokenDecoded) {
     						<DraggableMarker/>
   						</MapContainer>, */}
 						<FormControl marginBottom={4}>
-						<FormLabel color='#222831' fontSize={!smallScreen ? '.8em' : '1em'}>
+							<FormLabel color='#222831' fontSize={!smallScreen ? '.8em' : '1em'}>
 								<span style={{ color: 'red' }}>*</span>Exact Location
-						</FormLabel>
-						<PlacesAutocomplete
-						value={address}
-						onChange={setAddress}
-						onSelect={handleSelectCoords}
-						>
-							{({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-							<div
-							key={suggestions.description}
-							>
-								<Input
-								value={input.Location}
-								id='Location'
-								name='Location'
-								bg='white'
-								{...getInputProps({
-									placeholder: 'Search Location...',
-									className: 'location-search-input',
-							
-								})}
-								/>
-								<div className="autocomplete-dropdown-container">
-								{loading && <div>Loading...</div>}
-								{suggestions.map(suggestion => {
-									
-									const className = suggestion.active
-									? 'suggestion-item--active'
-									: 'suggestion-item';
-									// inline style for demonstration purpose
-									const style = suggestion.active
-									? { backgroundColor: '#fafafa', cursor: 'pointer' }
-									: { backgroundColor: '#ffffff', cursor: 'pointer' };
-									return (
-									<div
-										
-										{...getSuggestionItemProps(suggestion, {
-										className,
-										style,
-										})}
-									>
-										<span>{suggestion.description}</span>
+							</FormLabel>
+							<PlacesAutocomplete
+								value={address}
+								onChange={setAddress}
+								onSelect={handleSelectCoords}>
+								{({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+									<div key={suggestions.description}>
+										<Input
+											value={input.Location}
+											id='Location'
+											name='Location'
+											bg='white'
+											{...getInputProps({
+												placeholder: 'Search Location...',
+												className: 'location-search-input',
+											})}
+										/>
+										<div className='autocomplete-dropdown-container'>
+											{loading && <div>Loading...</div>}
+											{suggestions.map((suggestion) => {
+												const className = suggestion.active
+													? 'suggestion-item--active'
+													: 'suggestion-item';
+												// inline style for demonstration purpose
+												const style = suggestion.active
+													? { backgroundColor: '#fafafa', cursor: 'pointer' }
+													: { backgroundColor: '#ffffff', cursor: 'pointer' };
+												return (
+													<div
+														{...getSuggestionItemProps(suggestion, {
+															className,
+															style,
+														})}>
+														<span>{suggestion.description}</span>
+													</div>
+												);
+											})}
+										</div>
 									</div>
-									);
-									
-								})}
-								</div>
-							</div>
-							)}
-						</PlacesAutocomplete>
-						{input.Location !== '' && errors.Location && (
+								)}
+							</PlacesAutocomplete>
+							{input.Location !== '' && errors.Location && (
 								<Text color='red' fontSize={!smallScreen ? '.8em' : '1em'}>
 									{errors.Location}
 								</Text>
