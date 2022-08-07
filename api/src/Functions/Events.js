@@ -11,7 +11,7 @@ const getAllEvents = async (req, res, next) => {
 			
 			order: [['Date', 'ASC']],
 			attributes: {
-				/* include: [
+				/* include:[
 					[sequelize.fn('TO_CHAR', sequelize.col('Date'), 'Day DD-Mon-YYYY HH:MM'),'Date'],
 				], */
 			},
