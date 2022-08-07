@@ -13,6 +13,7 @@ import Search from './Search.jsx';
 import { Box, Button, Flex, Heading, Image, Text, useMediaQuery } from '@chakra-ui/react';
 import { CLEAR_CART, UPDATE_STATE_TRUE } from '../Redux/ActionTypes/actiontypes';
 import styles2 from '../Styles/Home.module.css';
+
 function NavBar({ stateUser }) {
 	let { isAuthenticated, logout, user } = useAuth0();
 	let token = document.cookie.split(';')[0];
@@ -32,13 +33,9 @@ function NavBar({ stateUser }) {
 	// w={!mediumScreen ? "60%" : "45%"}
 
 	return (
-
-		
-
-		<Box marginBottom={4} padding={1} bgGradient='linear(to-r, #222831, #393E46)'>
-
+		<Box marginBottom={1} padding={1} bgGradient='linear(to-r, #222831, #393E46)'>
 			<Flex
-			    height="11vh"
+				height='6vh'
 				alignItems='center'
 				width='100%'
 				justifyContent='space-between'
@@ -51,40 +48,35 @@ function NavBar({ stateUser }) {
 						<Image
 							src={ms}
 							alt='img logo'
-							width='4vw'
-							height='8vh'
-							marginLeft='1%'
-							marginTop='10%'
+							width='fit-content'
+							height='6vh'
+							marginLeft='5%'
+							marginTop='8%'
 						/>
-
-       				 <Image 
-        				 src={mst}
-         					alt='img logo'
-         					width="10vw"
-        					 height="5%"
-        				 /* marginLeft="35%" */
-       				  marginTop="5%"
-        			/>  
-					<Image
-        			src={ms}
-       				 alt='img logo'
-        			width='4vw'
-       				 height='8vh'
-        			marginLeft='2%'
-       			 	marginTop='10%'
-     			 />
-						
-			</Heading>
-      
-
-					
+						<Image
+							src={mst}
+							alt='img logo'
+							width='fit-content'
+							height='10vh'
+							/* marginLeft="35%" */
+							marginTop='4%'
+						/>
+						<Image
+							src={ms}
+							alt='img logo'
+							width='fit-content'
+							height='6vh'
+							marginLeft='2%'
+							marginTop='8%'
+						/>
+					</Heading>
 				</Box>
 
 				<Box className={styles2.welcome} marginTop='5px'>
 					{stateUser || !isExpired(token) ? (
 						<Text
 							color='#FD7014'
-							marginLeft='2em'
+							width='fit-content'
 							textAlign='center'
 							fontWeight='bold'
 							fontSize='1.5em'>
@@ -99,9 +91,13 @@ function NavBar({ stateUser }) {
 
 				<Box justifyContent='space-around'>
 					{!token ? (
-						<Box marginLeft='5rem'>
+						<Box width='fit-content'>
 							<Link to='/login'>
-								<Button bg='#FD7014' color='white' _hover={{ bg: '#EEEEEE', color: 'black' }}>
+								<Button
+									width='fit-content'
+									bg='#FD7014'
+									color='white'
+									_hover={{ bg: '#EEEEEE', color: 'black' }}>
 									Login/Sign Up
 								</Button>
 							</Link>
@@ -111,8 +107,7 @@ function NavBar({ stateUser }) {
 					)}
 					{token && (
 						<Button
-							marginLeft='10rem'
-							marginRight='2rem'
+							width='fit-content'
 							bg='#FD7014'
 							_hover={{ bg: '#EEEEEE', color: 'black' }}
 							className={styles.Button}
@@ -131,7 +126,7 @@ function NavBar({ stateUser }) {
 							</Link>
 						)} */}
 				</Box>
-				<Flex width='40%' justifyContent='space-evenly'>
+				<Flex width='fit-content' justifyContent='space-evenly'>
 					<Box>
 						{token &&
 							tokenDecoded &&
@@ -139,7 +134,11 @@ function NavBar({ stateUser }) {
 							active && (
 								<div>
 									<Link to='/createEvent'>
-										<Button bg='#FD7014' color='white' _hover={{ bg: '#EEEEEE', color: 'black' }}>
+										<Button
+											width='fit-content'
+											bg='#FD7014'
+											color='white'
+											_hover={{ bg: '#EEEEEE', color: 'black' }}>
 											Create an Event
 										</Button>
 									</Link>
@@ -149,7 +148,7 @@ function NavBar({ stateUser }) {
 											tokenDecoded.role === 'Admin' ? '/welcomeA' : `/welcomeP/${tokenDecoded.id}`
 										}>
 										<Button
-											marginLeft='1em'
+											width='fit-content'
 											bg='#FD7014'
 											color='white'
 											_hover={{ bg: '#EEEEEE', color: 'black' }}>
@@ -163,7 +162,11 @@ function NavBar({ stateUser }) {
 					{(token && active && (
 						<Box>
 							<Link to='/profile'>
-								<Button bg='#FD7014' color='white' _hover={{ bg: '#EEEEEE', color: 'black' }}>
+								<Button
+									width='fit-content'
+									bg='#FD7014'
+									color='white'
+									_hover={{ bg: '#EEEEEE', color: 'black' }}>
 									<Text>Profile</Text>
 								</Button>
 							</Link>
@@ -171,7 +174,11 @@ function NavBar({ stateUser }) {
 					)) || (
 						<Box>
 							<Link to='/reqPartner'>
-								<Button bg='#FD7014' color='white' _hover={{ bg: '#EEEEEE', color: 'black' }}>
+								<Button
+									width='fit-content'
+									bg='#FD7014'
+									color='white'
+									_hover={{ bg: '#EEEEEE', color: 'black' }}>
 									Become a Partner
 								</Button>
 							</Link>

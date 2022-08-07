@@ -1,14 +1,12 @@
-
 .nav {
-    background-color:#1C517A;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 12px;
-    padding: 5px;
-    
-} 
+	background-color: #1c517a;
+	color: white;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 12px;
+	padding: 5px;
+}
 
 /* .menu {
     display: flex;
@@ -43,15 +41,18 @@
 } */
 
 .count {
-    position: absolute;
-    top: -14px;
-    right: 20px;
-    background-color: #fff;
-    padding: 1px 6px;
-    border-radius: 50%;
-    color: #FD7014;
-    font-weight: 700;
-    font-family: system-ui;
-    line-height: 18px;
-    margin-top: 15px;
+	position: absolute;
+	top: 0rem;
+	right: 20px;
+	background-color: #fff;
+	padding: 1px 1px;
+	border-radius: 50%;
+	color: #fd7014;
+	font-weight: 700;
+	width: 1rem;	
+	font-family: system-ui;
+	line-height: 18px;
+	margin-top: 0%;
+	display: flex;
+	justify-content: center;
 }
