@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Link } from 'react-router-dom';
 // import styles from "../Styles/Profile.module.css";
@@ -9,6 +9,7 @@ import { Box, Flex, Heading, Image, Text } from '@chakra-ui/react';
 import styles from '../Styles/User.module.css';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
+import get2FA from '../Redux/Actions/get2FA';
 
 function Profile() {
 	let dispatch = useDispatch();
@@ -17,6 +18,10 @@ function Profile() {
 	let token1 = token.split('=')[1];
 
 	let tokenDecoded = decodeToken(token1);
+
+  let [changePass, setPass] = useState(false)
+
+  let [input, setInput] = useState("")
 	useEffect(() => {
 		if (token1) {
 			axios
@@ -33,6 +38,7 @@ function Profile() {
 					<Nav />
 					<Flex justifyContent='center' flexDirection='row'>
 						<Box color='#EEEEEE' width='25%' padding={4} minHeight='100vh'>
+              
 							<Flex justifyContent='center' alignItems='center' flexDirection='column'>
 								<Heading as='h4' marginBottom={2}>
 									Profile
@@ -54,14 +60,23 @@ function Profile() {
 								<Heading as='h3' marginBottom={2} fontSize='2xl'>
 									Rol: {tokenDecoded.role || 'User'}
 								</Heading>
+                <h5>Security</h5>
+                <button onClick={() => setPass(changePass? false: true)}>Change Password</button>
+                <input hidden={changePass ? false:true} value={input} onChange={(e) => setInput(e.target.value)}></input>
+                <button onClick={() => get2FA(tokenDecoded.id)}>GET 2FA AUTHENTICATION</button>
+                <span>*Note: You will need to add "Authenticator" as a browser extension.</span>
 								<Text marginBottom={2}>{tokenDecoded.email}</Text>
 							</Flex>
 						</Box>
 						<Box width='75%' padding={4} minHeight='100vh'>
+          
 							<Flex justifyContent='right' minHeight='85vh' bg='#FD7014'>
+                
 								<Tabs tokenDecoded={tokenDecoded} />
+                
 							</Flex>
 						</Box>
+            
 					</Flex>
 				</>
 			) : (

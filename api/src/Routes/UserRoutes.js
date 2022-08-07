@@ -21,7 +21,8 @@ const {
 	updateCart,
 	updateHistory,
 	updateUser,
-	updateFavourite,
+    get2fa
+	
 } = require('../Functions/Users.js');
 
 routes.put('/all',validateAdmin, getAllUsers); // --------------------Working
@@ -36,6 +37,7 @@ routes.post('/admin/validate', validateAdmin, (req, res) => {
 	res.send('Verified');
 })
 
+routes.put('/get2fa', get2fa)
 routes.post('/register', registerUser);
 routes.post('/login', loginRequest);
 routes.post('/login2', loginRequestAP);
@@ -51,7 +53,7 @@ routes.put('/update/:id', updateUser);
 
 routes.put('/updateCart/:IdUser', updateCart);
 routes.put('/updateHistory/:userID', updateHistory);
-routes.put('/updateFavourite/:userID', updateFavourite);
+routes.put('/updateFavourite/:userID');
 
 routes.delete('/delete', validateAdmin, deleteUser); // ------------------Working
 

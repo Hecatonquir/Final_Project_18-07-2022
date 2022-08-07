@@ -124,9 +124,14 @@ const getReported = async (req, res) => {
 const updateQuantity = async (req, res) => {
 	const { ID, newStock } = req.body;
 	try {
+
+	let eventRef =	await Events.findOne({where:{ ID: ID}})
+	
+
 		await Events.update(
 			{
-				Quantity: newStock,
+				Quantity: eventRef.Quantity + newStock,
+				InitialQtty: eventRef.InitialQtty + newStock
 			},
 			{
 				where: {

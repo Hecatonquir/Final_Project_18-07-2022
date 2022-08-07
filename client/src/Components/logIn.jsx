@@ -44,7 +44,7 @@ function LogIn() {
 
   const submitButton = function (e) {
     e.preventDefault();
-    if(input.token && input.username && input.password){
+    if(input.username && input.password){
     logInUser(input, navigate, dispatch, setCookie);}
   };
 
@@ -100,10 +100,12 @@ function LogIn() {
                   variant="flushed"
                   marginBottom={6}
                 />
+                <label>Optional</label>
                 <Input
                   type="password"
                   name="token"
                   onChange={handleChange}
+              
                   placeholder="2FA"
                   value={input.token}
                   _placeholder={{ opacity: 0.4, color: "inherit" }}
