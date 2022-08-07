@@ -5,7 +5,7 @@ import CardItem from './CartItem';
 import styles from '../Styles/Cart.module.css';
 import imgcarrito from '../Media/emptycart.png';
 import Nav from './Nav';
-import { Box, Button, /* Center, */ Heading, Text, Image, useMediaQuery } from '@chakra-ui/react';
+import { Box, Button, /* Center, */ Heading, Text, Image, useMediaQuery, Flex } from '@chakra-ui/react';
 import { decodeToken } from 'react-jwt';
 import { updateCart } from '../Redux/Actions/updateCart';
 import { updateQuantity } from '../Redux/Actions/updateQuantity';
@@ -112,17 +112,21 @@ export default function Cart() {
 	}, [dispatch]);
 
     //Responsive
-    const [smallScreen] = useMediaQuery("(min-width: 768px)");
+    const [smallScreen] = useMediaQuery("(min-width: 900px)");
+	const [small1Screen] = useMediaQuery("(min-width: 640px)");
 
 	return (
-		<Box bgGradient="linear(to-r, #222831, #393E46)" minHeight='100vh'>
+		<Box bgGradient="linear(to-r, #222831, #393E46)" minH='100vh'>
 			<Nav />
 			<Heading as='h4' margin={6} color='#EEEEEE'>
 				SHOPPING CART
 			</Heading>
+
 			<Text margin={6} color='#EEEEEE'>
 				Your selected events
 			</Text>
+
+			<Flex justifyContent="space-evenly" alignItems={!small1Screen ? "center" : "none"} flexDirection={!small1Screen ? "column" : "row"}>
 			<Box className={styles.container}>
 				<Box>
 					{cart.length ? (
@@ -145,8 +149,9 @@ export default function Cart() {
 					)}
 				</Box>
 			</Box>
+
 			<Box className={styles.containeramount}>
-				<Heading as='h4' color='#EEEEEE' fontSize={!smallScreen ? "1em" : "2em"}>
+				<Heading as='h4' color='#EEEEEE' textAlign='center' fontSize={!smallScreen ? "1.5em" : "2em"}>
 					Total Price: ${totalAmount} ARS
 				</Heading>
 
@@ -174,14 +179,20 @@ export default function Cart() {
 					<ToastContainer />
 				</Box>
 			</Box>
+			</Flex>
+
+		
+
 			<br />
-			<Box margin={6}>
+
+			<Box margin={6} textAlign='center'>
 				<Button  bg="#FD7014"
                     color="#EEEEEE"
                     _hover={{ bg: "#EEEEEE", color: "black" }} onClick={() => hundleClick()}>
 					Clear Cart
 				</Button>
 			</Box>
+
 			<br />
 		</Box>
 	);

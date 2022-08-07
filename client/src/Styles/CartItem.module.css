@@ -45,8 +45,36 @@
     width: 150px;
 }
 
+.text{
+    font-size: 1.5em;
+}
 
-@media screen and (max-width: 425px) {
+.quantity{
+    margin-bottom: 1em;
+    font-size: 1em;
+}
+
+
+@media screen and (max-width: 900px) {
+    .text{
+        font-size: 1em;
+    }
+    .quantity{
+        font-size: .7em;
+    }
+    .imgdelete {
+        width: 30px;
+    }
+  }
+
+
+@media screen and (max-width: 430px) {
+    .text{
+        font-size: .8em;
+    }
+    .quantity{
+        font-size: .6em;
+    }
     .imgdelete {
         width: 20px;
     }

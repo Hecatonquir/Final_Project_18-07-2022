@@ -11,13 +11,13 @@ export default function EventCarousel() {
 	const dispatch = useDispatch();
 	var event = useSelector((state) => state.eventDetail);
 
-	const styles = {
-		prueba: {
-			width: '45vw',
-			height: '85vh',
-			borderRadius: '1rem',
-		},
-	};
+	// const styles = {
+	// 	prueba: {
+	// 		width: '45vw',
+	// 		height: '85vh',
+	// 		borderRadius: '1rem',
+	// 	},
+	// };
 
 	useEffect(() => {
 		dispatch(getDetail(id));
@@ -30,7 +30,7 @@ export default function EventCarousel() {
 		if (im !== '')
 			return (
 				<Carousel.Item interval={2000}>
-					<img src={im} alt={event[0].Name} className='d-block w-100' style={styles.prueba} />
+					<img src={im} alt={event[0].Name} className={style.img} />
 					{price > 0 && quantity < 1 ? (
 						<Box className={style.triangle} borderTop='200px solid #ee0808'>
 							<div className={style.text}>SOLD OUT</div>
@@ -47,5 +47,5 @@ export default function EventCarousel() {
 		else return '';
 	});
 
-	return <Carousel style={styles.prueba}>{CarouselItem}</Carousel>;
+	return <Carousel>{CarouselItem}</Carousel>;
 }

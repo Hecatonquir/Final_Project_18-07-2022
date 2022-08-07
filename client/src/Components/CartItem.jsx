@@ -39,20 +39,21 @@ export default function CardItem({id, name, image, price, purchasedItem, quantit
     }
 
       //Responsive
-      const [smallScreen] = useMediaQuery("(min-width: 1249px)");
-      // w={!smallScreen ? "60%" : "45%"}
-
+      const [smallScreen] = useMediaQuery("(min-width: 900px)");
+      const [small1Screen] = useMediaQuery("(min-width: 640px)");
+      const [imgScreen] = useMediaQuery("(min-width: 430px)");
+      
     return(
         <Center>
             <div className={styles.container}>
-            <Box marginBottom={8} bg='#EEEEEE' borderRadius="10px" border='0px solid red'>
-            <Box w={!smallScreen ? "90vw" : "80vw"}>
-                <Flex justifyContent='space-around' alignItems='center'>
-                <Image src={image} alt='img event' w={!smallScreen ? "75px" : "150px"} h={!smallScreen ? "75px" : "150px"}/>
-                <Heading as='h4' fontSize={!smallScreen ? ".8em" : "1.5em"}>{name}</Heading>
+            <Box marginBottom={8} bg='#EEEEEE' borderRadius="10px">
+            <Box w={!small1Screen ? "90vw" : "60vw"}>
+                <Flex justifyContent='space-between' alignItems='center'>
+                <Image src={image} alt='img event' w={!imgScreen ? "50px" : "150px"} h={!imgScreen ? "50px" : "150px"} borderTopStartRadius='10px' borderBottomStartRadius='10px'/>
+                <h4 className={styles.text}>{name}</h4>
                 <Box>
                     <Flex flexDirection='column' alignItems='center'>
-                        <Heading as='h5' fontSize={!smallScreen ? ".7em" : "1.5em"} marginBottom={4}>Quantity Item</Heading>
+                        <h5 className={styles.quantity}>Quantity Item</h5>
                     </Flex>
                 <Box >
                 <Flex alignItems='center'>
@@ -63,7 +64,7 @@ export default function CardItem({id, name, image, price, purchasedItem, quantit
                 </Box>
                 </Box>
             <Box>
-                <Heading as='h5' fontSize={!smallScreen ? ".7em" : "1.5em"}>Price</Heading>
+                <h5 className={styles.text}>Price</h5>
                 <Text textAlign='center' fontSize={!smallScreen ? ".6em" : "1em"}>${price*purchasedItem}</Text>
             </Box>
             <img src={imgdelete} alt='not imgdelete' onClick={() => hundleDelete()} className={styles.imgdelete}/>

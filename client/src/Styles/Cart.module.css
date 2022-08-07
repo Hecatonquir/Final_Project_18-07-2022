@@ -24,6 +24,7 @@
 .container {
     display: flex;
     flex-direction: row;
+    /* background-color: blue; */
 }
 
 .divButton {
@@ -68,6 +69,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    /* background-color: aqua; */
 }
 
 .amount {
@@ -79,8 +81,13 @@
     margin-left: 200px;
 }
 
-@media screen and (max-width: 425px) {
+
+@media screen and (max-width: 900px) {
     .containeramount {
-        width: 100px;
+        margin-left: 10px;
+    }
+    .imgcarrito {
+        width: 300px;
+        margin-left: 0px;
     }
   }

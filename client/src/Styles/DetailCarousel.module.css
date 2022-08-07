@@ -5,6 +5,7 @@
     width: 0px;
     height: 0px;
     border-right: 200px solid transparent;
+    /* border-top-left-radius: 1rem; */
 }
 
 .text {
@@ -27,4 +28,9 @@
     font-weight: bold;
     font-size: 2em;
     transform: rotate(-45deg);
+}
+
+.img{
+    width: 45vw;
+    height: 85vh;
 }
