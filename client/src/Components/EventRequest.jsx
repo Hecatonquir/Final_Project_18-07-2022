@@ -35,7 +35,7 @@ return (
         <SimpleGrid columns={3} spacing={4}>
             {request.length && request.map(el =>(
                
-                <Flex bg='#ACAFB0 ' w='28rem' minH='14rem' borderRadius='10px' margin={3} padding={3} flexDirection='column' >
+                <Flex bg='#ACAFB0 ' w='24rem' minH='14rem' borderRadius='10px' margin={3} padding={3} flexDirection='column' >
                     <Link to={`/details/id/${el.ID}`}>
                     <Text mt={2}>Event: {el.Name}</Text>
                     </Link> 

@@ -105,7 +105,7 @@ function Prepanel() {
 									}}></Input>
 							</div>
 							<div>
-								<Button mt='1em' ml='2em' width='20em' bg='#FD7014' color='white' onClick={(e) => handleSubmit(e, user)}>Log In</Button>
+								<Button mt='3em' ml='2em' width='20em' bg='#FD7014' color='white' onClick={(e) => handleSubmit(e, user)}>Log In</Button>
 							</div>
 						</form>
 					</div>
