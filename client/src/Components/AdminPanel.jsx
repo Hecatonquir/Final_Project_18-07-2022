@@ -13,10 +13,12 @@ import styles from '../Styles/AdminPanel.module.css';
 import { changeRole } from '../Redux/Actions/updateRole';
 import { banUnbanUser } from '../Redux/Actions/banUnbanUser';
 import { eachWeekOfInterval } from 'date-fns';
-import { Box, Heading, Image, Text, Button, Flex, Input } from "@chakra-ui/react";
+import { Box, Text, Button, Flex, Input } from "@chakra-ui/react";
 import {Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableContainer} from '@chakra-ui/react'
 import { GET_EVENTS, GET_USERS } from '../Redux/ActionTypes/actiontypes';
 import TicketsUsers from './TicketsFromUsers'
+import validateAdminDB from '../Redux/Actions/validateAdminDB';
+import EventRequest from './EventRequest'
 
 function AdminPanel() {
 
@@ -26,6 +28,7 @@ function AdminPanel() {
 		token
 		.split('=')[1]
 	let tokenDecoded = decodeToken(token1);
+
 	
 
 
@@ -37,6 +40,12 @@ function AdminPanel() {
 
 	let dispatch = useDispatch();
 	let navigate = useNavigate();
+
+
+	// if(tokenDecoded) {
+	// 	validateAdminDB(tokenDecoded.id, navigate)
+	// }
+
 	const [admin, setAdmin] = useState(false);
 	
 
@@ -64,9 +73,9 @@ function AdminPanel() {
 	}
 
 	useEffect(() => {
-		axios.post('/user/admin', {token: token1})
+		axios.post('/user/admin/validate', {data: {token: token1}})
 			.then((response) => setAdmin(true))
-			.then((response) => dispatch(getUsers()))
+			.then((response) => dispatch(getUsers(token1)))
 			.then((response) => dispatch(getEvents()))
 			.catch((error) => navigate('/'));
 
@@ -81,7 +90,6 @@ function AdminPanel() {
 	return (
 		<Box bg='#393E46' minW='100vw' minH='100vh'>
 			<Nav />
-			<Link to ="/eventReq"><button>Event Request</button></Link> 
 			{admin && <Text color='white' fontSize='2em' textAlign='center' >Welcome {tokenDecoded && tokenDecoded.name}</Text>}
 			<Flex justifyContent='center'>
 				<div className={styles.container}>
@@ -100,6 +108,11 @@ function AdminPanel() {
 						className={toggleState === 3 ? `${styles.tabs} ${styles.activetabs}`: styles.tabs}
 						onClick={() => toggleTab(3)}>
 						All Tickets
+					</button>
+					<button
+						className={toggleState === 4 ? `${styles.tabs} ${styles.activetabs}`: styles.tabs}
+						onClick={() => toggleTab(4)}>
+						Event Request
 					</button>
 				</div>
 
@@ -129,7 +142,7 @@ function AdminPanel() {
 								<Flex mr='5rem'>
 								<Th >Nº</Th>
 								<Th mr='2rem'>USER</Th>
-								<Th mr='8rem'>EMAIL</Th>
+								<Th mr='10rem'>EMAIL</Th>
 								<Th mr='2rem'>ROLE</Th>
 								<Th mr='2rem'>BANNED</Th>
 								</Flex>
@@ -154,7 +167,7 @@ function AdminPanel() {
 													<Link to={`/user/${el.ID}`}>
 														<Td>{i+1}</Td>
 														<Td width='8rem'>{el.Name}</Td>
-														<Td width='12rem'>{el.Email}</Td>
+														<Td width='15rem'>{el.Email}</Td>
 														<Td width='8rem'>{el.Role}</Td>
 														<Td width='6rem' color={el.isBan === true? 'red': 'green'}>{el.isBan ? 'true' : 'false'}</Td>
 														</Link>
@@ -172,7 +185,7 @@ function AdminPanel() {
 												m='0.5em'
 												className={styles.button1}
 												onClick={() => {
-													deleteUserDB(el.Email, dispatch);
+													deleteUserDB(el.Email, dispatch, token1);
 													setUser({ username: '', posts: '' });
 												}}>
 												Delete User
@@ -196,7 +209,7 @@ function AdminPanel() {
 												className={styles.button4}
 												hidden={actRoles ? false : true}
 												name='Admin'
-												onClick={(e) => changeRole(e.target.name, el.Email, dispatch)}>
+												onClick={(e) => changeRole(e.target.name, el.Email, dispatch, token1)}>
 												Admin
 											</Button>
 											<Button
@@ -206,7 +219,7 @@ function AdminPanel() {
 												className={styles.button4}
 												hidden={actRoles ? false : true}
 												name='Partner'
-												onClick={(e) => changeRole(e.target.name, el.Email, dispatch)}>
+												onClick={(e) => changeRole(e.target.name, el.Email, dispatch,token1)}>
 												Partner
 											</Button>
 											<Button
@@ -216,7 +229,7 @@ function AdminPanel() {
 												className={styles.button4}
 												hidden={actRoles ? false : true}
 												name='User'
-												onClick={(e) => changeRole(e.target.name, el.Email, dispatch,tokenDecoded.id)}>
+												onClick={(e) => changeRole(e.target.name, el.Email, dispatch,token1)}>
 												User
 											</Button>
 											<Button
@@ -226,7 +239,7 @@ function AdminPanel() {
 												m='0.5em'
 												className={styles.button5}
 												onClick={() => {
-													banUnbanUser(el.isBan ? false : true, el.Email, dispatch);
+													banUnbanUser(el.isBan ? false : true, el.Email, dispatch, token1);
 												}}>
 												{el.isBan ? 'Unban User' : 'Ban User'}
 											</Button>
@@ -323,7 +336,10 @@ function AdminPanel() {
 								<div className={toggleState === 3 ? `${styles.content}  ${styles.activecontent}` : styles.content}>
 								<TicketsUsers/>
 								</div>
-				
+							{/* //Cuarto Bloque */}
+								<div className={toggleState === 4 ? `${styles.content}  ${styles.activecontent}` : styles.content}>
+								<EventRequest/>
+								</div>
 				</div>
 				</div>
 			</Flex>

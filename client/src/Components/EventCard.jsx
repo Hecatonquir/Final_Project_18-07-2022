@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { addToFavourites } from '../Redux/Actions/addToFav';
@@ -12,6 +12,7 @@ import { Box, Heading, Image, Text, Button, Flex, useMediaQuery } from '@chakra-
 import AddToCartButton from './AddToCartButton';
 import { decodeToken } from 'react-jwt';
 import updateFavourite from '../Redux/Actions/updateFavourite';
+import getEvents from '../Redux/Actions/getEvents.js';
 
 export default function EventCard({
 	id,
@@ -26,7 +27,7 @@ export default function EventCard({
 }) {
 	const dispatch = useDispatch();
 	const Allfavourites = useSelector((state) => state.favourites);
-	var exitFav = Allfavourites.find((e) => e.ID === id);
+	var exitFav = Allfavourites?.find((e) => e.ID === id);
 	let token = document.cookie.split(';')[0];
 	let token1 = token.split('=')[1];
 	let tokenDecoded = decodeToken(token);
@@ -36,7 +37,6 @@ export default function EventCard({
 		if (token1) {
 			if (!exitFav) {
 				dispatch(addToFavourites(id));
-				dispatch(updateFavourite(tokenDecoded.id));
 				swal('Added to favorite', { icon: 'success' });
 			} else {
 				dispatch(removeFromFavourites(id));

@@ -85,25 +85,8 @@ body {
    justify-content: center;
 }
 
-.input {
-    width: 35rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    padding-top: 3px;
-    padding-bottom: 3px;
-    border: 1px solid #229ddb;
-    border-radius: 5px;
-}
 
-
-.button5 {
-    background-color: rgb(175, 51, 184);
-    border: 1px solid #065975;
-    border-radius: 5px;
-    color: white;
-    padding-left: 5px;
-    padding-right: 5px;
-} */
+ */
 
 
 .container {
@@ -123,7 +106,7 @@ body {
 
   .tabs {
     color: white;
-    padding: 15px;
+    padding: 10px;
     text-align: center;
     width: 50%;
     background: #FD7014;
