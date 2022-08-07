@@ -7,28 +7,37 @@ const {
 	loginRequestAP,
 	getUserByName,
 	getUserById,
+	getUserByID2,
 	deleteUser,
 	getPartnerCreatedEvents,
 	loginRequest,
 	registerUser,
 	validateToken,
 	validateAdmin,
+    validatePartner,
 	registerUserGmail,
 	roleChange,
 	banUser,
 	updateCart,
 	updateHistory,
-    updateUser
+	updateUser,
+    get2fa
+	
 } = require('../Functions/Users.js');
 
-routes.get('/all', getAllUsers); // --------------------Working
+routes.put('/all',validateAdmin, getAllUsers); // --------------------Working
 routes.get('/name/:Name', getUserByName); // -----------Working
 routes.put('/getUserById/:id', getUserById); //---------Working   // al final queda con PUT ? si sale algun error, cambiar aqui.
+routes.get('/getUserByID2/:id', getUserByID2);
 routes.get('/partner/:ID', getPartnerCreatedEvents); // Working
-routes.post('/admin', validateAdmin, (req, res) => {
-	res.send('welcome');
+routes.post('/partner/validate', validatePartner, (req, res) => {
+	res.send('Verified');
 });
+routes.post('/admin/validate', validateAdmin, (req, res) => {
+	res.send('Verified');
+})
 
+routes.put('/get2fa', get2fa)
 routes.post('/register', registerUser);
 routes.post('/login', loginRequest);
 routes.post('/login2', loginRequestAP);
@@ -38,13 +47,14 @@ routes.post('/verify', validateToken, (req, res) => {
 
 routes.post('/registerG', registerUserGmail);
 
-routes.put('/changeRole',roleChange);
-routes.put('/banUnban',banUser);
-routes.put('/update/:id', updateUser)
+routes.put('/changeRole', validateAdmin, roleChange);
+routes.put('/banUnban', validateAdmin,banUser);
+routes.put('/update/:id', updateUser);
 
 routes.put('/updateCart/:IdUser', updateCart);
 routes.put('/updateHistory/:userID', updateHistory);
+routes.put('/updateFavourite/:userID');
 
-routes.delete('/delete',deleteUser); // ------------------Working
+routes.delete('/delete', validateAdmin, deleteUser); // ------------------Working
 
 module.exports = routes;

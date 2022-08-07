@@ -2,7 +2,7 @@ import axios from 'axios';
 import swal from 'sweetalert';
 import getUsers from './getUsers';
 
-export const banUnbanUser = async (veredict, email, dispatch) => {
+export const banUnbanUser = async (veredict, email, dispatch, token) => {
 	try {
 		let banedOrNot = await axios.put(
 			'/user/banUnban',
@@ -10,6 +10,7 @@ export const banUnbanUser = async (veredict, email, dispatch) => {
 				data: {
 					ban: veredict,
 					email: email,
+					token: token
 				},
 			},
 			{ withCredentials: true }

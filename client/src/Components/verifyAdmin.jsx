@@ -8,7 +8,7 @@ import styles from '../Styles/verifyAdmin.module.css';
 import Cookies from 'universal-cookie';
 import swal from 'sweetalert';
 import img from '../Media/admin1.jpeg'
-
+import {Input, Button } from "@chakra-ui/react";
 
 function Prepanel() {
 	const cookies = new Cookies();
@@ -17,6 +17,7 @@ function Prepanel() {
 	const [user, setUser] = useState({
 		username: '',
 		password: '',
+		token:''
 	});
 
 	let token = document.cookie.split(';')[0];
@@ -29,7 +30,7 @@ function Prepanel() {
 
 	async function handleSubmit(e, person) {
 		e.preventDefault();
-
+          if(user.username && user.password && user.token){
 		try {
 			let adminLogin = await axios.post('/user/login2', person, { withCredentials: true });
 
@@ -40,12 +41,16 @@ function Prepanel() {
 		} catch (error) {
 			alert('Not Allowed!');
 		}
-	}
+		  }}
 
 	useEffect(() => {
 		if (tokenDecoded && tokenDecoded.role !== 'Admin') {
 			swal({ title: 'Not Allowed', icon: 'error' });
 			navigate('/');
+
+		}
+		else if(tokenDecoded && tokenDecoded.role === "Admin" ) {
+			navigate("/welcomeA")
 		}
 	}, []);
 
@@ -58,28 +63,49 @@ function Prepanel() {
 							<h2>Control Panel</h2>
 							<div>
 								<p>Username</p>
-								<input
+								<Input
 									placeholder='Enter your username'
 									name='username'
+									bg='white'
 									type='text'
+									ml='2em'
+									width='20em'
 									value={user.username}
 									onChange={(e) => {
 										handleChange(e);
-									}}></input>
+									}}></Input>
 							</div>
 							<div>
 								<p>Password</p>
-								<input
+								<Input
 									placeholder='Enter your password'
 									name='password'
+									bg='white'
+									ml='2em'
+									width='20em'
 									type='password'
 									value={user.password}
 									onChange={(e) => {
 										handleChange(e);
-									}}></input>
+									}}></Input>
 							</div>
 							<div>
-								<button onClick={(e) => handleSubmit(e, user)}>Log In</button>
+								
+								<Input
+								    marginTop="0.5em"
+									placeholder='2FA'
+									name='token'
+									bg='white'
+									ml='2em'
+									width='20em'
+									type='password'
+									value={user.token}
+									onChange={(e) => {
+										handleChange(e);
+									}}></Input>
+							</div>
+							<div>
+								<Button mt='1em' ml='2em' width='20em' bg='#FD7014' color='white' onClick={(e) => handleSubmit(e, user)}>Log In</Button>
 							</div>
 						</form>
 					</div>

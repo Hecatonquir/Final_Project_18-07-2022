@@ -18,10 +18,13 @@ import {
 	CLEAR_DETAIL,
 	UPDATE_DB_CART,
 	LOAD_CART,
-    USER_DETAILS,
-    CLEAR_USER_DETAILS,
-	USERS_BACKUP
+	USER_DETAILS,
+	CLEAR_USER_DETAILS,
+	USERS_BACKUP,
+	GET_USER_BY_ID2,
+	SET_COORDS,
 } from '../ActionTypes/actiontypes';
+
 const initialState = {
 	allEvents: [],
 	eventsBackUp: [],
@@ -34,10 +37,10 @@ const initialState = {
 	allUsers: [],
 	cart: [],
 	favourites: [],
-    userDetails: {},
+	userDetails: {},
+	userInfo: {},
+	coords: [],
 };
-
-  
 
 export default function reducer(state = initialState, { type, payload }) {
 	switch (type) {
@@ -51,7 +54,7 @@ export default function reducer(state = initialState, { type, payload }) {
 			return { ...state, eventsBackUp: payload };
 
 		case USERS_BACKUP:
-			return { ...state, usersBackUp: payload}
+			return { ...state, usersBackUp: payload };
 
 		case GET_NAME_EVENTS:
 			return { ...state, eventName: payload };
@@ -68,9 +71,21 @@ export default function reducer(state = initialState, { type, payload }) {
 		case LOAD_CART:
 			return { ...state, cart: payload };
 
+		case 'LOAD_FAV':
+			return { ...state, favourites: payload };
+
 		case UPDATE_DB_CART:
 			axios.put('/user/updateCart/' + payload, state.cart);
 			return state;
+
+		case 'UPDATE_DB_FAVOURITE':
+			console.log('REDUCER UPDATE_DB_FAVOURITE');
+			axios.put('/user/updateFavourite/' + payload, state.favourites);
+			return state;
+
+		case 'UPDATE_GLOBAL_FAVOURITE':
+			console.log('REDUCER UPDATE_GLOBAL_FAVOURITE');
+			return { ...state, favourites: payload };
 
 		case ADD_ITEM_CART:
 			const newItem = state.allEvents.find((event) => event.ID === payload);
@@ -122,14 +137,19 @@ export default function reducer(state = initialState, { type, payload }) {
 
 		case REMOVE_FROM_FAVOURITES:
 			const filterFav = state.favourites.filter((item) => item.ID !== payload);
-			return { ...state, favourites: filterFav }
+			return { ...state, favourites: filterFav };
 
-            case USER_DETAILS:
-                return {...state, userDetails: payload}
+		case USER_DETAILS:
+			return { ...state, userDetails: payload };
 
+		case CLEAR_USER_DETAILS:
+			return { ...state, userDetails: [] };
 
-            case CLEAR_USER_DETAILS:
-                return {...state, userDetails: []};
+		case GET_USER_BY_ID2:
+			return { ...state, userInfo: payload };
+
+		case SET_COORDS:
+			return { ...state, coords: payload };
 
 		default:
 			return state;

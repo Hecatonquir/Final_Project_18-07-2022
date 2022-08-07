@@ -5,7 +5,7 @@ import CardItem from './CartItem';
 import styles from '../Styles/Cart.module.css';
 import imgcarrito from '../Media/emptycart.png';
 import Nav from './Nav';
-import { Box, Button, /* Center, */ Heading, Text, Image } from '@chakra-ui/react';
+import { Box, Button, /* Center, */ Heading, Text, Image, useMediaQuery } from '@chakra-ui/react';
 import { decodeToken } from 'react-jwt';
 import { updateCart } from '../Redux/Actions/updateCart';
 import { updateQuantity } from '../Redux/Actions/updateQuantity';
@@ -26,7 +26,7 @@ export default function Cart() {
 	const cart = useSelector((state) => state.cart);
 	var totalAmount = 0;
 	const [showBuyButton, setshowBuyButton] = useState('hide');
-	console.log('🐲🐲🐲 / file: Cart.jsx / line 26 / cart', cart);
+	//console.log('🐲🐲🐲 / file: Cart.jsx / line 26 / cart', cart);
 
 
 	/* if (cart.length) setshowBuyButton('show'); */	
@@ -111,13 +111,16 @@ export default function Cart() {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [dispatch]);
 
+    //Responsive
+    const [smallScreen] = useMediaQuery("(min-width: 768px)");
+
 	return (
-		<Box bgGradient='linear(to-r, #1c2333, #371a1e)' minHeight='100vh'>
+		<Box bgGradient="linear(to-r, #222831, #393E46)" minHeight='100vh'>
 			<Nav />
-			<Heading as='h4' margin={6} color='white'>
+			<Heading as='h4' margin={6} color='#EEEEEE'>
 				SHOPPING CART
 			</Heading>
-			<Text margin={6} color='white'>
+			<Text margin={6} color='#EEEEEE'>
 				Your selected events
 			</Text>
 			<Box className={styles.container}>
@@ -143,16 +146,10 @@ export default function Cart() {
 				</Box>
 			</Box>
 			<Box className={styles.containeramount}>
-				<Heading as='h4' color='white'>
+				<Heading as='h4' color='#EEEEEE' fontSize={!smallScreen ? "1em" : "2em"}>
 					Total Price: ${totalAmount} ARS
 				</Heading>
-				{/* <Button
-							className={styles.Button2}
-							onClick={() => {
-								setshowBuyButton(true);
-							}}>
-							Buy
-						*/}
+
 				<Box>
 					{showBuyButton === 'show' ? (
 						<Button
@@ -170,16 +167,18 @@ export default function Cart() {
 							/>
 						</Button>
 					) : showBuyButton === 'loading' ? (
-						<h3 style={{ color: 'white' }}>Loading...</h3>
+						<h3 style={{ color: '#EEEEEE' }}>Loading...</h3>
 					) : (
-						<h3 style={{ color: 'white' }}>Thank you for your purchase! Have fun!</h3>
+						<h3 style={{ color: '#EEEEEE' }}>Thank you for your purchase! Have fun!</h3>
 					)}
 					<ToastContainer />
 				</Box>
 			</Box>
 			<br />
 			<Box margin={6}>
-				<Button bg='pink' onClick={() => hundleClick()}>
+				<Button  bg="#FD7014"
+                    color="#EEEEEE"
+                    _hover={{ bg: "#EEEEEE", color: "black" }} onClick={() => hundleClick()}>
 					Clear Cart
 				</Button>
 			</Box>

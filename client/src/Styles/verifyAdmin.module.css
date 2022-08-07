@@ -21,12 +21,14 @@ body {
     margin-top: 100px;
     border: 2px solid white;
     position: relative;
+    border-radius: 5px;
 }
 
 .form {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    
 }
 
 .form h2 {
@@ -40,24 +42,6 @@ body {
 .form p {
     margin-left: 2rem;
     margin-top: 1rem;
-    color: white;
-    font-weight: bolder;
-}
-
-.form input {
-    width: 85%;
-    margin: 0 2rem 0 2rem;
-    padding: 0.2rem;
-    border-radius: 5px;
-}
-
-.form button {
-    width: 85%;
-    margin: 0 2rem 0 2rem;
-    padding: 0.2rem;
-    border-radius: 5px;
-    margin-top: 2.5rem;
-    background-color: #FD7014;
     color: white;
     font-weight: bolder;
 }
