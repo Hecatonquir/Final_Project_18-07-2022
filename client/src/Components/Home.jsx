@@ -89,9 +89,12 @@ export default function Home() {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
+
+
 	//Responsive
 	const [mediumScreen] = useMediaQuery('(min-width: 1249px)');
 	// w={!mediumScreen ? "60%" : "45%"}
+
 
 	return (
 		<Box bgGradient='linear(to-r, #222831, #393E46)' minHeight='100vh'>
@@ -99,7 +102,7 @@ export default function Home() {
 				<NavBar stateUser={stateUser} />
 			</Box>
 
-			<Box paddingTop='5.6rem'>
+			<Box paddingTop='4.2rem'>
 				<EventCarousel carrouselEvents={carrouselEvents} />
 			</Box>
 
