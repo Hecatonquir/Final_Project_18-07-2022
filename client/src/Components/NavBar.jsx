@@ -44,14 +44,14 @@ function NavBar({ stateUser }) {
 				zIndex='10'>
 				<Box>
 					<Heading display='flex' justifyContent='center'>
-						<Image
+						{/* <Image
 							src={ms}
 							alt='img logo'
 							width='fit-content'
 							height='6vh'
 							marginLeft='5%'
 							marginTop='8%'
-						/>
+						/> */}
 						<Image
 							src={mst}
 							alt='img logo'
@@ -60,14 +60,14 @@ function NavBar({ stateUser }) {
 							/* marginLeft="35%" */
 							marginTop='4%'
 						/>
-						<Image
+						{/* <Image
 							src={ms}
 							alt='img logo'
 							width='fit-content'
 							height='6vh'
 							marginLeft='2%'
 							marginTop='8%'
-						/>
+						/> */}
 					</Heading>
 				</Box>
 
