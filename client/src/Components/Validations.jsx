@@ -79,11 +79,12 @@ export default function validate(input) {
 	}
 	if (!Location) {
 		errors.Location = 'Location is required.';
-	} else if (Location.length !== 0) {
-		if (!/^[A-Z]+[A-Za-z0-9\s]+$/g.test(Location) || Location.length > 25) {
-			errors.Location = 'First letter must be uppercase and do not start with a number';
-		}
-	}
+	} 
+	// else if (Location.length !== 0) {
+	// 	if (!/^[A-Z]+[A-Za-z0-9\s]+$/g.test(Location) || Location.length > 25) {
+	// 		errors.Location = 'First letter must be uppercase and do not start with a number';
+	// 	}
+	// }
 	if (!City) {
 		errors.City = 'At least one city is required.';
 	}

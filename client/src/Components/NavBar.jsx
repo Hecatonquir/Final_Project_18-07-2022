@@ -4,7 +4,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import styles from '../Styles/NavBar.module.css';
 import { useAuth0 } from '@auth0/auth0-react';
 import imgcarrito from '../Media/carri.png';
-import imglogo from '../Media/logo2.png';
 import ms from '../Media/ms.gif';
 import mst from '../Media/mst.png';
 import { isExpired, decodeToken } from 'react-jwt';
