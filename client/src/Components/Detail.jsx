@@ -26,7 +26,7 @@ export default function Detail() {
 	const active = useSelector((state) => state.loginState);
 	var event = useSelector((state) => state.eventDetail);
 	const Allfavourites = useSelector((state) => state.favourites);
-	var exitFav = Allfavourites.find((e) => e.ID === id);
+	var exitFav = Allfavourites?.find((e) => e.ID === id);
 	let token = document.cookie.split(';')[0];
 	let token1 = token.split('=')[1];
 	let tokenDecoded = decodeToken(token1);
@@ -42,7 +42,7 @@ export default function Detail() {
 		Location: false,
 		Price: false,
 		Quantity: false,
-    QuantityI: false,
+		QuantityI: false,
 		Restrictions: false,
 		AgeRestriction: false,
 		Detail: false,
@@ -55,7 +55,7 @@ export default function Detail() {
 		Location: '',
 		Price: '',
 		Quantity: 0,
-    QuantityI: 0,
+		QuantityI: 0,
 		Restrictions: '',
 		AgeRestriction: '',
 		Detail: '',
@@ -399,7 +399,7 @@ export default function Detail() {
 																	: true
 															}
 															onClick={(e) => handleClick(e)}>
-															  Decrease Quantity
+															Decrease Quantity
 														</Button>
 													</Flex>
 													<Flex flexDirection='row' justifyContent='space-between'>
@@ -426,7 +426,7 @@ export default function Detail() {
 															}}>
 															Change
 														</Button>
-                            <Button
+														<Button
 															width='5rem'
 															bg='#FD7014'
 															color='white'
@@ -438,7 +438,7 @@ export default function Detail() {
 																	: true
 															}
 															onClick={(e) => handleClick(e)}>
-															  Increase Quantity
+															Increase Quantity
 														</Button>
 													</Flex>
 													<Flex flexDirection='row' justifyContent='space-between'>
