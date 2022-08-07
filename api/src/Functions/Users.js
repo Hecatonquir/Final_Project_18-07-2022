@@ -256,7 +256,7 @@ const registerUser = async (req, res) => {
 					req.body.Password = hash;
 					req.body.Role = 'User';
 					Users.create(req.body);
-					return res.send(`Created Succesfully, YOUR 2FA TOKEN IS: ${temp_secret.base32}, Please Keep it Safe!`);
+					// return res.send(`Created Succesfully, YOUR 2FA TOKEN IS: ${temp_secret.base32}, Please Keep it Safe!`);
 				});
 			} else {
 				return res.status(400).send('User already exist');
