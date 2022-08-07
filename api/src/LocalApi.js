@@ -287,7 +287,7 @@ const userApi = [
 		Name: 'Cesar',
 		Username: 'cesar',
 		Password: '$2b$10$4BlMuCSh34F1A6wT/Kh.EOf6CpeBL1H6Rc4x9UJwIXEO8gXozoRBW',
-		Token: "GBZTIWBUIJFSSYKFOFCGCR3IPNDCYMSNOYXUCMTXO5LTS42YKRKA",
+		Token: "",
 		Email: 'tuemail5@gmail.com',
 		Image:
 			'https://mediaslide-europe.storage.googleapis.com/metromodels/pictures/763/629/large-1519386142-ad6df5799ba9ce3aa903de4b3874d544.jpg',

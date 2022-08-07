@@ -17,6 +17,7 @@ import swal from 'sweetalert';
 import { decodeToken } from 'react-jwt';
 import { updateEvent } from '../Redux/Actions/updateEvent';
 import MapDetails from './MapDetails';
+import { increaseQuantity } from '../Redux/Actions/increaseQuantity';
 
 export default function Detail() {
 	const { id } = useParams();
@@ -41,6 +42,7 @@ export default function Detail() {
 		Location: false,
 		Price: false,
 		Quantity: false,
+    QuantityI: false,
 		Restrictions: false,
 		AgeRestriction: false,
 		Detail: false,
@@ -53,6 +55,7 @@ export default function Detail() {
 		Location: '',
 		Price: '',
 		Quantity: 0,
+    QuantityI: 0,
 		Restrictions: '',
 		AgeRestriction: '',
 		Detail: '',
@@ -396,7 +399,7 @@ export default function Detail() {
 																	: true
 															}
 															onClick={(e) => handleClick(e)}>
-															Update
+															  Decrease Quantity
 														</Button>
 													</Flex>
 													<Flex flexDirection='row' justifyContent='space-between'>
@@ -418,6 +421,45 @@ export default function Detail() {
 															hidden={userSpecs.Quantity ? false : true}
 															onClick={(e) => {
 																updateEvent({ Quantity: input.Quantity }, id, dispatch);
+																handleClick(e);
+																setInput({ ...input, [e.target.name]: '' });
+															}}>
+															Change
+														</Button>
+                            <Button
+															width='5rem'
+															bg='#FD7014'
+															color='white'
+															size='sm'
+															name='QuantityI'
+															hidden={
+																tokenDecoded && tokenDecoded.role === 'Admin' && active
+																	? false
+																	: true
+															}
+															onClick={(e) => handleClick(e)}>
+															  Increase Quantity
+														</Button>
+													</Flex>
+													<Flex flexDirection='row' justifyContent='space-between'>
+														<Input
+															borderColor='#FD7014'
+															size='sm'
+															name='QuantityI'
+															value={input.QuantityI}
+															hidden={userSpecs.QuantityI ? false : true}
+															type='text'
+															onChange={(e) => handleChange(e)}></Input>
+														<Button
+															width='5rem'
+															bg='#393E46'
+															color='white'
+															size='sm'
+															borderLeftRadius='none'
+															name='QuantityI'
+															hidden={userSpecs.QuantityI ? false : true}
+															onClick={(e) => {
+																increaseQuantity(input.QuantityI, id, dispatch);
 																handleClick(e);
 																setInput({ ...input, [e.target.name]: '' });
 															}}>
