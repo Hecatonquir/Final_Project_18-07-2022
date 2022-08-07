@@ -22,7 +22,7 @@ export default function Favourites({ tokenDecoded }) {
 
 	return (
 		<div className={styles.container}>
-			{fav.length ? (
+			{fav?.length ? (
 				fav.map((item) => (
 					<div key={item.ID} className={styles.cards}>
 						<Link to={`/details/id/${item.ID}`}>
