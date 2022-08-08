@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: auto auto;
     justify-content: space-around;
-    margin-left: 0.5rem;
+    /* margin-left: 0.5rem; */
 }
 
 .cards {
@@ -12,7 +12,7 @@
     margin: 1rem;
     margin-bottom: 3rem;
     overflow: hidden;
-    width: 32rem;
+    width: 31rem;
     height: 10rem;
 }
 
@@ -36,12 +36,12 @@
 }
 
 .leftcolumn img {
-    width: 10rem;
+    width: 9rem;
     height: 10rem;
 }
 
 .rightcolumn img {
-    width: 10rem;
+    width: 9rem;
     height: 10rem;
 }
 
@@ -69,8 +69,82 @@
     margin-top: 1rem;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1431px) {
+    .container {
+        grid-template-columns: auto;
+    }
+
+    .cards {
+        width: 32rem;
+        height: 12rem;
+    }
+
+    .leftcolumn img, .rightcolumn img {
+        width: 10rem;
+        height: 12rem;
+    }
+
+    .rightcolumn h6, .rightcolumn p {
+        margin-bottom: .5em;
+    }
+
+    .qrCode {
+        margin-top: 2em;
+    }
+  }
+
+  @media screen and (max-width: 566px) {
+    .cards {
+        width: 25rem;
+        height: 8rem;
+    }
+
+    .leftcolumn img, .rightcolumn img {
+        width: 5rem;
+        height: 8rem;
+    }
+
+    .rightcolumn h6, .rightcolumn p {
+        font-size: .8em;
+    }
+  }
+
+  @media screen and (max-width: 445px) {
+    .cards {
+        width: 23rem;
+        height: 8rem;
+    }
+  }
+
+  @media screen and (max-width: 407px) {
+    .cards {
+        width: 15rem;
+        height: 22.5rem;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .leftcolumn img, .rightcolumn img {
+        width: 9rem;
+        height: 9rem;
+    }
+
+    .rightcolumn h6, .rightcolumn p {
+        margin-bottom: .5em;
+    }
+
+    .qrCode {
+        margin-top: 0;
+    }
+  }
+
+
+
+
+
+/* @media screen and (max-width: 900px) {
     .text{
+        color: aqua;
         font-size: 20px;
     }
   }
@@ -85,4 +159,4 @@
     .text{
         font-size: 12px;
     }
-  }
+  } */
