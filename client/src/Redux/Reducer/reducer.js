@@ -72,6 +72,7 @@ export default function reducer(state = initialState, { type, payload }) {
 			return { ...state, cart: payload };
 
 		case 'LOAD_FAV':
+			console.log('🐲🐲🐲 / file: reducer.js / line 74 / LOAD_FAV', payload);
 			return { ...state, favourites: payload };
 
 		case UPDATE_DB_CART:
@@ -79,8 +80,8 @@ export default function reducer(state = initialState, { type, payload }) {
 			return state;
 
 		case 'UPDATE_DB_FAVOURITE':
-			console.log('REDUCER UPDATE_DB_FAVOURITE');
-			axios.put('/user/updateFavourite/' + payload, state.favourites);
+			console.log('🐲🐲🐲 / file: reducer.js / line 82 / UPDATE_DB_FAVOURITE', payload);
+			axios.put(`/user/updateFavourite/${payload}`, state.favourites);
 			return state;
 
 		case 'UPDATE_GLOBAL_FAVOURITE':
