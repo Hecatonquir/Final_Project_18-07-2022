@@ -102,7 +102,7 @@ function Register() {
         }     
 
     return (
-        <Box bg="#EEEEEE" minHeight="100vh">
+        <Box bg="#393E46" minHeight="100vh">
             <Nav/>
             <Flex flexDirection='row' justifyContent='space-between'>
             

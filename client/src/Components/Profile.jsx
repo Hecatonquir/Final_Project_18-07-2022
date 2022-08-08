@@ -5,7 +5,7 @@ import styles from "../Styles/Profile.module.css";
 import { decodeToken } from 'react-jwt';
 import Nav from './Nav';
 import Tabs from './UserAccount.jsx';
-import { Box, Flex, Heading, Image, Text } from '@chakra-ui/react';
+import { Box, Flex, Heading, Image, Text, Button } from '@chakra-ui/react';
 // import styles from '../Styles/User.module.css';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,7 +18,7 @@ function Profile() {
 
 	let dispatch = useDispatch();
 	let { user } = useAuth0();
-  let userTicket = useSelector(state => state.userDetails)
+//   let userTicket = useSelector(state => state.userDetails)
 	let token = document.cookie.split(';')[0];
 	let token1 = token.split('=')[1];
 
@@ -63,7 +63,7 @@ function Profile() {
 									alt='No img'
 									marginBottom={4}
 									width='250'
-									height='300'
+									height='250'
 									borderRadius='15px'></Image>
 								<Heading as='h3' marginBottom={2}>
 									{`${tokenDecoded.name[0].toUpperCase()}${tokenDecoded.name.slice(1)}` ||
@@ -75,15 +75,16 @@ function Profile() {
 								<Heading as='h3' marginBottom={2} fontSize='2xl'>
 									Rol: {tokenDecoded.role || 'User'}
 								</Heading>
-                <h5>Security</h5>
-                <button onClick={() => setPass(changePass? false: true)}>Change Password</button>
+								<Text marginBottom={2}>{tokenDecoded.email}</Text>
+                <Text>Security: </Text>
+                <Button bg='#FD7014' size='sm' m={1} onClick={() => setPass(changePass? false: true)}>Change Password</Button>
                 <input hidden={changePass ? false:true} value={input} onChange={(e) => setInput(e.target.value)}></input>
-                <button hidden={changePass ? false:true} onClick={() => updateUser({Password: input}, tokenDecoded.id, dispatch)}>Save</button>
-                <button onClick={() => get2FA(tokenDecoded.id)}>GET 2FA AUTHENTICATION</button>
+                <Button bg='#EEEEEE' color='black' m={1} size='sm' hidden={changePass ? false:true} onClick={() => updateUser({Password: input}, tokenDecoded.id, dispatch)}>Save</Button>
+                <Button bg='#FD7014' size='sm' m={1} onClick={() => get2FA(tokenDecoded.id)}>GET 2FA AUTHENTICATION</Button>
                 <span>*Note: You will need to add "Authenticator" as a browser extension.</span>
 
 
-                <label>Tickets</label>
+                {/* <label>Tickets</label>
                 {userTicket && userTicket.supports.length && userTicket.supports.map((el,i) => (
                   <div key={i}>
                     <label>Problem Type</label>
@@ -94,9 +95,9 @@ function Profile() {
                     <label>{el.reply? el.reply: "Waiting for response"}</label>
                     <label>Status</label>
                     <h1>{el.done? "Solved!": "Pending"}</h1>
-                  </div>
-                ))}
-								<Text marginBottom={2}>{tokenDecoded.email}</Text>
+                  </div> 
+                ))} */}
+								
 							</Flex>
 						</Box>
 						<Box width='75%' padding={4} minHeight='100vh'>

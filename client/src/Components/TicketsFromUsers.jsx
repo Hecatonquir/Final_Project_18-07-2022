@@ -53,7 +53,7 @@ return (
         <SimpleGrid columns={3} spacing={4}>
 
             {tickets && tickets.map((el, i)=>(
-            <Flex bg='#ACAFB0 ' w='28rem' minH='14rem' borderRadius='10px' margin={3} padding={3} flexDirection='column' >
+            <Flex bg='#ACAFB0 ' w='24rem' minH='14rem' borderRadius='10px' margin={3} padding={3} flexDirection='column' >
             
                 <Text >{el.problemType}:</Text>
                 <Text  mt={1} color={el.done? 'green' : 'red'}>{el.reason}</Text>
