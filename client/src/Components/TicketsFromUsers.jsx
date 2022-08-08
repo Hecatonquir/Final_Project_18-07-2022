@@ -19,8 +19,8 @@ let tokenDecoded = decodeToken(token1);
 
 let usersT = useSelector(state => state.usersBackUp)
 let tickets = []
-let ticketsUsers = usersT.filter(el => el.supports.length > 0 && el.Role !== "Admin")
-console.log(ticketsUsers)
+let ticketsUsers = usersT.filter(el => el.supports.length > 0)
+
 
 for(let i=0; i<ticketsUsers.length; i++) {
     for(let j=0; j<ticketsUsers[i].supports.length; j++) {
@@ -29,10 +29,10 @@ for(let i=0; i<ticketsUsers.length; i++) {
 }
 
 
-console.log(tickets)
+
     
-let adminTickets = usersT.find(el => el.Role === "Admin")
-console.log(adminTickets)
+
+
  
 useEffect( () => {
     if(tokenDecoded && tokenDecoded.role === "User") {

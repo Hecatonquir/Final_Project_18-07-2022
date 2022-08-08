@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { React, useState, useEffect, useRef, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { getUserDetails } from '../Redux/Actions/getUserDetails.js';
 import getEvents from '../Redux/Actions/getEvents.js';
 import ButtonFilter from './ButtonFilter.jsx';
 import EventCard from './EventCard.jsx';
@@ -76,6 +77,7 @@ export default function Home() {
 			dispatch({ type: UPDATE_STATE_TRUE });
 		}
 		if (token1) {
+			dispatch(getUserDetails(tokenDecoded.id))
 			dispatch(getUserByID2(tokenDecoded.id));
 			axios
 				.put('/user/getUserById/' + tokenDecoded.id)
@@ -86,6 +88,7 @@ export default function Home() {
 		}
 
 		dispatch(getEvents());
+
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 

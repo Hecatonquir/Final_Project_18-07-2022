@@ -8,29 +8,37 @@ import Tabs from './UserAccount.jsx';
 import { Box, Flex, Heading, Image, Text } from '@chakra-ui/react';
 import styles from '../Styles/User.module.css';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import get2FA from '../Redux/Actions/get2FA';
 import updateUser from '../Redux/Actions/updateUser';
+import { getUserDetails } from '../Redux/Actions/getUserDetails';
 
 function Profile() {
+
 	let dispatch = useDispatch();
 	let { user } = useAuth0();
+  let userTicket = useSelector(state => state.userDetails)
 	let token = document.cookie.split(';')[0];
 	let token1 = token.split('=')[1];
 
 	let tokenDecoded = decodeToken(token1);
 
   let [changePass, setPass] = useState(false)
-
+  
   let [input, setInput] = useState("")
+  
 	useEffect(() => {
+   
 		if (token1) {
+      
 			axios
 				.put('/user/getUserById/' + tokenDecoded.id)
-				.then((r) => dispatch({ type: 'LOAD_FAV', payload: r.data.Favourites }));
+				.then((r) => dispatch({ type: 'LOAD_FAV', payload: r.data.Favourites }))
+      
+       
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [dispatch]);
+	}, []);
 
 	return (
 		<Box bg='#393E46' minHeight='100vh'>
@@ -64,9 +72,24 @@ function Profile() {
                 <h5>Security</h5>
                 <button onClick={() => setPass(changePass? false: true)}>Change Password</button>
                 <input hidden={changePass ? false:true} value={input} onChange={(e) => setInput(e.target.value)}></input>
-                <button onClick={() => updateUser({Password: input}, tokenDecoded.id, dispatch)}>Save</button>
+                <button hidden={changePass ? false:true} onClick={() => updateUser({Password: input}, tokenDecoded.id, dispatch)}>Save</button>
                 <button onClick={() => get2FA(tokenDecoded.id)}>GET 2FA AUTHENTICATION</button>
                 <span>*Note: You will need to add "Authenticator" as a browser extension.</span>
+
+
+                <label>Tickets</label>
+                {userTicket && userTicket.supports.length && userTicket.supports.map((el,i) => (
+                  <div key={i}>
+                    <label>Problem Type</label>
+                    <h1>{el.problemType}</h1>
+                    <label>Description:</label>
+                    <h1>{el.reason}</h1>
+                    <label>Response From Support</label>
+                    <label>{el.reply? el.reply: "Waiting for response"}</label>
+                    <label>Status</label>
+                    <h1>{el.done? "Solved!": "Pending"}</h1>
+                  </div>
+                ))}
 								<Text marginBottom={2}>{tokenDecoded.email}</Text>
 							</Flex>
 						</Box>
