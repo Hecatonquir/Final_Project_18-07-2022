@@ -1,7 +1,8 @@
 .container {
-    display: grid;
+    display: block;
     grid-template-columns: auto auto;
     justify-content: space-around;
+    margin-left: 5rem;
 }
 
 .cards {
@@ -9,6 +10,7 @@
     display: flex;
     border-radius: 1rem;
     margin: 1rem;
+    margin-bottom: 3rem;
     overflow: hidden;
     width: 41rem;
     height: 10rem;
