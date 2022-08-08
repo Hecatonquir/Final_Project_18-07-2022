@@ -2,6 +2,7 @@ import { useState } from "react";
 import styles from "../Styles/UserAccount.module.css";
 import Favourites from "./Favourites";
 import ShoppingHistory from './ShoppingHistory';
+import TicketsUserDetails from './TicketsUserDetails'
 
 
 export default function Tabs({tokenDecoded}) {
@@ -24,11 +25,11 @@ export default function Tabs({tokenDecoded}) {
               onClick={() => toggleTab(2)}>
               My Shopping History
             </button>
-            {/* <button
+            <button
               className={toggleState === 3 ? `${styles.tabs} ${styles.activetabs}` : styles.tabs}
               onClick={() => toggleTab(3)}>
-              Tab 3
-            </button> */}
+              My Tickets
+            </button>
         </div>
         
 
@@ -42,9 +43,9 @@ export default function Tabs({tokenDecoded}) {
             <ShoppingHistory/>
           </div>
 
-          {/* <div className={toggleState === 3 ? `${styles.content}  ${styles.activecontent}` : styles.content}>
-            <h2>Content 3</h2>
-          </div> */}
+          <div className={toggleState === 3 ? `${styles.content}  ${styles.activecontent}` : styles.content}>
+            <TicketsUserDetails/>
+          </div>
         </div>
    </div>
   )
