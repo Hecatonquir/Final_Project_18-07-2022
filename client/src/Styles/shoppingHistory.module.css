@@ -1,0 +1,88 @@
+.container {
+    display: block;
+    grid-template-columns: auto auto;
+    justify-content: space-around;
+    margin-left: 5rem;
+}
+
+.cards {
+    background-color: #EEEEEE;
+    display: flex;
+    border-radius: 1rem;
+    margin: 1rem;
+    margin-bottom: 3rem;
+    overflow: hidden;
+    width: 41rem;
+    height: 10rem;
+}
+
+.leftcolumn {
+    max-width: 10rem;
+    max-height: 10rem;
+}
+
+.rightcolumn {
+    max-width: 17rem;
+    max-height: 10rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 14px;
+    font-weight: bold;
+    color: #222831;
+    margin-left: 1rem;
+    margin-right: 4rem;
+}
+
+.leftcolumn img {
+    width: 10rem;
+    height: 10rem;
+}
+
+.rightcolumn img {
+    width: 10rem;
+    height: 10rem;
+}
+
+.containerButton {
+    display: flex;
+    justify-content: right;
+}
+
+.buttonX {
+    background-color: rgb(188, 54, 54);;
+    border: 1px solid rgb(188, 54, 54);
+    padding: 5px 10px 5px 10px;
+    color: white;
+    border-radius: 5px;
+}
+
+.text {
+    margin-top: 50px;
+    font-size: 30px;
+    color: whitesmoke;
+    font-weight: bolder;
+}
+
+.qrCode {
+    margin-top: 1rem;
+}
+
+@media screen and (max-width: 900px) {
+    .text{
+        font-size: 20px;
+    }
+  }
+
+  @media screen and (max-width: 440px) {
+    .text{
+        font-size: 15px;
+    }
+  }
+
+  @media screen and (max-width: 320px) {
+    .text{
+        font-size: 12px;
+    }
+  }
