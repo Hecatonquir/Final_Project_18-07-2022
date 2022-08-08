@@ -80,9 +80,9 @@ export default function EventCard({
 
 				<div className={styles.rightcolumn}>
 					<Link to={`/details/id/${id}`}>
-						<Heading as='h5' className={styles.title} marginTop={4} _hover={{ color: '#FD7014' }}>
+						<h5 className={styles.title}>
 							{name}
-						</Heading>
+						</h5>
 					</Link>
 					<Text className={styles.data}> 🗓️{dateModificada} </Text>
 					<Text className={styles.datas}>🎟️ ${price === 0 ? ' Free!' : price}</Text>

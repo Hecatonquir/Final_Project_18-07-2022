@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import {getNameEvent} from "../Redux/Actions/searchName";
 import { useSelector } from "react-redux";
-// import styles from '../Styles/Search.module.css'
+import styles from '../Styles/Search.module.css'
 import { GET_NAME_EVENTS } from "../Redux/ActionTypes/actiontypes";
 import {
     Editable,
@@ -42,7 +42,7 @@ export default function SearchEvent({search, setSearch}){
     
     return (
         <>
-            <Editable   value={search} id="searchBar" placeholder='Search Event...' fontSize='1em'borderRadius='5px' bg='#EEEEEE' height='2.5em' width='30em' textAlign='center'>
+            <Editable   value={search} id="searchBar" placeholder='Search Event...' fontSize='1em'borderRadius='5px' bg='#EEEEEE' textAlign='center' className={styles.search}>
             <EditablePreview />
             <EditableInput  onChange={(e) => handleInputChange(e)} />
             </Editable>

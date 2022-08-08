@@ -1,12 +1,12 @@
-
 .cards {
+    width: 20rem;
+    height: 40rem;
+    display: flex;
+    flex-direction: column;
     background-color: white;
     border-radius: 1rem;
-    display: flex;
     margin: 1rem;
     overflow: hidden;
-    width: 40rem;
-    height: 20rem;
     color: #222831;
 }
 
@@ -16,15 +16,20 @@
 }
 
 .title{
-    font-size: 1.5em; 
+    margin-top: 15px;
+    font-size: 2em; 
 }
 
-.data{
-    margin-top: 20px; 
+.title:hover{
+    color: #FD7014;
 }
 
 .datas{
     margin-top: 20px;
+}
+
+.data{
+    margin-top: 20px; 
 }
 
 .flex{
@@ -116,7 +121,78 @@
     margin-right: 100px;
 }
 
-@media screen and (max-width: 1265px) {
+@media screen and (max-width: 1024px) {
+    .cards {
+        width: 16rem;
+        height: 35rem;
+    }
+
+    .img {
+        width: 16rem;
+        height: 16rem;
+    }
+
+    .title{
+        font-size: 1.8em; 
+    }
+
+    .datas{
+        margin-top: 5px; 
+    }
+
+    .data{
+        margin-top: 15px; 
+        text-align: left;
+    }
+
+
+    .flex{
+        margin-bottom: 8px;
+    }
+
+    .ButtonFav {
+        margin-right: 40px;
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* @media screen and (max-width: 1265px) {
     .cards {
         width: 33rem;
         height: 16rem;
@@ -156,9 +232,9 @@
         margin-bottom: 10px;
         align-self: flex-end;
     }
-  }
+  } */
 
-@media screen and (max-width: 1024px) {
+/* @media screen and (max-width: 1024px) {
     .cards {
         width: 28.5rem;
         height: 20rem;
@@ -185,9 +261,9 @@
     .flex{
         margin-bottom: 8px;
     }
-  }
+  } */
 
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
     .cards {
         width: 20rem;
         height: 30rem;
@@ -215,13 +291,12 @@
     .flex{
         margin-bottom: 20px;
     }
-  }
+  } */
 
 
-@media screen and (min-width: 1249px) {
+/* @media screen and (min-width: 1249px) {
     .cards {
         width: 35rem;
         height: 20rem;
     }
-  }
-
+  } */
