@@ -5,7 +5,7 @@ body {
 
 
 .Total {
-    background: #EEEEEE;
+    background: #393E46;
     width: 100vw;
     height: 100vh;
     position: absolute;
@@ -14,7 +14,7 @@ body {
 }
 
 .container {
-    background-color: #393E46;
+    background-color: gray;
     width: 400px;
     height: 400px;
     margin: auto;

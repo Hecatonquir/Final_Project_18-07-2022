@@ -58,7 +58,7 @@ function LogIn() {
   const [smallScreen] = useMediaQuery("(min-width: 430px)");
 
   return (
-    <Box bg='#EEEEEE' minHeight="100vh">
+    <Box bg='#393E46' minHeight="100vh">
       {!active ? (
         <Box>
           <Nav />
@@ -155,7 +155,7 @@ function LogIn() {
                     _hover={{ bg: "#FD7014", color: "#EEEEEE" }}
                     w={!smallScreen ? "10em" : "13em"}
                   >
-                    <img src={img1} alt="not img" className={styles.icon} />
+                    <Image src={img1} alt="not img" w='1.5em' mr={1}/>
                     <Text fontSize={!smallScreen ? ".7em" : ".8em"}>
                       Continue with google
                     </Text>
