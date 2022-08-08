@@ -1,36 +1,37 @@
 .triangle {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 0px;
-    height: 0px;
-    border-right: 200px solid transparent;
-    /* border-top-left-radius: 1rem; */
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 0px;
+	height: 0px;
+	/* border-top-left-radius: 1rem; */
+	border-right: 200px solid transparent;
 }
 
 .text {
-    width: 5em;
-    color: white;
-    position: relative;
-    top: -155px;
-    left: -5px;
-    font-weight: bold;
-    font-size: 2em;
-    transform: rotate(-45deg);
+	width: 5em;
+	color: white;
+	position: relative;
+	top: -155px;
+	left: -5px;
+	font-weight: bold;
+	font-size: 2em;
+	transform: rotate(-45deg);
 }
 
 .text1 {
-    width: 5em;
-    color: white;
-    position: relative;
-    top: -188px;
-    left: 15px;
-    font-weight: bold;
-    font-size: 2em;
-    transform: rotate(-45deg);
+	width: 5em;
+	color: white;
+	position: relative;
+	top: -188px;
+	left: 15px;
+	font-weight: bold;
+	font-size: 2em;
+	transform: rotate(-45deg);
 }
 
-.img{
-    width: 45vw;
-    height: 85vh;
+.img {
+	width: 45vw;
+	height: 85vh;
+	border-radius: 1rem;
 }
