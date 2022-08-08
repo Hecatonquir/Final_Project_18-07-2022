@@ -58,3 +58,21 @@
     color: whitesmoke;
     font-weight: bolder;
 }
+
+@media screen and (max-width: 900px) {
+    .text{
+        font-size: 20px;
+    }
+  }
+
+  @media screen and (max-width: 440px) {
+    .text{
+        font-size: 15px;
+    }
+  }
+
+  @media screen and (max-width: 320px) {
+    .text{
+        font-size: 12px;
+    }
+  }

@@ -1,103 +1,138 @@
-import React, { useEffect, useState } from 'react';
-import { useAuth0 } from '@auth0/auth0-react';
-import { Link } from 'react-router-dom';
-// import styles from "../Styles/Profile.module.css";
-import { decodeToken } from 'react-jwt';
-import Nav from './Nav';
-import Tabs from './UserAccount.jsx';
-import { Box, Flex, Heading, Image, Text } from '@chakra-ui/react';
-import styles from '../Styles/User.module.css';
-import axios from 'axios';
-import { useDispatch } from 'react-redux';
-import get2FA from '../Redux/Actions/get2FA';
+import React, { useEffect, useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import { Link } from "react-router-dom";
+import styles from "../Styles/Profile.module.css";
+import { decodeToken } from "react-jwt";
+import Nav from "./Nav";
+import Tabs from "./UserAccount.jsx";
+import {
+  Box,
+  Flex,
+  Heading,
+  Image,
+  Text,
+  useMediaQuery,
+} from "@chakra-ui/react";
+// import styles from '../Styles/User.module.css';
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import get2FA from "../Redux/Actions/get2FA";
 
 function Profile() {
-	let dispatch = useDispatch();
-	let { user } = useAuth0();
-	let token = document.cookie.split(';')[0];
-	let token1 = token.split('=')[1];
+  let dispatch = useDispatch();
+  let { user } = useAuth0();
+  let token = document.cookie.split(";")[0];
+  let token1 = token.split("=")[1];
 
-	let tokenDecoded = decodeToken(token1);
+  let tokenDecoded = decodeToken(token1);
 
-  let [changePass, setPass] = useState(false)
+  let [changePass, setPass] = useState(false);
 
-  let [input, setInput] = useState("")
-	useEffect(() => {
-		if (token1) {
-			axios
-				.put('/user/getUserById/' + tokenDecoded.id)
-				.then((r) => dispatch({ type: 'LOAD_FAV', payload: r.data.Favourites }));
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [dispatch]);
+  let [input, setInput] = useState("");
+  useEffect(() => {
+    if (token1) {
+      axios
+        .put("/user/getUserById/" + tokenDecoded.id)
+        .then((r) =>
+          dispatch({ type: "LOAD_FAV", payload: r.data.Favourites })
+        );
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch]);
 
-	return (
-		<Box bg='#393E46' minHeight='100vh'>
-			{token && token ? (
-				<>
-					<Nav />
-					<Flex justifyContent='center' flexDirection='row'>
-						<Box color='#EEEEEE' width='25%' padding={4} minHeight='100vh'>
-              
-							<Flex justifyContent='center' alignItems='center' flexDirection='column'>
-								<Heading as='h4' marginBottom={2}>
-									Profile
-								</Heading>
-								<Image
-									src={`${tokenDecoded.picture && tokenDecoded.picture}`}
-									alt='No img'
-									marginBottom={4}
-									width='250'
-									height='300'
-									borderRadius='15px'></Image>
-								<Heading as='h3' marginBottom={2}>
-									{`${tokenDecoded.name[0].toUpperCase()}${tokenDecoded.name.slice(1)}` ||
-										user.name}
-								</Heading>
-								<Heading as='h3' marginBottom={2}>
-									{tokenDecoded.city ? tokenDecoded.city : null}
-								</Heading>
-								<Heading as='h3' marginBottom={2} fontSize='2xl'>
-									Rol: {tokenDecoded.role || 'User'}
-								</Heading>
-                <h5>Security</h5>
-                <button onClick={() => setPass(changePass? false: true)}>Change Password</button>
-                <input hidden={changePass ? false:true} value={input} onChange={(e) => setInput(e.target.value)}></input>
-                <button onClick={() => get2FA(tokenDecoded.id)}>GET 2FA AUTHENTICATION</button>
-                <span>*Note: You will need to add "Authenticator" as a browser extension.</span>
-								<Text marginBottom={2}>{tokenDecoded.email}</Text>
-							</Flex>
-						</Box>
-						<Box width='75%' padding={4} minHeight='100vh'>
-          
-							<Flex justifyContent='right' minHeight='85vh' bg='#FD7014'>
-                
-								<Tabs tokenDecoded={tokenDecoded} />
-                
-							</Flex>
-						</Box>
-            
-					</Flex>
-				</>
-			) : (
-				<div>
-					<nav className={styles.nav}>
-						<Link to='/'>
-							<button className={styles.Button}>Back</button>
-						</Link>
-					</nav>
+  //Responsive
+  const [smallScreen] = useMediaQuery("(min-width: 430px)");
+  const [smallScreen1] = useMediaQuery("(min-width: 740px)");
 
-					<Flex justifyContent='center' alignItems='center' height='90vh'>
-						<Box color='white' bg='gray' width='50%' padding={4} borderRadius='2%'>
-							<Heading as='h1' textAlign='center' margin={6}>
-								You need to register first
-							</Heading>
-						</Box>
-					</Flex>
-				</div>
-			)}
-		</Box>
-	);
+  return (
+    <Box bg="#393E46" minHeight="100vh"> 
+      {token && token ? (
+        <>
+          <Nav />
+          <Flex
+            justifyContent="center"
+            flexDirection={!smallScreen1 ? "column" : "row"}
+            alignItems="center"
+          >
+            <Box color="#EEEEEE" width="25%" padding={4} className={styles.contentProfile}>
+              <Flex
+                justifyContent="center"
+                alignItems="center"
+                flexDirection="column"
+              >
+                <Heading as="h4" marginBottom={2} className={styles.title}>
+                  Profile
+                </Heading>
+                <Image
+                  src={`${tokenDecoded.picture && tokenDecoded.picture}`}
+                  alt="No img"
+                  marginBottom={4}
+				          className={styles.img}
+                  borderRadius="15px"
+                ></Image>
+                <Heading as="h3" marginBottom={2} className={styles.name}>
+                  {`${tokenDecoded.name[0].toUpperCase()}${tokenDecoded.name.slice(
+                    1
+                  )}` || user.name}
+                </Heading>
+                <Heading as="h3" marginBottom={2}>
+                  {tokenDecoded.city ? tokenDecoded.city : null}
+                </Heading>
+                <Heading as="h3" marginBottom={2} fontSize="2xl" className={styles.user}>
+                  Rol: {tokenDecoded.role || "User"}
+                </Heading>
+                <Heading as='h5' className={styles.security}>Security</Heading>
+                <button onClick={() => setPass(changePass ? false : true)} className={styles.btn}>
+                  Change Password
+                </button>
+                <input
+                  hidden={changePass ? false : true}
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                ></input>
+                <button onClick={() => get2FA(tokenDecoded.id)} className={styles.btn}>
+                  GET 2FA AUTHENTICATION
+                </button>
+                <span className={styles.span}> 
+                  *Note: You will need to add "Authenticator" as a browser
+                  extension.
+                </span>
+                <Text marginBottom={2} className={styles.email}>{tokenDecoded.email}</Text>
+              </Flex>
+            </Box>
+            <Box width="75%" padding={4} className={styles.contentFav}>
+              <Flex justifyContent="right" minHeight="85vh" bg="#FD7014">
+                <Tabs tokenDecoded={tokenDecoded} />
+              </Flex>
+            </Box>
+          </Flex>
+        </>
+      ) : (
+        <>
+          <Nav />
+
+          <Flex justifyContent="center" alignItems="center" height="90vh">
+            <Box
+              color="white"
+              bg="gray"
+              width="50%"
+              padding={4}
+              borderRadius="2%"
+            >
+              <Heading
+                as="h1"
+                textAlign="center"
+                margin={6}
+                fontSize={!smallScreen ? "1em" : "2em"}
+              >
+                You need to register first
+              </Heading>
+            </Box>
+          </Flex>
+        </>
+      )}
+    </Box>
+  );
 }
 
 export default Profile;
