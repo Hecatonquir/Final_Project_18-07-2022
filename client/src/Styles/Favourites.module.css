@@ -59,15 +59,105 @@
     font-weight: bolder;
 }
 
+
+@media screen and (max-width: 1265px) {
+    .cards {
+        width: 25rem;
+    }
+  }
+
+  @media screen and (max-width: 1179px) {
+    .cards {
+        width: 20rem;
+    }
+  }
+
+  @media screen and (max-width: 957px) {
+    .container {
+        grid-template-columns: auto;
+    }
+
+    .cards {
+        width: 27rem;
+    }
+  }
+
 @media screen and (max-width: 900px) {
     .text{
         font-size: 20px;
     }
   }
 
+  @media screen and (max-width: 485px) {
+    .cards {
+        width: 22em;
+        height: 8rem;
+    }
+
+    .leftcolumn img {
+        width: 8rem;
+        height: 8rem;
+    }
+    
+    .rightcolumn img {
+        width: 8rem;
+        height: 8rem;
+    }
+  }
+
   @media screen and (max-width: 440px) {
     .text{
         font-size: 15px;
+    }
+  }
+
+  @media screen and (max-width: 400px) {
+    .cards {
+        width: 18em;
+        height: 6rem;
+    }
+
+    .leftcolumn img {
+        width: 6rem;
+        height: 6rem;
+    }
+    
+    .rightcolumn img {
+        width: 6rem;
+        height: 6rem;
+    }
+
+    .data{
+        font-size: .8em;
+    }
+
+    .buttonX {
+        padding: 3px 5px 3px 5px;
+    }
+  }
+
+  @media screen and (max-width: 333px) {
+    .cards {
+        width: 15em;
+        height: 6rem;
+    }
+
+    .leftcolumn img {
+        width: 6rem;
+        height: 6rem;
+    }
+    
+    .rightcolumn img {
+        width: 6rem;
+        height: 6rem;
+    }
+
+    .data{
+        font-size: .6em;
+    }
+
+    .buttonX {
+        padding: 2px 4px 2px 4px;
     }
   }
 
