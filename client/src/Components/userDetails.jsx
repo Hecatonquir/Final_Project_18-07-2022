@@ -8,7 +8,17 @@ import { Box, Button, Text, Heading, Flex, Image, Input, SimpleGrid } from "@cha
 import styles from '../Styles/UserDetails.module.css'
 import ticketDone from "../Redux/Actions/markTicketAsDone";
 import updateUser from "../Redux/Actions/updateUser";
+import { decodeToken } from "react-jwt";
 export default function Userdetails() {
+
+  let token = document.cookie
+		.split(';')[0]
+	let token1 = 
+		token
+		.split('=')[1]
+	let tokenDecoded = decodeToken(token1);
+  
+
 let ID = useParams()
 let dispatch = useDispatch()
 let user = useSelector(state => state.userDetails)
@@ -17,7 +27,8 @@ let [userSpecs, setSpecs] = useState({
   Name: false,
   Username: false,
   Email: false,
-  Location: false
+  Location: false,
+  Password: false,
 
 })
 
@@ -27,7 +38,8 @@ let [input, setInput] = useState({
   name:"",
   username: "",
   email: "",
-  location: ""
+  location: "",
+  password: ""
 
 
 })
@@ -107,6 +119,16 @@ return (
                     <Input size='sm' width='15rem' name="location" value={input.location} hidden={userSpecs.Location? false: true} type="text" onChange={(e) => handleChange(e)}></Input>
                     <Button color='black' size='sm' borderLeftRadius='none' hidden={userSpecs.Location? false: true} onClick={() => updateUser({Location: input.location}, user.ID, dispatch)}>Change</Button>
                 </Flex>
+
+                <Flex flexDirection='row' justifyContent='space-between'>
+                    <Text margin={2}>Password</Text>
+                    <Button bg='#FD7014' size='sm' mr={12} name="Password" onClick={(e) => handleClick(e)}>Update</Button>
+                </Flex>
+                <Flex flexDirection='row' mb={2} alignItems='center'>
+                    <Input size='sm' width='15rem' name="password" value={input.password} hidden={userSpecs.Password? false: true} type="text" onChange={(e) => handleChange(e)}></Input>
+                    <Button color='black' size='sm' borderLeftRadius='none' hidden={userSpecs.Password? false: true} onClick={() => updateUser({Password: input.password}, user.ID, dispatch)}>Change</Button>
+                </Flex>
+
                 <Text margin={2}>Role: {user.Role}</Text>
                 <Text margin={2}>Is Online: {user.LoggedIn ? "Yes": "No"}</Text>
                 <Text margin={2}>Is Ban: {user.isBan ? "Yes" : "No"}</Text>
@@ -127,6 +149,7 @@ return (
                         onClick={() => toggleTab(2)}>
                         Tickets
                       </button> 
+                    
                 </div>
             
                 <div className={styles.contenttabs}>
@@ -162,7 +185,8 @@ return (
                                     <Text mt='1em'>Details</Text>
                                     <Text mt='1em'>{el.reason}</Text>
                                     <Text mt='1em'>Solved: {el.done? "Yes": "No"}</Text>
-                                  <Button bg='#FD7014' color='white' size='sm' mt={1} w='10em' p='0.5em' onClick={() => ticketDone(dispatch,el.supportID, el.done? false: true)}>{el.done? "Mark as Pending":"Mark as Done"}</Button>
+                                  <Button bg='#FD7014' color='white' size='sm' mt={1} w='10em' p='0.5em' onClick={() => {ticketDone(dispatch,el.supportID, el.done? false: true,token1)
+                                     dispatch(getUserDetails(user.ID))}}>{el.done? "Mark as Pending":"Mark as Done"}</Button>
                                   </Flex>
                             </Flex>
                            ))}
