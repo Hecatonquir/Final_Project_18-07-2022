@@ -1,23 +1,31 @@
-import { React, useEffect, useState } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { getDetail } from '../Redux/Actions/getDetails';
-import Loader from './Loader.jsx';
-import styles from '../Styles/Detail.module.css';
-import { clearDetail } from '../Redux/Actions/clearDetail';
-import AddToCartButton from './AddToCartButton';
-import { addToFavourites } from '../Redux/Actions/addToFav';
-import { removeFromFavourites } from '../Redux/Actions/removeFromFav';
-import { Box, Button, Flex, Heading, Stack, Text, Input } from '@chakra-ui/react';
-import Nav from './Nav.jsx';
-import fav from '../Media/favorito.png';
-import fav2 from '../Media/favorito2.png';
-import DetailCarousel from './DetailCarousel';
-import swal from 'sweetalert';
-import { decodeToken } from 'react-jwt';
-import { updateEvent } from '../Redux/Actions/updateEvent';
-import MapDetails from './MapDetails';
-import { increaseQuantity } from '../Redux/Actions/increaseQuantity';
+import { React, useEffect, useState } from "react";
+import { Link, useParams, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getDetail } from "../Redux/Actions/getDetails";
+import Loader from "./Loader.jsx";
+import styles from "../Styles/Detail.module.css";
+import { clearDetail } from "../Redux/Actions/clearDetail";
+import AddToCartButton from "./AddToCartButton";
+import { addToFavourites } from "../Redux/Actions/addToFav";
+import { removeFromFavourites } from "../Redux/Actions/removeFromFav";
+import {
+  Box,
+  Button,
+  Flex,
+  Heading,
+  Stack,
+  Text,
+  Input,
+} from "@chakra-ui/react";
+import Nav from "./Nav.jsx";
+import fav from "../Media/favorito.png";
+import fav2 from "../Media/favorito2.png";
+import DetailCarousel from "./DetailCarousel";
+import swal from "sweetalert";
+import { decodeToken } from "react-jwt";
+import { updateEvent } from "../Redux/Actions/updateEvent";
+import MapDetails from "./MapDetails";
+import { increaseQuantity } from "../Redux/Actions/increaseQuantity";
 
 export default function Detail() {
 	const { id } = useParams();
@@ -31,10 +39,9 @@ export default function Detail() {
 	let token1 = token.split('=')[1];
 	let tokenDecoded = decodeToken(token1);
 
-	console.log('🐲🐲🐲 / file: Detail.jsx / line 30 / event', event);
-	let quantity = event.length ? event[0].Quantity : 0;
-	let price = event.length ? event[0].Price : 0;
-
+  console.log("🐲🐲🐲 / file: Detail.jsx / line 30 / event", event);
+  let quantity = event.length ? event[0].Quantity : 0;
+  let price = event.length ? event[0].Price : 0;
 	let [userSpecs, setSpecs] = useState({
 		Name: false,
 		City: false,
@@ -61,36 +68,37 @@ export default function Detail() {
 		Detail: '',
 	});
 
-	function handleChange(e) {
-		setInput({ ...input, [e.target.name]: e.target.value });
-	}
+  function handleChange(e) {
+    setInput({ ...input, [e.target.name]: e.target.value });
+  }
 
-	function handleClick(e) {
-		setSpecs({
-			...userSpecs,
-			[e.target.name]: userSpecs[e.target.name] ? false : true,
-		});
-	}
+  function handleClick(e) {
+    setSpecs({
+      ...userSpecs,
+      [e.target.name]: userSpecs[e.target.name] ? false : true,
+    });
+  }
 
-	useEffect(() => {
-		dispatch(getDetail(id));
+  useEffect(() => {
+    dispatch(getDetail(id));
 
-		return () => dispatch(clearDetail());
-	}, [dispatch, id]);
+    return () => dispatch(clearDetail());
+  }, [dispatch, id]);
 
-	function handleClickFav(id) {
-		if (token) {
-			if (!exitFav) {
-				dispatch(addToFavourites(id));
-				swal('Added to favorite', { icon: 'success' });
-			} else {
-				dispatch(removeFromFavourites(id));
-				swal('Removed from favorites', { icon: 'warning' });
-			}
-		} else {
-			navigate('/login');
-		}
-	}
+  function handleClickFav(id) {
+    if (token) {
+      if (!exitFav) {
+        dispatch(addToFavourites(id));
+        swal("Added to favorite", { icon: "success" });
+      } else {
+        dispatch(removeFromFavourites(id));
+        swal("Removed from favorites", { icon: "warning" });
+      }
+    } else {
+      navigate("/login");
+    }
+  }
+
 
 	return (
 		<Box bgGradient='#222831'>
