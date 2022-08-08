@@ -27,18 +27,13 @@ function NavBar({ stateUser }) {
 	const active = useSelector((state) => state.loginState);
 	let count = cart ? cart.length : 0;
 
-	//Responsive
-	const [mediumScreen] = useMediaQuery('(min-width: 1249px)');
-	// w={!mediumScreen ? "60%" : "45%"}
-
 	return (
 		<Box marginBottom={1} padding={1} bgGradient='linear(to-r, #222831, #393E46)'>
 			<Flex
 				height='6vh'
 				alignItems='center'
 				width='100%'
-				justifyContent='space-between'
-				/* margin='0.5rem' */
+				className={styles.contentButtons}
 				position='sticky'
 				marginTop='1px'
 				zIndex='10'>
@@ -52,13 +47,10 @@ function NavBar({ stateUser }) {
 							marginLeft='5%'
 							marginTop='8%'
 						/> */}
-						<Image
+						<img
 							src={mst}
 							alt='img logo'
-							width='fit-content'
-							height='10vh'
-							/* marginLeft="35%" */
-							marginTop='4%'
+							className={styles.logoNavBar}
 						/>
 						{/* <Image
 							src={ms}
@@ -78,11 +70,11 @@ function NavBar({ stateUser }) {
 							width='fit-content'
 							textAlign='center'
 							fontWeight='bold'
-							fontSize='1.5em'>
+							className={styles.welcome}>
 							Welcome {tokenDecoded ? tokenDecoded.name : 'Guest'}
 						</Text>
 					) : (
-						<Text color='#FD7014' fontWeight='bold' fontSize='1.5em' textAlign='center'>
+						<Text color='#FD7014' fontWeight='bold' className={styles.welcome} textAlign='center'>
 							Welcome Guest
 						</Text>
 					)}
@@ -96,7 +88,8 @@ function NavBar({ stateUser }) {
 									width='fit-content'
 									bg='#FD7014'
 									color='white'
-									_hover={{ bg: '#EEEEEE', color: 'black' }}>
+									_hover={{ bg: '#EEEEEE', color: 'black' }}
+									className={styles.buttonLogin}>
 									Login/Sign Up
 								</Button>
 							</Link>
@@ -109,7 +102,7 @@ function NavBar({ stateUser }) {
 							width='fit-content'
 							bg='#FD7014'
 							_hover={{ bg: '#EEEEEE', color: 'black' }}
-							className={styles.Button}
+							className={styles.buttonLog}
 							color='white'
 							onClick={() => {
 								dispatch({ type: 'LOAD_FAV', payload: [] });
@@ -137,6 +130,7 @@ function NavBar({ stateUser }) {
 											width='fit-content'
 											bg='#FD7014'
 											color='white'
+											className={styles.buttonCreate}
 											_hover={{ bg: '#EEEEEE', color: 'black' }}>
 											Create an Event
 										</Button>
@@ -150,6 +144,7 @@ function NavBar({ stateUser }) {
 											width='fit-content'
 											bg='#FD7014'
 											color='white'
+											className={styles.buttons1}
 											_hover={{ bg: '#EEEEEE', color: 'black' }}>
 											Control Panel
 										</Button>
@@ -165,6 +160,7 @@ function NavBar({ stateUser }) {
 									width='fit-content'
 									bg='#FD7014'
 									color='white'
+									className={styles.buttonProfile}
 									_hover={{ bg: '#EEEEEE', color: 'black' }}>
 									<Text>Profile</Text>
 								</Button>
@@ -177,6 +173,7 @@ function NavBar({ stateUser }) {
 									width='fit-content'
 									bg='#FD7014'
 									color='white'
+									className={styles.buttonBecome}
 									_hover={{ bg: '#EEEEEE', color: 'black' }}>
 									Become a Partner
 								</Button>
@@ -185,12 +182,12 @@ function NavBar({ stateUser }) {
 					)}
 				</Flex>
 
-				<Box>
+				<div className={styles.contentCart}>
 					<Link to={token ? '/cart' : '/login'}>
-						<Image src={imgcarrito} alt='img carrito' width='3rem' marginRight='1rem' />
+						<Image src={imgcarrito} alt='img carrito' width='3rem' marginRight='1rem' className={styles.imgcarrito}/>
 						<span className={styles.count}>{count}</span>
 					</Link>
-				</Box>
+				</div>
 			</Flex>
 		</Box>
 	);

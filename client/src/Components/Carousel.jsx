@@ -1,16 +1,13 @@
 import React from 'react';
 import { Carousel } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import styles from '../Styles/Home.module.css';
 
 export default function EventCarousel(obj) {
 	const { carrouselEvents } = obj;
 
 	return (
-		<Carousel
-			style={{
-				maxWidth: '100%',
-				maxHeight: '450px',
-			}}>
+		<Carousel className={styles.carousel}>
 			{carrouselEvents
 				? carrouselEvents.length
 					? carrouselEvents.filter(el => !el.isErased)

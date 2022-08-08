@@ -14,12 +14,29 @@
     border-radius: 5px;
     color: #1C517A;
     border: 1px solid #1C517A;
-} 
+}
 
-/* .Button2{
-    background-color:white;
-    color: #1C517A;
-    padding: 3px 15px 3px 15px;
-    border-radius: 40px;
-    border: none;
-} */
+
+@media screen and (max-width: 425px) {
+    .flex{
+        flex-direction: column;
+    }
+
+    .flex Select{
+        width: 20em;
+        margin-top: 2em;
+        margin-bottom: 1em;
+    }
+  }
+
+  @media screen and (max-width: 425px) {
+    .flex{
+        flex-direction: column;
+    }
+
+    .flex Select{
+        width: 15em;
+        margin-top: 2em;
+        margin-bottom: 1em;
+    }
+  }

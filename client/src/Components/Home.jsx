@@ -108,18 +108,14 @@ export default function Home() {
 
 			<Box
 				width='90%'
-				alignContent='center'
-				alignItems='center'
-				marginLeft='5%'
-				marginTop='0px'
-				padding='0px'>
+				className={styles.contentFilters}>
 				<ButtonFilter search={search} setSearch={setSearch} />
 				{/* <div className={styles.search}><CalendarEvents/></div> */}
 			</Box>
 
 			<Center>
 				<Box marginTop={10} marginBottom={10}>
-					<SimpleGrid columns={2} spacing={10}>
+					<div className={styles.contentCards}>
 						{orderedEvents.filter((el) => el.isErased !== true).length ? (
 							orderedEvents
 								.filter((el) => !el.isErased && el.isLive)
@@ -146,7 +142,7 @@ export default function Home() {
 								</Box>
 							</Flex>
 						)}
-					</SimpleGrid>
+					</div>
 				</Box>
 			</Center>
 			<BackToTopButton />

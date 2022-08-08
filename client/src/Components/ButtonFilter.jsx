@@ -66,17 +66,13 @@ function ButtonFilter({ setSearch, search }) {
 		return filterItems(e.target.value);
 	};
 
-	//Responsive
-    const [mediumScreen] = useMediaQuery("(min-width: 1265px)");
-    // w={!mediumScreen ? "60%" : "45%"}
-
 	return (
 		<>
 			<Stack spacing={10} marginTop={6} marginBottom={6}>
-				<Flex  width='100%' marginLeft="1rem">
-					<div >
+				<Flex  width='100%' marginLeft="1rem" className={styles.flex}>
+					<>
 						<Search search={search} setSearch={setSearch} />
-					</div>
+					</>
 					<Select
 					    bg="#EEEEEE"
 						variant='outline'
@@ -111,7 +107,7 @@ function ButtonFilter({ setSearch, search }) {
 						))}
 					</Select>
 
-					<Box>
+					<Box className={styles.boxSearch}>
 						<Button
 							className={styles.Button2}
 							onClick={() => {
