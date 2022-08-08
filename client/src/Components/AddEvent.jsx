@@ -590,7 +590,7 @@ function AddEvent() {
 								value={input.Quantity}
 								name='Quantity'
 								min='0'
-								placeholder='(Insert Number) Represents the number of Tickets you can sell'
+								placeholder='(Insert Number) Represents the number of tickets you can sell'
 								_placeholder={{ color: '#393e46b6' }}
 								variant='flushed'
 								onChange={(e) => handleChange(e)}
@@ -613,7 +613,7 @@ function AddEvent() {
 								id='Price'
 								name='Price'
 								min='0'
-								placeholder='$ (Insert Number)'
+								placeholder='$ (ARS)'
 								_placeholder={{ color: '#393e46b6' }}
 								required
 								variant='flushed'
