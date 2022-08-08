@@ -1,8 +1,8 @@
 .container {
-    display: block;
+    display: grid;
     grid-template-columns: auto auto;
     justify-content: space-around;
-    margin-left: 5rem;
+    margin-left: 0.5rem;
 }
 
 .cards {
@@ -12,7 +12,7 @@
     margin: 1rem;
     margin-bottom: 3rem;
     overflow: hidden;
-    width: 41rem;
+    width: 32rem;
     height: 10rem;
 }
 
@@ -22,7 +22,7 @@
 }
 
 .rightcolumn {
-    max-width: 17rem;
+    max-width: 12rem;
     max-height: 10rem;
     padding: 1rem;
     display: flex;
@@ -31,8 +31,8 @@
     font-size: 14px;
     font-weight: bold;
     color: #222831;
-    margin-left: 1rem;
-    margin-right: 4rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
 }
 
 .leftcolumn img {
