@@ -99,6 +99,13 @@ button {
   height: 70%;
 }
 
+
+@media screen and (max-width: 786px) {
+  .tabs {
+    font-size: .8em;
+  }
+}
+
 @media screen and (max-width: 425px) {
   .tabs {
     font-size: .7em;
