@@ -51,13 +51,14 @@ const validateAdmin = (req, res, next) => {
 
 		const accessToken = req.body.data ? req.body.data.token : req.body.token
 	
-
+console.log(accessToken)
 	if (!accessToken) return res.status(400).send('User is not authenticated');
 		const validToken = jwt.verify(accessToken, process.env.PRIVATEKEY);
-		console.log(validToken);
+		
 		if (validToken) {
 			if (validToken.role == 'Admin') {
 				req.authenticated = true;
+				console.log("aqui pasa")
 				return next();
 			} else {
 				return res.status(400).send("You can't access here");
@@ -256,7 +257,7 @@ const registerUser = async (req, res) => {
 					req.body.Password = hash;
 					req.body.Role = 'User';
 					Users.create(req.body);
-					return res.send(`Created Succesfully, YOUR 2FA TOKEN IS: ${temp_secret.base32}, Please Keep it Safe!`);
+					return res.send(`Created Succesfully`)
 				});
 			} else {
 				return res.status(400).send('User already exist');
@@ -556,7 +557,7 @@ const banUser = async (req, res) => {
 const updateUser = async (req, res) => {
 	let { id } = req.params;
 	let { data } = req.body;
-	console.log(req.body, id);
+	
 	try {
 		if (req.body.data.Email || req.body.data.Username) {
 			let found = await Users.findOne({
@@ -567,13 +568,29 @@ const updateUser = async (req, res) => {
 				return res.status(400).send('Username or Email already Exist');
 			}
 		}
-		let updated = await Users.update(data, {
+
+		if(data.Password) {
+		
+			bcrypt.hash(data.Password, 10).then((hash) => {
+				data.Password = hash}).then(response => {
+				Users.update(data, {
+					where:{
+						ID: id
+					}
+				})}).then(response => {
+				return res.send("Password Updated")})
+
+		}
+		else {
+		
+
+		let updated = await Users.update(req.body.data, {
 			where: {
 				ID: id,
 			},
 		});
-		console.log(updated);
-		return res.send('User Updated');
+
+		return res.send('User Updated')};
 	} catch (error) {
 		return res.status(400).send('Error');
 	}

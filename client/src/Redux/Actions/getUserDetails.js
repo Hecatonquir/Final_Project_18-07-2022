@@ -3,14 +3,14 @@ import { USER_DETAILS } from "../ActionTypes/actiontypes"
 
 
 export  const getUserDetails =  (id) => {
-
+console.log(id)
     return async (dispatch) => {
 
         
         try {
             
 
-            let userFound = await axios.put(`/user/getUserById/${id.id}`, {withCredentials: true})
+            let userFound = await axios.put(`/user/getUserById/${id.id || id}`, {withCredentials: true})
 
 
             dispatch({type: USER_DETAILS, payload: userFound.data})
@@ -18,6 +18,7 @@ export  const getUserDetails =  (id) => {
 
             
         } catch (error) {
+            console.log("hubo un error")
             
         }
 

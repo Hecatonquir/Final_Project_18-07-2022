@@ -8,7 +8,6 @@ async function getSupportTickets(req, res, next) {
 const getSupportById = async (req, res) => {
 	const ID = req.params;
 	console.log(ID)
-	console.log(req.body)
 	try {
 		const boxSupport = await Supports.update({
 			done: req.body.data.isDone},

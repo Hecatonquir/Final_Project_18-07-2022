@@ -10,6 +10,7 @@ import styles from '../Styles/User.module.css';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import get2FA from '../Redux/Actions/get2FA';
+import updateUser from '../Redux/Actions/updateUser';
 
 function Profile() {
 	let dispatch = useDispatch();
@@ -63,6 +64,7 @@ function Profile() {
                 <h5>Security</h5>
                 <button onClick={() => setPass(changePass? false: true)}>Change Password</button>
                 <input hidden={changePass ? false:true} value={input} onChange={(e) => setInput(e.target.value)}></input>
+                <button onClick={() => updateUser({Password: input}, tokenDecoded.id, dispatch)}>Save</button>
                 <button onClick={() => get2FA(tokenDecoded.id)}>GET 2FA AUTHENTICATION</button>
                 <span>*Note: You will need to add "Authenticator" as a browser extension.</span>
 								<Text marginBottom={2}>{tokenDecoded.email}</Text>
