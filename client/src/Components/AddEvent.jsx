@@ -302,7 +302,7 @@ function AddEvent() {
 
 						<FormControl marginBottom={4}>
 							<FormLabel color='#222831' fontSize={!smallScreen ? '.8em' : '1em'}>
-								<span style={{ color: 'red' }}>*</span>City
+								<span style={{ color: 'red' }}>*</span>Province
 							</FormLabel>
 							<Select
 								fontSize={!smallScreen ? '.8em' : '1em'}
@@ -312,7 +312,7 @@ function AddEvent() {
 								color='#393e46b6'
 								onChange={(e) => handleChange(e)}>
 								<option value='' hidden>
-									(Select City)
+									(Select province...)
 								</option>
 								{Cities.map((p) => {
 									return (
