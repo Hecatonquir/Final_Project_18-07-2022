@@ -14,18 +14,18 @@ const {
 	registerUser,
 	validateToken,
 	validateAdmin,
-    validatePartner,
+	validatePartner,
 	registerUserGmail,
 	roleChange,
 	banUser,
 	updateCart,
 	updateHistory,
 	updateUser,
-    get2fa
-	
+	get2fa,
+	updateFavourite,
 } = require('../Functions/Users.js');
 
-routes.put('/all',validateAdmin, getAllUsers); // --------------------Working
+routes.put('/all', validateAdmin, getAllUsers); // --------------------Working
 routes.get('/name/:Name', getUserByName); // -----------Working
 routes.put('/getUserById/:id', getUserById); //---------Working   // al final queda con PUT ? si sale algun error, cambiar aqui.
 routes.get('/getUserByID2/:id', getUserByID2);
@@ -35,9 +35,9 @@ routes.post('/partner/validate', validatePartner, (req, res) => {
 });
 routes.post('/admin/validate', validateAdmin, (req, res) => {
 	res.send('Verified');
-})
+});
 
-routes.put('/get2fa', get2fa)
+routes.put('/get2fa', get2fa);
 routes.post('/register', registerUser);
 routes.post('/login', loginRequest);
 routes.post('/login2', loginRequestAP);
@@ -48,12 +48,12 @@ routes.post('/verify', validateToken, (req, res) => {
 routes.post('/registerG', registerUserGmail);
 
 routes.put('/changeRole', validateAdmin, roleChange);
-routes.put('/banUnban', validateAdmin,banUser);
+routes.put('/banUnban', validateAdmin, banUser);
 routes.put('/update/:id', updateUser);
 
 routes.put('/updateCart/:IdUser', updateCart);
 routes.put('/updateHistory/:userID', updateHistory);
-routes.put('/updateFavourite/:userID');
+routes.put('/updateFavourite/:userID', updateFavourite);
 
 routes.delete('/delete', validateAdmin, deleteUser); // ------------------Working
 
