@@ -30,7 +30,7 @@ function NavBar({ stateUser }) {
 	return (
 		<Box marginBottom={1} padding={1} bgGradient='linear(to-r, #222831, #393E46)'>
 			<Flex
-				height='6vh'
+				height='8vh'
 				alignItems='center'
 				width='100%'
 				className={styles.contentButtons}

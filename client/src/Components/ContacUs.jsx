@@ -4,6 +4,7 @@ import { postSupports } from '../Redux/Actions/postSupports';
 import styles from '../Styles/ContactUs.module.css';
 import swal from 'sweetalert';
 import { decodeToken } from 'react-jwt';
+
 import {
 	MDBBtn,
 	MDBModal,
@@ -40,9 +41,13 @@ export default function ContactUs() {
 			...note,
 			[e.target.name]: e.target.value,
 		});
-		
+		             
+
+
 	} 
-	const reMedio = /^(([^<>()\[\]\.,;:\s@\”]+(\.[^<>()\[\]\.,;:\s@\”]+)*)|(\”.+\”))@(([^<>()[\]\.,;:\s@\”]+\.)+[^<>()[\]\.,;:\s@\”]{2,})$/
+				const reMedio =	/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+
+	/* const reMedio = /^(([^<>()\[\]\.,;:\s@\”]+(\.[^<>()\[\]\.,;:\s@\”]+)*)|(\”.+\”))@(([^<>()[\]\.,;:\s@\”]+\.)+[^<>()[\]\.,;:\s@\”]{2,})$/ */
 	function handleSubmit(e) {
 		e.preventDefault();
 		
@@ -53,7 +58,7 @@ export default function ContactUs() {
 			// alert("Note was created successfully")
 			setNote({ reason: '', problemType: '',emailCustomer: '' });
 		} else {
-			swal("Fill Formulary'problem' email please 'reason", {
+			swal("Please Fill all Formulary inputs: reason, problem message and Email", {
 				icon: 'warning',
 			});
       setNote({ reason: '', problemType: '',emailCustomer: '' });
