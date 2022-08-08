@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { decodeToken } from 'react-jwt';
 import { getUserByID2 } from '../Redux/Actions/getUserByID2';
-import styles from '../Styles/Favourites.module.css';
+import styles from '../Styles/shoppingHistory.module.css';
 import QRCode from 'react-qr-code';
 
 export default function ShoppingHistory() {
@@ -41,8 +41,10 @@ export default function ShoppingHistory() {
 							<p>{it.Quantity} tickets purchased</p>
 							<p>Date paid: {it.datePaid}</p>
 							<p>Ticket ID: {it.ticketID}</p>
-							<QRCode value={it.ticketID} />
 						</div>
+                        <div className={styles.qrCode}>
+                            <QRCode value={it.ticketID} size='130' bgColor='#EEEEEE' fgColor='#222831'/>
+                        </div>
 					</div>
 				))
 			) : (
