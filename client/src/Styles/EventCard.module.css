@@ -1,6 +1,6 @@
 .cards {
     width: 20rem;
-    height: 40rem;
+    height: 32rem;
     display: flex;
     flex-direction: column;
     background-color: white;
@@ -12,12 +12,12 @@
 
 .img {
     width: 20rem;
-    height: 20rem;
+    height: 18rem;
 }
 
 .title{
     margin-top: 15px;
-    font-size: 2em; 
+    font-size: 1.5em; 
 }
 
 .title:hover{
@@ -124,7 +124,7 @@
 @media screen and (max-width: 1024px) {
     .cards {
         width: 16rem;
-        height: 35rem;
+        height: 32rem;
     }
 
     .img {
@@ -132,16 +132,12 @@
         height: 16rem;
     }
 
-    .title{
-        font-size: 1.8em; 
-    }
-
     .datas{
-        margin-top: 5px; 
+        margin-top: 2px; 
     }
 
     .data{
-        margin-top: 15px; 
+        margin-top: 5px; 
         text-align: left;
     }
 
