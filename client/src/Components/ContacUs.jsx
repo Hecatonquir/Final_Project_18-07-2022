@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { postSupports } from '../Redux/Actions/postSupports';
 import styles from '../Styles/ContactUs.module.css';
 import swal from 'sweetalert';
+import { decodeToken } from 'react-jwt';
 import {
 	MDBBtn,
 	MDBModal,
@@ -13,8 +14,13 @@ import {
 	MDBModalFooter,
 	MDBContainer,
 } from 'mdb-react-ui-kit';
+import { getUserDetails } from '../Redux/Actions/getUserDetails';
 
 export default function ContactUs() {
+
+	let token = document.cookie.split(';')[0];
+	let token1 = token.split('=')[1];
+	let tokenDecoded = decodeToken(token1);
 	const dispatch = useDispatch();
 	const [basicModal, setBasicModal] = useState(false);
 
@@ -42,7 +48,8 @@ export default function ContactUs() {
 		
 		if (note.reason.length > 0 && note.problemType.length > 0 && note.emailCustomer.length > 0 && reMedio.test(note.emailCustomer)) {
 			console.log(note)
-			postSupports(note);
+			postSupports(note,tokenDecoded ? tokenDecoded.id: null, dispatch);
+
 			// alert("Note was created successfully")
 			setNote({ reason: '', problemType: '',emailCustomer: '' });
 		} else {

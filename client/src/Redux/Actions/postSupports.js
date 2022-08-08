@@ -1,10 +1,15 @@
 import axios from 'axios';
 import swal from 'sweetalert';
+import { getUserDetails } from './getUserDetails';
 
-export async function postSupports(payload) {
+export async function postSupports(payload, id, dispatch) {
 	console.log('soy el soporte');
 	try {
 		await axios.post('http://localhost:3001/support/createTicket', payload);
+
+		if(id) {
+		dispatch(getUserDetails(id))
+		}
 
 		swal({
 			title: 'Ticket Created!',
