@@ -2,7 +2,7 @@ import { useState } from "react";
 import styles from "../Styles/UserAccount.module.css";
 import Favourites from "./Favourites";
 import ShoppingHistory from './ShoppingHistory';
-import img1 from '../Media/construccion.png'
+
 
 export default function Tabs({tokenDecoded}) {
   const [toggleState, setToggleState] = useState(1);

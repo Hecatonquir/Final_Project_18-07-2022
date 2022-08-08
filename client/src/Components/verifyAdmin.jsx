@@ -17,6 +17,7 @@ function Prepanel() {
 	const [user, setUser] = useState({
 		username: '',
 		password: '',
+		token:''
 	});
 
 	let token = document.cookie.split(';')[0];
@@ -29,7 +30,7 @@ function Prepanel() {
 
 	async function handleSubmit(e, person) {
 		e.preventDefault();
-
+          if(user.username && user.password && user.token){
 		try {
 			let adminLogin = await axios.post('/user/login2', person, { withCredentials: true });
 
@@ -40,7 +41,7 @@ function Prepanel() {
 		} catch (error) {
 			alert('Not Allowed!');
 		}
-	}
+		  }}
 
 	useEffect(() => {
 		if (tokenDecoded && tokenDecoded.role !== 'Admin') {
@@ -89,7 +90,22 @@ function Prepanel() {
 									}}></Input>
 							</div>
 							<div>
-								<Button mt='1em' ml='2em' width='20em' bg='#FD7014' color='white' onClick={(e) => handleSubmit(e, user)}>Log In</Button>
+								
+								<Input
+								    marginTop="0.5em"
+									placeholder='2FA'
+									name='token'
+									bg='white'
+									ml='2em'
+									width='20em'
+									type='password'
+									value={user.token}
+									onChange={(e) => {
+										handleChange(e);
+									}}></Input>
+							</div>
+							<div>
+								<Button mt='3em' ml='2em' width='20em' bg='#FD7014' color='white' onClick={(e) => handleSubmit(e, user)}>Log In</Button>
 							</div>
 						</form>
 					</div>

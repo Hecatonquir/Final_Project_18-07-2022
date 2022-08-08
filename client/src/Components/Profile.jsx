@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Link } from 'react-router-dom';
-// import styles from "../Styles/Profile.module.css";
+import styles from "../Styles/Profile.module.css";
 import { decodeToken } from 'react-jwt';
 import Nav from './Nav';
 import Tabs from './UserAccount.jsx';
 import { Box, Flex, Heading, Image, Text } from '@chakra-ui/react';
-import styles from '../Styles/User.module.css';
+// import styles from '../Styles/User.module.css';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import get2FA from '../Redux/Actions/get2FA';
 import updateUser from '../Redux/Actions/updateUser';
 import { getUserDetails } from '../Redux/Actions/getUserDetails';
+import { useMediaQuery } from '@chakra-ui/react';
 
 function Profile() {
 
@@ -21,7 +22,8 @@ function Profile() {
 	let token = document.cookie.split(';')[0];
 	let token1 = token.split('=')[1];
 
-	let tokenDecoded = decodeToken(token1);
+  let tokenDecoded = decodeToken(token1);
+
 
   let [changePass, setPass] = useState(false)
   
@@ -39,6 +41,10 @@ function Profile() {
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
+
+  //Responsive
+  const [smallScreen] = useMediaQuery("(min-width: 430px)");
+  const [smallScreen1] = useMediaQuery("(min-width: 740px)");
 
 	return (
 		<Box bg='#393E46' minHeight='100vh'>
@@ -105,24 +111,31 @@ function Profile() {
 					</Flex>
 				</>
 			) : (
-				<div>
-					<nav className={styles.nav}>
-						<Link to='/'>
-							<button className={styles.Button}>Back</button>
-						</Link>
-					</nav>
+        <>
+          <Nav />
 
-					<Flex justifyContent='center' alignItems='center' height='90vh'>
-						<Box color='white' bg='gray' width='50%' padding={4} borderRadius='2%'>
-							<Heading as='h1' textAlign='center' margin={6}>
-								You need to register first
-							</Heading>
-						</Box>
-					</Flex>
-				</div>
-			)}
-		</Box>
-	);
+          <Flex justifyContent="center" alignItems="center" height="90vh">
+            <Box
+              color="white"
+              bg="gray"
+              width="50%"
+              padding={4}
+              borderRadius="2%"
+            >
+              <Heading
+                as="h1"
+                textAlign="center"
+                margin={6}
+                fontSize={!smallScreen ? "1em" : "2em"}
+              >
+                You need to register first
+              </Heading>
+            </Box>
+          </Flex>
+        </>
+      )}
+    </Box>
+  );
 }
 
 export default Profile;

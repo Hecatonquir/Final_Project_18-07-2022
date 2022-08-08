@@ -22,7 +22,7 @@ export default function Favourites({ tokenDecoded }) {
 
 	return (
 		<div className={styles.container}>
-			{fav.length ? (
+			{fav?.length ? (
 				fav.map((item) => (
 					<div key={item.ID} className={styles.cards}>
 						<Link to={`/details/id/${item.ID}`}>
@@ -31,9 +31,9 @@ export default function Favourites({ tokenDecoded }) {
 							</div>
 						</Link>
 						<div className={styles.rightcolumn}>
-							<h6>{item.Name}</h6>
-							<p>${item.Price}</p>
-							<p>{item.Date}</p>
+							<h6 className={styles.data}>{item.Name}</h6>
+							<p className={styles.data}>${item.Price}</p>
+							<p className={styles.data}>{item.Date}</p>
 							<div className={styles.containerButton}>
 								<button className={styles.buttonX} onClick={() => handleDeleteFav(item.ID)}>
 									x

@@ -178,7 +178,7 @@ function FormPartner() {
   }
 
   return (
-    <Box bgGradient="linear(to-r, #1c2333, #371a1e)" minHeight="100vh">
+    <Box bg='#EEEEEE' minHeight="100vh">
       <Nav />
       <Flex justifyContent="center">
         <Box bg="gray" width="55%" padding={4} marginTop={4} borderRadius="2%">
@@ -339,6 +339,9 @@ function FormPartner() {
               <Button
                 marginTop={4}
                 onClick={(e) => handleSubmit(e)}
+                bg="#FD7014"
+                color="#EEEEEE"
+                _hover={{ bg: "#EEEEEE", color: "black" }}
                 disabled={
                   Object.keys(errors).length
                     ? errors.check === "approved"

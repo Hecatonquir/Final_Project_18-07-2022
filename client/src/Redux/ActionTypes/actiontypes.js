@@ -20,4 +20,4 @@ export const CLEAR_USER_DETAILS = "CLEAR_USER_DETAILS"
 export const LOAD_CART = 'LOAD_CART'
 export const USERS_BACKUP = "USERS_BACKUP"
 export const GET_USER_BY_ID2 = 'GET_USER_BY_ID2'
-export const SET_COORDS = 'SET_COORDS'
+// export const SET_COORDS = 'SET_COORDS'

@@ -5,7 +5,7 @@ import { useParams, Link } from "react-router-dom"
 import { decodeToken } from 'react-jwt';
 import { useNavigate } from 'react-router-dom';
 import Nav from './Nav'
-import { Box, Flex, Text, Heading, Image } from "@chakra-ui/react";
+import { Box, Flex, Text, Heading, Image, SimpleGrid } from "@chakra-ui/react";
 
 export default function PartnerPanel() {
     
@@ -55,22 +55,26 @@ console.log(tokenDecoded )
 
 
             <Box width='75%' padding={4} minHeight='100vh' >
+            <SimpleGrid columns={3} spacing={4}>
                 {user && user.events && user.events.filter(el => !el.isErased)
                 .map(el =>  (
                     <div key={el.ID}>
                         <Box bg='#EEEEEE' w='20em' borderRadius='5px'>
+                            <Flex justifyContent='center'>
                         <Link to={`/details/id/${el.ID}`}>
-                        <h1>Name: {el.Name}</h1>
+                        <Text textAlign='center'>Event: {el.Name}</Text>
                         <Image src={el.Image} alt="No Img" width='12em' height='12em'/>
-                        <h1>Price: {el.Price}</h1>
-                        <h1>Quantity: {el.Quantity}</h1>
-                        <h1>Earnings: {(el.InitialQtty - el.Quantity) * el.Price}</h1>
-                        <h1>Status: {el.isLive ? "Active": "Pending for approval"}</h1>
-                        <h1>{el.isErased? "This event is closed/Ban": "ON"}</h1>
+                        <Text textAlign='center'>Price: {el.Price}</Text>
+                        <Text textAlign='center'>Quantity: {el.Quantity}</Text>
+                        <Text textAlign='center'>Earnings: {(el.InitialQtty - el.Quantity) * el.Price}</Text>
+                        <Text textAlign='center'>Status: {el.isLive ? "Active": "Pending for approval"}</Text>
+                        <Text textAlign='center'>{el.isErased? "This event is closed/Ban": "ON"}</Text>
                         </Link>
+                            </Flex>
                         </Box>
                         </div>
                     ))}
+                </SimpleGrid>
             </Box>
             </Flex>
 

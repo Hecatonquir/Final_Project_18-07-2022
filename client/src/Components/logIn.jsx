@@ -14,10 +14,12 @@ import {
   Flex,
   Button,
   useMediaQuery,
+  Image
 } from "@chakra-ui/react";
 import Nav from "./Nav";
 import { useCookies } from "react-cookie";
 import { UPDATE_STATE_TRUE } from "../Redux/ActionTypes/actiontypes";
+import img from '../Media/loginimg.jpeg'
 
 function LogIn() {
   let dispatch = useDispatch();
@@ -56,18 +58,19 @@ function LogIn() {
   const [smallScreen] = useMediaQuery("(min-width: 430px)");
 
   return (
-    <Box bgGradient="linear(to-r, #222831, #393E46)" minHeight="100vh">
+    <Box bg='#EEEEEE' minHeight="100vh">
       {!active ? (
         <Box>
           <Nav />
-          <Box>
-            <Flex justifyContent="center" alignItems="center" minHeight="90vh">
+          
+            <Flex flexDirection='row' justifyContent='space-between'>
+            <Flex justifyContent="center" alignItems="center" minHeight="90vh" w='60%'>
               <Box
                 bg="gray"
                 p={4}
-                marginTop={4}
+                mt={2}
                 borderRadius="2%"
-                w={!smallScreen ? "60%" : "45%"}
+                w={!smallScreen ? "60%" : "55%"}
               >
                 <Heading
                   as="h2"
@@ -153,14 +156,18 @@ function LogIn() {
                     w={!smallScreen ? "10em" : "13em"}
                   >
                     <img src={img1} alt="not img" className={styles.icon} />
-                    <Text fontSize={!smallScreen ? ".8em" : "1em"}>
+                    <Text fontSize={!smallScreen ? ".7em" : ".8em"}>
                       Continue with google
                     </Text>
                   </Button>
                 </Box>
               </Box>
             </Flex>
-          </Box>
+            <Flex  w='40%' justifyContent='right'>
+                  <Image src={img} w='100%' h='90vh' alt='img notfound'/>
+            </Flex>
+            </Flex>
+    
         </Box>
       ) : (
         <Box bgGradient="linear(to-r, #222831, #393E46)" minHeight="100vh">

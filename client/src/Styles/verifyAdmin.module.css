@@ -5,7 +5,7 @@ body {
 
 
 .Total {
-    background: #393E46;
+    background: #EEEEEE;
     width: 100vw;
     height: 100vh;
     position: absolute;
@@ -14,14 +14,13 @@ body {
 }
 
 .container {
-    background-color: #222831;
+    background-color: #393E46;
     width: 400px;
-    height: 350px;
+    height: 400px;
     margin: auto;
     margin-top: 100px;
-    border: 2px solid white;
     position: relative;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 .form {

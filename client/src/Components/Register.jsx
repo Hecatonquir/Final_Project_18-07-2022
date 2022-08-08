@@ -3,7 +3,7 @@ import {useDispatch} from 'react-redux'
 import {Link, useNavigate} from 'react-router-dom'
 import userRegister from '../Redux/Actions/postRegister';
 import { Widget} from '@uploadcare/react-widget';
-
+import img from '../Media/register.jpeg'
 import swal from 'sweetalert'
 import styles from '../Styles/Register.module.css'
 import emailjs from '@emailjs/browser';
@@ -14,6 +14,7 @@ import {
     Input,
     Text,
     Flex,
+    Image
   } from "@chakra-ui/react";
 import Nav from './Nav';
 
@@ -101,12 +102,13 @@ function Register() {
         }     
 
     return (
-        <Box bg="#393E46" minHeight="100vh">
+        <Box bg="#EEEEEE" minHeight="100vh">
             <Nav/>
-
-            <form ref={form}>
-                <Flex justifyContent='center' alignItems='center' minHeight='90vh'>
-                <Box bg="gray" width="55%" padding={4} marginTop={4} borderRadius="2%">
+            <Flex flexDirection='row' justifyContent='space-between'>
+            
+                <Flex justifyContent='center' alignItems='center' minHeight='90vh' w='60%'>
+                <form ref={form} >
+                <Box bg="gray" width="30rem" padding={4} marginTop={4} borderRadius="2%">
                     <Heading as='h2'color='white' textAlign='center' marginBottom={6}>Register</Heading>
                     <Flex flexDirection='column'>
                         <Box marginBottom={6}>
@@ -212,8 +214,14 @@ function Register() {
                     <input type="submit" className={styles.Button2} onClick={submitButton} value='Register'/>
                     </Flex>
             </Box>
+            </form>
                 </Flex>
-          </form>
+          
+
+                <Flex w='40%' justifyContent='right'>
+                    <Image src={img} alt='img notfound' w='100%' h='90vh'/>
+                </Flex>
+            </Flex>
         </Box>
     )
 }

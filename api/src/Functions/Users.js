@@ -3,7 +3,7 @@ const { Op } = require('sequelize');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { Events, Users, Supports, Carts, sequelize } = require('../db.js');
-const speakEasy = require('speakeasy')
+const speakEasy = require('speakeasy');
 //const nodemailer = require('nodemailer') // nodemailer y google api en caso de poder implementarlas
 //const { google } = require('googleapis')
 
@@ -25,7 +25,7 @@ const validateToken = (req, res, next) => {
 };
 
 const validatePartner = (req, res, next) => {
-	const accessToken = req.body.data.token
+	const accessToken = req.body.data.token;
 	if (!accessToken) return res.status(400).send('User is not authenticated');
 	try {
 		const validToken = jwt.verify(accessToken, process.env.PRIVATEKEY);
@@ -45,11 +45,10 @@ const validatePartner = (req, res, next) => {
 };
 
 const validateAdmin = (req, res, next) => {
-	
-	
 	try {
+		const accessToken = req.body.data ? req.body.data.token : req.body.token;
 
-		const accessToken = req.body.data ? req.body.data.token : req.body.token
+	
 	
 console.log(accessToken)
 	if (!accessToken) return res.status(400).send('User is not authenticated');
@@ -98,10 +97,9 @@ const getAllUsers = async (req, res, next) => {
 				model: Supports,
 			},
 			attributes: {
-				exclude: ["Password", "Token"]
-			}
-			
-		}, )
+				exclude: ['Password', 'Token'],
+			},
+		})
 	);
 };
 
@@ -119,8 +117,8 @@ const getUserByName = async (req, res) => {
 			},
 
 			attributes: {
-				exclude: ["Password", "Token"]
-			}
+				exclude: ['Password', 'Token'],
+			},
 		});
 		res.send(usersBox);
 	} catch (error) {
@@ -136,11 +134,9 @@ const getUserById = async (req, res) => {
 			where: {
 				ID,
 			},
-			include: [{ model: Supports}, {model: Events}
-				
-			],
+			include: [{ model: Supports }, { model: Events }],
 
-			attributes: { exclude: ['Password', "Tokenn"] },
+			attributes: { exclude: ['Password', 'Tokenn'] },
 		});
 		res.send(userBox);
 	} catch (error) {
@@ -251,8 +247,6 @@ const registerUser = async (req, res) => {
 			});
 			console.log(foundOrCreate);
 			if (!foundOrCreate[0]) {
-				
-			
 				bcrypt.hash(Password, 10).then((hash) => {
 					req.body.Password = hash;
 					req.body.Role = 'User';
@@ -268,30 +262,27 @@ const registerUser = async (req, res) => {
 	}
 };
 
+const get2fa = async (req, res) => {
+	let { id } = req.body;
+	try {
+		let tester = await Users.findOne({
+			where: {
+				ID: id,
+			},
+		});
 
-const get2fa = async(req,res) => {
+		if (tester && tester.Token) {
+			return res.status(400).send('You already have a 2FA TOKEN');
+		} else {
+			let temp_secret = speakEasy.generateSecret();
+			await tester.update({ Token: temp_secret.base32 });
 
-	let{id} = req.body
-	try{
-
-	let tester = await Users.findOne({where: {
-		ID: id
-	}})
-
-	if(tester && tester.Token) {
-		return res.status(400).send("You already have a 2FA TOKEN")
+			return res.send(`Your Token is: ${tester.Token} `);
+		}
+	} catch {
+		res.status(400).send('An error has ocurred, please contact Support team');
 	}
-	else {
-
-	let temp_secret = speakEasy.generateSecret()
-	await tester.update({Token: temp_secret.base32})
-
-	return res.send(`Your Token is: ${tester.Token} `)
-	}
-}catch{
-	res.status(400).send("An error has ocurred, please contact Support team")
-}
-}
+};
 const registerUserGmail = async (req, res) => {
 	const { Email } = req.body;
 	console.log(Email);
@@ -304,13 +295,12 @@ const registerUserGmail = async (req, res) => {
 			});
 			console.log(foundOrCreate);
 			if (!foundOrCreate[0]) {
-
-				let temp_secret = speakEasy.generateSecret()
+				let temp_secret = speakEasy.generateSecret();
 				bcrypt.hash(process.env.DefaultPassword, 10).then(async (hash) => {
 					req.body.Password = hash;
 					req.body.Role = 'User';
 					req.body.Username = Email;
-					req.body.Token = temp_secret.base32
+					req.body.Token = temp_secret.base32;
 					let gmailUser = await Users.create(req.body);
 					const token = jwt.sign(
 						{
@@ -355,7 +345,7 @@ const registerUserGmail = async (req, res) => {
 
 const loginRequest = async (req, res) => {
 	const { username, password, token } = req.body;
-	
+
 	try {
 		const user_ = await Users.findAll({
 			where: {
@@ -370,18 +360,17 @@ const loginRequest = async (req, res) => {
 				return res.status(400).send('Invalid User/Password');
 			}
 
-			if(user_[0].Token) {
-				console.log("hola")
-				
-			const {Token} = user_[0]
+			if (user_[0].Token) {
+				console.log('hola');
 
-			
-			let verified = speakEasy.totp.verify({secret: Token, encoding:"base32", token})
-			console.log(verified)
-			if(!verified) {
-				return res.status(400).send("Invalid Token")
+				const { Token } = user_[0];
+
+				let verified = speakEasy.totp.verify({ secret: Token, encoding: 'base32', token });
+				console.log(verified);
+				if (!verified) {
+					return res.status(400).send('Invalid Token');
+				}
 			}
-		}
 
 			bcrypt.compare(password, user_[0].Password, (error, response) => {
 				if (response) {
@@ -424,12 +413,12 @@ const loginRequestAP = async (req, res) => {
 				return res.status(400).send('Not Allowed');
 			}
 
-			const {Token:secret} = user_[0]
-			console.log(secret)
-			let verified = speakEasy.totp({secret, encoded:"base32", token})
-			console.log(verified)
-			if(!verified) {
-				return res.status(400).send("Invalid Token")
+			const { Token: secret } = user_[0];
+			console.log(secret);
+			let verified = speakEasy.totp({ secret, encoded: 'base32', token });
+			console.log(verified);
+			if (!verified) {
+				return res.status(400).send('Invalid Token');
 			}
 
 			bcrypt.compare(password, user_[0].Password, (error, response) => {
@@ -596,17 +585,14 @@ const updateUser = async (req, res) => {
 	}
 };
 
-const addToFavourite = async (req, res) => {
-	const { IdUser, eventID } = req.params;
-
+const updateFavourite = async (req, res) => {
+	console.log('updateFavourite');
+	const { userID } = req.params;
 	try {
-		let event = await Events.findByPk(eventID);
-		console.log('🐲🐲🐲 / file: Users.js / line 514 / event', event);
-		Users.update(
-			{ Favourites: sequelize.fn('array_append', sequelize.col('Favourites'), event) },
-			{ where: { ID: IdUser } }
-		);
-		res.send('Event added to User Favourite');
+		let user = await Users.findByPk(userID);
+		user.Favourites = req.body;
+		user.save();
+		res.send('Event added to User Cart');
 	} catch (error) {
 		res.status(400).send(error.stack);
 	}
@@ -631,6 +617,6 @@ module.exports = {
 	roleChange,
 	banUser,
 	updateUser,
-	addToFavourite,
-	get2fa
+	updateFavourite,
+	get2fa,
 };

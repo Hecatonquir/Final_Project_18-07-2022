@@ -22,7 +22,7 @@ import {
 	CLEAR_USER_DETAILS,
 	USERS_BACKUP,
 	GET_USER_BY_ID2,
-	SET_COORDS,
+	// SET_COORDS,
 } from '../ActionTypes/actiontypes';
 
 const initialState = {
@@ -39,7 +39,7 @@ const initialState = {
 	favourites: [],
 	userDetails: {},
 	userInfo: {},
-	coords: [],
+	// coords: [],
 };
 
 export default function reducer(state = initialState, { type, payload }) {
@@ -72,6 +72,7 @@ export default function reducer(state = initialState, { type, payload }) {
 			return { ...state, cart: payload };
 
 		case 'LOAD_FAV':
+			console.log('🐲🐲🐲 / file: reducer.js / line 74 / LOAD_FAV', payload);
 			return { ...state, favourites: payload };
 
 		case UPDATE_DB_CART:
@@ -79,8 +80,8 @@ export default function reducer(state = initialState, { type, payload }) {
 			return state;
 
 		case 'UPDATE_DB_FAVOURITE':
-			console.log('REDUCER UPDATE_DB_FAVOURITE');
-			axios.put('/user/updateFavourite/' + payload, state.favourites);
+			console.log('🐲🐲🐲 / file: reducer.js / line 82 / UPDATE_DB_FAVOURITE', payload);
+			axios.put(`/user/updateFavourite/${payload}`, state.favourites);
 			return state;
 
 		case 'UPDATE_GLOBAL_FAVOURITE':
@@ -148,8 +149,8 @@ export default function reducer(state = initialState, { type, payload }) {
 		case GET_USER_BY_ID2:
 			return { ...state, userInfo: payload };
 
-		case SET_COORDS:
-			return { ...state, coords: payload };
+		// case SET_COORDS:
+		// 	return { ...state, coords: payload };
 
 		default:
 			return state;
