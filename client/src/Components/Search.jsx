@@ -44,7 +44,7 @@ export default function SearchEvent({search, setSearch}){
         <>
             <Editable   value={search} id="searchBar" placeholder='Search Event...' fontSize='1em'borderRadius='5px' bg='#EEEEEE' textAlign='center' className={styles.search}>
             <EditablePreview />
-            <EditableInput  onChange={(e) => handleInputChange(e)} />
+            <EditableInput onChange={(e) => handleInputChange(e)} />
             </Editable>
         </>
     )
