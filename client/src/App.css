@@ -5,3 +5,11 @@
 	border-color: black;
 	border-width: 1px;
 }
+
+
+@media screen and (max-width: 768px) {
+	.leaflet-container {
+		width: 90vw;
+		height: 30vh;
+	}
+}
