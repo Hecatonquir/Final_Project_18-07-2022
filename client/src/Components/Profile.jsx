@@ -68,7 +68,7 @@ function Profile() {
                   src={`${tokenDecoded.picture && tokenDecoded.picture}`}
                   alt="No img"
                   marginBottom={4}
-                  lassName={styles.img}
+                  className={styles.img}
                   borderRadius="15px">
                 </Image>
 
