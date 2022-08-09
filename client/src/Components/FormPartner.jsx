@@ -27,6 +27,8 @@ function FormPartner() {
       NumberPhone,
       CUIT,
       CBU,
+      City,
+      Location
     } = input;
     let errors = {};
     errors.check = "failed";
@@ -82,7 +84,7 @@ function FormPartner() {
     }
 
     if (!NumberPhone) {
-      errors.NumberPhone = "Number phone is required.";
+      errors.NumberPhone = "Phone number is required.";
     } else if (NumberPhone.length !== 0) {
       if (
         !/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im.test(
@@ -109,6 +111,24 @@ function FormPartner() {
       }
     }
 
+    if (!City) {
+      errors.City = "City is required.";
+    } else if (City.length !== 0) {
+      if (!/^[A-Z]+[A-Za-z0-9\s]+$/g.test(City) || City.length > 25) {
+        errors.City =
+          "First letter must be uppercase and do not start with a number";
+      }
+    }
+
+    if (!Location) {
+      errors.Location = "Location is required.";
+    } else if (Location.length !== 0) {
+      if (!/^[A-Z]+[A-Za-z0-9\s]+$/g.test(Location) || Location.length > 25) {
+        errors.Location =
+          "First letter must be uppercase and do not start with a number";
+      }
+    }
+
     if (
       !errors.Name &&
       !errors.LastName &&
@@ -117,7 +137,9 @@ function FormPartner() {
       !errors.ID &&
       !errors.NumberPhone &&
       !errors.CUIT &&
-      !errors.CBU
+      !errors.CBU &&
+      !errors.City &&
+      !errors.Location
     ) {
       errors.check = "approved";
     }
@@ -135,7 +157,9 @@ function FormPartner() {
     NumberPhone: "",
     CUIT: "",
     CBU: "",
-    Email: ""
+    Email: "",
+    City: "",
+    Location: ""
   });
 
   function handleChange(e) {
@@ -166,7 +190,9 @@ function FormPartner() {
         Phone: input.NumberPhone,
         CUIT: input.CUIT,
         CBU: input.CBU,
-        Email: input.Email
+        Email: input.Email,
+        City: input.City,
+        Location: input.Location
       });
       setInput({
         Name: "",
@@ -177,6 +203,8 @@ function FormPartner() {
         NumberPhone: "",
         CUIT: "",
         CBU: "",
+        City: "",
+        Location: ""
       });
     }
   }
@@ -290,7 +318,7 @@ function FormPartner() {
               marginTop={4}
               isInvalid={errors.NumberPhone}
             >
-              <FormLabel>Number phone</FormLabel>
+              <FormLabel>Phone number</FormLabel>
               <Input
                type='number'
                 value={input.NumberPhone}
@@ -355,6 +383,37 @@ function FormPartner() {
              
             </FormControl>
 
+            <FormControl isRequired marginTop={4} isInvalid={errors.City}>
+              <FormLabel>City</FormLabel>
+              <Input
+                type="text"
+                value={input.City}
+                id="City"
+                name="City"
+                placeholder="City"
+                variant="flushed"
+                required
+                _placeholder={{ opacity: 0.3, color: "inherit" }}
+                onChange={(e) => handleChange(e)}
+              />
+              {errors.City && <FormErrorMessage color="red">{errors.City}</FormErrorMessage>}
+            </FormControl>
+
+            <FormControl isRequired marginTop={4} isInvalid={errors.Location}>
+              <FormLabel>Location</FormLabel>
+              <Input
+                type="text"
+                value={input.Location}
+                id="Location"
+                name="Location"
+                placeholder="Location"
+                variant="flushed"
+                required
+                _placeholder={{ opacity: 0.3, color: "inherit" }}
+                onChange={(e) => handleChange(e)}
+              />
+              {errors.Location && <FormErrorMessage color="red">{errors.Location}</FormErrorMessage>}
+            </FormControl>
 
             <Center>
               <Button
