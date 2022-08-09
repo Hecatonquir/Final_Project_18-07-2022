@@ -43,7 +43,7 @@ function FormPartner() {
     if (!LastName) {
       errors.LastName = "Last name is required.";
     } else if (LastName.length !== 0) {
-      if (!/^[A-Z]+[A-Za-z0-9\s]+$/g.test(LastName) || LastName.length > 25) {
+      if (!/^[A-Z]+[A-Za-z0-9\s]+$/g.test(LastName) || LastName.length > 35) {
         errors.LastName =
           "First letter must be uppercase and do not start with a number";
       }
@@ -54,7 +54,7 @@ function FormPartner() {
     } else if (CompanyName.length !== 0) {
       if (
         !/^[A-Z]+[A-Za-z0-9\s]+$/g.test(CompanyName) ||
-        CompanyName.length > 100
+        CompanyName.length > 50
       ) {
         errors.CompanyName =
           "First letter must be uppercase and do not start with a number";
@@ -185,7 +185,7 @@ function FormPartner() {
     <Box bg='#EEEEEE' minHeight="100vh">
       <Nav />
       <Flex justifyContent="center">
-        <Box bg="gray" width="55%" padding={4} marginTop={4} borderRadius="2%">
+        <Box bg="#808080be" width="55%" padding={4} marginTop={4} borderRadius="2%">
           <Heading as="h1" color="white" fontSize="2em" textAlign="center">
             Become a Partner
           </Heading>
@@ -198,7 +198,7 @@ function FormPartner() {
                 value={input.Name}
                 id="Name"
                 name="Name"
-                placeholder="Name"
+                placeholder='(Max 25 characters)'
                 variant="flushed"
                 required
                 _placeholder={{ opacity: 0.3, color: "inherit" }}
@@ -216,7 +216,7 @@ function FormPartner() {
                 value={input.LastName}
                 id="LastName"
                 name="LastName"
-                placeholder="Last name"
+                placeholder='(Max 35 characters)'
                 variant="flushed"
                 required
                 _placeholder={{ opacity: 0.3, color: "inherit" }}
@@ -236,7 +236,7 @@ function FormPartner() {
                 value={input.CompanyName}
                 id="CompanyName"
                 name="CompanyName"
-                placeholder="Company name"
+                placeholder='(Max 50 characters)'
                 variant="flushed"
                 required
                 _placeholder={{ opacity: 0.3, color: "inherit" }}
@@ -258,7 +258,7 @@ function FormPartner() {
                 value={input.FiscalAddress}
                 id="FiscalAddress"
                 name="FiscalAddress"
-                placeholder="Fiscal address"
+                placeholder="Ej: Chacras 2324"
                 variant="flushed"
                 required
                 _placeholder={{ opacity: 0.3, color: "inherit" }}
@@ -272,11 +272,11 @@ function FormPartner() {
             <FormControl isRequired marginTop={4} isInvalid={errors.ID}>
               <FormLabel>ID</FormLabel>
               <Input
-                type="text"
+                type='number'
                 value={input.ID}
                 id="ID"
                 name="ID"
-                placeholder="ID"
+                placeholder="Ej: 12345677"
                 variant="flushed"
                 required
                 _placeholder={{ opacity: 0.3, color: "inherit" }}
@@ -292,11 +292,11 @@ function FormPartner() {
             >
               <FormLabel>Number phone</FormLabel>
               <Input
-                type="text"
+               type='number'
                 value={input.NumberPhone}
                 id="NumberPhone"
                 name="NumberPhone"
-                placeholder="Number phone"
+                placeholder="Ej: 2231228745"
                 variant="flushed"
                 required
                 _placeholder={{ opacity: 0.3, color: "inherit" }}
@@ -314,7 +314,7 @@ function FormPartner() {
                 value={input.CUIT}
                 id="CUIT"
                 name="CUIT"
-                placeholder="CUIT"
+                placeholder="Insert 10 digites"
                 variant="flushed"
                 required
                 _placeholder={{ opacity: 0.3, color: "inherit" }}
@@ -330,7 +330,7 @@ function FormPartner() {
                 value={input.CBU}
                 id="CBU"
                 name="CBU"
-                placeholder="CBU"
+                placeholder="Insert 22 digites"
                 variant="flushed"
                 required
                 _placeholder={{ opacity: 0.3, color: "inherit" }}
@@ -346,7 +346,7 @@ function FormPartner() {
                 value={input.Email}
                 id="Email"
                 name="Email"
-                placeholder="Email"
+                placeholder="Ej: example@gmail.com"
                 variant="flushed"
                 required
                 _placeholder={{ opacity: 0.3, color: "inherit" }}
