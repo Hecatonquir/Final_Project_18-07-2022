@@ -19,6 +19,8 @@ export default function validate(input) {
 	let errors = {};
 	let today = new Date().toISOString().slice(0, 16); // En las dos fechas usamos el horario universal, sino hay una diferencia de 3hs
 	const dateInput = date && new Date(date).toISOString().slice(0, 16);
+	//console.log(date.length)
+
 	errors.check = 'failed';
 
 	if (!Name) {
@@ -31,6 +33,8 @@ export default function validate(input) {
 
 	if (dateInput < today) {
 		errors.date = 'Invalid date';
+	}if( !dateInput ) {
+		errors.date = 'Something is missing';
 	}
 	console.log('🐲🐲🐲 / file: Validations.jsx / line 139 / img1', img1);
 
@@ -92,7 +96,7 @@ export default function validate(input) {
 		errors.Category = 'At least one category is required.';
 	}
 	if (!date) {
-		errors.date = 'A date is required.';
+		errors.date = 'Date or time are missing';
 	}
 
 	if (!Detail) {

@@ -425,7 +425,7 @@ function AddEvent() {
 
 						<FormControl marginBottom={4}>
 							<FormLabel color='#222831' fontSize={!smallScreen ? '.8em' : '1em'}>
-								<span style={{ color: 'red' }}>*</span>Date
+								<span style={{ color: 'red' }}>*</span>Date and Time
 							</FormLabel>
 							<Input
 								fontSize={!smallScreen ? '.8em' : '1em'}
@@ -438,7 +438,8 @@ function AddEvent() {
 								variant='flushed'
 								onChange={(e) => handleChange(e)}
 							/>{' '}
-							{input.date !== '' && errors.date && (
+							{/* {console.log(input.date)}  */}
+							{/* input.date !== '' && */ errors.date && (
 								<Text color='red' fontSize={!smallScreen ? '.8em' : '1em'}>
 									{errors.date}
 								</Text>
