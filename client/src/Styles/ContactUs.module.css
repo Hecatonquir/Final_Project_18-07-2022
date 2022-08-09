@@ -29,7 +29,6 @@
     margin: auto;
     margin-top: 50px;
     border: 4px solid #229ddb;
-    background-color: white;
     border-radius: 10px;
 }
 
@@ -64,6 +63,8 @@
 }
 
 .text {
+    border: 1px solid rgb(22, 51, 110);
+    background-color: rgb(237, 247, 247);
     margin-top: 10px;
     width:400px;
     height: 150px;
@@ -73,4 +74,17 @@
     margin-left: 20px;
     border-radius: 5px;
 }
-
+.white{
+    cursor: pointer;
+    color: rgb(37, 22, 22);
+}
+.mail{
+    box-shadow: #146c98;
+    background-color:rgb(237, 247, 247);
+}
+.close{
+    background-color: darkgrey;
+    border-radius: 20px;
+    
+    padding: 4px;
+}

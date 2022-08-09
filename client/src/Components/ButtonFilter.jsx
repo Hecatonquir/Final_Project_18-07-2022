@@ -1,116 +1,140 @@
-import React, {useState} from 'react'
-import { useDispatch, useSelector} from "react-redux"
-import { GET_EVENTS, SHOW_EVENTS_USER,ADD_REMOVE_FILTER } from '../Redux/ActionTypes/actiontypes'
-import styles from '../Styles/ButtonFilter.module.css'
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { GET_EVENTS, SHOW_EVENTS_USER } from '../Redux/ActionTypes/actiontypes';
+import styles from '../Styles/ButtonFilter.module.css';
+import { Box, Button, Flex, Select, Stack, useMediaQuery } from '@chakra-ui/react';
+import swal from 'sweetalert';
+import Search from './Search';
 
-function ButtonFilter() {
+function ButtonFilter({ setSearch, search }) {
+	let [controlFilter, setReference] = useState({
+		city: '',
+		category: '',
+	});
 
-    let [controlFilter, setReference] = useState([])
+	useEffect(() => {
+		newFilter();
+	}, [controlFilter]);
 
-    const backUp = useSelector(state => state.eventsBackUp)
-    const allEvents = useSelector(state => state.allEvents)
-    const dispatch = useDispatch()
+	const backUp = useSelector((state) => state.eventsBackUp);
+	const allEvents = useSelector((state) => state.allEvents);
+	const dispatch = useDispatch();
 
-    let cities = Array.from(new Set(backUp.slice().map(el => el.City)))
-    let categories = Array.from(new Set(backUp.slice().map(el => el.Category[0])))
-  
-    
-  
-    
+	let cities = Array.from(new Set(backUp.slice().map((el) => el.City)));
+	let categories = Array.from(new Set(backUp.slice().map((el) => el.Category)));
 
+	function filterItems(el) {
+		const cityFound = backUp.filter((e) => e.City === el);
+		const categoryFound = backUp.filter((e) => e.Category === el);
 
-    function filterItems(el) {
-     
-        if(!controlFilter.includes(el)) {
-          setReference(controlFilter = [el])
-        
-      
-        
-          let notFiltered =[]
-          let filtered = backUp.filter(e => {
-              let foundCat = e.Category.find(g =>  g === el) 
-              
-              if(foundCat || e.City === el ) {
-              return e
-              }
-              
-              else{
-                notFiltered.push(e)
-              }
-          })
-        
-          dispatch({type: ADD_REMOVE_FILTER, payload: notFiltered })
-          if(filtered.length > 0) {
-          dispatch({type: GET_EVENTS, payload: filtered})
-          return dispatch({type: SHOW_EVENTS_USER, payload: filtered})
-          }
-         
-          
-          else if(filtered.length < 1) {
-            setReference(controlFilter = controlFilter.filter(e => e !== el))
-              return alert("No match for this filter")
-          }
-        }
-        else{
-          setReference(controlFilter = controlFilter.filter(e => e !== el))
-          if(backUp.length > 0) {
-          let matchers = 0
-          let finalMatch = []
-          for(let i = 0; i<backUp.length; i++ ) {
-            controlFilter.forEach(g => {
-               
-                let suMatcherC = backUp[i].Category.find(e => e === g)
-              if(backUp[i].City === g||suMatcherC) {
-                matchers ++
-              }
-            })
-            if(matchers === controlFilter.length) {
-              finalMatch = finalMatch.concat(backUp[i])
-              matchers = 0
-            }
-            else{
-              matchers = 0
-            }
-          }
-         
-          dispatch({type: GET_EVENTS, payload: Array.from(new Set(allEvents.concat(finalMatch)))})
-          dispatch({type: SHOW_EVENTS_USER, payload: finalMatch})
-          }
-        }
-      }
-    
+		if (cityFound[0]) {
+			setReference({ ...controlFilter, city: el });
+			controlFilter.city = el;
+		} else if (categoryFound[0]) {
+			setReference({ ...controlFilter, category: el });
+		}
+	}
 
-    let handleSelect = (e) => {
-        // eslint-disable-next-line default-case
-        
-          return filterItems(e.target.value)
-    }
+	function newFilter() {
+		if (controlFilter.city !== '' && controlFilter.category !== '') {
+			const bothFilter = backUp.filter(
+				(e) => e.City === controlFilter.city && e.Category === controlFilter.category
+			);
+			if (!bothFilter[0]) {
+				document.getElementById('city').value = 'City';
+				document.getElementById('cat').value = 'Categories';
+				setReference(
+					(controlFilter = {
+						city: '',
+						category: '',
+					})
+				);
+				dispatch({ type: SHOW_EVENTS_USER, payload: backUp });
+				return swal('No match for this combination', { icon: 'warning' });
+			}
+			return dispatch({ type: SHOW_EVENTS_USER, payload: bothFilter });
+		} else if (controlFilter.city !== '' && controlFilter.category === '') {
+			const cityFilter = backUp.filter((e) => e.City === controlFilter.city);
+			return dispatch({ type: SHOW_EVENTS_USER, payload: cityFilter });
+		} else if (controlFilter.city === '' && controlFilter.category !== '') {
+			const categoryFilter = backUp.filter((e) => e.Category === controlFilter.category);
+			return dispatch({ type: SHOW_EVENTS_USER, payload: categoryFilter });
+		}
+	}
 
-  return (
-    <div className={styles.filtercontainer}>
-    <div>
-    <select id='city' className={styles.select} onChange={(e) => handleSelect(e)}>
-        <option hidden>Filter By City</option>
-    {cities.map((el,i) => <option key={i} className="select" onClick={() => filterItems(el)}>{el}</option>)}
+	let handleSelect = (e) => {
+		return filterItems(e.target.value);
+	};
 
-    </select>
-    </div>
-    <div>
-        <select id='cat' className={styles.select}  onChange={(e) => handleSelect(e)}>
-            <option hidden>Filter By Categories</option>
-            {categories.map(el => <option key={el}className='select' onClick={() => filterItems(el)}>{el}</option>)}
-        
+	return (
+		<>
+			<Stack spacing={10} marginTop={6} marginBottom={6}>
+				<Flex  width='100%' marginLeft="1rem" className={styles.flex}>
+					<>
+						<Search search={search} setSearch={setSearch} />
+					</>
+					<Select
+					    bg="#EEEEEE"
+						variant='outline'
+						width='25%'
+						onChange={(e) => handleSelect(e)}
+						color='gray'
+						id='city'>
+						<option value='City' hidden>
+							Filter By City
+						</option>
+						{cities.map((el, i) => (
+							<option key={i} onClick={() => filterItems(el)}>
+								{el}
+							</option>
+						))}
+					</Select>
 
+					<Select
+					    bg="#EEEEEE"
+						variant='outline'
+						width='25%'
+						onChange={(e) => handleSelect(e)}
+						color='gray'
+						id='cat'>
+						<option value='Categories' hidden>
+							Filter By Categories
+						</option>
+						{categories.map((el, i) => (
+							<option key={i} onClick={() => filterItems(el)}>
+								{el}
+							</option>
+						))}
+					</Select>
 
-        </select>
-    </div>
-    <div>
-
-        <button className={styles.Button2} onClick={()=> { document.getElementById('city').value = 'Filter By City'; document.getElementById('cat').value = 'Filter By Categories'; return setReference(controlFilter = []), dispatch({type: GET_EVENTS, payload: backUp }), dispatch({type: SHOW_EVENTS_USER, payload: backUp.slice(0,15)})}}>Clear Filters</button>
-
-    </div>
-</div>
-  )
+					<Box className={styles.boxSearch}>
+						<Button
+							className={styles.Button2}
+							onClick={() => {
+								document.getElementById('city').value = 'City';
+								document.getElementById('cat').value = 'Categories';
+								return (
+									setReference(
+										(controlFilter = {
+											city: '',
+											category: '',
+										})
+									),
+									setSearch(''),
+									dispatch({ type: GET_EVENTS, payload: backUp }),
+									dispatch({ type: SHOW_EVENTS_USER, payload: backUp.slice(0, 15) })
+								);
+							}}
+							bg='#FD7014' 
+							color='white' 
+							_hover={{bg:'#EEEEEE', color:'black'}}>
+							Clear Filters
+						</Button>
+					</Box>
+				</Flex>
+			</Stack>
+		</>
+	);
 }
 
-export default ButtonFilter
+export default ButtonFilter;

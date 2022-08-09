@@ -1,20 +1,49 @@
-import axios from "axios"
-import { UPDATE_STATE_TRUE } from "../ActionTypes/actiontypes";
+import axios from 'axios';
+import { LOAD_CART, UPDATE_STATE_TRUE } from '../ActionTypes/actiontypes';
+import swal from 'sweetalert';
 
 
-export async function logInUser(payload,dispatch){
-       
-        try {
-             await axios.post(`http://localhost:3001/user/login`, payload, {withCredentials: true});
-            alert("Logged in !")
+export async function logInUser(payload, navigate, dispatch, setCookie) {
+	try {
+		let user = await axios.post(`/user/login`, payload, {
+			withCredentials: true,
+		});
+		
 
-            dispatch({type:UPDATE_STATE_TRUE})
-            
-        }
-        
-        catch (error) {
-            console.log(error.response.data)
-        } 
-            
-       
+
+	
+		
+
+		
+
+		
+
+		
+
+		
+
+		swal({
+			title: 'Login Success',
+			text: 'Redirecting...',
+			icon: 'success',
+			timer: 2000,
+			buttons: false,
+		});
+
+		setTimeout(() => {
+			navigate('/');
+			setCookie('access-control', user.data, {path: "/"})
+			
+			
+			
+		}, 2000);
+	} catch (error) {
+		console.log(error);
+		swal({
+			title: 'Error',
+			icon: 'error',
+			timer: 1000,
+			buttons: false,
+		});
+	}
 }

@@ -1,6 +1,6 @@
 const { DataTypes } = require('sequelize');
 
-// Exportamos una funcion que define el modelo
+// Exportamos una funcion que define el model
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
 	sequelize.define(
@@ -15,21 +15,20 @@ module.exports = (sequelize) => {
 				type: DataTypes.STRING,
 				defaultValue: 'Guest',
 			},
-
 			Username: {
 				type: DataTypes.STRING,
 				isUnique: true,
-				allowNull: true
-				
+				allowNull: false,
 			},
-
 			Password: {
 				type: DataTypes.STRING,
-				allowNull: false
-				
+				allowNull: false,
 			},
 
-			
+			Token: {
+				type: DataTypes.STRING,
+				allowNull: true,
+			},
 			Email: {
 				type: DataTypes.STRING,
 				isUnique: true,
@@ -40,29 +39,45 @@ module.exports = (sequelize) => {
 			Image: {
 				type: DataTypes.TEXT,
 			},
+			City: {
+				type: DataTypes.STRING,
+			},
 			Location: {
 				type: DataTypes.STRING,
 			},
 			Role: {
 				type: DataTypes.STRING,
-				allowNull: true,
-				defaultValue:"Guest"
+				defaultValue: 'Guest',
 			},
 			Favourites: {
-				type: DataTypes.ARRAY(DataTypes.STRING),
-			},
-			Cart: {
-				type: DataTypes.ARRAY(DataTypes.STRING),
+				type: DataTypes.ARRAY(DataTypes.JSONB),
+				defaultValue: [],
 			},
 			shoppingHistory: {
-				type: DataTypes.ARRAY(DataTypes.STRING),
+				type: DataTypes.ARRAY(DataTypes.JSONB),
+				defaultValue: [],
 			},
 			CreatedEvents: {
-				type: DataTypes.ARRAY(DataTypes.STRING),
+				type: DataTypes.ARRAY(DataTypes.JSONB),
+				defaultValue: [],
 			},
 			RedFlags: {
 				type: DataTypes.INTEGER,
-			},LoggedIn: {
+				defaultValue: 0,
+			},
+			LoggedIn: {
+				type: DataTypes.BOOLEAN,
+				defaultValue: false,
+			},
+			Cart: {
+				type: DataTypes.ARRAY(DataTypes.JSON),
+				defaultValue: [],
+			},
+			isSupport: {
+				type: DataTypes.BOOLEAN,
+				defaultValue: false,
+			},
+			isBan: {
 				type: DataTypes.BOOLEAN,
 				defaultValue: false,
 			},

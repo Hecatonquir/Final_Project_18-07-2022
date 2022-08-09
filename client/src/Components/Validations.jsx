@@ -1,66 +1,106 @@
 export default function validate(input) {
-	let { Name, img1, img2, img3, img4, Price, City, Location, Category, Date, Hour, Quantity } =
-		input;
+	let {
+		Name,
+		img1,
+		img2,
+		img3,
+		img4,
+		carrousel,
+		Price,
+		City,
+		Location,
+		Category,
+		date,
+		Hour,
+		Quantity,
+		Detail,
+		AgeRestriction,
+	} = input;
 	let errors = {};
+	let today = new Date().toISOString().slice(0, 16); // En las dos fechas usamos el horario universal, sino hay una diferencia de 3hs
+	const dateInput = date && new Date(date).toISOString().slice(0, 16);
 	errors.check = 'failed';
 
 	if (!Name) {
 		errors.Name = 'Name is required.';
 	} else if (Name.length !== 0) {
 		if (!/^[A-Z]+[A-Za-z0-9\s]+$/g.test(Name) || Name.length > 25) {
-			errors.Name =
-				"The first letter must be uppercase and don't start with a number and don´t pass 25 characters.";
+			errors.Name = 'First letter must be uppercase and do not start with a number';
 		}
 	}
+
+	if (dateInput < today) {
+		errors.date = 'Invalid date';
+	}
+	console.log('🐲🐲🐲 / file: Validations.jsx / line 139 / img1', img1);
 
 	if (!img1) {
 		errors.img1 = 'At least one picture is required.';
 	} else if (img1 && !/[a-z0-9-.]+\.[a-z]{2,4}\/?([^\s<>#%",{}\\|^[\]`]+)?$/.test(img1)) {
-		errors.img1 = 'It must be a valid "URL" or be empty.';
+		errors.img1 = 'Invalid URL';
 	}
 
 	if (img2) {
 		if (img2 && !/[a-z0-9-.]+\.[a-z]{2,4}\/?([^\s<>#%",{}\\|^[\]`]+)?$/.test(img2)) {
-			errors.img2 = 'It must be a valid "URL" or be empty.';
+			errors.img2 = 'Invalid URL';
 		}
 	}
 
 	if (img3) {
 		if (img3 && !/[a-z0-9-.]+\.[a-z]{2,4}\/?([^\s<>#%",{}\\|^[\]`]+)?$/.test(img3)) {
-			errors.img3 = 'It must be a valid "URL" or be empty.';
+			errors.img3 = 'Invalid URL';
 		}
 	}
 
 	if (img4) {
 		if (img4 && !/[a-z0-9-.]+\.[a-z]{2,4}\/?([^\s<>#%",{}\\|^[\]`]+)?$/.test(img4)) {
-			errors.img4 = 'It must be a valid "URL" or be empty.';
+			errors.img4 = 'Invalid URL';
 		}
 	}
-	if (Price < 0) {
-		errors.Price = 'You can only use positive numbers.';
+
+	if (carrousel) {
+		if (carrousel && !/[a-z0-9-.]+\.[a-z]{2,4}\/?([^\s<>#%",{}\\|^[\]`]+)?$/.test(carrousel)) {
+			errors.carrousel = 'Invalid URL';
+		}
 	}
-	if (Quantity < 0) {
-		errors.Quantity = 'You can only use positive numbers.';
+
+	if (Price < 0 || Price.length > 10) {
+		errors.Price = 'Insert a positive numbers with less than 11 Digits.';
+	} else if (Price > 0 && Quantity <= 0) {
+		errors.Quantity = 'When Price > 0, you must also insert a Quantity > 0';
+	}
+	if (Quantity < 0 || Quantity.length > 10) {
+		errors.Quantity = 'Insert a positive numbers with less than 11 Digits.';
+	} else if (Quantity > 0 && Price <= 0) {
+		errors.Price = 'When Quantity > 0, you must also insert a Price > 0';
+	}
+	if (AgeRestriction < 0 || AgeRestriction >= 100) {
+		errors.AgeRestriction = 'Only insert positive numbers or less than 100.';
 	}
 	if (!Location) {
 		errors.Location = 'Location is required.';
-	} else if (Location.length !== 0) {
-		if (!/^[A-Z]+[A-Za-z0-9\s]+$/g.test(Location) || Location.length > 25) {
-			errors.Location =
-				"The first letter must be uppercase and don't start with a number and don't pass 25 characters.";
-		}
-	}
+	} 
+	// else if (Location.length !== 0) {
+	// 	if (!/^[A-Z]+[A-Za-z0-9\s]+$/g.test(Location) || Location.length > 25) {
+	// 		errors.Location = 'First letter must be uppercase and do not start with a number';
+	// 	}
+	// }
 	if (!City) {
-		errors.City = 'At least one City is required.';
+		errors.City = 'At least one city is required.';
 	}
 	if (!Category) {
-		errors.Category = 'At least one Category is required.';
+		errors.Category = 'At least one category is required.';
 	}
-	if (!Date) {
-		errors.Date = 'A Date is required.';
+	if (!date) {
+		errors.date = 'A date is required.';
 	}
+
+	if (!Detail) {
+		errors.Detail = 'Event detail required';
+	}
+
 	if (!Hour) {
-		errors.Hour = 'An Hour is required.';
+		errors.Hour = 'An hour is required.';
 	}
 	/*if (price_max.length === 0) {
 		errors.price_max = 'Height max is required.';
@@ -88,11 +128,15 @@ export default function validate(input) {
 	} */
 	if (
 		!errors.Name &&
+		!errors.date &&
 		!errors.img1 &&
+		!errors.carrousel &&
 		!errors.City &&
 		!errors.Location &&
 		!errors.Category &&
-		!errors.Price
+		!errors.Price &&
+		!errors.Quantity &&
+		!errors.Detail
 	) {
 		errors.check = 'approved';
 	}

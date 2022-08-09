@@ -21,11 +21,12 @@ routes.get('/reported', F.getReported)
 
 routes.post('/', F.createEvent);
 routes.post('/report/:ID', F.reportEvent)
-routes.post("/login",U.loginRequest)
 
 routes.put('/', F.modifyEvent);
+routes.put('/updateQuantity', F.updateQuantity)
+routes.put("/update/:id", F.updateEvent)
 
-routes.delete('/:id', F.deleteEvent);
+routes.put('/delete', F.deleteEvent);
 
 routes.get('/', (req, res) => {
 	console.log('Ejemplo2');

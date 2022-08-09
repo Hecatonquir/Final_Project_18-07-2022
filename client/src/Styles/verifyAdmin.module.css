@@ -1,0 +1,50 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+
+.Total {
+    background: #393E46;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    display: flex;
+    
+}
+
+.container {
+    background-color: gray;
+    width: 400px;
+    height: 400px;
+    margin: auto;
+    margin-top: 100px;
+    position: relative;
+    border-radius: 10px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+}
+
+.form h2 {
+    font-size: 30px;
+    text-align: center;
+    color: white;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.form p {
+    margin-left: 2rem;
+    margin-top: 1rem;
+    color: white;
+    font-weight: bolder;
+}
+
+img {
+    width: 40%;
+}

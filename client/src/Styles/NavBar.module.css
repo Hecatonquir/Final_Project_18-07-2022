@@ -1,56 +1,356 @@
-.nav {
-    background-color:#1C517A;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 12px;
-    padding: 10px;
-    
-}
-
-.menu {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    font-size: 15px;
-    font-weight: bolder;
-    margin: 10px;
-}
-
-.Button {
-    background-color: #229ddb;
-    border: 2px solid white;
-    border-radius: 70px;
-    color: white;
-    padding: 10px 15px 10px 15px;
-    text-align: center;
-    font-size: 12px;
-    font-weight: bolder;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
-    cursor: pointer;
-    text-decoration: none;
-    text-transform: uppercase;
-    margin-left: 10px;
-    margin-right: 10px;
-}
-
-.imgcarrito {
-    width: 50px;
-    height: 50px;
-}
-
 .count {
-    position: absolute;
-    top: 1px;
-    right: 20px;
-    background-color: #fff;
-    padding: 1px 6px;
-    border-radius: 50%;
-    color: red;
-    font-weight: 700;
-    font-family: system-ui;
-    line-height: 18px;
-    margin-top: 10px;
+	position: absolute;
+	top: -0.2rem;
+	right: 13px;
+	background-color: #fff;
+	padding: 1px 1px;
+	border-radius: 50%;
+	color: #fd7014;
+	font-weight: 700;
+	width: 1rem;	
+	font-family: system-ui;
+	line-height: 18px;
+	margin-top: 0%;
+	display: flex;
+	justify-content: center;
 }
+
+.img{
+    width:3vw;
+    height:3vh;
+}
+
+.logo{
+    width:10vw;
+    height:10vh;
+}
+
+.welcome{
+    font-size: 1.5em;
+}
+
+.buttons{
+    width: 5em;
+    font-size: 1em;
+}
+
+.buttons1{
+    width: 8em;
+    font-size: 1em;
+}
+
+.logoNavBar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    height: 12vh;
+    margin-top:1vh;
+}
+
+.contentButtons{
+    justify-content: space-between;
+}
+
+@media screen and (max-width: 1024px) {
+    .contentButtons{
+        justify-content: space-around;
+        width: 100%;
+        /* background-color: rgba(255, 0, 174, 0.376); */
+    }
+
+    .count {
+        right: 60px;
+    }
+    
+
+    .logoNavBar{
+        width: 2em;
+        height: auto;
+    }
+
+    .welcome{
+        font-size: 1em;
+    }
+
+    .buttonLog{
+        width: 5em;
+        font-size: .8em;
+    }
+
+    .buttonLogin{ 
+        width: 10em;
+        font-size: .8em;
+    }
+
+    .buttonBecome{
+        width: 10em;
+        font-size: .8em;
+    }
+
+    .buttonCreate{
+        width: 8em;
+        font-size: .8em;  
+    }
+
+    .buttonProfile{
+        width: 5em;
+        font-size: .8em;
+    }
+    
+    
+    .buttons1{
+        width: 8em;
+        font-size: .8em;
+        margin: 0 15px 0 15px;
+    }
+}
+
+@media screen and (max-width: 630px) {
+    .contentLogo{
+        /* background-color: #fd7014; */
+        width: 10vw;
+    }
+
+    .img {
+        width:2vw;
+        height:2vh;
+      }
+
+    .logo{
+        width: 10vw;
+        height: 10vh;
+    }
+  }
+
+  @media screen and (max-width: 615px) {
+    .imgcarrito{
+        width: 35px;
+    }
+
+    .count {
+        right: 30px;
+    }
+    
+
+    .logoNavBar{
+        width: 1.5em;
+        height: auto;
+    }
+
+    .welcome{
+        font-size: .8em;
+    }
+
+    .buttonLog{
+        width: 3em;
+        height: 2.5em;
+        font-size: .5em;
+    }
+
+    .buttonLogin{ 
+        width: 3em;
+        height: 2.5em;
+        font-size: .5em;
+    }
+
+    .buttonBecome{
+        width: 3em;
+        height: 2.5em;
+        font-size: .5em;
+    }
+
+    .buttonCreate{
+        width: 8em;
+        height: 2.5em;
+        font-size: .5em;
+    }
+
+    .buttonProfile{
+        width: 3em;
+        height: 2.5em;
+        font-size: .5em;
+    }
+    
+    
+    .buttons1{
+        width: 8em;
+        height: 2.5em;
+        font-size: .5em;
+        margin: 0 10px 0 10px;
+    }
+  }
+
+  @media screen and (max-width: 425px) {
+    .contentLogo{
+        /* background-color: #fd7014; */
+        width: 20vw;
+        margin-left: 1em;
+    }
+
+    .img {
+        width:3vw;
+        height:3vh;
+      }
+
+    .logo{
+        width: 15vw;
+        height: 10vh;
+    }
+
+
+
+
+    .imgcarrito{
+        width: 35px;
+    }
+
+    .count {
+        right: 15px;
+    }
+    
+    .logoNavBar{
+        width: 1em;
+        height: auto;
+    }
+
+    .welcome{
+        font-size: .6em;
+        width: 4.2em;
+    }
+
+    .buttonLog{
+        width: 3em;
+        height: 2.5em;
+        font-size: .5em;
+    }
+
+    .buttonLogin{ 
+        width: 3em;
+        height: 2.5em;
+        font-size: .5em;
+    }
+
+    .buttonBecome{
+        width: 3em;
+        height: 2.5em;
+        font-size: .5em;
+    }
+
+    .buttonCreate{
+        width: 8em;
+        height: 2.5em;
+        font-size: .5em;
+    }
+
+    .buttonProfile{
+        width: 3em;
+        height: 2.5em;
+        font-size: .5em;
+    }
+
+    .buttons1{
+        width: 8em;
+        height: 2.5em;
+        font-size: .5em;
+        margin: 0 10px 0 10px;
+    }
+  }
+
+  @media screen and (max-width: 375px) {
+    .contentLogo{
+        /* background-color: #33fd14; */
+        width: 20vw;
+        margin-left: 1em;
+    }
+
+    .img {
+        width:3vw;
+        height:3vh;
+      }
+
+    .logo{
+        /* background-color: #fd7014; */
+        width: 100vw;
+        height: 10vh;
+    }
+
+
+
+    .imgcarrito{
+        width: 20px;
+    }
+
+    .count {
+        font-size: .7em;
+        width: 1.4em;
+        height: auto;
+        right: 15px;
+    }
+    
+    .logoNavBar{
+        width: .5em;
+        height: auto;
+    }
+
+    .welcome{
+        font-size: .4em;
+        width: 4.2em;
+    }
+
+    .buttonLog{
+        width: 2em;
+        height: 2em;
+        font-size: .4em;
+    }
+
+    .buttonLogin{ 
+        width: 2em;
+        height: 2em;
+        font-size: .4em;
+    }
+
+    .buttonBecome{
+        width: 2em;
+        height: 2em;
+        font-size: .4em;
+    }
+
+    .buttonCreate{
+        width: 7.6em;
+        height: 2.5em;
+        font-size: .4em;
+    }
+
+    .buttonProfile{
+        width: 2em;
+        height: 2em;
+        font-size: .4em;
+    }
+
+    .buttons1{
+        width: 7.6em;
+        height: 2.5em;
+        font-size: .4em;
+        margin: 0 10px 0 10px;
+    }
+  }
+
+  @media screen and (max-width: 320px) {
+    .contentLogo{
+        /* background-color: #33fd14; */
+        width: 20vw;
+        margin-left: 1em;
+    }
+
+    .img {
+        width:3vw;
+        height:3vh;
+      }
+
+    .logo{
+        /* background-color: #fd7014; */
+        width: 100vw;
+        height: 10vh;
+    }
+  }

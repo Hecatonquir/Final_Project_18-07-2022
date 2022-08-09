@@ -1,0 +1,168 @@
+.container {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-around;
+}
+
+.cards {
+    background-color: #EEEEEE;
+    display: flex;
+    border-radius: 1rem;
+    margin: 1rem;
+    overflow: hidden;
+    width: 27rem;
+    height: 10rem;
+}
+
+.leftcolumn {
+    max-width: 10rem;
+    max-height: 10rem;
+}
+
+.rightcolumn {
+    max-width: 17rem;
+    max-height: 10rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.leftcolumn img {
+    width: 10rem;
+    height: 10rem;
+}
+
+.rightcolumn img {
+    width: 10rem;
+    height: 10rem;
+}
+
+.containerButton {
+    display: flex;
+    justify-content: right;
+}
+
+.buttonX {
+    background-color: rgb(188, 54, 54);;
+    border: 1px solid rgb(188, 54, 54);
+    padding: 5px 10px 5px 10px;
+    color: white;
+    border-radius: 5px;
+}
+
+.text {
+    margin-top: 50px;
+    font-size: 30px;
+    color: whitesmoke;
+    font-weight: bolder;
+}
+
+
+@media screen and (max-width: 1265px) {
+    .cards {
+        width: 25rem;
+    }
+  }
+
+  @media screen and (max-width: 1179px) {
+    .cards {
+        width: 20rem;
+    }
+  }
+
+  @media screen and (max-width: 957px) {
+    .container {
+        grid-template-columns: auto;
+    }
+
+    .cards {
+        width: 27rem;
+    }
+  }
+
+@media screen and (max-width: 900px) {
+    .text{
+        font-size: 20px;
+    }
+  }
+
+  @media screen and (max-width: 485px) {
+    .cards {
+        width: 22em;
+        height: 8rem;
+    }
+
+    .leftcolumn img {
+        width: 8rem;
+        height: 8rem;
+    }
+    
+    .rightcolumn img {
+        width: 8rem;
+        height: 8rem;
+    }
+  }
+
+  @media screen and (max-width: 440px) {
+    .text{
+        font-size: 15px;
+    }
+  }
+
+  @media screen and (max-width: 400px) {
+    .cards {
+        width: 18em;
+        height: 6rem;
+    }
+
+    .leftcolumn img {
+        width: 6rem;
+        height: 6rem;
+    }
+    
+    .rightcolumn img {
+        width: 6rem;
+        height: 6rem;
+    }
+
+    .data{
+        font-size: .8em;
+    }
+
+    .buttonX {
+        padding: 3px 5px 3px 5px;
+    }
+  }
+
+  @media screen and (max-width: 333px) {
+    .cards {
+        width: 15em;
+        height: 6rem;
+    }
+
+    .leftcolumn img {
+        width: 6rem;
+        height: 6rem;
+    }
+    
+    .rightcolumn img {
+        width: 6rem;
+        height: 6rem;
+    }
+
+    .data{
+        font-size: .6em;
+    }
+
+    .buttonX {
+        padding: 2px 4px 2px 4px;
+    }
+  }
+
+  @media screen and (max-width: 320px) {
+    .text{
+        font-size: 12px;
+    }
+  }

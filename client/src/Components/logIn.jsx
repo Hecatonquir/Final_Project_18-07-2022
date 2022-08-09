@@ -1,90 +1,188 @@
-import React, {useState} from 'react';
-import { Link } from 'react-router-dom';
-import { logInUser } from '../Redux/Actions/logInUser';
-import {useAuth0} from "@auth0/auth0-react"
-import styles from '../Styles/User.module.css'
-import img1 from '../Media/google.png'
-import {isExpired, decodeToken} from "react-jwt"
-import {useDispatch} from "react-redux"
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { logInUser } from "../Redux/Actions/logInUser";
+import { useAuth0 } from "@auth0/auth0-react";
+import styles from "../Styles/User.module.css";
+import img1 from "../Media/google.png";
+import { isExpired, decodeToken } from "react-jwt";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  Box,
+  Heading,
+  Input,
+  Text,
+  Flex,
+  Button,
+  useMediaQuery,
+  Image
+} from "@chakra-ui/react";
+import Nav from "./Nav";
+import { useCookies } from "react-cookie";
+import { UPDATE_STATE_TRUE } from "../Redux/ActionTypes/actiontypes";
+import img from '../Media/loginimg.jpeg'
 
 function LogIn() {
-    let dispatch = useDispatch()
+  let dispatch = useDispatch();
+  let navigate = useNavigate();
+  let token = document.cookie.split(";")[0];
+  let token1 = token.split("=")[1];
+  let tokenDecoded = decodeToken(token1);
+  let active = useSelector((state) => state.loginState);
+
+  const { loginWithRedirect } = useAuth0();
+  const [cookies, setCookie] = useCookies(["access-control"]);
+  const [input, setInput] = useState({
+    username: "",
+    password: "",
+    token:"",
+  });
+
+  const handleChange = function (e) {
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const submitButton = function (e) {
+    e.preventDefault();
+    if(input.username && input.password){
+    logInUser(input, navigate, dispatch, setCookie);}
+  };
+
+  if (token) {
+    dispatch({ type: UPDATE_STATE_TRUE });
+  }
+
+  //Responsive
+  const [smallScreen] = useMediaQuery("(min-width: 430px)");
+
+  return (
+    <Box bg='#393E46' minHeight="100vh">
+      {!active ? (
+        <Box>
+          <Nav />
+          
+            <Flex flexDirection='row' justifyContent='space-between'>
+            <Flex justifyContent="center" alignItems="center" minHeight="90vh" w='60%'>
+              <Box
+                bg="gray"
+                p={4}
+                mt={2}
+                borderRadius="2%"
+                w={!smallScreen ? "60%" : "55%"}
+              >
+                <Heading
+                  as="h2"
+                  color="white"
+                  textAlign="center"
+                  marginBottom={6}
+                >
+                  Login
+                </Heading>
+                <Input
+                  type="text"
+                  name="username"
+                  onChange={handleChange}
+                  placeholder="Username"
+                  value={input.username}
+                  _placeholder={{ opacity: 0.4, color: "inherit" }}
+                  color="white"
+                  variant="flushed"
+                  marginBottom={6}
+                />
+
+                <Input
+                  type="password"
+                  name="password"
+                  onChange={handleChange}
+                  placeholder="Password"
+                  value={input.password}
+                  _placeholder={{ opacity: 0.4, color: "inherit" }}
+                  color="white"
+                  variant="flushed"
+                  marginBottom={6}
+                />
+                <label>Optional</label>
+                <Input
+                  type="password"
+                  name="token"
+                  onChange={handleChange}
+              
+                  placeholder="2FA"
+                  value={input.token}
+                  _placeholder={{ opacity: 0.4, color: "inherit" }}
+                  color="white"
+                  variant="flushed"
+                  marginBottom={6}
+                />
+
+                <Box textAlign="center" marginBottom={8}>
+                  <Button
+                    onClick={submitButton}
+                    bg="#FD7014"
+                    color="#EEEEEE"
+                    _hover={{ bg: "#EEEEEE", color: "black" }}
+                  >
+                    Login
+                  </Button>
+                </Box>
+
+                <Box color="white" marginBottom={8}>
+                  <Flex
+                    justifyContent="space-around"
+                    alignItems="center"
+                    flexDirection={!smallScreen ? "column" : "row"}
+                    textAlign='center'
+                  >
+                    <Text>Don't have an account?</Text>
+                    <Link to="/register">
+                      <Text color="#EEEEEE" _hover={{ color: "#FD7014" }}>
+                        Register
+                      </Text>
+                    </Link>
+                  </Flex>
+                </Box>
+
+                <Box textAlign="center" marginBottom={6}>
+                  <Button
+                    onClick={() => {
+                      loginWithRedirect();
+                      navigate("/");
+                    }}
+                    bg="#EEEEEE"
+                    color="black"
+                    _hover={{ bg: "#FD7014", color: "#EEEEEE" }}
+                    w={!smallScreen ? "10em" : "13em"}
+                  >
+                    <Image src={img1} alt="not img" w='1.5em' mr={1}/>
+                    <Text fontSize={!smallScreen ? ".7em" : ".8em"}>
+                      Continue with google
+                    </Text>
+                  </Button>
+                </Box>
+              </Box>
+            </Flex>
+            <Flex  w='40%' justifyContent='right'>
+                  <Image src={img} w='100%' h='90vh' alt='img notfound'/>
+            </Flex>
+            </Flex>
     
-    let token= document.cookie.split(";").filter(el => el.includes("access-token")).toString().split("=")[1]
-	let tokenDecoded = decodeToken(token)
-
-
-   
-    const {loginWithRedirect} = useAuth0()
-    const [input , setInput] = useState({
-        username:"",
-        password:""
-    })
-
-    const handleChange = function (e){
-        setInput({
-           ...input,
-           [e.target.name]: e.target.value
-           
-       })}
-
-    const submitButton = function (e){
-        e.preventDefault();
-       logInUser(input, dispatch)
-             setInput({username:"",
-                       password:""})
-            }
-                 
-
-    return (
-
-         <div>
-            {   isExpired(token) ?
-            <div>
-  
-            <nav className={styles.nav}>
-                <Link to= '/'>
-                <button className={styles.Button}>Back</button>
-                </Link>
-            </nav>
-            <div>
-                <div className={styles.container}>
-                    <h2 className={styles.title}>Login</h2>
-                    <input 
-                    type="text" 
-                    name="username" 
-                    onChange={handleChange} 
-                    placeholder="Username" 
-                    value={input.username}/>
-
-                    <br/>
-
-                    <input 
-                    type="password" 
-                    name="password" 
-                    onChange={handleChange} 
-                    placeholder="Password" 
-                    value={input.password}/>
-
-                    <br/>
-
-                    <button className={styles.Button2} onClick={submitButton}>Login</button>
-
-                    <div className={styles.register}>
-                    <p className={styles.title2}>Don't have an account?</p>
-                    <Link to="/register"><p className={styles.title3}>Register</p></Link>
-                    </div>
-
-                    <button  onClick={() => loginWithRedirect()} className={styles.Button3}>
-                        <img src={img1} alt='not img' className={styles.icon}/><span>Register with google</span>
-                    </button>
-                </div>
-                </div>
-            </div>:<div><p>Oops, you missed something? You are Logged In!</p>
-            <Link to="/"><button>Go Back</button></Link>
-            </div>}
-            </div>
-    )
+        </Box>
+      ) : (
+        <Box bgGradient="linear(to-r, #222831, #393E46)" minHeight="100vh">
+          <Nav />
+          <Flex justifyContent="center" alignItems="center" minHeight="90vh">
+            <Box>
+              <Text color="white" fontSize="3.4em">
+                Oops, you missed something? You are Logged In!
+              </Text>
+            </Box>
+          </Flex>
+        </Box>
+      )}
+    </Box>
+  );
 }
 
 export default LogIn;

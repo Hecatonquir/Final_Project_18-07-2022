@@ -1,3 +1,4 @@
+const { BOOLEAN } = require('sequelize');
 const { DataTypes } = require('sequelize');
 
 // Exportamos una funcion que define el modelo
@@ -17,7 +18,7 @@ module.exports = (sequelize) => {
 				allowNull: false,
 			},
 			Image: {
-				type: DataTypes.ARRAY(DataTypes.STRING),
+				type: DataTypes.ARRAY(DataTypes.TEXT),
 				allowNull: false,
 			},
 			Location: {
@@ -32,20 +33,25 @@ module.exports = (sequelize) => {
 				type: DataTypes.INTEGER,
 				defaultValue: 0,
 			},
+			InitialQtty: {
+				/* Significa Initial Quantity. Está para ver si se agotaron las entradas o si e el evento siempre tuvo Entradas = 0 (que significa que no requería entradas al crearlo) */
+				type: DataTypes.INTEGER,
+				defaultValue: 0,
+			},
 			Restrictions: {
 				type: DataTypes.ARRAY(DataTypes.STRING),
-				defaultValue: ['None'],
-			},
-			Category: {
-				type: DataTypes.ARRAY(DataTypes.STRING),
-			},
-			City: {
-				type: DataTypes.STRING,
-				allowNull: false,
+				defaultValue: [],
 			},
 			AgeRestriction: {
 				type: DataTypes.INTEGER,
 				defaultValue: 0,
+			},
+			Category: {
+				type: DataTypes.STRING,
+			},
+			City: {
+				type: DataTypes.STRING,
+				allowNull: false,
 			},
 			RedFlags: {
 				type: DataTypes.INTEGER,
@@ -53,11 +59,28 @@ module.exports = (sequelize) => {
 			},
 			Date: {
 				type: DataTypes.DATE,
+				allowNull: false,
 			},
 			Detail: {
 				type: DataTypes.TEXT,
 				allowNull: false,
 			},
+			Carrousel: {
+				type: DataTypes.STRING,
+				defaultValue: null,
+			},
+			isErased: {
+				type: DataTypes.BOOLEAN,
+				defaultValue: false,
+			},
+			isLive:  {
+				type: DataTypes.BOOLEAN,
+				defaultValue: false,
+			},
+			
+			Coords: {
+				type: DataTypes.ARRAY(DataTypes.DOUBLE)
+			}
 		},
 		{ timestamps: false }
 	);

@@ -1,0 +1,43 @@
+/* .nav {
+    background-color:#1C517A;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    padding: 10px;
+    
+} */
+
+.Button {
+    background-color: #229ddb;
+    border: 2px solid white;
+    border-radius: 70px;
+    color: white;
+    padding: 10px 15px 10px 15px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bolder;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    text-decoration: none;
+    text-transform: uppercase;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+/* .divimg {
+    display: flex;
+    justify-content: center;
+} */
+
+/* .img {
+    min-height: 90%;
+    min-width: 1024px;
+    width: 70%;
+} */
+
+/* .container {
+    background-color: rgb(247, 247, 243);
+} */

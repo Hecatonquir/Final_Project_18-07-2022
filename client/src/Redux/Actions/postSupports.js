@@ -1,22 +1,25 @@
-import axios from "axios"
-import swal from 'sweetalert'
+import axios from 'axios';
+import swal from 'sweetalert';
+import { getUserDetails } from './getUserDetails';
 
+export async function postSupports(payload, id, dispatch) {
+	console.log('soy el soporte');
+	try {
+		await axios.post('http://localhost:3001/support/createTicket', payload);
 
-export function postSupports(payload){
-  console.log("soy el soporte",payload)
-    return async () => {
-      try {
-         await axios.post("http://localhost:3001/support/",payload);
-         
-         swal("Note Created!", {
-          icon: "success",
-        })
+		if(id) {
+		dispatch(getUserDetails(id))
+		}
 
-      } catch (error) {
-       swal("Note Not Created!",{
-        icon:"error"
-       })
-        console.log(error);
-      }
-    };
-  }; 
+		swal({
+			title: 'Ticket Created!',
+			text: "You'll receive an answer from Support as soon as possible",
+			icon: 'success',
+		});
+	} catch (error) {
+		swal('Sorry, we cant send your inquiry at this moment...', {
+			icon: 'error',
+		});
+		console.log(error);
+	}
+}

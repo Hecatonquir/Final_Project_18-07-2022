@@ -1,17 +1,140 @@
-import { React, useState } from 'react';
+import { React, useEffect, /*useMemo, useRef, useCallback,  useEffect ,*/ useState } from 'react';
 /* import { useDispatch } from 'react-redux'; */
-import { Link /* , useNavigate */ } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { postEvent } from '../Redux/Actions/postEvent';
 import styles from '../Styles/AddEvent.module.css';
 import validate from './Validations';
+import { Widget } from '@uploadcare/react-widget';
+import Nav from './Nav';
+import swal from 'sweetalert';
+import {
+	Box,
+	Heading,
+	Button,
+	FormControl,
+	FormLabel,
+	Textarea,
+	Input,
+	Select,
+	Text,
+	Flex,
+	InputGroup,
+	InputLeftAddon,
+	useMediaQuery,
+} from '@chakra-ui/react';
+import PlacesAutocomplete, {
+	geocodeByAddress,
+	geocodeByPlaceId,
+	getLatLng,
+} from 'react-places-autocomplete';
+import { decodeToken } from 'react-jwt';
+// import { MapContainer, Marker, Popup, TileLayer, useMapEvents } from 'react-leaflet';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { SET_COORDS } from '../Redux/ActionTypes/actiontypes';
+
+// const center = {
+// 	lat: -36.5,
+// 	lng: -64.09,
+//   }
+
+//   function DraggableMarker() {
+// 	const [markerCoords, setMC] = useState({})
+// 	const dispatch = useDispatch()
+// 	// const [draggable, setDraggable] = useState(false)
+// 	const [position, setPosition] = useState(center)
+// 	const markerRef = useRef(null)
+// 	useEffect(()=> {dispatch({type: SET_COORDS, payload: markerCoords})},[markerCoords])
+// 	const eventHandlers = useMemo(
+// 	  () => ({
+// 		dragend() {
+// 		  const marker = markerRef.current
+// 		  let markerLatLng = marker.getLatLng()
+// 		  if (marker != null) {
+// 			setPosition(markerLatLng)
+// 			console.log(markerLatLng)
+// 			setMC([markerLatLng.lat, markerLatLng.lng])
+// 		  }
+// 		},
+// 	  }),
+// 	  [],
+// 	)
+// 	// const toggleDraggable = useCallback(() => {
+// 	//   setDraggable((d) => !d)
+// 	// }, [])
+
+// 	return (
+// 	  <Marker
+// 		draggable={true}
+// 		eventHandlers={eventHandlers}
+// 		position={position}
+// 		ref={markerRef}>
+// 		<Popup minWidth={90}>
+// 		  <span /*onClick={toggleDraggable}*/>
+// 			{/* {draggable
+// 			  ? 'Marker is draggable'
+// 			  : 'Click here to make marker draggable'} */}
+// 			  Drag the marker to the event's location
+// 		  </span>
+// 		</Popup>
+// 	  </Marker>
+// 	)
+//   }
 
 function AddEvent() {
+	let token = document.cookie.split(';')[0];
+	let token1 = token.split('=')[1];
+	let tokenDecoded = decodeToken(token1);
+
 	/* 	const dispatch = useDispatch();
 	const history = useNavigate(); */
-
+	let navigate = useNavigate();
 	const [errors, setErrors] = useState({});
-	const Cities = ['CABA', 'La Plata', 'La Pampa', 'Bariloche'];
-	const Categories = ['Boliche', 'Recital', 'Musical'];
+	// const {coords} = useSelector(s=> s)
+	const Cities = [
+		'Buenos Aires',
+		'Catamarca',
+		'Chaco',
+		'Chubut',
+		'Córdoba',
+		'Corrientes',
+		'Entre Rios',
+		'Formosa',
+		'Jujuy',
+		'La Pampa',
+		'La Rioja',
+		'Mendoza',
+		'Misiones',
+		'Neuquen',
+		'Rio Negro',
+		'Salta',
+		'San Juan',
+		'San Luis',
+		'Santa Cruz',
+		'Santa Fe',
+		'Santiago del Estero',
+		'Tierra del Fuego',
+		'Tucuman',
+	];
+	const Categories = [
+		'Dance',
+		'Cinema',
+		'Theatre',
+		'Musical',
+		'Nightlife',
+		'Museums',
+		'Literary Arts',
+		'Public Art',
+		'Music',
+		'Festivals',
+		'Circus',
+		'Galleries',
+		'Concert',
+		'Sport',
+		'Carnival',
+		'Open Air',
+		'Tours',
+	];
+	let today = new Date().toISOString().slice(0, 16); //------- Example of today 2022-07-24T14:30
 
 	let [input, setInput] = useState({
 		Name: '',
@@ -19,16 +142,23 @@ function AddEvent() {
 		img2: '',
 		img3: '',
 		img4: '',
+		carrousel: '',
 		Price: '',
 		Quantity: '',
 		Rating: '',
-		Restrictions: '',
+		Restrictions: [],
 		City: '',
 		Location: '',
-		Date: '',
+		date: '',
 		Hour: '',
 		Detail: '',
+		Category: '',
+		AgeRestriction: '',
+		Coords: [],
 	});
+
+	//Variables para obtener coordenadas
+	const [address, setAddress] = useState('');
 
 	function handleChange(e) {
 		setInput({
@@ -41,242 +171,524 @@ function AddEvent() {
 				[e.target.name]: e.target.value,
 			})
 		);
+		console.log(input);
 	}
 
 	function handleSubmit(e) {
 		e.preventDefault();
-		if (errors.check !== 'approved') {
-			alert('Not created');
-		} else {
-			postEvent({
-				Name: input.Name,
-				Image: [input.img1, input.img2, input.img3, input.img4],
-				Price: Number(input.Price),
-				Quantity: Number(input.Quantity),
-				Rating: Number(input.Rating),
-				Category: [input.Category],
-				Restrictions: input.Restrictions.split('/'),
-				City: input.City,
-				Location: input.Location,
-				Date: input.Date,
-				Hour: input.Hour,
-				Detail: input.Detail,
-			});
 
+		if (errors.check !== 'approved') {
+			swal('Not created', '', 'error');
+		} else {
+			postEvent(
+				{
+					Name: input.Name,
+					Image: [input.img1, input.img2, input.img3, input.img4],
+					Carrousel: input.carrousel,
+					Price: Number(input.Price),
+					Quantity: Number(input.Quantity),
+					InitialQtty: Number(input.Quantity),
+					Rating: Number(input.Rating),
+					Category: input.Category,
+					Restrictions: input.Restrictions.length ? input.Restrictions.split('/') : [],
+					City: input.City,
+					Location: input.Location,
+					Date: input.date,
+					Hour: input.Hour,
+					Detail: input.Detail,
+					AgeRestriction: Number(input.AgeRestriction),
+					Coords: input.Coords,
+				},
+				tokenDecoded.email
+			);
 			setInput({
 				Name: '',
 				img1: '',
 				img2: '',
 				img3: '',
 				img4: '',
+				carrousel: '',
 				Price: '',
 				Quantity: '',
 				Rating: '',
-				Restrictions: '',
+				Restrictions: [],
 				City: '',
 				Location: '',
-				Date: '',
+				date: '',
 				Hour: '',
 				Detail: '',
+				Category: '',
+				AgeRestriction: '',
+				Coords: [],
 			});
 		}
 	}
 
+	useEffect(() => {
+		if (tokenDecoded && tokenDecoded.role === 'User') {
+			navigate('/');
+		}
+		if (!tokenDecoded) {
+			navigate('/');
+		}
+	});
+
+	//Función para seleccionar la locación.
+	const handleSelectCoords = async (value) => {
+		const results = await geocodeByAddress(value);
+		const coordinates = await getLatLng(results[0]);
+		setAddress(value);
+		setInput({
+			...input,
+			Coords: [
+				coordinates.lat ? coordinates.lat : -34.600441,
+				coordinates.lng ? coordinates.lng : -58.383151,
+			],
+			Location: value.split(',', 2).toString(),
+		});
+		setErrors(
+			validate({
+				...input,
+				Location: value.split(',', 2).toString(),
+			})
+		);
+	};
+
+	//Responsive
+	const [smallScreen] = useMediaQuery('(min-width: 430px)');
+
 	return (
-		<div>
-			<nav className={styles.nav}>
-				<Link to={'/'}>
-					<button className={styles.Button}>Back</button>
-				</Link>
-			</nav>
-			<div className={styles.container}>
-				<h1 className={styles.title}>Add Event</h1>
-				<form className={styles.form}>
-					<div>
-						<label htmlFor='Name'>* Event name: &nbsp; </label>
-						<input
-							type='text'
-							value={input.Name}
-							id='Name'
-							name='Name'
-							placeholder='Name'
-							required
-							onChange={(e) => handleChange(e)}
-						/>
-						{errors.Name && <p style={{ color: 'red' }}>{errors.Name}</p>}
-					</div>
-					<div>
-						<label htmlFor='Date'>* Date: &nbsp;</label>
-						<input
-							type='datetime-local'
-							value={input.Date}
-							name='Date'
-							placeholder='day / month / year'
-							onChange={(e) => handleChange(e)}
-						/>{' '}
-						{errors.Date && <p style={{ color: 'red' }}>{errors.Date}</p>}
-					</div>
-					{/* <div>
-						<label htmlFor='Hour'>* Hour: &nbsp;</label>
-						<input
-							type='time'
-							value={input.Hour}
-							name='Hour'
-							placeholder='Hour : minute'
-							onChange={(e) => handleChange(e)}
-						/>{' '}
-						{errors.Hour && <p style={{ color: 'red' }}>{errors.Hour}</p>}
-					</div> */}
-					<div>
-						<label htmlFor='City'>* City: &nbsp;</label>
-						<select value={input.City} name='City' onChange={(e) => handleChange(e)}>
-							<option value='' hidden>
-								Select City
-							</option>
-							{Cities.map((p) => {
-								return (
-									<option key={p} value={p}>
-										{p}
-									</option>
-								);
-							})}
-						</select>
-						{errors.City && <p style={{ color: 'red' }}>{errors.City}</p>}
-					</div>
-					<div>
-						<label htmlFor='Location'>* Exact Location: &nbsp;</label>
-						<input
-							type='text'
-							value={input.Location}
-							name='Location'
-							placeholder='Exact Location'
-							onChange={(e) => handleChange(e)}
-						/>
-						{errors.Location && <p style={{ color: 'red' }}>{errors.Location}</p>}
-					</div>
-					<div>
-						<label htmlFor='Category'>* Category: &nbsp;</label>
-						<select value={input.Category} name='Category' onChange={(e) => handleChange(e)}>
-							<option value='' hidden>
-								Select Category
-							</option>
-							{Categories.map((p) => {
-								return (
-									<option key={p} value={p}>
-										{p}
-									</option>
-								);
-							})}
-						</select>
-						{errors.Category && <p style={{ color: 'red' }}>{errors.Category}</p>}
-					</div>
-					<div>
-						<label htmlFor='img1'>* Image 1: &nbsp; </label>
-						<input
-							type='text'
-							value={input.img1}
-							id='img1'
-							name='img1'
-							placeholder='img'
-							onChange={(e) => handleChange(e)}
-						/>
-						{errors.img1 && <p style={{ color: 'red' }}>{errors.img1}</p>}
-					</div>
-					<div>
-						<label htmlFor='img2'>Image 2: &nbsp; </label>
-						<input
-							type='text'
-							value={input.img2}
-							id='img2'
-							name='img2'
-							placeholder='img'
-							onChange={(e) => handleChange(e)}
-						/>
-						{errors.img2 && <p style={{ color: 'red' }}>{errors.img2}</p>}
-					</div>
-					<div>
-						<label htmlFor='img3'>Image 3: &nbsp; </label>
-						<input
-							type='text'
-							value={input.img3}
-							id='img3'
-							name='img3'
-							placeholder='img'
-							onChange={(e) => handleChange(e)}
-						/>
-						{errors.img3 && <p style={{ color: 'red' }}>{errors.img3}</p>}
-					</div>
-					<div>
-						<label htmlFor='img4'>Image 4: &nbsp; </label>
-						<input
-							type='text'
-							value={input.img4}
-							id='img4'
-							name='img4'
-							placeholder='img'
-							onChange={(e) => handleChange(e)}
-						/>
-						{errors.img4 && <p style={{ color: 'red' }}>{errors.img4}</p>}
-					</div>
-					<div>
-						<label htmlFor='Price'>Price: &nbsp;</label>
-						<input
-							type='number'
-							value={input.Price}
-							id='Price'
-							name='Price'
-							placeholder='Price'
-							required
-							onChange={(e) => handleChange(e)}
-						/>
-					</div>
-					{errors.Price && <p style={{ color: 'red' }}>{errors.Price}</p>}
+		<Box bg='#EEEEEE' minHeight='100vh'>
+			<Nav />
+			<Flex marginTop='5vh' justifyContent='center'>
+				<Box
+					maxW='100%'
+					bg='#b1b7b76a'
+					border='1px solid #88cfd938'
+					p={2}
+					boxShadow=' 5px 5px 10px #2c2b2b, -10px -10px 20px #5c5a5a;'
+					borderRadius='20px'>
+					<Heading
+						as='h1'
+						color='#222831'
+						textAlign='center'
+						margin={4}
+						fontSize={!smallScreen ? '1.5em' : '2em'}>
+						Add Event
+					</Heading>
+					<form className={styles.form}>
+						<FormControl marginBottom={4}>
+							<FormLabel color='#222831' fontSize={!smallScreen ? '.8em' : '1em'}>
+								<span style={{ color: 'red' }}>*</span>Event name
+							</FormLabel>
+							<Input
+								fontSize={!smallScreen ? '.8em' : '1em'}
+								type='text'
+								value={input.Name}
+								id='Name'
+								name='Name'
+								placeholder='(Max 25 characters)'
+								_placeholder={{ color: '#393e46b6' }}
+								required
+								variant='flushed'
+								onChange={(e) => handleChange(e)}
+							/>
+							{input.Name !== '' && errors.Name && (
+								<Text color='red' fontSize={!smallScreen ? '.8em' : '1em'}>
+									{errors.Name}
+								</Text>
+							)}
+						</FormControl>
 
-					<div>
-						<label htmlFor='Quantity'>Quantity: &nbsp;</label>
-						<input
-							type='number'
-							value={input.Quantity}
-							name='Quantity'
-							placeholder='Quantity'
-							onChange={(e) => handleChange(e)}
-						/>
-					</div>
-					{errors.Quantity && <p style={{ color: 'red' }}>{errors.Quantity}</p>}
+						<FormControl marginBottom={4}>
+							<FormLabel color='#222831' fontSize={!smallScreen ? '.8em' : '1em'}>
+								<span style={{ color: 'red' }}>*</span>Province
+							</FormLabel>
+							<Select
+								fontSize={!smallScreen ? '.8em' : '1em'}
+								value={input.City}
+								name='City'
+								variant='flushed'
+								color='#393e46b6'
+								onChange={(e) => handleChange(e)}>
+								<option value='' hidden>
+									(Select province...)
+								</option>
+								{Cities.map((p) => {
+									return (
+										<option key={p} value={p}>
+											{p}
+										</option>
+									);
+								})}
+							</Select>
+							{input.City !== '' && errors.City && (
+								<Text color='red' fontSize={!smallScreen ? '.8em' : '1em'}>
+									{errors.City}
+								</Text>
+							)}
+						</FormControl>
 
-					<div>
-						<label htmlFor='Restrictions'>Restrictions: &nbsp;</label>
-						<textarea
-							type='text'
-							value={input.Restrictions}
-							name='Restrictions'
-							placeholder='Separate Restrictions using / (example: 1º Res. / 2º Res. / etc...)'
-							onChange={(e) => handleChange(e)}
-						/>
-					</div>
-					<div>
-						<label htmlFor='Detail'>Detail: &nbsp;</label>
-						<textarea
-							type='text'
-							value={input.Detail}
-							name='Detail'
-							placeholder='Insert Detail'
-							onChange={(e) => handleChange(e)}
-						/>
-					</div>
-					<div className={styles.divbutton}>
-						<button
-							onClick={(e) => handleSubmit(e)}
-							className={styles.Button2}
-							disabled={
-								Object.keys(errors).length ? (errors.check === 'approved' ? false : true) : true
-							}>
-							Create
-						</button>
-					</div>
-				</form>
-			</div>
-		</div>
+						{/* <FormControl marginBottom={4}>
+							<FormLabel color='#222831' fontSize={!smallScreen ? '.8em' : '1em'}>
+								<span style={{ color: 'red' }}>*</span>Exact Location
+							</FormLabel>
+							<Input
+								fontSize={!smallScreen ? '.8em' : '1em'}
+								type='text'
+								value={input.Location}
+								name='Location'
+								placeholder='(Max 25 characters)'
+								_placeholder={{ color: '#393e46b6' }}
+								variant='flushed'
+								onChange={(e) => handleChange(e)}
+							/>
+							{input.Location !== '' && errors.Location && (
+								<Text color='red' fontSize={!smallScreen ? '.8em' : '1em'}>
+									{errors.Location}
+								</Text>
+							)}
+						</FormControl> */}
+
+						{/* <MapContainer center={center} zoom={3} scrollWheelZoom={false}>
+    						<TileLayer
+    						  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    						  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+    						/>
+    						<DraggableMarker/>
+  						</MapContainer>, */}
+						<FormControl marginBottom={4}>
+							<FormLabel color='#222831' fontSize={!smallScreen ? '.8em' : '1em'}>
+								<span style={{ color: 'red' }}>*</span>Exact Location
+							</FormLabel>
+							<PlacesAutocomplete
+								value={address}
+								onChange={setAddress}
+								onSelect={handleSelectCoords}>
+								{({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+									<div key={suggestions.description}>
+										<Input
+											value={input.Location}
+											id='Location'
+											name='Location'
+											bg='white'
+											{...getInputProps({
+												placeholder: 'Search Location...',
+												className: 'location-search-input',
+											})}
+										/>
+										<div className='autocomplete-dropdown-container'>
+											{loading && <div>Loading...</div>}
+											{suggestions.map((suggestion) => {
+												const className = suggestion.active
+													? 'suggestion-item--active'
+													: 'suggestion-item';
+												// inline style for demonstration purpose
+												const style = suggestion.active
+													? { backgroundColor: '#fafafa', cursor: 'pointer' }
+													: { backgroundColor: '#ffffff', cursor: 'pointer' };
+												return (
+													<div
+														{...getSuggestionItemProps(suggestion, {
+															className,
+															style,
+														})}>
+														<span>{suggestion.description}</span>
+													</div>
+												);
+											})}
+										</div>
+									</div>
+								)}
+							</PlacesAutocomplete>
+							{input.Location !== '' && errors.Location && (
+								<Text color='red' fontSize={!smallScreen ? '.8em' : '1em'}>
+									{errors.Location}
+								</Text>
+							)}
+						</FormControl>
+
+						<FormControl marginBottom={4}>
+							<FormLabel color='#222831' fontSize={!smallScreen ? '.8em' : '1em'}>
+								<span style={{ color: 'red' }}>*</span>Detail
+							</FormLabel>
+							<Textarea
+								fontSize={!smallScreen ? '.8em' : '1em'}
+								type='text'
+								value={input.Detail}
+								name='Detail'
+								placeholder='(Insert Detail)'
+								_placeholder={{ color: '#393e46b6' }}
+								onChange={(e) => handleChange(e)}
+							/>
+						</FormControl>
+
+						<FormControl marginBottom={4}>
+							<FormLabel color='#222831' fontSize={!smallScreen ? '.8em' : '1em'}>
+								<span style={{ color: 'red' }}>*</span>Date
+							</FormLabel>
+							<Input
+								fontSize={!smallScreen ? '.8em' : '1em'}
+								type='datetime-local'
+								min={today}
+								value={input.date}
+								name='date'
+								color='#393e46b6'
+								placeholder='day / month / year'
+								variant='flushed'
+								onChange={(e) => handleChange(e)}
+							/>{' '}
+							{input.date !== '' && errors.date && (
+								<Text color='red' fontSize={!smallScreen ? '.8em' : '1em'}>
+									{errors.date}
+								</Text>
+							)}
+						</FormControl>
+
+						<FormControl marginBottom={4}>
+							<FormLabel color='#222831' fontSize={!smallScreen ? '.8em' : '1em'}>
+								<span style={{ color: 'red' }}>*</span>Category
+							</FormLabel>
+							<Select
+								fontSize={!smallScreen ? '.8em' : '1em'}
+								value={input.Category}
+								name='Category'
+								variant='flushed'
+								color='#393e46b6'
+								onChange={(e) => handleChange(e)}>
+								<option value='' hidden>
+									(Select Category)
+								</option>
+								{Categories.map((p) => {
+									return (
+										<option key={p} value={p}>
+											{p}
+										</option>
+									);
+								})}
+							</Select>
+							{input.Category !== '' && errors.Category && (
+								<Text color='red' fontSize={!smallScreen ? '.8em' : '1em'}>
+									{errors.Category}
+								</Text>
+							)}
+						</FormControl>
+
+						<FormControl marginBottom={4}>
+							<FormLabel color='#222831' fontSize={!smallScreen ? '.8em' : '1em'}>
+								<span style={{ color: 'red' }}>*</span>Image 1
+							</FormLabel>
+							<Widget
+								publicKey='4a7fa09f2188af9b76a3'
+								type='file'
+								value={input.img1}
+								id='img1'
+								name='img1'
+								variant='flushed'
+								data-tabs='file url facebook gdrive gphotos'
+								required
+								onChange={(e) => {
+									setInput({
+										...input,
+										img1: e.originalUrl,
+									});
+									setErrors(
+										validate({
+											...input,
+											img1: e.originalUrl,
+										})
+									);
+								}}
+							/>
+							{input.img1 !== '' && errors.img1 && <Text color='red'>{errors.img1}</Text>}
+						</FormControl>
+
+						<FormControl marginBottom={4}>
+							<FormLabel color='#222831' fontSize={!smallScreen ? '.8em' : '1em'}>
+								Image 2
+							</FormLabel>
+							<Widget
+								publicKey='4a7fa09f2188af9b76a3'
+								type='text'
+								value={input.img2}
+								id='img2'
+								variant='flushed'
+								onChange={(e) => {
+									setInput({
+										...input,
+										img2: e.originalUrl,
+									});
+								}}
+							/>
+							{errors.img2 && <Text color='red'>{errors.img2}</Text>}
+						</FormControl>
+
+						<FormControl marginBottom={4}>
+							<FormLabel color='#222831' fontSize={!smallScreen ? '.8em' : '1em'}>
+								Image 3
+							</FormLabel>
+							<Widget
+								publicKey='4a7fa09f2188af9b76a3'
+								type='text'
+								value={input.img3}
+								id='img3'
+								variant='flushed'
+								onChange={(e) => {
+									setInput({
+										...input,
+										img3: e.originalUrl,
+									});
+								}}
+							/>
+							{errors.img3 && <Text color='red'>{errors.img3}</Text>}
+						</FormControl>
+
+						<FormControl marginBottom={4}>
+							<FormLabel color='#222831' fontSize={!smallScreen ? '.8em' : '1em'}>
+								Image 4
+							</FormLabel>
+							<Widget
+								publicKey='4a7fa09f2188af9b76a3'
+								value={input.img4}
+								id='file'
+								variant='flushed'
+								onChange={(e) => {
+									setInput({
+										...input,
+										img4: e.originalUrl,
+									});
+								}}
+							/>
+							{errors.img4 && <Text color='red'>{errors.img4}</Text>}
+						</FormControl>
+						<FormControl marginBottom={4}>
+							<FormLabel color='#222831' fontSize={!smallScreen ? '.8em' : '1em'}>
+								Carrousel image (increased cost)
+							</FormLabel>
+							<Widget
+								publicKey='4a7fa09f2188af9b76a3'
+								value={input.carrousel}
+								id='carrousel'
+								variant='flushed'
+								onChange={(e) => {
+									setInput({
+										...input,
+										carrousel: e.originalUrl,
+									});
+								}}
+							/>
+							{errors.carrousel && <Text color='red'>{errors.carrousel}</Text>}
+						</FormControl>
+
+						<FormControl marginBottom={4}>
+							<FormLabel color='#222831' fontSize={!smallScreen ? '.8em' : '1em'}>
+								Quantity
+							</FormLabel>
+							<Input
+								fontSize={!smallScreen ? '.8em' : '1em'}
+								type='number'
+								value={input.Quantity}
+								name='Quantity'
+								min='0'
+								placeholder='(Insert Number) Represents the number of tickets you can sell'
+								_placeholder={{ color: '#393e46b6' }}
+								variant='flushed'
+								onChange={(e) => handleChange(e)}
+							/>
+							{errors.Quantity && (
+								<Text color='red' fontSize={!smallScreen ? '.8em' : '1em'}>
+									{errors.Quantity}
+								</Text>
+							)}
+						</FormControl>
+
+						<FormControl marginBottom={4}>
+							<FormLabel color='#222831' fontSize={!smallScreen ? '.8em' : '1em'}>
+								Price
+							</FormLabel>
+							<Input
+								fontSize={!smallScreen ? '.8em' : '1em'}
+								type='number'
+								value={input.Price}
+								id='Price'
+								name='Price'
+								min='0'
+								placeholder='$ (ARS)'
+								_placeholder={{ color: '#393e46b6' }}
+								required
+								variant='flushed'
+								onChange={(e) => handleChange(e)}
+							/>
+							{errors.Price && (
+								<Text color='red' fontSize={!smallScreen ? '.8em' : '1em'}>
+									{errors.Price}
+								</Text>
+							)}
+						</FormControl>
+
+						<FormControl marginBottom={4}>
+							<FormLabel color='#222831' fontSize={!smallScreen ? '.8em' : '1em'}>
+								Age Restriction
+							</FormLabel>
+							<InputGroup>
+								<InputLeftAddon children='+' />
+								<Input
+									fontSize={!smallScreen ? '.8em' : '1em'}
+									type='number'
+									value={input.AgeRestriction}
+									name='AgeRestriction'
+									placeholder='(Insert Number)'
+									_placeholder={{ color: '#393e46b6' }}
+									variant='flushed'
+									marginLeft={1}
+									onChange={(e) => handleChange(e)}
+								/>
+							</InputGroup>
+							{errors.AgeRestriction && (
+								<Text color='red' fontSize={!smallScreen ? '.8em' : '1em'}>
+									{errors.AgeRestriction}
+								</Text>
+							)}
+						</FormControl>
+
+						<FormControl marginBottom={4}>
+							<FormLabel color='#222831' fontSize={!smallScreen ? '.8em' : '1em'}>
+								Restrictions
+							</FormLabel>
+							<Textarea
+								fontSize={!smallScreen ? '.8em' : '1em'}
+								type='text'
+								value={input.Restrictions}
+								name='Restrictions'
+								placeholder='(Separate each restriction using "/") '
+								_placeholder={{ color: '#393e46b6' }}
+								onChange={(e) => handleChange(e)}
+							/>
+						</FormControl>
+
+						<Box marginBottom={4}>
+							<Text color='red' fontSize={!smallScreen ? '.8em' : '1em'}>
+								*Required fields
+							</Text>
+						</Box>
+
+						<Box textAlign='center' marginBottom={4}>
+							<Button
+								bg='#FD7014'
+								color='#EEEEEE'
+								_hover={{ bg: '#EEEEEE', color: 'black' }}
+								onClick={(e) => handleSubmit(e)}
+								disabled={
+									Object.keys(errors).length ? (errors.check === 'approved' ? false : true) : true
+								}>
+								Create
+							</Button>
+						</Box>
+					</form>
+				</Box>
+			</Flex>
+			<br />
+		</Box>
 	);
 }
 
