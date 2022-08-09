@@ -5,7 +5,7 @@ import { getUserDetails } from './getUserDetails';
 export async function postSupports(payload, id, dispatch) {
 	console.log('soy el soporte');
 	try {
-		await axios.post('http://localhost:3001/support/createTicket', payload);
+		await axios.post('/support/createTicket', payload);
 
 		if(id) {
 		dispatch(getUserDetails(id))
