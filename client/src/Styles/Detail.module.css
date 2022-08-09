@@ -179,7 +179,19 @@
 	-o-border-radius: 5px;
 }
 
+.boxCarousel{
+	width: 45vw;
+	height: 85vh;
+}
 
+.contentData{
+	width: 95vw;
+	height: 90vh;
+}
+
+.contentAll{
+	min-height: 95vh;
+}
 
 @media screen and (max-width: 1024px) {
 	.ButtonAdd2 {
@@ -207,5 +219,45 @@
 		width: 35px;
 		margin-left: 10px;
 		margin-right: -10px;
+	}
+
+
+		/*Detail*/
+
+	.contentAll{
+		margin-top: 5em;
+		min-height: 150vh;
+		/* background-color: #fd7014; */
+	}
+
+	.contentData{
+		width: 95vw;
+		height: 140vh;
+		/* background-color: #387a1c; */
+	}
+
+
+	.boxCarousel{
+		width: 100%;
+		height: 25em;
+		/* background-color: #fd7014; */
+	}
+
+	.cards {
+		margin-top: 2em;
+		width: 90vw;
+	}
+
+	.containerButton {
+		width: 100%;
+		margin-bottom: 2em;
+	}
+  }
+
+
+  @media screen and (max-width: 375px) {
+	.containerButton {
+		width: 150%;
+		margin-bottom: 2em;
 	}
   }
