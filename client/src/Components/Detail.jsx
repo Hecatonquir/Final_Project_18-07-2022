@@ -26,6 +26,7 @@ import swal from "sweetalert";
 import { decodeToken } from "react-jwt";
 import { updateEvent } from "../Redux/Actions/updateEvent";
 import MapDetails from "./MapDetails";
+import updateFavourite from '../Redux/Actions/updateFavourite';
 import { increaseQuantity } from "../Redux/Actions/increaseQuantity";
 
 export default function Detail() {
@@ -39,8 +40,8 @@ export default function Detail() {
   let token = document.cookie.split(";")[0];
   let token1 = token.split("=")[1];
   let tokenDecoded = decodeToken(token1);
-
-  console.log("🐲🐲🐲 / file: Detail.jsx / line 30 / event", event);
+  
+  // console.log("🐲🐲🐲 / file: Detail.jsx / line 30 / event", event);
   let quantity = event.length ? event[0].Quantity : 0;
   let price = event.length ? event[0].Price : 0;
   let [userSpecs, setSpecs] = useState({
@@ -87,7 +88,7 @@ export default function Detail() {
   }, [dispatch, id]);
 
   function handleClickFav(id) {
-    if (token) {
+    if (token1) {
       if (!exitFav) {
         dispatch(addToFavourites(id));
         swal("Added to favorite", { icon: "success" });
@@ -95,6 +96,7 @@ export default function Detail() {
         dispatch(removeFromFavourites(id));
         swal("Removed from favorites", { icon: "warning" });
       }
+      dispatch(updateFavourite(tokenDecoded.id))
     } else {
       navigate("/login");
     }
