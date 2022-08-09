@@ -122,7 +122,7 @@ export default function Detail() {
                         <Stack spacing={3}>
                           <Flex flexDirection="row" justifyContent="space-between">
                             <Heading as="h1">{event[0].Name}</Heading>
-                            <Button width="5rem" bg="#FD7014" color="white" size="sm" name="Name" 
+                            <Button width="8rem" bg="#FD7014" color="white" size="sm" name="Name" 
 							hidden={ tokenDecoded && tokenDecoded.role === "Admin" && active ? false : true}
                             onClick={(e) => handleClick(e)}>
                               Update
@@ -161,7 +161,7 @@ export default function Detail() {
                           >
                             <Text>City: {event[0].City}</Text>
                             <Button
-                              width="5rem"
+                              width="8rem"
                               bg="#FD7014"
                               color="white"
                               size="sm"
@@ -214,7 +214,7 @@ export default function Detail() {
                           >
                             <Text>Location: {event[0].Location}</Text>
                             <Button
-                              width="5rem"
+                              width="8rem"
                               bg="#FD7014"
                               color="white"
                               size="sm"
@@ -271,7 +271,7 @@ export default function Detail() {
                           >
                             <Text>Category: {event[0].Category}</Text>
                             <Button
-                              width="5rem"
+                              width="8rem"
                               bg="#FD7014"
                               color="white"
                               size="sm"
@@ -328,7 +328,7 @@ export default function Detail() {
                           >
                             <Text>Date: {event[0].Date}</Text>
                             <Button
-                              width="5rem"
+                              width="8rem"
                               bg="#FD7014"
                               color="white"
                               size="sm"
@@ -386,7 +386,7 @@ export default function Detail() {
                                 : " $ " + event[0].Price}
                             </Text>
                             <Button
-                              width="5rem"
+                              width="8rem"
                               bg="#FD7014"
                               color="white"
                               size="sm"
@@ -451,7 +451,7 @@ export default function Detail() {
                                 : event[0].Quantity}
                             </Text>
                             <Button
-                              width="5rem"
+                              width="8rem"
                               bg="#FD7014"
                               color="white"
                               size="sm"
@@ -502,7 +502,7 @@ export default function Detail() {
                               Change
                             </Button>
                             <Button
-                              width="5rem"
+                              width="8rem"
                               bg="#FD7014"
                               color="white"
                               size="sm"
@@ -560,7 +560,7 @@ export default function Detail() {
                                 : event[0].AgeRestriction}
                             </Text>
                             <Button
-                              width="5rem"
+                              width="8rem"
                               bg="#FD7014"
                               color="white"
                               size="sm"
@@ -622,7 +622,7 @@ export default function Detail() {
                                 : "Unrestricted Event"}
                             </Text>
                             <Button
-                              width="5rem"
+                              width="8rem"
                               bg="#FD7014"
                               color="white"
                               size="sm"
@@ -677,9 +677,9 @@ export default function Detail() {
                             flexDirection="row"
                             justifyContent="space-between"
                           >
-                            <Text width="90%">Detail: {event[0].Detail}</Text>
+                            <Text>Detail: {event[0].Detail}</Text>
                             <Button
-                              width="5rem"
+                              width="8rem"
                               bg="#FD7014"
                               color="white"
                               size="sm"

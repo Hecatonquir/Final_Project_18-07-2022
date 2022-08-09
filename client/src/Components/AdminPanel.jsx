@@ -13,7 +13,7 @@ import styles from '../Styles/AdminPanel.module.css';
 import { changeRole } from '../Redux/Actions/updateRole';
 import { banUnbanUser } from '../Redux/Actions/banUnbanUser';
 import { eachWeekOfInterval } from 'date-fns';
-import { Box, Text, Button, Flex, Input } from "@chakra-ui/react";
+import { Box, Text, Button, Flex, Input, SimpleGrid } from "@chakra-ui/react";
 import {Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableContainer} from '@chakra-ui/react'
 import { GET_EVENTS, GET_USERS } from '../Redux/ActionTypes/actiontypes';
 import TicketsUsers from './TicketsFromUsers'
@@ -115,6 +115,11 @@ function AdminPanel() {
 						className={toggleState === 4 ? `${styles.tabs} ${styles.activetabs}`: styles.tabs}
 						onClick={() => toggleTab(4)}>
 						Event Request
+					</button>
+					<button
+						className={toggleState === 5 ? `${styles.tabs} ${styles.activetabs}`: styles.tabs}
+						onClick={() => toggleTab(5)}>
+						Partner Request
 					</button>
 				</div>
 
@@ -338,29 +343,26 @@ function AdminPanel() {
 								<div className={toggleState === 3 ? `${styles.content}  ${styles.activecontent}` : styles.content}>
 								<TicketsUsers/>
 								</div>
-							{/* //Cuarto Bloque */}
+								{/* //Cuarto Bloque */}
 								<div className={toggleState === 4 ? `${styles.content}  ${styles.activecontent}` : styles.content}>
-												{partnerRequest && partnerRequest.map(el =>(
-													<div>
-													<label>Company Name</label>
-													<h1>{el.Company}</h1>
-													<label>Partner Name</label>
-													<h1>{el.Name}</h1>
-													<label>DNI</label>
-													<h1>{el.DNI}</h1>
-													<label>CUIT</label>
-													<h1>{el.CUIT}</h1>
-													<label>Phone</label>
-													<h1>{el.Phone}</h1>
-													<label>Email</label>
-													<h1>{el.Email}</h1>
-													<label>CBU</label>
-													<h1>{el.CBU}</h1>
-													<button onClick={() => changeRole("Partner", el.Email, dispatch, token1)}>Approve</button>
-													</div>
+									<EventRequest/>
+								</div>
+								{/* //Quinto Bloque */}
+								<div className={toggleState === 5 ? `${styles.content}  ${styles.activecontent}` : styles.content}>
+										<SimpleGrid columns={3} spacing={4}>		
+											{partnerRequest && partnerRequest.map(el =>(
+												<Flex bg='#ACAFB0 ' w='23rem' minH='18rem' borderRadius='10px' margin={3} padding={3} flexDirection='column' >
+													<Text>Company Name: {el.Company}</Text>
+													<Text>Partner Name: {el.Name}</Text>
+													<Text>DNI: {el.DNI}</Text>
+													<Text>CUIT: {el.CUIT}</Text>
+													<Text>Phone: {el.Phone}</Text>
+													<Text>Email: {el.Email}</Text>
+													<Text>CBU: {el.CBU}</Text>
+													<Button bg='green' color='white' w='10em' size='sm' p={3} onClick={() => changeRole("Partner", el.Email, dispatch, token1)}>Approve</Button>
+												</Flex>
 												))}
-
-								<EventRequest/>
+										</SimpleGrid>
 								</div>
 				</div>
 				</div>
