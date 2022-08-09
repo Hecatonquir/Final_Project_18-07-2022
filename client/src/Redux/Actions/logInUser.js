@@ -40,7 +40,7 @@ export async function logInUser(payload, navigate, dispatch, setCookie) {
 	} catch (error) {
 		console.log(error);
 		swal({
-			title: 'Error',
+			title: error.response.data,
 			icon: 'error',
 			timer: 1000,
 			buttons: false,
