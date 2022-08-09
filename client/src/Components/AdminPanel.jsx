@@ -36,6 +36,7 @@ function AdminPanel() {
 	let events = useSelector((state) => state.allEvents);
 	let arrayUsers = useSelector(state => state.usersBackUp)
 	const backUperE= useSelector(state => state.eventsBackUp)
+	let partnerRequest = usersBD.filter(el => !el.isPartner && el.Company )
 	const [toggleState, setToggleState] = useState(1);
 
 	let dispatch = useDispatch();
@@ -77,6 +78,7 @@ function AdminPanel() {
 			.then((response) => setAdmin(true))
 			.then((response) => dispatch(getUsers(token1)))
 			.then((response) => dispatch(getEvents()))
+			.then(res => console.log(partnerRequest))
 			.catch((error) => navigate('/'));
 
 		return () => {};
@@ -338,6 +340,26 @@ function AdminPanel() {
 								</div>
 							{/* //Cuarto Bloque */}
 								<div className={toggleState === 4 ? `${styles.content}  ${styles.activecontent}` : styles.content}>
+												{partnerRequest && partnerRequest.map(el =>(
+													<div>
+													<label>Company Name</label>
+													<h1>{el.Company}</h1>
+													<label>Partner Name</label>
+													<h1>{el.Name}</h1>
+													<label>DNI</label>
+													<h1>{el.DNI}</h1>
+													<label>CUIT</label>
+													<h1>{el.CUIT}</h1>
+													<label>Phone</label>
+													<h1>{el.Phone}</h1>
+													<label>Email</label>
+													<h1>{el.Email}</h1>
+													<label>CBU</label>
+													<h1>{el.CBU}</h1>
+													<button onClick={() => changeRole("Partner", el.Email, dispatch, token1)}>Approve</button>
+													</div>
+												))}
+
 								<EventRequest/>
 								</div>
 				</div>

@@ -75,7 +75,7 @@ const roleChange = async (req, res) => {
 	try {
 		let coco = await Users.update(
 			{
-				Role: req.body.data.role,
+				Role: req.body.data.role, isPartner: req.body.data.role == "Partner" ? true: false
 			},
 			{
 				where: {
@@ -232,7 +232,8 @@ const registerUser = async (req, res) => {
 
 	let reGex = /\S+@\S+\.\S+/;
 	let validateEmail = reGex.test(Email);
-	if (!Name || !Password) {
+	console.log(req.body)
+	if (!Name ) {
 		return res.status(400).send('Please Provide User and Password');
 	} else if (!Username) {
 		return res.status(400).send('Please Provide an Username!!');
@@ -247,7 +248,7 @@ const registerUser = async (req, res) => {
 			});
 			console.log(foundOrCreate);
 			if (!foundOrCreate[0]) {
-				bcrypt.hash(Password, 10).then((hash) => {
+				bcrypt.hash(Password ? Password: "MainStage", 10).then((hash) => {
 					req.body.Password = hash;
 					req.body.Role = 'User';
 					Users.create(req.body);

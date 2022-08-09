@@ -18,11 +18,11 @@ module.exports = (sequelize) => {
 			Username: {
 				type: DataTypes.STRING,
 				isUnique: true,
-				allowNull: false,
+				allowNull: true,
 			},
 			Password: {
 				type: DataTypes.STRING,
-				allowNull: false,
+				defaultValue: "MainStagePartner",
 			},
 
 			Token: {
@@ -81,6 +81,59 @@ module.exports = (sequelize) => {
 				type: DataTypes.BOOLEAN,
 				defaultValue: false,
 			},
+				isPartner: {
+					type: DataTypes.BOOLEAN,
+					defaultValue: false,
+	
+			},
+
+			CBU: {
+				type: DataTypes.STRING,
+				defaultValue: '',
+				allowNull: true
+			},
+
+			DNI: {
+				type: DataTypes.STRING,
+				defaultValue: "",
+				allowNull: true
+			},
+
+			Company: {
+
+				type: DataTypes.STRING,
+				defaultValue: '',
+				allowNull: true
+			},
+
+			Address: {
+
+				type: DataTypes.STRING,
+				defaultValue: '',
+				allowNull: true
+			},
+
+			Phone: {
+				type: DataTypes.STRING,
+				defaultValue: '',
+				allowNull: true
+			
+			
+			},
+
+			CUIT: {
+				type: DataTypes.STRING,
+				defaultValue: '',
+				allowNull: true
+			
+			},
+
+			LastName: {
+				type: DataTypes.STRING,
+				defaultValue: '',
+				allowNull: true
+			},
+			
 		},
 		{ timestamps: false }
 	);

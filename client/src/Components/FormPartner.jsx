@@ -14,6 +14,7 @@ import {
   Flex,
   Center,
 } from "@chakra-ui/react";
+import userRegister from "../Redux/Actions/postRegister";
 
 function FormPartner() {
   function validate(input) {
@@ -134,6 +135,7 @@ function FormPartner() {
     NumberPhone: "",
     CUIT: "",
     CBU: "",
+    Email: ""
   });
 
   function handleChange(e) {
@@ -154,15 +156,17 @@ function FormPartner() {
     if (errors.check !== "approved") {
       swal("Not created","","error");
     } else {
-      sendPartnerForm({
+      userRegister({
         Name: input.Name,
+        Username: input.CompanyName,
         LastName: input.LastName,
-        CompanyName: input.CompanyName,
-        FiscalAddress: input.FiscalAddress,
-        ID: input.ID,
-        NumberPhone: input.NumberPhone,
+        Company: input.CompanyName,
+        Address: input.FiscalAddress,
+        DNI: input.ID,
+        Phone: input.NumberPhone,
         CUIT: input.CUIT,
         CBU: input.CBU,
+        Email: input.Email
       });
       setInput({
         Name: "",
@@ -334,6 +338,23 @@ function FormPartner() {
               />
               {errors.CBU && <FormErrorMessage color="red">{errors.CBU}</FormErrorMessage>}
             </FormControl>
+
+            <FormControl isRequired marginTop={4} >
+              <FormLabel>Email</FormLabel>
+              <Input
+                type="text"
+                value={input.Email}
+                id="Email"
+                name="Email"
+                placeholder="Email"
+                variant="flushed"
+                required
+                _placeholder={{ opacity: 0.3, color: "inherit" }}
+                onChange={(e) => handleChange(e)}
+              />
+             
+            </FormControl>
+
 
             <Center>
               <Button
