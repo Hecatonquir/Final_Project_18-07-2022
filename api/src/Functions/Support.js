@@ -25,7 +25,7 @@ const getSupportById = async (req, res) => {
 const replyTicketByID = async (req, res) => {
 	const {id} = req.params;
 	
-	console.log(req.body)
+	console.log(req.body)   // { data: 'Hola, estamos verificando tu pago. En las proximas horas recibiras tu entrada.' }
 	try {
 		const boxSupport = await Supports.update({
 			reply: req.body.data},
