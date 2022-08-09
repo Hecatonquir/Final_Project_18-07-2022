@@ -54,83 +54,67 @@ function Profile() {
       {token && token ? (
         <>
           <Nav />
-          <Flex
-            justifyContent="center"
-            alignItems="center"
-            flexDirection={!smallScreen1 ? "column" : "row"}
-          >
-            <Box
-              color="#EEEEEE"
-              width="25%"
-              padding={4}
-              className={styles.contentProfile}
-            >
-              <Flex
-                justifyContent="center"
-                alignItems="center"
-                flexDirection="column"
-              >
+          <Flex justifyContent="center" alignItems="center" flexDirection={!smallScreen1 ? "column" : "row"}>
+
+            <Box color="#EEEEEE" width="25%" padding={4} className={styles.contentProfile}>
+
+              <Flex justifyContent="center" alignItems="center" flexDirection="column">
+
                 <Heading as="h4" marginBottom={2} className={styles.title}>
                   Profile
                 </Heading>
+
                 <Image
                   src={`${tokenDecoded.picture && tokenDecoded.picture}`}
                   alt="No img"
                   marginBottom={4}
                   lassName={styles.img}
-                  borderRadius="15px"
-                ></Image>
+                  borderRadius="15px">
+                </Image>
+
                 <Heading as="h3" marginBottom={2} className={styles.name}>
-                  {`${tokenDecoded.name[0].toUpperCase()}${tokenDecoded.name.slice(
-                    1
-                  )}` || user.name}
+                  {`${tokenDecoded.name[0].toUpperCase()}${tokenDecoded.name.slice(1)}` || user.name}
                 </Heading>
+
                 <Heading as="h3" marginBottom={2}>
                   {tokenDecoded.city ? tokenDecoded.city : null}
                 </Heading>
-                <Heading
-                  as="h3"
-                  marginBottom={2}
-                  fontSize="2xl"
-                  className={styles.user}
-                >
+
+                <Heading as="h3" marginBottom={2} fontSize="2xl" className={styles.user}>
                   Rol: {tokenDecoded.role || "User"}
                 </Heading>
+
                 <Text marginBottom={2} className={styles.email}>{tokenDecoded.email}</Text>
+
                 <Heading as='h5' className={styles.security}>Security: </Heading>
-                <button
-				  className={styles.btn}
-                  onClick={() => setPass(changePass ? false : true)}
-                >
+
+                <button className={styles.btn} onClick={() => setPass(changePass ? false : true)}>
                   Change Password
                 </button>
+
                 <input
                   hidden={changePass ? false : true}
                   value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                ></input>
+                  onChange={(e) => setInput(e.target.value)}>
+                </input>
+                
                 <Button
                   m={1}
                   size="sm"
                   hidden={changePass ? false : true}
-				  bg="#FD7014"
-				  color="#EEEEEE"
-				  _hover={{ bg: "#EEEEEE", color: "black" }}
-                  onClick={() =>
-                    updateUser({ Password: input }, tokenDecoded.id, dispatch)
-                  }
-                >
-                  Save
+				          bg="#FD7014"
+				          color="#EEEEEE"
+				          _hover={{ bg: "#EEEEEE", color: "black" }}
+                  onClick={() => updateUser({ Password: input }, tokenDecoded.id, dispatch)}>
+                    Save
                 </Button>
-                <button
-                  className={styles.btn}
-                  onClick={() => get2FA(tokenDecoded.id)}
-                >
+
+                <button className={styles.btn} onClick={() => get2FA(tokenDecoded.id, tokenDecoded.email)}>
                   GET 2FA AUTHENTICATION
                 </button>
+
                 <span className={styles.span}>
-                  *Note: You will need to add "Authenticator" as a browser
-                  extension.
+                  *Note: You will need to add "Authenticator" as a browser extension.
                 </span>
 
                 {/* <label>Tickets</label>
@@ -146,13 +130,21 @@ function Profile() {
                     <h1>{el.done? "Solved!": "Pending"}</h1>
                   </div> 
                 ))} */}
+
               </Flex>
+
             </Box>
+
             <Box width="75%" padding={4} className={styles.contentFav}>
+
               <Flex justifyContent="right" minHeight="85vh" bg="#FD7014">
+
                 <Tabs tokenDecoded={tokenDecoded} />
+
               </Flex>
+
             </Box>
+
           </Flex>
         </>
       ) : (
@@ -160,6 +152,7 @@ function Profile() {
           <Nav />
 
           <Flex justifyContent="center" alignItems="center" height="90vh">
+            
             <Box
               color="white"
               bg="gray"
