@@ -36,14 +36,10 @@ export default function Home() {
 	let [search, setSearch] = useState("");
 	let [userLoc, setLoc] = useState([]);
 
-	navigator.geolocation.getCurrentPosition((p) => {
-		setLoc([p.coords.latitude, p.coords.longitude]);
-	});
-
 	let today = new Date().toISOString().slice(0, 16);
 
 	let orderedEvents = events.slice(); // Esto me sirve para crear una copia en memoria DISTINTA del array events
-	console.log("🐲🐲🐲 / file: Home.jsx / line 46 / orderedEvents", orderedEvents);
+	//console.log("🐲🐲🐲 / file: Home.jsx / line 46 / orderedEvents", orderedEvents);
 
 	orderedEvents = orderedEvents
 		.map((e) => {
@@ -53,6 +49,23 @@ export default function Home() {
 			};
 		})
 		.sort((a, b) => a.distancia - b.distancia);
+
+	for (let i = 0; i < orderedEvents.length - 1; i++) {
+		if (orderedEvents[i].City === orderedEvents[i + 1].City) {
+			for (let j = i; j < orderedEvents.length - 1; j++) {
+				if (orderedEvents[j].City === orderedEvents[j + 1].City) {
+					let evDate1 = orderedEvents[j].Date;
+					let evDate2 = orderedEvents[j + 1].Date;
+					if (evDate1 > evDate2) {
+						let aux = orderedEvents[j];
+						orderedEvents[j] = orderedEvents[j + 1];
+						orderedEvents[j + 1] = aux;
+						j = i - 1;
+					}
+				}
+			}
+		}
+	}
 	/* orderedEvents.forEach((ev, i) => {
 		let evDate = ev.Date.toLocaleString().slice(0, 16);
 		if (evDate < today) {
@@ -67,7 +80,7 @@ export default function Home() {
 		}
 	}
 
-	console.log("🐲🐲🐲 / file: Home.jsx / line 63 / orderedEvents", orderedEvents);
+	//console.log("🐲🐲🐲 / file: Home.jsx / line 63 / orderedEvents", orderedEvents);
 
 	carrouselEvents.forEach((ev, i) => {
 		let evDate = ev.Date.toLocaleString().slice(0, 16);
@@ -96,7 +109,9 @@ export default function Home() {
 		}
 
 		dispatch(getEvents());
-
+		navigator.geolocation.getCurrentPosition((p) => {
+			setLoc([p.coords.latitude, p.coords.longitude]);
+		});
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
