@@ -106,7 +106,7 @@ function FormPartner() {
 		if (!Email) {
 			errors.Email = "Email is required.";
 		} else if (Email.length !== 0) {
-			if (!reMedio.test(Email) || Email.length > 25) {
+			if (!reMedio.test(Email) || Email.length > 50) {
 				errors.Email = "Must be a valid email format";
 			}
 		}
