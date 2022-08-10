@@ -1,192 +1,160 @@
 .cards {
-    width: 20rem;
-    height: 32rem;
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-    border-radius: 1rem;
-    margin: 1rem;
-    overflow: hidden;
-    color: #222831;
+	width: 20rem;
+	height: 32rem;
+	display: flex;
+	flex-direction: column;
+	background-color: white;
+	border-radius: 1rem;
+	margin: 1rem;
+	overflow: hidden;
+	color: #222831;
 }
 
 .img {
-    width: 20rem;
-    height: 18rem;
+	width: 20rem;
+	height: 18rem;
 }
 
-.title{
-    margin-top: 15px;
-    font-size: 1.5em; 
+.title {
+	margin-top: 15px;
+	font-size: 1.5em;
 }
 
-.title:hover{
-    color: #FD7014;
+.title:hover {
+	color: #fd7014;
 }
 
-.datas{
-    margin-top: 20px;
+.datas {
+	margin-top: 20px;
+	display: flex;
+	flex-direction: row;
 }
 
-.data{
-    margin-top: 20px; 
+.data {
+	margin-top: 20px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-around;
 }
 
-.flex{
-    margin-bottom: 15px;
+.flex {
+	margin-bottom: 15px;
 }
 
 .leftcolumn {
-    position: relative;
+	position: relative;
 }
 
 .triangle {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 0;
-    height: 0;
-    border-right: 100px solid transparent;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 0;
+	height: 0;
+	border-right: 100px solid transparent;
 }
 
 .text {
-    width: 5em;
-    color: white;
-    position: relative;
-    top: -75px;
-    left: -5px;
-    font-weight: bold;
-    transform: rotate(-45deg);
-    -webkit-transform: rotate(-45deg);
-    -moz-transform: rotate(-45deg);
-    -ms-transform: rotate(-45deg);
-    -o-transform: rotate(-45deg);
+	width: 5em;
+	color: white;
+	position: relative;
+	top: -75px;
+	left: -5px;
+	font-weight: bold;
+	transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	-o-transform: rotate(-45deg);
 }
 
 .rightcolumn {
-    padding: 1px 1px 1px 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
-    margin: 0.1rem;
-    height: 20rem;
+	padding: 1px 1px 1px 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: space-between;
+	margin: 0.1rem;
+	height: 20rem;
 }
 
 .subtitles p {
-    margin: 2px;
+	margin: 2px;
 }
 
 .Button2 {
-    cursor: pointer;
-    color: white;
-    font-weight: bolder;
-    background-color: #FD7014;
-    border-radius: 70px;
-    font-size: 12px;
-    padding: 1px 20px 1px 20px;
-    border: none;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    align-self: flex-end;
+	cursor: pointer;
+	color: white;
+	font-weight: bolder;
+	background-color: #fd7014;
+	border-radius: 70px;
+	font-size: 12px;
+	padding: 1px 20px 1px 20px;
+	border: none;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	align-self: flex-end;
 }
 
 .carticon {
-    width: 30px;
+	width: 30px;
 }
 
 .cards:hover {
-    transform: scale(1.05);
-    transition: all 0.5s;
+	transform: scale(1.05);
+	transition: all 0.5s;
 }
 
 .link {
-    text-decoration: none;
+	text-decoration: none;
 }
 
 .favicon {
-    cursor: pointer;
-    width: 30px;
-    height: 30px;
+	cursor: pointer;
+	width: 30px;
+	height: 30px;
 }
 
 .containerButton {
-    display: flex;
-    justify-content: space-between
+	display: flex;
+	justify-content: space-between;
 }
 
 .ButtonFav {
-    border-radius: 50%;
-    background-color: white;
-    margin-right: 100px;
+	border-radius: 50%;
+	background-color: white;
+	margin-right: 100px;
 }
 
 @media screen and (max-width: 1024px) {
-    .cards {
-        width: 16rem;
-        height: 32rem;
-    }
+	.cards {
+		width: 16rem;
+		height: 32rem;
+	}
 
-    .img {
-        width: 16rem;
-        height: 16rem;
-    }
+	.img {
+		width: 16rem;
+		height: 16rem;
+	}
 
-    .datas{
-        margin-top: 2px; 
-    }
+	.datas {
+		margin-top: 2px;
+	}
 
-    .data{
-        margin-top: 5px; 
-        text-align: left;
-    }
+	.data {
+		margin-top: 5px;
+		text-align: left;
+	}
 
+	.flex {
+		margin-bottom: 8px;
+	}
 
-    .flex{
-        margin-bottom: 8px;
-    }
-
-    .ButtonFav {
-        margin-right: 40px;
-    }
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	.ButtonFav {
+		margin-right: 40px;
+	}
+}
 
 /* @media screen and (max-width: 1265px) {
     .cards {
@@ -288,7 +256,6 @@
         margin-bottom: 20px;
     }
   } */
-
 
 /* @media screen and (min-width: 1249px) {
     .cards {
