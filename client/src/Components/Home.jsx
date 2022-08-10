@@ -43,6 +43,7 @@ export default function Home() {
 	let today = new Date().toISOString().slice(0, 16);
 
 	let orderedEvents = events.slice(); // Esto me sirve para crear una copia en memoria DISTINTA del array events
+	console.log("🐲🐲🐲 / file: Home.jsx / line 46 / orderedEvents", orderedEvents);
 
 	orderedEvents = orderedEvents
 		.map((e) => {
@@ -52,13 +53,21 @@ export default function Home() {
 			};
 		})
 		.sort((a, b) => a.distancia - b.distancia);
-
-	orderedEvents.forEach((ev, i) => {
+	/* orderedEvents.forEach((ev, i) => {
 		let evDate = ev.Date.toLocaleString().slice(0, 16);
 		if (evDate < today) {
 			orderedEvents.splice(i, 1);
 		}
-	});
+	}); */
+	for (let i = 0; i < orderedEvents.length; i++) {
+		let evDate = orderedEvents[i].Date.toLocaleString().slice(0, 16);
+		if (evDate < today) {
+			orderedEvents.splice(i, 1);
+			i--;
+		}
+	}
+
+	console.log("🐲🐲🐲 / file: Home.jsx / line 63 / orderedEvents", orderedEvents);
 
 	carrouselEvents.forEach((ev, i) => {
 		let evDate = ev.Date.toLocaleString().slice(0, 16);
