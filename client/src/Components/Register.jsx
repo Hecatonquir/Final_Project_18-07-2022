@@ -24,8 +24,8 @@ function Register() {
     const navigate = useNavigate()
 
     const form = useRef(); // mailing, este hook hace copia del form
-    const SERVICE_ID = 'service_7eiwsn5'
-    const TEMPLATE_ID = 'template_wt1ysr9'
+    const SERVICE_ID = 'service_7eiwsn5'  // cuenta de google: mainstage.henryproyect@gmail.com
+    const TEMPLATE_ID = 'template_wt1ysr9'  // Register Template
     const PUBLIC_KEY = 'qkuGOFSooilyep5Ho'
 
     const [input , setInput] = useState({
@@ -73,14 +73,14 @@ function Register() {
        setErrors(validate({...input, [e.target.name] : e.target.value}))
     }
 
-    console.log(form.current)
+    //console.log(form.current)
 
     const submitButton = function (e){
         e.preventDefault();
 
         /////////////////////////////Envio de mail de confirmacion //////////////////////////////////
-        /* emailjs.sendForm( SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY )
-          .then((result) => { console.log(result.text); } , (error) => { console.log(error.text); }); */
+        emailjs.sendForm( SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY )
+          .then((result) => { console.log(result.text); } , (error) => { console.log(error.text); });
         /////////////////////////////////////////////////////////////////////////////////////////////
 
         if(!input.Name || !input.Username|| !input.Password || !input.Email|| !input.Location) {

@@ -122,7 +122,7 @@ function ButtonFilter({ setSearch, search }) {
 									),
 									setSearch(''),
 									dispatch({ type: GET_EVENTS, payload: backUp }),
-									dispatch({ type: SHOW_EVENTS_USER, payload: backUp.slice(0, 15) })
+									dispatch({ type: SHOW_EVENTS_USER, payload: backUp })
 								);
 							}}
 							bg='#FD7014' 

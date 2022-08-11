@@ -3,7 +3,7 @@ import { Carousel } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetail } from "../Redux/Actions/getDetails";
-import { Box } from "@chakra-ui/react";
+import { Box, useMediaQuery } from "@chakra-ui/react";
 import style from "../Styles/DetailCarousel.module.css";
 
 export default function EventCarousel() {
@@ -26,17 +26,20 @@ export default function EventCarousel() {
 	let quantity = event.length ? event[0].Quantity : 0;
 	let price = event.length ? event[0].Price : 0;
 
+		//Responsive
+		const [smallScreen] = useMediaQuery('(max-width: 425px)');
+
 	const CarouselItem = event[0].Image.map((im, i) => {
 		if (im !== "")
 			return (
-				<Carousel.Item interval={2000} key={i}>
+				<Carousel.Item interval={2000} key={i} className={style.carousel}>
 					<img src={im} alt={event[0].Name} className={style.img} />
 					{price > 0 && quantity < 1 ? (
-						<Box className={style.triangle} borderTop="200px solid #ee0808">
+						<Box className={style.triangle} borderTop={!smallScreen ? "200px solid #ee0808" : "150px solid #ee0808"}> 
 							<div className={style.text}>SOLD OUT</div>
 						</Box>
 					) : price === 0 && quantity === 0 ? (
-						<Box className={style.triangle} borderTop="200px solid #99cc99">
+						<Box className={style.triangle} borderTop={!smallScreen ? "200px solid #99cc99" : "150px solid #99cc99"}>
 							<div className={style.text1}>FREE!</div>
 						</Box>
 					) : (
@@ -47,5 +50,5 @@ export default function EventCarousel() {
 		else return "";
 	});
 
-	return <Carousel>{CarouselItem}</Carousel>;
+	return <Carousel className={style.contentCarousel}>{CarouselItem}</Carousel>;
 }

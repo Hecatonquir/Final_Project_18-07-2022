@@ -1,6 +1,6 @@
 import React from 'react'
 import {useSelector} from 'react-redux'
-import { Box, Flex, Heading, Image, Text, Button, SimpleGrid } from '@chakra-ui/react';
+import { Box, Flex, Heading, Text, SimpleGrid } from '@chakra-ui/react';
 
 export default function TicketsUserDetails() {
 
@@ -11,6 +11,7 @@ export default function TicketsUserDetails() {
         <Box>
             {token && token ? (
                 <Flex justifyContent='center'>
+                {userTicket.supports.length ?
                 <SimpleGrid columns={2} spacing={4}>
                         {userTicket && userTicket.supports.length && userTicket.supports.map((el,i) => (
                             <div key={i}>
@@ -26,6 +27,11 @@ export default function TicketsUserDetails() {
                             </div>
                         ))}
                 </SimpleGrid>
+                : 
+                <div>
+                    <Heading color='white' mt='1em' >You have no generated tickets</Heading>
+                </div>
+                }
                 </Flex>
             ) 
             :
