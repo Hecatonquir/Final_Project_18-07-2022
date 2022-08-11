@@ -73,14 +73,14 @@ function Register() {
        setErrors(validate({...input, [e.target.name] : e.target.value}))
     }
 
-    console.log(form.current)
+    //console.log(form.current)
 
     const submitButton = function (e){
         e.preventDefault();
 
         /////////////////////////////Envio de mail de confirmacion //////////////////////////////////
-        /* emailjs.sendForm( SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY )
-          .then((result) => { console.log(result.text); } , (error) => { console.log(error.text); }); */
+        emailjs.sendForm( SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY )
+          .then((result) => { console.log(result.text); } , (error) => { console.log(error.text); });
         /////////////////////////////////////////////////////////////////////////////////////////////
 
         if(!input.Name || !input.Username|| !input.Password || !input.Email|| !input.Location) {
