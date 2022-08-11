@@ -83,8 +83,8 @@ export default function Cart() {
       };
 
       /////////////////////--->Envio de mail de confirmacion de pago <---///////////////////////////
-      /* emailjs.send( SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY )
-			.then((result) => { console.log(result.text); } , (error) => { console.log(error.text); }); */
+      emailjs.send( SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY )
+			.then((result) => { console.log(result.text); } , (error) => { console.log(error.text); });
       /////////////////////////////////////////////////////////////////////////////////////////////
 
       // Actualizacion de Stock de tickets en la base de datos (Quantity)
