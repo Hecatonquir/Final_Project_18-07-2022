@@ -21,9 +21,10 @@ export async function logInUser(payload, navigate, dispatch, setCookie) {
 			setCookie("access-control", user.data, { path: "/" });
 		}, 2000);
 	} catch (error) {
-		console.log(error);
-		swal("This account has been banned.", {
-			title: "Couldn't logg in",
+		console.log("🐲🐲🐲 / file: logInUser.js / line 24 / error:\n", error);
+
+		swal({
+			title: error.response.data,
 			icon: "error",
 			timer: 10000,
 			buttons: false,
