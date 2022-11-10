@@ -1,39 +1,40 @@
 /* eslint-disable no-unused-vars */
-import { React, useState, useEffect, useRef, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getUserDetails } from "../Redux/Actions/getUserDetails.js";
-import getEvents from "../Redux/Actions/getEvents.js";
-import ButtonFilter from "./ButtonFilter.jsx";
-import EventCard from "./EventCard.jsx";
-import NavBar from "./NavBar.jsx";
-import EventCarousel from "./Carousel.jsx";
-import { useAuth0 } from "@auth0/auth0-react";
-import registerGmail from "../Redux/Actions/registerGmail.js";
-import { LOAD_CART, UPDATE_STATE_TRUE } from "../Redux/ActionTypes/actiontypes.js";
-import Footer from "./Footer.jsx";
-import { decodeToken, isExpired } from "react-jwt";
-import { Box, SimpleGrid, Center, Text, Flex, StylesProvider, useMediaQuery } from "@chakra-ui/react";
-import BackToTopButton from "./BackToTopButton.jsx";
-import axios from "axios";
-import Loader from "./Loader.jsx";
-import styles from "../Styles/Home.module.css";
-import Search from "./Search.jsx";
-import { updateCart } from "../Redux/Actions/updateCart.js";
+import { React, useState, useEffect, useRef, useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserDetails } from '../Redux/Actions/getUserDetails.js';
+import getEvents from '../Redux/Actions/getEvents.js';
+import ButtonFilter from './ButtonFilter.jsx';
+import EventCard from './EventCard.jsx';
+import NavBar from './NavBar.jsx';
+import EventCarousel from './Carousel.jsx';
+import { useAuth0 } from '@auth0/auth0-react';
+import registerGmail from '../Redux/Actions/registerGmail.js';
+import { LOAD_CART, UPDATE_STATE_TRUE } from '../Redux/ActionTypes/actiontypes.js';
+import Footer from './Footer.jsx';
+import { decodeToken, isExpired } from 'react-jwt';
+import { Box, SimpleGrid, Center, Text, Flex, StylesProvider, useMediaQuery } from '@chakra-ui/react';
+import BackToTopButton from './BackToTopButton.jsx';
+import axios from 'axios';
+import Loader from './Loader.jsx';
+import styles from '../Styles/Home.module.css';
+import Search from './Search.jsx';
+import { updateCart } from '../Redux/Actions/updateCart.js';
 //import CalendarEvents from './Calendar.jsx ';
-import { getUserByID2 } from "../Redux/Actions/getUserByID2";
-import updateGlobalFav from "../Redux/Actions/updateGlobalFav";
+import { getUserByID2 } from '../Redux/Actions/getUserByID2';
+import updateGlobalFav from '../Redux/Actions/updateGlobalFav';
+import { Spinner } from '@chakra-ui/react';
 
 export default function Home() {
 	const { user, logout } = useAuth0();
-	let token = document.cookie.split(";")[0];
-	let token1 = token.split("=")[1];
+	let token = document.cookie.split(';')[0];
+	let token1 = token.split('=')[1];
 	let tokenDecoded = decodeToken(token1);
 	const dispatch = useDispatch();
 	const events = useSelector((state) => state.showToUser);
 	const stateUser = useSelector((state) => state.loginState);
 	const backup = useSelector((state) => state.eventsBackUp);
 	const carrouselEvents = backup.filter((ev) => ev.Carrousel);
-	let [search, setSearch] = useState("");
+	let [search, setSearch] = useState('');
 	let [userLoc, setLoc] = useState([]);
 
 	let today = new Date().toISOString().slice(0, 16);
@@ -101,11 +102,11 @@ export default function Home() {
 			dispatch(getUserDetails(tokenDecoded.id));
 			dispatch(getUserByID2(tokenDecoded.id));
 			axios
-				.put("/user/getUserById/" + tokenDecoded.id)
+				.put('/user/getUserById/' + tokenDecoded.id)
 				.then((r) => dispatch({ type: LOAD_CART, payload: r.data.Cart }));
 			axios
-				.put("/user/getUserById/" + tokenDecoded.id)
-				.then((r) => dispatch({ type: "LOAD_FAV", payload: r.data.Favourites }));
+				.put('/user/getUserById/' + tokenDecoded.id)
+				.then((r) => dispatch({ type: 'LOAD_FAV', payload: r.data.Favourites }));
 		}
 
 		dispatch(getEvents());
@@ -116,20 +117,20 @@ export default function Home() {
 	}, []);
 
 	//Responsive
-	const [mediumScreen] = useMediaQuery("(min-width: 1249px)");
+	const [mediumScreen] = useMediaQuery('(min-width: 1249px)');
 	// w={!mediumScreen ? "60%" : "45%"}
 
 	return (
-		<Box bgGradient="linear(to-r, #222831, #393E46)" minHeight="100vh">
-			<Box padding="0" position="fixed" zIndex="100" width="100%">
+		<Box bgGradient='linear(to-r, #222831, #393E46)' minHeight='100vh'>
+			<Box padding='0' position='fixed' zIndex='100' width='100%'>
 				<NavBar stateUser={stateUser} />
 			</Box>
 
-			<Box paddingTop="9vh">
+			<Box paddingTop='9vh'>
 				<EventCarousel carrouselEvents={carrouselEvents} />
 			</Box>
 
-			<Box width="90%" className={styles.contentFilters}>
+			<Box width='90%' className={styles.contentFilters}>
 				<ButtonFilter search={search} setSearch={setSearch} />
 				{/* <div className={styles.search}><CalendarEvents/></div> */}
 			</Box>
@@ -141,7 +142,7 @@ export default function Home() {
 							orderedEvents
 								.filter((el) => !el.isErased && el.isLive)
 								.map((event) => (
-									<Box key={event.ID} p={2} textAlign="center">
+									<Box key={event.ID} p={2} textAlign='center'>
 										<EventCard
 											key={event.ID}
 											id={event.ID}
@@ -157,9 +158,16 @@ export default function Home() {
 									</Box>
 								))
 						) : (
-							<Flex justifyContent="center" width="100vw">
-								<Box fontSize="4em" fontFamily="cursive" color="#FD7014" textAlign="center">
-									<Text>No Events Found</Text>
+							<Flex justifyContent='center' width='100vw'>
+								<Box
+									display='flex'
+									fontSize='4em'
+									fontFamily='cursive'
+									color='#FD7014'
+									textAlign='center'
+									alignItems='baseline'>
+									<Text>Loading</Text>
+									<Spinner ml='5' color='orange.500' thickness='4px' size='lg' />
 								</Box>
 							</Flex>
 						)}
