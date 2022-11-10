@@ -20,7 +20,7 @@ export default function EventCarousel(obj) {
 											<img
 												className='d-block w-100'
 												src={ev.Carrousel}
-												alt='Slide'
+												alt={ev.Name}
 												style={{
 													maxWidth: '100%',
 													maxHeight: '350px',
