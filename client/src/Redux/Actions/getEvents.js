@@ -11,6 +11,6 @@ export default function getEvents() {
 					dispatch({ type: SHOW_EVENTS_USER, payload: response.data })
 				);
 			})
-			.catch((error) => console.log(error.response.data));
+			.catch((error) => console.log(error.message));
 	};
 }
