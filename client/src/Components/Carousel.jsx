@@ -5,7 +5,7 @@ import styles from '../Styles/Home.module.css';
 
 export default function EventCarousel(obj) {
 	const { carrouselEvents } = obj;
-	console.log('💥🟢 ~ file: Carousel.jsx ~ line 8 ~ carrouselEvents', carrouselEvents);
+	console.log('🟢 Carousel.jsx ~ line 8 ~ carrouselEvents', carrouselEvents);
 
 	return (
 		<Carousel className={styles.carousel}>
